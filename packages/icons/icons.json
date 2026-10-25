@@ -378,6 +378,22 @@
       "family": "ui",
       "source": "lucide:clapperboard"
     },
+    "clip-extract": {
+      "family": "tool",
+      "source": "svg:clip-extract.svg"
+    },
+    "clip-insert": {
+      "family": "tool",
+      "source": "svg:clip-insert.svg"
+    },
+    "clip-lift": {
+      "family": "tool",
+      "source": "svg:clip-lift.svg"
+    },
+    "clip-overwrite": {
+      "family": "tool",
+      "source": "svg:clip-overwrite.svg"
+    },
     "clipboard-check": {
       "family": "ui",
       "source": "lucide:clipboard-check"
@@ -461,6 +477,18 @@
     "crop": {
       "family": "ui",
       "source": "lucide:crop"
+    },
+    "dash-dashed": {
+      "family": "tool",
+      "source": "svg:dash-dashed.svg"
+    },
+    "dash-dotted": {
+      "family": "tool",
+      "source": "svg:dash-dotted.svg"
+    },
+    "dash-solid": {
+      "family": "tool",
+      "source": "svg:dash-solid.svg"
     },
     "database": {
       "family": "ui",
@@ -682,6 +710,14 @@
       "family": "ui",
       "source": "lucide:globe"
     },
+    "go-to-in": {
+      "family": "tool",
+      "source": "svg:go-to-in.svg"
+    },
+    "go-to-out": {
+      "family": "tool",
+      "source": "svg:go-to-out.svg"
+    },
     "grid-2x2": {
       "family": "ui",
       "source": "lucide:grid-2x2"
@@ -870,6 +906,14 @@
       "family": "ui",
       "source": "lucide:map-pin"
     },
+    "mark-in": {
+      "family": "tool",
+      "source": "svg:mark-in.svg"
+    },
+    "mark-out": {
+      "family": "tool",
+      "source": "svg:mark-out.svg"
+    },
     "maximize": {
       "family": "ui",
       "source": "lucide:maximize"
@@ -1021,6 +1065,10 @@
     "paperclip": {
       "family": "ui",
       "source": "lucide:paperclip"
+    },
+    "parallelogram": {
+      "family": "tool",
+      "source": "svg:parallelogram.svg"
     },
     "pause": {
       "family": "ui",

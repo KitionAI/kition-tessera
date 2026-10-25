@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <title>Lift: an arrow up out of a clip, leaving the gap (film)</title>
+  <path d="M12 13V3"/>
+  <path d="m8.5 6.5 3.5-3.5 3.5 3.5"/>
+  <path d="M3 15h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z"/>
+  <path d="M16 15h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z"/>
+</svg>

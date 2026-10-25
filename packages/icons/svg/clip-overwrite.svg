@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <title>Overwrite: an arrow onto a clip (film)</title>
+  <path d="M12 3v8"/>
+  <path d="m8.5 7.5 3.5 3.5 3.5-3.5"/>
+  <path d="M4 14h16a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"/>
+</svg>

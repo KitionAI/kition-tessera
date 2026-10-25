@@ -1,4 +1,4 @@
-import { forwardRef, type SVGProps } from 'react'
+import { forwardRef, type ComponentType, type CSSProperties, type SVGProps } from 'react'
 import { gridStroke } from './index'
 import { DEFAULT_STROKE, type IconData, type IconStyle } from './types'
 
@@ -6,6 +6,19 @@ import { DEFAULT_STROKE, type IconData, type IconStyle } from './types'
 export type IconProps = Omit<SVGProps<SVGSVGElement>, 'ref' | 'color' | 'strokeWidth'> & Omit<IconStyle, 'size' | 'strokeWidth'> & { size?: number | string; strokeWidth?: number | string }
 
 export type TesseraIcon = ReturnType<typeof createIcon>
+
+/**
+ * Any icon component a control can draw: Tessera's, or another set's with the same props (such
+ * as lucide-react's), so code can move icon by icon. Use it for icon props and maps of icons.
+ */
+export type IconComponent = ComponentType<{
+  size?: number | string
+  strokeWidth?: number | string
+  color?: string
+  className?: string
+  style?: CSSProperties
+  'aria-hidden'?: boolean | 'true' | 'false'
+}>
 
 /** A React component that draws `icon`. */
 export function createIcon(icon: IconData) {
