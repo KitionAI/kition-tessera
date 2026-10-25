@@ -319,7 +319,6 @@ function MosaicIntro() {
         </div>
         <div className="lx-intro-art">
           <MosaicHero />
-          <span className="lx-intro-hint">Hover the tiles. Click to scatter.</span>
         </div>
       </div>
     </section>

@@ -2154,3 +2154,85 @@ h2 {
     transform: none;
   }
 }
+
+/* The mosaic playground: a Tessera toolbar over the canvas. */
+.lx-play {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.lx-play[data-mode='lens'] .lx-mosaic {
+  cursor: zoom-in;
+}
+.lx-play[data-mode='push'] .lx-mosaic {
+  cursor: grab;
+}
+.lx-play[data-mode='paint'] .lx-mosaic {
+  cursor: crosshair;
+}
+.lx-play[data-mode='explode'] .lx-mosaic {
+  cursor: pointer;
+}
+.lx-play-bar {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(20, 14, 58, 0.72);
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+  transform: translateX(-50%);
+}
+.lx-play-bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.lx-play-bar button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+.lx-play-bar button[aria-pressed='true'] {
+  background: linear-gradient(135deg, #7b6cf0, #c86bd8);
+  color: #ffffff;
+  box-shadow: 0 6px 16px -6px rgba(155, 107, 255, 0.9);
+}
+.lx-play-sep {
+  width: 1px;
+  height: 22px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.lx-play-bar .lx-play-swatch {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+.lx-play-bar .lx-play-swatch[aria-pressed='true'] {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+@media (max-width: 640px) {
+  .lx-play-bar span {
+    display: none;
+  }
+}
