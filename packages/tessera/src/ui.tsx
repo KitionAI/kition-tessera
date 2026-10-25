@@ -2,7 +2,7 @@
  * Shared kit editor components: buttons and fields, the ribbon, menus, panels, the status bar,
  * dialogs, and notices. Styled only through the Kit UI protocol's theme tokens (styles.css).
  */
-import { Children, cloneElement, type ComponentProps, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
+import { Children, cloneElement, forwardRef, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
 import { CheckIcon as Check, ChevronDownIcon as ChevronDown, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight, LoaderCircleIcon as LoaderCircle } from '@kition/tessera-icons/react'
 import type { IconComponent } from './icon'
 import { useElements } from './context'
@@ -24,7 +24,7 @@ export type ControlSize = 'sm' | 'md' | 'lg'
  */
 export type ButtonVariant = 'primary' | 'secondary' | 'subtle' | 'ghost' | 'danger'
 
-export type TesseraButtonProps = ComponentProps<'button'> & {
+export type TesseraButtonProps = ButtonProps & {
   variant?: ButtonVariant
   /** Without `size` a button keeps the editor chrome's 30px. */
   size?: ControlSize
@@ -35,9 +35,10 @@ export type TesseraButtonProps = ComponentProps<'button'> & {
 }
 
 /** A button. Its `className` adds to Tessera's, so a host can adjust one button's layout. */
-export function Button({ variant, size, iconOnly, loading, className, children, ...props }: TesseraButtonProps) {
+export const Button = forwardRef<HTMLButtonElement, TesseraButtonProps>(function Button({ variant, size, iconOnly, loading, className, children, ...props }, ref) {
   return (
     <button
+      ref={ref}
       type="button"
       className={joinClass('kui-button', className)}
       data-variant={variant}
@@ -50,7 +51,7 @@ export function Button({ variant, size, iconOnly, loading, className, children, 
       {children}
     </button>
   )
-}
+})
 
 /** A spinning circle for work in progress; `label` names it for screen readers (otherwise it is decorative). */
 export function Spinner({ size = 16, label, className }: { size?: number; label?: string; className?: string }) {
