@@ -1,0 +1,6 @@
+/**
+ * @kition/tessera-icons/react: every icon as a React component (`LayersIcon`, `PenLineIcon`), plus
+ * `createIcon` for an `IconData` of your own. Props match lucide-react's.
+ */
+export { createIcon, type IconProps, type TesseraIcon } from './createIcon'
+export * from './generated/react'

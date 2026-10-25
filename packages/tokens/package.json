@@ -1,0 +1,17 @@
+{
+  "name": "@kition/tessera-tokens",
+  "version": "0.1.0",
+  "description": "Kition Tessera design tokens: the Kit Harness Protocol theme tokens, component layout tokens, and skins, as CSS variables and TypeScript.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/generated/tokens.css",
+    "./tokens/*": "./tokens/*"
+  },
+  "files": ["src", "tokens"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "$description": "Paper skin, the default: Kition's light product surfaces (kition docs/design.md). It overrides nothing; every value is base.tokens.json's.",
+  "$extensions": { "ai.kition.tessera": { "skin": "paper", "colorScheme": "light" } }
+}

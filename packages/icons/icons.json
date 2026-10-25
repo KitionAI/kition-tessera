@@ -1,0 +1,1626 @@
+{
+  "$description": "Tessera Icons. family: ui (interface actions), tool (professional tools), kit (kit app icons, full-color SVG files in kit/). source: lucide:<name> (drawn from the pinned lucide package) or svg:<file> (Tessera drawing in svg/).",
+  "lucide": "1.55.0",
+  "icons": {
+    "a-arrow-down": {
+      "family": "ui",
+      "source": "lucide:a-arrow-down"
+    },
+    "a-arrow-up": {
+      "family": "ui",
+      "source": "lucide:a-arrow-up"
+    },
+    "a-large-small": {
+      "family": "ui",
+      "source": "lucide:a-large-small"
+    },
+    "accessibility": {
+      "family": "ui",
+      "source": "lucide:accessibility"
+    },
+    "activity": {
+      "family": "ui",
+      "source": "lucide:activity"
+    },
+    "alarm-clock": {
+      "family": "ui",
+      "source": "lucide:alarm-clock"
+    },
+    "align-center-horizontal": {
+      "family": "ui",
+      "source": "lucide:align-center-horizontal"
+    },
+    "align-center-vertical": {
+      "family": "ui",
+      "source": "lucide:align-center-vertical"
+    },
+    "align-end-horizontal": {
+      "family": "ui",
+      "source": "lucide:align-end-horizontal"
+    },
+    "align-end-vertical": {
+      "family": "ui",
+      "source": "lucide:align-end-vertical"
+    },
+    "align-horizontal-justify-center": {
+      "family": "ui",
+      "source": "lucide:align-horizontal-justify-center"
+    },
+    "align-start-horizontal": {
+      "family": "ui",
+      "source": "lucide:align-start-horizontal"
+    },
+    "align-start-vertical": {
+      "family": "ui",
+      "source": "lucide:align-start-vertical"
+    },
+    "align-vertical-justify-center": {
+      "family": "ui",
+      "source": "lucide:align-vertical-justify-center"
+    },
+    "align-vertical-justify-end": {
+      "family": "ui",
+      "source": "lucide:align-vertical-justify-end"
+    },
+    "align-vertical-justify-start": {
+      "family": "ui",
+      "source": "lucide:align-vertical-justify-start"
+    },
+    "app-window": {
+      "family": "ui",
+      "source": "lucide:app-window"
+    },
+    "arrow-down": {
+      "family": "ui",
+      "source": "lucide:arrow-down"
+    },
+    "arrow-down-a-z": {
+      "family": "ui",
+      "source": "lucide:arrow-down-a-z"
+    },
+    "arrow-down-to-line": {
+      "family": "ui",
+      "source": "lucide:arrow-down-to-line"
+    },
+    "arrow-down-wide-narrow": {
+      "family": "ui",
+      "source": "lucide:arrow-down-wide-narrow"
+    },
+    "arrow-left": {
+      "family": "ui",
+      "source": "lucide:arrow-left"
+    },
+    "arrow-left-from-line": {
+      "family": "ui",
+      "source": "lucide:arrow-left-from-line"
+    },
+    "arrow-left-right": {
+      "family": "ui",
+      "source": "lucide:arrow-left-right"
+    },
+    "arrow-left-to-line": {
+      "family": "ui",
+      "source": "lucide:arrow-left-to-line"
+    },
+    "arrow-right": {
+      "family": "ui",
+      "source": "lucide:arrow-right"
+    },
+    "arrow-right-from-line": {
+      "family": "ui",
+      "source": "lucide:arrow-right-from-line"
+    },
+    "arrow-right-left": {
+      "family": "ui",
+      "source": "lucide:arrow-right-left"
+    },
+    "arrow-right-to-line": {
+      "family": "ui",
+      "source": "lucide:arrow-right-to-line"
+    },
+    "arrow-up": {
+      "family": "ui",
+      "source": "lucide:arrow-up"
+    },
+    "arrow-up-down": {
+      "family": "ui",
+      "source": "lucide:arrow-up-down"
+    },
+    "audio-lines": {
+      "family": "ui",
+      "source": "lucide:audio-lines"
+    },
+    "audio-waveform": {
+      "family": "ui",
+      "source": "lucide:audio-waveform"
+    },
+    "ban": {
+      "family": "ui",
+      "source": "lucide:ban"
+    },
+    "bandage": {
+      "family": "ui",
+      "source": "lucide:bandage"
+    },
+    "baseline": {
+      "family": "ui",
+      "source": "lucide:baseline"
+    },
+    "bell": {
+      "family": "ui",
+      "source": "lucide:bell"
+    },
+    "between-horizontal-end": {
+      "family": "ui",
+      "source": "lucide:between-horizontal-end"
+    },
+    "between-horizontal-start": {
+      "family": "ui",
+      "source": "lucide:between-horizontal-start"
+    },
+    "between-vertical-end": {
+      "family": "ui",
+      "source": "lucide:between-vertical-end"
+    },
+    "between-vertical-start": {
+      "family": "ui",
+      "source": "lucide:between-vertical-start"
+    },
+    "blend": {
+      "family": "ui",
+      "source": "lucide:blend"
+    },
+    "blocks": {
+      "family": "ui",
+      "source": "lucide:blocks"
+    },
+    "bold": {
+      "family": "ui",
+      "source": "lucide:bold"
+    },
+    "book-bookmark": {
+      "family": "ui",
+      "source": "lucide:book-bookmark"
+    },
+    "book-open": {
+      "family": "ui",
+      "source": "lucide:book-open"
+    },
+    "book-open-text": {
+      "family": "ui",
+      "source": "lucide:book-open-text"
+    },
+    "bookmark": {
+      "family": "ui",
+      "source": "lucide:bookmark"
+    },
+    "bot": {
+      "family": "ui",
+      "source": "lucide:bot"
+    },
+    "box": {
+      "family": "ui",
+      "source": "lucide:box"
+    },
+    "braces": {
+      "family": "ui",
+      "source": "lucide:braces"
+    },
+    "briefcase": {
+      "family": "ui",
+      "source": "lucide:briefcase"
+    },
+    "briefcase-business": {
+      "family": "ui",
+      "source": "lucide:briefcase-business"
+    },
+    "bring-to-front": {
+      "family": "ui",
+      "source": "lucide:bring-to-front"
+    },
+    "brush": {
+      "family": "ui",
+      "source": "lucide:brush"
+    },
+    "brush-cleaning": {
+      "family": "ui",
+      "source": "lucide:brush-cleaning"
+    },
+    "cable": {
+      "family": "ui",
+      "source": "lucide:cable"
+    },
+    "calendar": {
+      "family": "ui",
+      "source": "lucide:calendar"
+    },
+    "calendar-clock": {
+      "family": "ui",
+      "source": "lucide:calendar-clock"
+    },
+    "calendar-days": {
+      "family": "ui",
+      "source": "lucide:calendar-days"
+    },
+    "calendar-range": {
+      "family": "ui",
+      "source": "lucide:calendar-range"
+    },
+    "camera": {
+      "family": "ui",
+      "source": "lucide:camera"
+    },
+    "captions": {
+      "family": "ui",
+      "source": "lucide:captions"
+    },
+    "case-sensitive": {
+      "family": "ui",
+      "source": "lucide:case-sensitive"
+    },
+    "case-upper": {
+      "family": "ui",
+      "source": "lucide:case-upper"
+    },
+    "chart-area": {
+      "family": "ui",
+      "source": "lucide:chart-area"
+    },
+    "chart-column": {
+      "family": "ui",
+      "source": "lucide:chart-column"
+    },
+    "chart-column-stacked": {
+      "family": "ui",
+      "source": "lucide:chart-column-stacked"
+    },
+    "chart-gantt": {
+      "family": "ui",
+      "source": "lucide:chart-gantt"
+    },
+    "chart-line": {
+      "family": "ui",
+      "source": "lucide:chart-line"
+    },
+    "chart-no-axes-combined": {
+      "family": "ui",
+      "source": "lucide:chart-no-axes-combined"
+    },
+    "chart-pie": {
+      "family": "ui",
+      "source": "lucide:chart-pie"
+    },
+    "chart-scatter": {
+      "family": "ui",
+      "source": "lucide:chart-scatter"
+    },
+    "check": {
+      "family": "ui",
+      "source": "lucide:check"
+    },
+    "chevron-down": {
+      "family": "ui",
+      "source": "lucide:chevron-down"
+    },
+    "chevron-first": {
+      "family": "ui",
+      "source": "lucide:chevron-first"
+    },
+    "chevron-last": {
+      "family": "ui",
+      "source": "lucide:chevron-last"
+    },
+    "chevron-left": {
+      "family": "ui",
+      "source": "lucide:chevron-left"
+    },
+    "chevron-right": {
+      "family": "ui",
+      "source": "lucide:chevron-right"
+    },
+    "chevron-up": {
+      "family": "ui",
+      "source": "lucide:chevron-up"
+    },
+    "chevrons-down-up": {
+      "family": "ui",
+      "source": "lucide:chevrons-down-up"
+    },
+    "chevrons-left": {
+      "family": "ui",
+      "source": "lucide:chevrons-left"
+    },
+    "chevrons-right": {
+      "family": "ui",
+      "source": "lucide:chevrons-right"
+    },
+    "chevrons-right-left": {
+      "family": "ui",
+      "source": "lucide:chevrons-right-left"
+    },
+    "chevrons-up-down": {
+      "family": "ui",
+      "source": "lucide:chevrons-up-down"
+    },
+    "circle": {
+      "family": "ui",
+      "source": "lucide:circle"
+    },
+    "circle-alert": {
+      "family": "ui",
+      "source": "lucide:circle-alert"
+    },
+    "circle-check": {
+      "family": "ui",
+      "source": "lucide:circle-check"
+    },
+    "circle-dashed": {
+      "family": "ui",
+      "source": "lucide:circle-dashed"
+    },
+    "circle-dot": {
+      "family": "ui",
+      "source": "lucide:circle-dot"
+    },
+    "circle-question-mark": {
+      "family": "ui",
+      "source": "lucide:circle-question-mark"
+    },
+    "circle-user-round": {
+      "family": "ui",
+      "source": "lucide:circle-user-round"
+    },
+    "circle-x": {
+      "family": "ui",
+      "source": "lucide:circle-x"
+    },
+    "clapperboard": {
+      "family": "ui",
+      "source": "lucide:clapperboard"
+    },
+    "clipboard-check": {
+      "family": "ui",
+      "source": "lucide:clipboard-check"
+    },
+    "clipboard-list": {
+      "family": "ui",
+      "source": "lucide:clipboard-list"
+    },
+    "clipboard-paste": {
+      "family": "ui",
+      "source": "lucide:clipboard-paste"
+    },
+    "clock-3": {
+      "family": "ui",
+      "source": "lucide:clock-3"
+    },
+    "cloud": {
+      "family": "ui",
+      "source": "lucide:cloud"
+    },
+    "cloud-off": {
+      "family": "ui",
+      "source": "lucide:cloud-off"
+    },
+    "cloud-upload": {
+      "family": "ui",
+      "source": "lucide:cloud-upload"
+    },
+    "code-xml": {
+      "family": "ui",
+      "source": "lucide:code-xml"
+    },
+    "columns-2": {
+      "family": "ui",
+      "source": "lucide:columns-2"
+    },
+    "columns-3": {
+      "family": "ui",
+      "source": "lucide:columns-3"
+    },
+    "combine": {
+      "family": "ui",
+      "source": "lucide:combine"
+    },
+    "command": {
+      "family": "ui",
+      "source": "lucide:command"
+    },
+    "contact": {
+      "family": "ui",
+      "source": "lucide:contact"
+    },
+    "contrast": {
+      "family": "ui",
+      "source": "lucide:contrast"
+    },
+    "copy": {
+      "family": "ui",
+      "source": "lucide:copy"
+    },
+    "copy-check": {
+      "family": "ui",
+      "source": "lucide:copy-check"
+    },
+    "copy-plus": {
+      "family": "ui",
+      "source": "lucide:copy-plus"
+    },
+    "corner-down-right": {
+      "family": "ui",
+      "source": "lucide:corner-down-right"
+    },
+    "corner-up-right": {
+      "family": "ui",
+      "source": "lucide:corner-up-right"
+    },
+    "credit-card": {
+      "family": "ui",
+      "source": "lucide:credit-card"
+    },
+    "crop": {
+      "family": "ui",
+      "source": "lucide:crop"
+    },
+    "database": {
+      "family": "ui",
+      "source": "lucide:database"
+    },
+    "decimals-arrow-left": {
+      "family": "ui",
+      "source": "lucide:decimals-arrow-left"
+    },
+    "decimals-arrow-right": {
+      "family": "ui",
+      "source": "lucide:decimals-arrow-right"
+    },
+    "delete": {
+      "family": "ui",
+      "source": "lucide:delete"
+    },
+    "diameter": {
+      "family": "ui",
+      "source": "lucide:diameter"
+    },
+    "diamond": {
+      "family": "ui",
+      "source": "lucide:diamond"
+    },
+    "dollar-sign": {
+      "family": "ui",
+      "source": "lucide:dollar-sign"
+    },
+    "download": {
+      "family": "ui",
+      "source": "lucide:download"
+    },
+    "droplet": {
+      "family": "ui",
+      "source": "lucide:droplet"
+    },
+    "earth": {
+      "family": "ui",
+      "source": "lucide:earth"
+    },
+    "ellipsis": {
+      "family": "ui",
+      "source": "lucide:ellipsis"
+    },
+    "eraser": {
+      "family": "ui",
+      "source": "lucide:eraser"
+    },
+    "expand": {
+      "family": "ui",
+      "source": "lucide:expand"
+    },
+    "external-link": {
+      "family": "ui",
+      "source": "lucide:external-link"
+    },
+    "eye": {
+      "family": "ui",
+      "source": "lucide:eye"
+    },
+    "eye-off": {
+      "family": "ui",
+      "source": "lucide:eye-off"
+    },
+    "face-slightly-smiling": {
+      "family": "ui",
+      "source": "lucide:face-slightly-smiling"
+    },
+    "file": {
+      "family": "ui",
+      "source": "lucide:file"
+    },
+    "file-check-corner": {
+      "family": "ui",
+      "source": "lucide:file-check-corner"
+    },
+    "file-clock": {
+      "family": "ui",
+      "source": "lucide:file-clock"
+    },
+    "file-code-corner": {
+      "family": "ui",
+      "source": "lucide:file-code-corner"
+    },
+    "file-diff": {
+      "family": "ui",
+      "source": "lucide:file-diff"
+    },
+    "file-digit": {
+      "family": "ui",
+      "source": "lucide:file-digit"
+    },
+    "file-exclamation-point": {
+      "family": "ui",
+      "source": "lucide:file-exclamation-point"
+    },
+    "file-image": {
+      "family": "ui",
+      "source": "lucide:file-image"
+    },
+    "file-input": {
+      "family": "ui",
+      "source": "lucide:file-input"
+    },
+    "file-pen-line": {
+      "family": "ui",
+      "source": "lucide:file-pen-line"
+    },
+    "file-plus": {
+      "family": "ui",
+      "source": "lucide:file-plus"
+    },
+    "file-plus-corner": {
+      "family": "ui",
+      "source": "lucide:file-plus-corner"
+    },
+    "file-spreadsheet": {
+      "family": "ui",
+      "source": "lucide:file-spreadsheet"
+    },
+    "file-symlink": {
+      "family": "ui",
+      "source": "lucide:file-symlink"
+    },
+    "file-text": {
+      "family": "ui",
+      "source": "lucide:file-text"
+    },
+    "file-type-corner": {
+      "family": "ui",
+      "source": "lucide:file-type-corner"
+    },
+    "file-up": {
+      "family": "ui",
+      "source": "lucide:file-up"
+    },
+    "file-video-camera": {
+      "family": "ui",
+      "source": "lucide:file-video-camera"
+    },
+    "files": {
+      "family": "ui",
+      "source": "lucide:files"
+    },
+    "film": {
+      "family": "ui",
+      "source": "lucide:film"
+    },
+    "flag": {
+      "family": "ui",
+      "source": "lucide:flag"
+    },
+    "flame": {
+      "family": "ui",
+      "source": "lucide:flame"
+    },
+    "flask-conical": {
+      "family": "ui",
+      "source": "lucide:flask-conical"
+    },
+    "focus": {
+      "family": "ui",
+      "source": "lucide:focus"
+    },
+    "fold-horizontal": {
+      "family": "ui",
+      "source": "lucide:fold-horizontal"
+    },
+    "folder": {
+      "family": "ui",
+      "source": "lucide:folder"
+    },
+    "folder-check": {
+      "family": "ui",
+      "source": "lucide:folder-check"
+    },
+    "folder-lock": {
+      "family": "ui",
+      "source": "lucide:folder-lock"
+    },
+    "folder-open": {
+      "family": "ui",
+      "source": "lucide:folder-open"
+    },
+    "folder-plus": {
+      "family": "ui",
+      "source": "lucide:folder-plus"
+    },
+    "folder-up": {
+      "family": "ui",
+      "source": "lucide:folder-up"
+    },
+    "frame": {
+      "family": "ui",
+      "source": "lucide:frame"
+    },
+    "funnel": {
+      "family": "ui",
+      "source": "lucide:funnel"
+    },
+    "gallery-horizontal-end": {
+      "family": "ui",
+      "source": "lucide:gallery-horizontal-end"
+    },
+    "gauge": {
+      "family": "ui",
+      "source": "lucide:gauge"
+    },
+    "git-branch": {
+      "family": "ui",
+      "source": "lucide:git-branch"
+    },
+    "git-branch-plus": {
+      "family": "ui",
+      "source": "lucide:git-branch-plus"
+    },
+    "globe": {
+      "family": "ui",
+      "source": "lucide:globe"
+    },
+    "grid-2x2": {
+      "family": "ui",
+      "source": "lucide:grid-2x2"
+    },
+    "grid-3x3": {
+      "family": "ui",
+      "source": "lucide:grid-3x3"
+    },
+    "grip-horizontal": {
+      "family": "ui",
+      "source": "lucide:grip-horizontal"
+    },
+    "grip-vertical": {
+      "family": "ui",
+      "source": "lucide:grip-vertical"
+    },
+    "group": {
+      "family": "ui",
+      "source": "lucide:group"
+    },
+    "hand": {
+      "family": "ui",
+      "source": "lucide:hand"
+    },
+    "hash": {
+      "family": "ui",
+      "source": "lucide:hash"
+    },
+    "heading": {
+      "family": "ui",
+      "source": "lucide:heading"
+    },
+    "heart": {
+      "family": "ui",
+      "source": "lucide:heart"
+    },
+    "hexagon": {
+      "family": "ui",
+      "source": "lucide:hexagon"
+    },
+    "highlighter": {
+      "family": "ui",
+      "source": "lucide:highlighter"
+    },
+    "image": {
+      "family": "ui",
+      "source": "lucide:image"
+    },
+    "image-plus": {
+      "family": "ui",
+      "source": "lucide:image-plus"
+    },
+    "inbox": {
+      "family": "ui",
+      "source": "lucide:inbox"
+    },
+    "info": {
+      "family": "ui",
+      "source": "lucide:info"
+    },
+    "italic": {
+      "family": "ui",
+      "source": "lucide:italic"
+    },
+    "key-round": {
+      "family": "ui",
+      "source": "lucide:key-round"
+    },
+    "languages": {
+      "family": "ui",
+      "source": "lucide:languages"
+    },
+    "laptop": {
+      "family": "ui",
+      "source": "lucide:laptop"
+    },
+    "lasso": {
+      "family": "ui",
+      "source": "lucide:lasso"
+    },
+    "lasso-select": {
+      "family": "ui",
+      "source": "lucide:lasso-select"
+    },
+    "layers": {
+      "family": "ui",
+      "source": "lucide:layers"
+    },
+    "layout-dashboard": {
+      "family": "ui",
+      "source": "lucide:layout-dashboard"
+    },
+    "layout-grid": {
+      "family": "ui",
+      "source": "lucide:layout-grid"
+    },
+    "layout-template": {
+      "family": "ui",
+      "source": "lucide:layout-template"
+    },
+    "life-buoy": {
+      "family": "ui",
+      "source": "lucide:life-buoy"
+    },
+    "lightbulb": {
+      "family": "ui",
+      "source": "lucide:lightbulb"
+    },
+    "link": {
+      "family": "ui",
+      "source": "lucide:link"
+    },
+    "link-2": {
+      "family": "ui",
+      "source": "lucide:link-2"
+    },
+    "list": {
+      "family": "ui",
+      "source": "lucide:list"
+    },
+    "list-checks": {
+      "family": "ui",
+      "source": "lucide:list-checks"
+    },
+    "list-indent-decrease": {
+      "family": "ui",
+      "source": "lucide:list-indent-decrease"
+    },
+    "list-indent-increase": {
+      "family": "ui",
+      "source": "lucide:list-indent-increase"
+    },
+    "list-ordered": {
+      "family": "ui",
+      "source": "lucide:list-ordered"
+    },
+    "list-plus": {
+      "family": "ui",
+      "source": "lucide:list-plus"
+    },
+    "list-restart": {
+      "family": "ui",
+      "source": "lucide:list-restart"
+    },
+    "list-tree": {
+      "family": "ui",
+      "source": "lucide:list-tree"
+    },
+    "list-video": {
+      "family": "ui",
+      "source": "lucide:list-video"
+    },
+    "loader-circle": {
+      "family": "ui",
+      "source": "lucide:loader-circle"
+    },
+    "lock": {
+      "family": "ui",
+      "source": "lucide:lock"
+    },
+    "lock-keyhole": {
+      "family": "ui",
+      "source": "lucide:lock-keyhole"
+    },
+    "lock-open": {
+      "family": "ui",
+      "source": "lucide:lock-open"
+    },
+    "log-out": {
+      "family": "ui",
+      "source": "lucide:log-out"
+    },
+    "lollipop": {
+      "family": "ui",
+      "source": "lucide:lollipop"
+    },
+    "magnet": {
+      "family": "ui",
+      "source": "lucide:magnet"
+    },
+    "mail": {
+      "family": "ui",
+      "source": "lucide:mail"
+    },
+    "map-pin": {
+      "family": "ui",
+      "source": "lucide:map-pin"
+    },
+    "maximize": {
+      "family": "ui",
+      "source": "lucide:maximize"
+    },
+    "maximize-2": {
+      "family": "ui",
+      "source": "lucide:maximize-2"
+    },
+    "megaphone": {
+      "family": "ui",
+      "source": "lucide:megaphone"
+    },
+    "menu": {
+      "family": "ui",
+      "source": "lucide:menu"
+    },
+    "merge": {
+      "family": "ui",
+      "source": "lucide:merge"
+    },
+    "message-square": {
+      "family": "ui",
+      "source": "lucide:message-square"
+    },
+    "message-square-dashed": {
+      "family": "ui",
+      "source": "lucide:message-square-dashed"
+    },
+    "message-square-plus": {
+      "family": "ui",
+      "source": "lucide:message-square-plus"
+    },
+    "message-square-text": {
+      "family": "ui",
+      "source": "lucide:message-square-text"
+    },
+    "minimize-2": {
+      "family": "ui",
+      "source": "lucide:minimize-2"
+    },
+    "minus": {
+      "family": "ui",
+      "source": "lucide:minus"
+    },
+    "monitor": {
+      "family": "ui",
+      "source": "lucide:monitor"
+    },
+    "monitor-play": {
+      "family": "ui",
+      "source": "lucide:monitor-play"
+    },
+    "moon": {
+      "family": "ui",
+      "source": "lucide:moon"
+    },
+    "mouse-pointer": {
+      "family": "ui",
+      "source": "lucide:mouse-pointer"
+    },
+    "mouse-pointer-2": {
+      "family": "ui",
+      "source": "lucide:mouse-pointer-2"
+    },
+    "move": {
+      "family": "ui",
+      "source": "lucide:move"
+    },
+    "move-3d": {
+      "family": "ui",
+      "source": "lucide:move-3d"
+    },
+    "move-horizontal": {
+      "family": "ui",
+      "source": "lucide:move-horizontal"
+    },
+    "move-right": {
+      "family": "ui",
+      "source": "lucide:move-right"
+    },
+    "move-up-right": {
+      "family": "ui",
+      "source": "lucide:move-up-right"
+    },
+    "music": {
+      "family": "ui",
+      "source": "lucide:music"
+    },
+    "network": {
+      "family": "ui",
+      "source": "lucide:network"
+    },
+    "notebook-pen": {
+      "family": "ui",
+      "source": "lucide:notebook-pen"
+    },
+    "notebook-text": {
+      "family": "ui",
+      "source": "lucide:notebook-text"
+    },
+    "omega": {
+      "family": "ui",
+      "source": "lucide:omega"
+    },
+    "package": {
+      "family": "ui",
+      "source": "lucide:package"
+    },
+    "paint-bucket": {
+      "family": "ui",
+      "source": "lucide:paint-bucket"
+    },
+    "paintbrush": {
+      "family": "ui",
+      "source": "lucide:paintbrush"
+    },
+    "palette": {
+      "family": "ui",
+      "source": "lucide:palette"
+    },
+    "panel-bottom": {
+      "family": "ui",
+      "source": "lucide:panel-bottom"
+    },
+    "panel-left": {
+      "family": "ui",
+      "source": "lucide:panel-left"
+    },
+    "panel-left-close": {
+      "family": "ui",
+      "source": "lucide:panel-left-close"
+    },
+    "panel-left-open": {
+      "family": "ui",
+      "source": "lucide:panel-left-open"
+    },
+    "panel-right": {
+      "family": "ui",
+      "source": "lucide:panel-right"
+    },
+    "panel-top": {
+      "family": "ui",
+      "source": "lucide:panel-top"
+    },
+    "panels-top-left": {
+      "family": "ui",
+      "source": "lucide:panels-top-left"
+    },
+    "paperclip": {
+      "family": "ui",
+      "source": "lucide:paperclip"
+    },
+    "pause": {
+      "family": "ui",
+      "source": "lucide:pause"
+    },
+    "pen": {
+      "family": "ui",
+      "source": "lucide:pen"
+    },
+    "pen-line": {
+      "family": "ui",
+      "source": "lucide:pen-line"
+    },
+    "pen-tool": {
+      "family": "ui",
+      "source": "lucide:pen-tool"
+    },
+    "pencil": {
+      "family": "ui",
+      "source": "lucide:pencil"
+    },
+    "pentagon": {
+      "family": "ui",
+      "source": "lucide:pentagon"
+    },
+    "percent": {
+      "family": "ui",
+      "source": "lucide:percent"
+    },
+    "pilcrow": {
+      "family": "ui",
+      "source": "lucide:pilcrow"
+    },
+    "pill": {
+      "family": "ui",
+      "source": "lucide:pill"
+    },
+    "pin": {
+      "family": "ui",
+      "source": "lucide:pin"
+    },
+    "pin-off": {
+      "family": "ui",
+      "source": "lucide:pin-off"
+    },
+    "pipette": {
+      "family": "ui",
+      "source": "lucide:pipette"
+    },
+    "play": {
+      "family": "ui",
+      "source": "lucide:play"
+    },
+    "plus": {
+      "family": "ui",
+      "source": "lucide:plus"
+    },
+    "pointer": {
+      "family": "ui",
+      "source": "lucide:pointer"
+    },
+    "power": {
+      "family": "ui",
+      "source": "lucide:power"
+    },
+    "presentation": {
+      "family": "ui",
+      "source": "lucide:presentation"
+    },
+    "printer": {
+      "family": "ui",
+      "source": "lucide:printer"
+    },
+    "puzzle": {
+      "family": "ui",
+      "source": "lucide:puzzle"
+    },
+    "qr-code": {
+      "family": "ui",
+      "source": "lucide:qr-code"
+    },
+    "radar": {
+      "family": "ui",
+      "source": "lucide:radar"
+    },
+    "radius": {
+      "family": "ui",
+      "source": "lucide:radius"
+    },
+    "rainbow": {
+      "family": "ui",
+      "source": "lucide:rainbow"
+    },
+    "rectangle-horizontal": {
+      "family": "ui",
+      "source": "lucide:rectangle-horizontal"
+    },
+    "rectangle-vertical": {
+      "family": "ui",
+      "source": "lucide:rectangle-vertical"
+    },
+    "redo-2": {
+      "family": "ui",
+      "source": "lucide:redo-2"
+    },
+    "refresh-ccw": {
+      "family": "ui",
+      "source": "lucide:refresh-ccw"
+    },
+    "refresh-cw": {
+      "family": "ui",
+      "source": "lucide:refresh-cw"
+    },
+    "remove-formatting": {
+      "family": "ui",
+      "source": "lucide:remove-formatting"
+    },
+    "replace": {
+      "family": "ui",
+      "source": "lucide:replace"
+    },
+    "rocket": {
+      "family": "ui",
+      "source": "lucide:rocket"
+    },
+    "rotate-ccw": {
+      "family": "ui",
+      "source": "lucide:rotate-ccw"
+    },
+    "rotate-ccw-clock": {
+      "family": "ui",
+      "source": "lucide:rotate-ccw-clock"
+    },
+    "rotate-cw": {
+      "family": "ui",
+      "source": "lucide:rotate-cw"
+    },
+    "rows-3": {
+      "family": "ui",
+      "source": "lucide:rows-3"
+    },
+    "ruler": {
+      "family": "ui",
+      "source": "lucide:ruler"
+    },
+    "ruler-dimension-line": {
+      "family": "ui",
+      "source": "lucide:ruler-dimension-line"
+    },
+    "save": {
+      "family": "ui",
+      "source": "lucide:save"
+    },
+    "scale": {
+      "family": "ui",
+      "source": "lucide:scale"
+    },
+    "scaling": {
+      "family": "ui",
+      "source": "lucide:scaling"
+    },
+    "scan": {
+      "family": "ui",
+      "source": "lucide:scan"
+    },
+    "scan-search": {
+      "family": "ui",
+      "source": "lucide:scan-search"
+    },
+    "scissors": {
+      "family": "ui",
+      "source": "lucide:scissors"
+    },
+    "search": {
+      "family": "ui",
+      "source": "lucide:search"
+    },
+    "send": {
+      "family": "ui",
+      "source": "lucide:send"
+    },
+    "send-to-back": {
+      "family": "ui",
+      "source": "lucide:send-to-back"
+    },
+    "separator-horizontal": {
+      "family": "ui",
+      "source": "lucide:separator-horizontal"
+    },
+    "settings": {
+      "family": "ui",
+      "source": "lucide:settings"
+    },
+    "settings-2": {
+      "family": "ui",
+      "source": "lucide:settings-2"
+    },
+    "shapes": {
+      "family": "ui",
+      "source": "lucide:shapes"
+    },
+    "share-2": {
+      "family": "ui",
+      "source": "lucide:share-2"
+    },
+    "shell": {
+      "family": "ui",
+      "source": "lucide:shell"
+    },
+    "shield-alert": {
+      "family": "ui",
+      "source": "lucide:shield-alert"
+    },
+    "shield-check": {
+      "family": "ui",
+      "source": "lucide:shield-check"
+    },
+    "shrink": {
+      "family": "ui",
+      "source": "lucide:shrink"
+    },
+    "sigma": {
+      "family": "ui",
+      "source": "lucide:sigma"
+    },
+    "signature": {
+      "family": "ui",
+      "source": "lucide:signature"
+    },
+    "skip-back": {
+      "family": "ui",
+      "source": "lucide:skip-back"
+    },
+    "skip-forward": {
+      "family": "ui",
+      "source": "lucide:skip-forward"
+    },
+    "slash": {
+      "family": "ui",
+      "source": "lucide:slash"
+    },
+    "slice": {
+      "family": "ui",
+      "source": "lucide:slice"
+    },
+    "sliders-horizontal": {
+      "family": "ui",
+      "source": "lucide:sliders-horizontal"
+    },
+    "snowflake": {
+      "family": "ui",
+      "source": "lucide:snowflake"
+    },
+    "sparkle": {
+      "family": "ui",
+      "source": "lucide:sparkle"
+    },
+    "sparkles": {
+      "family": "ui",
+      "source": "lucide:sparkles"
+    },
+    "spell-check": {
+      "family": "ui",
+      "source": "lucide:spell-check"
+    },
+    "spline": {
+      "family": "ui",
+      "source": "lucide:spline"
+    },
+    "split": {
+      "family": "ui",
+      "source": "lucide:split"
+    },
+    "square": {
+      "family": "ui",
+      "source": "lucide:square"
+    },
+    "square-check": {
+      "family": "ui",
+      "source": "lucide:square-check"
+    },
+    "square-check-big": {
+      "family": "ui",
+      "source": "lucide:square-check-big"
+    },
+    "square-dashed": {
+      "family": "ui",
+      "source": "lucide:square-dashed"
+    },
+    "square-dashed-mouse-pointer": {
+      "family": "ui",
+      "source": "lucide:square-dashed-mouse-pointer"
+    },
+    "square-dot": {
+      "family": "ui",
+      "source": "lucide:square-dot"
+    },
+    "square-function": {
+      "family": "ui",
+      "source": "lucide:square-function"
+    },
+    "square-kanban": {
+      "family": "ui",
+      "source": "lucide:square-kanban"
+    },
+    "square-minus": {
+      "family": "ui",
+      "source": "lucide:square-minus"
+    },
+    "square-mouse-pointer": {
+      "family": "ui",
+      "source": "lucide:square-mouse-pointer"
+    },
+    "square-plus": {
+      "family": "ui",
+      "source": "lucide:square-plus"
+    },
+    "square-split-horizontal": {
+      "family": "ui",
+      "source": "lucide:square-split-horizontal"
+    },
+    "square-split-vertical": {
+      "family": "ui",
+      "source": "lucide:square-split-vertical"
+    },
+    "square-stack": {
+      "family": "ui",
+      "source": "lucide:square-stack"
+    },
+    "square-terminal": {
+      "family": "ui",
+      "source": "lucide:square-terminal"
+    },
+    "square-x": {
+      "family": "ui",
+      "source": "lucide:square-x"
+    },
+    "squares-exclude": {
+      "family": "ui",
+      "source": "lucide:squares-exclude"
+    },
+    "squares-intersect": {
+      "family": "ui",
+      "source": "lucide:squares-intersect"
+    },
+    "squares-subtract": {
+      "family": "ui",
+      "source": "lucide:squares-subtract"
+    },
+    "squircle": {
+      "family": "ui",
+      "source": "lucide:squircle"
+    },
+    "stamp": {
+      "family": "ui",
+      "source": "lucide:stamp"
+    },
+    "star": {
+      "family": "ui",
+      "source": "lucide:star"
+    },
+    "step-back": {
+      "family": "ui",
+      "source": "lucide:step-back"
+    },
+    "step-forward": {
+      "family": "ui",
+      "source": "lucide:step-forward"
+    },
+    "sticker": {
+      "family": "ui",
+      "source": "lucide:sticker"
+    },
+    "sticky-note": {
+      "family": "ui",
+      "source": "lucide:sticky-note"
+    },
+    "stretch-horizontal": {
+      "family": "ui",
+      "source": "lucide:stretch-horizontal"
+    },
+    "strikethrough": {
+      "family": "ui",
+      "source": "lucide:strikethrough"
+    },
+    "subscript": {
+      "family": "ui",
+      "source": "lucide:subscript"
+    },
+    "sun": {
+      "family": "ui",
+      "source": "lucide:sun"
+    },
+    "sun-medium": {
+      "family": "ui",
+      "source": "lucide:sun-medium"
+    },
+    "superscript": {
+      "family": "ui",
+      "source": "lucide:superscript"
+    },
+    "swatch-book": {
+      "family": "ui",
+      "source": "lucide:swatch-book"
+    },
+    "table": {
+      "family": "ui",
+      "source": "lucide:table"
+    },
+    "table-2": {
+      "family": "ui",
+      "source": "lucide:table-2"
+    },
+    "table-cells-merge": {
+      "family": "ui",
+      "source": "lucide:table-cells-merge"
+    },
+    "table-properties": {
+      "family": "ui",
+      "source": "lucide:table-properties"
+    },
+    "tag": {
+      "family": "ui",
+      "source": "lucide:tag"
+    },
+    "target": {
+      "family": "ui",
+      "source": "lucide:target"
+    },
+    "terminal": {
+      "family": "ui",
+      "source": "lucide:terminal"
+    },
+    "text-align-center": {
+      "family": "ui",
+      "source": "lucide:text-align-center"
+    },
+    "text-align-end": {
+      "family": "ui",
+      "source": "lucide:text-align-end"
+    },
+    "text-align-justify": {
+      "family": "ui",
+      "source": "lucide:text-align-justify"
+    },
+    "text-align-start": {
+      "family": "ui",
+      "source": "lucide:text-align-start"
+    },
+    "text-cursor": {
+      "family": "ui",
+      "source": "lucide:text-cursor"
+    },
+    "text-cursor-input": {
+      "family": "ui",
+      "source": "lucide:text-cursor-input"
+    },
+    "text-wrap": {
+      "family": "ui",
+      "source": "lucide:text-wrap"
+    },
+    "thumbs-up": {
+      "family": "ui",
+      "source": "lucide:thumbs-up"
+    },
+    "timer": {
+      "family": "ui",
+      "source": "lucide:timer"
+    },
+    "trash": {
+      "family": "ui",
+      "source": "lucide:trash"
+    },
+    "trending-up": {
+      "family": "ui",
+      "source": "lucide:trending-up"
+    },
+    "triangle": {
+      "family": "ui",
+      "source": "lucide:triangle"
+    },
+    "triangle-alert": {
+      "family": "ui",
+      "source": "lucide:triangle-alert"
+    },
+    "triangles-centerline-dashed-horizontal": {
+      "family": "ui",
+      "source": "lucide:triangles-centerline-dashed-horizontal"
+    },
+    "type": {
+      "family": "ui",
+      "source": "lucide:type"
+    },
+    "underline": {
+      "family": "ui",
+      "source": "lucide:underline"
+    },
+    "undo-2": {
+      "family": "ui",
+      "source": "lucide:undo-2"
+    },
+    "unfold-horizontal": {
+      "family": "ui",
+      "source": "lucide:unfold-horizontal"
+    },
+    "unfold-vertical": {
+      "family": "ui",
+      "source": "lucide:unfold-vertical"
+    },
+    "ungroup": {
+      "family": "ui",
+      "source": "lucide:ungroup"
+    },
+    "unlink": {
+      "family": "ui",
+      "source": "lucide:unlink"
+    },
+    "upload": {
+      "family": "ui",
+      "source": "lucide:upload"
+    },
+    "user": {
+      "family": "ui",
+      "source": "lucide:user"
+    },
+    "user-minus": {
+      "family": "ui",
+      "source": "lucide:user-minus"
+    },
+    "user-round": {
+      "family": "ui",
+      "source": "lucide:user-round"
+    },
+    "users": {
+      "family": "ui",
+      "source": "lucide:users"
+    },
+    "vector-polygon": {
+      "family": "ui",
+      "source": "lucide:vector-polygon"
+    },
+    "vector-square": {
+      "family": "ui",
+      "source": "lucide:vector-square"
+    },
+    "video": {
+      "family": "ui",
+      "source": "lucide:video"
+    },
+    "volume-2": {
+      "family": "ui",
+      "source": "lucide:volume-2"
+    },
+    "wallet-cards": {
+      "family": "ui",
+      "source": "lucide:wallet-cards"
+    },
+    "wand-sparkles": {
+      "family": "ui",
+      "source": "lucide:wand-sparkles"
+    },
+    "waves-horizontal": {
+      "family": "ui",
+      "source": "lucide:waves-horizontal"
+    },
+    "waypoints": {
+      "family": "ui",
+      "source": "lucide:waypoints"
+    },
+    "webhook": {
+      "family": "ui",
+      "source": "lucide:webhook"
+    },
+    "workflow": {
+      "family": "ui",
+      "source": "lucide:workflow"
+    },
+    "wrench": {
+      "family": "ui",
+      "source": "lucide:wrench"
+    },
+    "x": {
+      "family": "ui",
+      "source": "lucide:x"
+    },
+    "zap": {
+      "family": "ui",
+      "source": "lucide:zap"
+    },
+    "zap-off": {
+      "family": "ui",
+      "source": "lucide:zap-off"
+    },
+    "zoom-in": {
+      "family": "ui",
+      "source": "lucide:zoom-in"
+    },
+    "zoom-out": {
+      "family": "ui",
+      "source": "lucide:zoom-out"
+    }
+  }
+}

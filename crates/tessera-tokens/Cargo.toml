@@ -1,0 +1,11 @@
+[package]
+name = "tessera-tokens"
+description = "Kition Tessera design tokens for kit engines: theme token values and skins, generated from @kition/tessera-tokens."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+
+[lints]
+workspace = true
