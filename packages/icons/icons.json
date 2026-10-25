@@ -458,6 +458,10 @@
       "family": "ui",
       "source": "lucide:clipboard-paste"
     },
+    "clock": {
+      "family": "ui",
+      "source": "lucide:clock"
+    },
     "clock-3": {
       "family": "ui",
       "source": "lucide:clock-3"
@@ -493,6 +497,14 @@
     "command": {
       "family": "ui",
       "source": "lucide:command"
+    },
+    "command-generic": {
+      "family": "ui",
+      "source": "svg:command-generic.svg"
+    },
+    "component": {
+      "family": "ui",
+      "source": "lucide:component"
     },
     "contact": {
       "family": "ui",
@@ -565,6 +577,10 @@
     "diamond": {
       "family": "ui",
       "source": "lucide:diamond"
+    },
+    "disc": {
+      "family": "ui",
+      "source": "lucide:disc"
     },
     "dollar-sign": {
       "family": "ui",
@@ -646,6 +662,10 @@
       "family": "ui",
       "source": "lucide:file-input"
     },
+    "file-output": {
+      "family": "ui",
+      "source": "lucide:file-output"
+    },
     "file-pen-line": {
       "family": "ui",
       "source": "lucide:file-pen-line"
@@ -701,6 +721,10 @@
     "flask-conical": {
       "family": "ui",
       "source": "lucide:flask-conical"
+    },
+    "flip-horizontal": {
+      "family": "ui",
+      "source": "svg:flip-horizontal.svg"
     },
     "focus": {
       "family": "ui",
@@ -1150,6 +1174,10 @@
       "family": "ui",
       "source": "lucide:pencil"
     },
+    "pencil-line": {
+      "family": "ui",
+      "source": "lucide:pencil-line"
+    },
     "pentagon": {
       "family": "ui",
       "source": "lucide:pentagon"
@@ -1245,6 +1273,10 @@
     "remove-formatting": {
       "family": "ui",
       "source": "lucide:remove-formatting"
+    },
+    "repeat": {
+      "family": "ui",
+      "source": "lucide:repeat"
     },
     "replace": {
       "family": "ui",
@@ -1597,6 +1629,10 @@
     "timer": {
       "family": "ui",
       "source": "lucide:timer"
+    },
+    "toggle-left": {
+      "family": "ui",
+      "source": "lucide:toggle-left"
     },
     "transition-cover": {
       "family": "tool",

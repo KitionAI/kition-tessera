@@ -116,6 +116,7 @@ pub const CLIP_OVERWRITE: Icon = Icon { name: "clip-overwrite", paths: &["M12 3v
 pub const CLIPBOARD_CHECK: Icon = Icon { name: "clipboard-check", paths: &["M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z", "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2", "m9 14 2 2 4-4"], fills: &[], accents: &[] };
 pub const CLIPBOARD_LIST: Icon = Icon { name: "clipboard-list", paths: &["M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z", "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2", "M12 11h4", "M12 16h4", "M8 11h.01", "M8 16h.01"], fills: &[], accents: &[] };
 pub const CLIPBOARD_PASTE: Icon = Icon { name: "clipboard-paste", paths: &["M11 14h10", "M16 4h2a2 2 0 0 1 2 2v1.344", "m17 18 4-4-4-4", "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113", "M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
+pub const CLOCK: Icon = Icon { name: "clock", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M12 6v6l4 2"], fills: &[], accents: &[] };
 pub const CLOCK_3: Icon = Icon { name: "clock-3", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M12 6v6h4"], fills: &[], accents: &[] };
 pub const CLOUD: Icon = Icon { name: "cloud", paths: &["M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"], fills: &[], accents: &[] };
 pub const CLOUD_OFF: Icon = Icon { name: "cloud-off", paths: &["M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057", "M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78", "m2 2 20 20"], fills: &[], accents: &[] };
@@ -125,6 +126,8 @@ pub const COLUMNS_2: Icon = Icon { name: "columns-2", paths: &["M5 3h14a2 2 0 0 
 pub const COLUMNS_3: Icon = Icon { name: "columns-3", paths: &["M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z", "M9 3v18", "M15 3v18"], fills: &[], accents: &[] };
 pub const COMBINE: Icon = Icon { name: "combine", paths: &["M14 3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1", "M19 3a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1", "m7 15 3 3", "m7 21 3-3H5a2 2 0 0 1-2-2v-2", "M15 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-5a1 1 0 0 1 1 -1z", "M4 3h5a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-5a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
 pub const COMMAND: Icon = Icon { name: "command", paths: &["M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"], fills: &[], accents: &[] };
+pub const COMMAND_GENERIC: Icon = Icon { name: "command-generic", paths: &["M7 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2-2v-10a2 2 0 0 1 2-2z"], fills: &["M10.5 12a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0 -3 0z"], accents: &[] };
+pub const COMPONENT: Icon = Icon { name: "component", paths: &["M15.536 11.293a1 1 0 0 0 0 1.414l2.376 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z", "M2.297 11.293a1 1 0 0 0 0 1.414l2.377 2.377a1 1 0 0 0 1.414 0l2.377-2.377a1 1 0 0 0 0-1.414L6.088 8.916a1 1 0 0 0-1.414 0z", "M8.916 17.912a1 1 0 0 0 0 1.415l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.415l-2.377-2.376a1 1 0 0 0-1.414 0z", "M8.916 4.674a1 1 0 0 0 0 1.414l2.377 2.376a1 1 0 0 0 1.414 0l2.377-2.376a1 1 0 0 0 0-1.414l-2.377-2.377a1 1 0 0 0-1.414 0z"], fills: &[], accents: &[] };
 pub const CONTACT: Icon = Icon { name: "contact", paths: &["M16 2v2", "M7 21v-2a2 2 0 012-2h6a2 2 0 012 2v2", "M8 2v2", "M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const CONTRAST: Icon = Icon { name: "contrast", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M12 18a6 6 0 0 0 0-12v12z"], fills: &[], accents: &[] };
 pub const COPY: Icon = Icon { name: "copy", paths: &["M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z", "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"], fills: &[], accents: &[] };
@@ -143,6 +146,7 @@ pub const DECIMALS_ARROW_RIGHT: Icon = Icon { name: "decimals-arrow-right", path
 pub const DELETE: Icon = Icon { name: "delete", paths: &["M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z", "m12 9 6 6", "m18 9-6 6"], fills: &[], accents: &[] };
 pub const DIAMETER: Icon = Icon { name: "diameter", paths: &["M17 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z", "M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z", "M6.48 3.66a10 10 0 0 1 13.86 13.86", "m6.41 6.41 11.18 11.18", "M3.66 6.48a10 10 0 0 0 13.86 13.86"], fills: &[], accents: &[] };
 pub const DIAMOND: Icon = Icon { name: "diamond", paths: &["M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"], fills: &[], accents: &[] };
+pub const DISC: Icon = Icon { name: "disc", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z"], fills: &[], accents: &[] };
 pub const DOLLAR_SIGN: Icon = Icon { name: "dollar-sign", paths: &["M12 2L12 22", "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"], fills: &[], accents: &[] };
 pub const DOWNLOAD: Icon = Icon { name: "download", paths: &["M12 15V3", "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", "m7 10 5 5 5-5"], fills: &[], accents: &[] };
 pub const DROPLET: Icon = Icon { name: "droplet", paths: &["M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"], fills: &[], accents: &[] };
@@ -163,6 +167,7 @@ pub const FILE_DIGIT: Icon = Icon { name: "file-digit", paths: &["M4 12V4a2 2 0 
 pub const FILE_EXCLAMATION_POINT: Icon = Icon { name: "file-exclamation-point", paths: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z", "M12 9v4", "M12 17h.01"], fills: &[], accents: &[] };
 pub const FILE_IMAGE: Icon = Icon { name: "file-image", paths: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z", "M14 2v5a1 1 0 0 0 1 1h5", "M8 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z", "m20 17-1.296-1.296a2.41 2.41 0 0 0-3.408 0L9 22"], fills: &[], accents: &[] };
 pub const FILE_INPUT: Icon = Icon { name: "file-input", paths: &["M4 11V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1", "M14 2v5a1 1 0 0 0 1 1h5", "M2 15h10", "m9 18 3-3-3-3"], fills: &[], accents: &[] };
+pub const FILE_OUTPUT: Icon = Icon { name: "file-output", paths: &["M4.226 20.925A2 2 0 0 0 6 22h12a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.127", "M14 2v5a1 1 0 0 0 1 1h5", "m5 11-3 3", "m5 17-3-3h10"], fills: &[], accents: &[] };
 pub const FILE_PEN_LINE: Icon = Icon { name: "file-pen-line", paths: &["M14.364 13.634a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506l4.013-4.009a1 1 0 0 0-3.004-3.004z", "M14.487 7.858A1 1 0 0 1 14 7V2", "M20 19.645V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l2.516 2.516", "M8 18h1"], fills: &[], accents: &[] };
 pub const FILE_PLUS: Icon = Icon { name: "file-plus", paths: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z", "M14 2v5a1 1 0 0 0 1 1h5", "M9 15h6", "M12 18v-6"], fills: &[], accents: &[] };
 pub const FILE_PLUS_CORNER: Icon = Icon { name: "file-plus-corner", paths: &["M11.35 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v5.35", "M14 2v5a1 1 0 0 0 1 1h5", "M14 19h6", "M17 16v6"], fills: &[], accents: &[] };
@@ -177,6 +182,7 @@ pub const FILM: Icon = Icon { name: "film", paths: &["M5 3h14a2 2 0 0 1 2 2v14a2
 pub const FLAG: Icon = Icon { name: "flag", paths: &["M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"], fills: &[], accents: &[] };
 pub const FLAME: Icon = Icon { name: "flame", paths: &["M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"], fills: &[], accents: &[] };
 pub const FLASK_CONICAL: Icon = Icon { name: "flask-conical", paths: &["M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2", "M6.453 15h11.094", "M8.5 2h7"], fills: &[], accents: &[] };
+pub const FLIP_HORIZONTAL: Icon = Icon { name: "flip-horizontal", paths: &["M12 3v2", "M12 8v2", "M12 13v2", "M12 18v2", "M9 6.5 3 17.5h6z", "M15 6.5l6 11h-6z"], fills: &[], accents: &[] };
 pub const FOCUS: Icon = Icon { name: "focus", paths: &["M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M3 7V5a2 2 0 0 1 2-2h2", "M17 3h2a2 2 0 0 1 2 2v2", "M21 17v2a2 2 0 0 1-2 2h-2", "M7 21H5a2 2 0 0 1-2-2v-2"], fills: &[], accents: &[] };
 pub const FOLD_HORIZONTAL: Icon = Icon { name: "fold-horizontal", paths: &["M2 12h6", "M22 12h-6", "M12 2v2", "M12 8v2", "M12 14v2", "M12 20v2", "m19 9-3 3 3 3", "m5 15 3-3-3-3"], fills: &[], accents: &[] };
 pub const FOLDER: Icon = Icon { name: "folder", paths: &["M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"], fills: &[], accents: &[] };
@@ -289,6 +295,7 @@ pub const PEN: Icon = Icon { name: "pen", paths: &["M21.174 6.812a1 1 0 0 0-3.98
 pub const PEN_LINE: Icon = Icon { name: "pen-line", paths: &["M13 21h8", "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"], fills: &[], accents: &[] };
 pub const PEN_TOOL: Icon = Icon { name: "pen-tool", paths: &["m18 13-.654-4.736a4 4 0 00-2.756-3.266l-9.163-2.9a2 2 0 00-2.017.493l-.82.819a2 2 0 00-.492 2.017l2.9 9.163a4 4 0 003.266 2.756L13 18", "M18.648 12.352a1.205 1.205 0 011.704 0l1.296 1.296a1.205 1.205 0 010 1.704l-6.296 6.296a1.205 1.205 0 01-1.704 0l-1.296-1.296a1.205 1.205 0 010-1.704z", "m3 3 6.586 6.586", "M9 11a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z"], fills: &[], accents: &[] };
 pub const PENCIL: Icon = Icon { name: "pencil", paths: &["M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z", "m15 5 4 4"], fills: &[], accents: &[] };
+pub const PENCIL_LINE: Icon = Icon { name: "pencil-line", paths: &["M13 21h8", "m15 5 4 4", "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"], fills: &[], accents: &[] };
 pub const PENTAGON: Icon = Icon { name: "pentagon", paths: &["M10.83 2.38a2 2 0 0 1 2.34 0l8 5.74a2 2 0 0 1 .73 2.25l-3.04 9.26a2 2 0 0 1-1.9 1.37H7.04a2 2 0 0 1-1.9-1.37L2.1 10.37a2 2 0 0 1 .73-2.25z"], fills: &[], accents: &[] };
 pub const PERCENT: Icon = Icon { name: "percent", paths: &["M19 5L5 19", "M4 6.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z", "M15 17.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z"], fills: &[], accents: &[] };
 pub const PILCROW: Icon = Icon { name: "pilcrow", paths: &["M13 4v16", "M17 4v16", "M19 4H9.5a4.5 4.5 0 0 0 0 9H13"], fills: &[], accents: &[] };
@@ -313,6 +320,7 @@ pub const REDO_2: Icon = Icon { name: "redo-2", paths: &["m15 14 5-5-5-5", "M20 
 pub const REFRESH_CCW: Icon = Icon { name: "refresh-ccw", paths: &["M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", "M3 3v5h5", "M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16", "M16 16h5v5"], fills: &[], accents: &[] };
 pub const REFRESH_CW: Icon = Icon { name: "refresh-cw", paths: &["M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", "M21 3v5h-5", "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", "M8 16H3v5"], fills: &[], accents: &[] };
 pub const REMOVE_FORMATTING: Icon = Icon { name: "remove-formatting", paths: &["M4 7V4h16v3", "M5 20h6", "M13 4 8 20", "m15 15 5 5", "m20 15-5 5"], fills: &[], accents: &[] };
+pub const REPEAT: Icon = Icon { name: "repeat", paths: &["m17 2 4 4-4 4", "M3 11v-1a4 4 0 0 1 4-4h14", "m7 22-4-4 4-4", "M21 13v1a4 4 0 0 1-4 4H3"], fills: &[], accents: &[] };
 pub const REPLACE: Icon = Icon { name: "replace", paths: &["M14 4a1 1 0 0 1 1-1", "M15 10a1 1 0 0 1-1-1", "M21 4a1 1 0 0 0-1-1", "M21 9a1 1 0 0 1-1 1", "m3 7 3 3 3-3", "M6 10V5a2 2 0 0 1 2-2h2", "M4 14h5a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-5a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
 pub const ROCKET: Icon = Icon { name: "rocket", paths: &["M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5", "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09", "M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z", "M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"], fills: &[], accents: &[] };
 pub const ROTATE_CCW: Icon = Icon { name: "rotate-ccw", paths: &["M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", "M3 3v5h5"], fills: &[], accents: &[] };
@@ -401,6 +409,7 @@ pub const TEXT_CURSOR_INPUT: Icon = Icon { name: "text-cursor-input", paths: &["
 pub const TEXT_WRAP: Icon = Icon { name: "text-wrap", paths: &["m16 16-3 3 3 3", "M3 12h14.5a1 1 0 0 1 0 7H13", "M3 19h6", "M3 5h18"], fills: &[], accents: &[] };
 pub const THUMBS_UP: Icon = Icon { name: "thumbs-up", paths: &["M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z", "M7 10v12"], fills: &[], accents: &[] };
 pub const TIMER: Icon = Icon { name: "timer", paths: &["M10 2L14 2", "M12 14L15 11", "M4 14a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z"], fills: &[], accents: &[] };
+pub const TOGGLE_LEFT: Icon = Icon { name: "toggle-left", paths: &["M6 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M9 5h6a7 7 0 0 1 7 7v0a7 7 0 0 1 -7 7h-6a7 7 0 0 1 -7 -7v0a7 7 0 0 1 7 -7z"], fills: &[], accents: &[] };
 pub const TRANSITION_COVER: Icon = Icon { name: "transition-cover", paths: &["M9 17H4a2 2 0 0 1 -2-2V9a2 2 0 0 1 2-2h5", "M22 5H11a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h11", "M18.5 12H13", "m14.5 10.5-1.5 1.5 1.5 1.5"], fills: &[], accents: &["M22 5H11a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h11z"] };
 pub const TRANSITION_CURTAINS: Icon = Icon { name: "transition-curtains", paths: &["M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z", "M6.5 6c.5 5 2 9 5 12", "M17.5 6c-.5 5-2 9-5 12"], fills: &[], accents: &["M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z"] };
 pub const TRANSITION_CUT: Icon = Icon { name: "transition-cut", paths: &["M4 7h5a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z", "M15 7h5a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"], fills: &[], accents: &["M15 7h5a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"] };
@@ -569,6 +578,7 @@ pub static ICONS: &[&Icon] = &[
     &CLIPBOARD_CHECK,
     &CLIPBOARD_LIST,
     &CLIPBOARD_PASTE,
+    &CLOCK,
     &CLOCK_3,
     &CLOUD,
     &CLOUD_OFF,
@@ -578,6 +588,8 @@ pub static ICONS: &[&Icon] = &[
     &COLUMNS_3,
     &COMBINE,
     &COMMAND,
+    &COMMAND_GENERIC,
+    &COMPONENT,
     &CONTACT,
     &CONTRAST,
     &COPY,
@@ -596,6 +608,7 @@ pub static ICONS: &[&Icon] = &[
     &DELETE,
     &DIAMETER,
     &DIAMOND,
+    &DISC,
     &DOLLAR_SIGN,
     &DOWNLOAD,
     &DROPLET,
@@ -616,6 +629,7 @@ pub static ICONS: &[&Icon] = &[
     &FILE_EXCLAMATION_POINT,
     &FILE_IMAGE,
     &FILE_INPUT,
+    &FILE_OUTPUT,
     &FILE_PEN_LINE,
     &FILE_PLUS,
     &FILE_PLUS_CORNER,
@@ -630,6 +644,7 @@ pub static ICONS: &[&Icon] = &[
     &FLAG,
     &FLAME,
     &FLASK_CONICAL,
+    &FLIP_HORIZONTAL,
     &FOCUS,
     &FOLD_HORIZONTAL,
     &FOLDER,
@@ -742,6 +757,7 @@ pub static ICONS: &[&Icon] = &[
     &PEN_LINE,
     &PEN_TOOL,
     &PENCIL,
+    &PENCIL_LINE,
     &PENTAGON,
     &PERCENT,
     &PILCROW,
@@ -766,6 +782,7 @@ pub static ICONS: &[&Icon] = &[
     &REFRESH_CCW,
     &REFRESH_CW,
     &REMOVE_FORMATTING,
+    &REPEAT,
     &REPLACE,
     &ROCKET,
     &ROTATE_CCW,
@@ -854,6 +871,7 @@ pub static ICONS: &[&Icon] = &[
     &TEXT_WRAP,
     &THUMBS_UP,
     &TIMER,
+    &TOGGLE_LEFT,
     &TRANSITION_COVER,
     &TRANSITION_CURTAINS,
     &TRANSITION_CUT,
