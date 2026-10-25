@@ -3,11 +3,13 @@ import { SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
 import { ComponentsPage } from './ComponentsPage'
 import { HomePage } from './home/HomePage'
 import { IconsPage } from './IconsPage'
+import { StyleLab } from './StyleLab'
 import { TokensPage } from './TokensPage'
 
 const PAGES = [
   { id: 'home', label: 'Galaxy' },
   { id: 'icons', label: 'Icons' },
+  { id: 'styles', label: 'Icon style lab' },
   { id: 'tokens', label: 'Tokens & skins' },
   { id: 'components', label: 'Components' },
 ] as const
@@ -73,7 +75,7 @@ export function App() {
         <HomePage dark={SKINS[skin].colorScheme === 'dark'} />
       ) : (
         <main className="site-main">
-          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
+          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
         </main>
       )}
     </div>
