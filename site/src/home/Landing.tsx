@@ -41,6 +41,7 @@ import {
 } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES, KIT_ICONS } from '@kition/tessera-icons/registry'
 import { KHP_TOKENS, SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
+import { MosaicHero } from './MosaicHero'
 
 const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'design', 'effect', 'cad']
 const KIT_NAMES: Record<string, string> = {
@@ -75,9 +76,12 @@ const iconOf = (name: string) => {
 }
 
 export function Landing({ skin }: { skin: SkinId }) {
+  useReveal()
   return (
     <div className="lx">
+      <MosaicIntro />
       <Hero skin={skin} />
+      <SkinCompare />
       <IconMarquee />
       <Bento />
       <Kits />
@@ -117,30 +121,13 @@ function Hero({ skin }: { skin: SkinId }) {
         <span className="lx-blob lx-blob-a" />
         <span className="lx-blob lx-blob-b" />
         <span className="lx-blob lx-blob-c" />
-        <span className="lx-grid" />
       </div>
-      <div className="lx-hero-copy">
-        <a className="lx-pill" href="#review">
-          <span className="lx-pill-dot" /> New · 51 CAD drafting icons and every slide transition redrawn
-        </a>
-        <h1 className="lx-title">
-          Every <span className="lx-gradient">kit.</span>
-          <br />
-          One design language.
-        </h1>
-        <p className="lx-lede">
-          Kition Tessera is the design system for AI-native professional software: icons, design tokens and editor components that a photo editor, a spreadsheet and a
-          timeline share, so they read as one suite and any host can reskin them all at once.
-        </p>
-        <div className="lx-actions">
-          <a className="lx-cta" href="#components">
-            Explore components
-          </a>
-          <a className="lx-ghost" href="#icons">
-            Browse {ICON_NAMES.length} icons
-          </a>
-          <CopyCommand text="pnpm add @kition/tessera" />
-        </div>
+      <div className="lx-section-head lx-center lx-stage-head" data-reveal>
+        <p className="lx-eyebrow">In a kit</p>
+        <h2>
+          Real components, <span className="lx-gradient">not screenshots.</span>
+        </h2>
+        <p>This photo editor is built only from Tessera: ribbon, tool rail, histogram, number field, colour picker. Move the pointer; the cards lean with it.</p>
       </div>
       <div className="lx-stage" ref={stage} style={skinStyle(skin)}>
         <div className="lx-stage-main">
@@ -295,6 +282,162 @@ function TransportDemo() {
   )
 }
 
+/* -------------------------------------------------------------- intro */
+
+function MosaicIntro() {
+  return (
+    <section className="lx-intro">
+      <div className="lx-intro-glow" aria-hidden="true" />
+      <div className="lx-intro-inner">
+        <div className="lx-intro-copy">
+          <a className="lx-pill lx-pill-dark" href="#review">
+            <span className="lx-pill-dot" /> New · CAD drafting icons and every slide transition redrawn
+          </a>
+          <h1 className="lx-title lx-title-dark">
+            Every <span className="lx-gradient-bright">kit.</span>
+            <br />
+            One design
+            <br />
+            language.
+          </h1>
+          <p className="lx-lede lx-lede-dark">
+            A tessera is one tile of a mosaic. Kition Tessera is the tiles every kit is built from: icons, tokens and editor components for professional software, so a
+            photo editor, a spreadsheet and a timeline read as one suite, and any host can reskin them all at once.
+          </p>
+          <div className="lx-actions lx-actions-left">
+            <a className="lx-cta lx-cta-light" href="#components">
+              Explore components
+            </a>
+            <CopyCommand text="pnpm add @kition/tessera" />
+          </div>
+          <dl className="lx-counters">
+            <Counter value={ICON_NAMES.length} label="icons" />
+            <Counter value={KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit)).length} label="kits" />
+            <Counter value={KHP_TOKENS.length} label="theme tokens" />
+            <Counter value={40} label="components" suffix="+" />
+          </dl>
+        </div>
+        <div className="lx-intro-art">
+          <MosaicHero />
+          <span className="lx-intro-hint">Hover the tiles. Click to scatter.</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** A number that counts up from zero the first time it scrolls into view. */
+function Counter({ value, label, suffix = '' }: { value: number; label: string; suffix?: string }) {
+  const ref = useRef<HTMLElement>(null)
+  const [shown, setShown] = useState(reducedMotion() ? value : 0)
+  useEffect(() => {
+    const element = ref.current
+    if (!element || reducedMotion()) return
+    let frame = 0
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return
+      observer.disconnect()
+      const begin = performance.now()
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - begin) / 1400)
+        setShown(Math.round(value * (1 - Math.pow(1 - t, 3))))
+        if (t < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    })
+    observer.observe(element)
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+    }
+  }, [value])
+  return (
+    <div>
+      <dt ref={ref}>
+        {shown}
+        {suffix}
+      </dt>
+      <dd>{label}</dd>
+    </div>
+  )
+}
+
+/** Sections fade up as they scroll into view (`data-reveal`). */
+function useReveal() {
+  useEffect(() => {
+    const elements = [...document.querySelectorAll<HTMLElement>('[data-reveal]')]
+    if (reducedMotion()) {
+      for (const element of elements) element.classList.add('is-visible')
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.12 },
+    )
+    for (const element of elements) observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+}
+
+/* -------------------------------------------------------- skin compare */
+
+function SkinCompare() {
+  const box = useRef<HTMLDivElement>(null)
+  const [split, setSplit] = useState(52)
+  const dragging = useRef(false)
+  const move = (clientX: number) => {
+    const rect = box.current?.getBoundingClientRect()
+    if (!rect) return
+    setSplit(Math.min(96, Math.max(4, ((clientX - rect.left) / rect.width) * 100)))
+  }
+  return (
+    <section className="lx-section">
+      <div className="lx-section-head lx-center" data-reveal>
+        <p className="lx-eyebrow">Skins</p>
+        <h2>
+          One editor. <span className="lx-gradient">Any skin.</span>
+        </h2>
+        <p>Drag the line. The same kit, Paper on one side and Graphite on the other: the host sends one theme over the Kit Harness Protocol and every control follows.</p>
+      </div>
+      <div
+        className="lx-compare"
+        ref={box}
+        data-reveal
+        onPointerDown={(event) => {
+          dragging.current = true
+          ;(event.target as HTMLElement).setPointerCapture?.(event.pointerId)
+          move(event.clientX)
+        }}
+        onPointerMove={(event) => dragging.current && move(event.clientX)}
+        onPointerUp={() => (dragging.current = false)}
+      >
+        <div className="lx-compare-layer" style={skinStyle('paper')}>
+          <EditorWindow />
+        </div>
+        <div className="lx-compare-layer lx-compare-top" style={{ ...skinStyle('graphite'), clipPath: `inset(0 0 0 ${split}%)` }}>
+          <EditorWindow />
+        </div>
+        <div className="lx-compare-handle" style={{ left: `${split}%` }} role="slider" aria-label="Skin divider" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(split)} tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === 'ArrowLeft') setSplit((value) => Math.max(4, value - 4))
+            if (event.key === 'ArrowRight') setSplit((value) => Math.min(96, value + 4))
+          }}
+        >
+          <span>Paper</span>
+          <i />
+          <span>Graphite</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ------------------------------------------------------------- marquee */
 
 function IconMarquee() {
@@ -305,7 +448,7 @@ function IconMarquee() {
   }, [])
   return (
     <section className="lx-marquee-section">
-      <div className="lx-section-head lx-center">
+      <div className="lx-section-head lx-center" data-reveal>
         <p className="lx-eyebrow">Tessera Icons</p>
         <h2>
           {ICON_NAMES.length} icons. <span className="lx-gradient">One stroke.</span>
@@ -336,12 +479,12 @@ function Bento() {
   const [skin, setSkin] = useState<SkinId>('graphite')
   return (
     <section className="lx-section">
-      <div className="lx-section-head">
+      <div className="lx-section-head" data-reveal>
         <p className="lx-eyebrow">Components</p>
         <h2>Built for the work professional editors do.</h2>
         <p>General design systems stop at forms and tables. Tessera goes on: ribbons, docks, wheels, curves, timelines, meters, all styled only by theme tokens.</p>
       </div>
-      <div className="lx-bento">
+      <div className="lx-bento" data-reveal>
         <div className="lx-cell lx-cell-skin" style={skinStyle(skin)} data-scheme={SKINS[skin].colorScheme}>
           <div className="lx-cell-head">
             <strong>One theme, every kit</strong>
@@ -481,11 +624,11 @@ function Kits() {
   const kits = KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit))
   return (
     <section className="lx-section">
-      <div className="lx-section-head lx-center">
+      <div className="lx-section-head lx-center" data-reveal>
         <p className="lx-eyebrow">Kition kits</p>
         <h2>{KIT_COUNT_WORDS[kits.length] ?? kits.length} kits. One family.</h2>
       </div>
-      <div className="lx-kits">
+      <div className="lx-kits" data-reveal>
         {kits.map((kit) => (
           <figure key={kit} className="lx-kit">
             <img src={kitUrl(kit)} alt="" width={56} height={56} />
