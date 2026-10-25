@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Finds every lucide-react icon the Kition repositories import, so Tessera Icons covers them.
+ * Finds every icon the Kition repositories import (from lucide-react, or from Tessera Icons after
+ * they moved), so Tessera Icons covers them and the site knows which kits use each.
  *
  * Scans kition (`src`, `packages`), kition-sdk `packages/kit-ui/src`, and each kit's `web/src`,
  * found as siblings of this repository (or under `KITION_WORKSPACE`). Test files are skipped.
@@ -16,7 +17,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const workspace = process.env.KITION_WORKSPACE ? resolve(process.env.KITION_WORKSPACE) : resolve(root, '..')
 const KITS = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad', 'html']
 const SKIP_DIRS = new Set(['node_modules', 'dist', 'target', '.git'])
-const IMPORT = /import\s*(?:type\s*)?\{([^}]*)\}\s*from\s*['"]lucide-react['"]/g
+const IMPORT = /import\s*(?:type\s*)?\{([^}]*)\}\s*from\s*['"](?:lucide-react|@kition\/tessera-icons\/react)['"]/g
 const NOT_ICONS = new Set(['LucideIcon', 'LucideProps', 'IconNode', 'createLucideIcon', 'icons'])
 
 function* sources(dir) {

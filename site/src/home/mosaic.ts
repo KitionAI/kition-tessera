@@ -42,7 +42,7 @@ type Options = {
 
 const CELL = 64
 const ATLAS_COLS = 32
-const ARMS = 14
+const ARMS = 15
 const GRID_COLS = 26
 const GRID_GAP = 1.22
 

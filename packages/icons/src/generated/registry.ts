@@ -527,4 +527,4 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
 }
 
 /** Kit app icons: full-color tiles in `@kition/tessera-icons/kit/<kit>.svg` and `<kit>-small.svg`. */
-export const KIT_ICONS: readonly string[] = ["board","cad","design","doc","effect","film","layout","note","pdf","photo","sheet","slide","table","vector"]
+export const KIT_ICONS: readonly string[] = ["board","cad","design","doc","effect","film","html","layout","note","pdf","photo","sheet","slide","table","vector"]

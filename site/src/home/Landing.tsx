@@ -42,7 +42,7 @@ import {
 import { ICONS, ICON_NAMES, KIT_ICONS } from '@kition/tessera-icons/registry'
 import { KHP_TOKENS, SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
 
-const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad']
+const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'design', 'effect', 'cad']
 const KIT_NAMES: Record<string, string> = {
   note: 'Note',
   table: 'Table',
@@ -57,6 +57,7 @@ const KIT_NAMES: Record<string, string> = {
   design: 'Design',
   effect: 'Effect',
   cad: 'CAD',
+  html: 'HTML',
 }
 
 const kitFiles = import.meta.glob('../../../packages/icons/kit/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
@@ -474,13 +475,15 @@ function Bento() {
 
 /* ---------------------------------------------------------------- kits */
 
+const KIT_COUNT_WORDS: Record<number, string> = { 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen' }
+
 function Kits() {
   const kits = KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit))
   return (
     <section className="lx-section">
       <div className="lx-section-head lx-center">
         <p className="lx-eyebrow">Kition kits</p>
-        <h2>Thirteen kits. One family.</h2>
+        <h2>{KIT_COUNT_WORDS[kits.length] ?? kits.length} kits. One family.</h2>
       </div>
       <div className="lx-kits">
         {kits.map((kit) => (

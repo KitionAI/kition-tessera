@@ -6,7 +6,7 @@ import iconKits from './iconKits.json'
 import { hasWebGL, mountMosaic, type MosaicHandle, type MosaicTile, type Theme } from './mosaic'
 
 /** Kit order (Kition Universe's) and the kit hues (kition kits/kit-colors.json). */
-const KITS = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad', 'layout'] as const
+const KITS = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad', 'layout', 'html'] as const
 const KIT_COLORS: Record<string, string> = {
   note: '#7b6cf0',
   doc: '#4a7cf0',
@@ -16,6 +16,7 @@ const KIT_COLORS: Record<string, string> = {
   slide: '#e0711f',
   design: '#ef4a6c',
   layout: '#e04aa0',
+  html: '#d9693a',
   vector: '#78a81e',
   photo: '#159fc4',
   effect: '#bf5ee0',

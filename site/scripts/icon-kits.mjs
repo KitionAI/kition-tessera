@@ -14,6 +14,9 @@ const root = join(site, '..')
 const perScope = JSON.parse(execFileSync('node', [join(root, 'scripts', 'lucide-usage.mjs'), '--json'], { encoding: 'utf8' }))
 const registry = readFileSync(join(root, 'packages', 'icons', 'src', 'generated', 'registry.ts'), 'utf8')
 const fromLucide = Object.fromEntries([...registry.matchAll(/^ {2}(\w+): "([a-z0-9-]+)",$/gm)].map((m) => [m[1], m[2]]))
+// Tessera's own component names (`LayersIcon`, `ClipInsertIcon`) to icon names.
+const generated = readFileSync(join(root, 'packages', 'icons', 'src', 'generated', 'icons.ts'), 'utf8')
+for (const [, pascal, name] of generated.matchAll(/export const (\w+): IconData = \{ name: "([a-z0-9-]+)"/g)) fromLucide[`${pascal}Icon`] = name
 const out = {}
 for (const [scope, names] of Object.entries(perScope)) {
   for (const name of names) {
