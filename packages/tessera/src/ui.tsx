@@ -11,7 +11,8 @@ import { DropPanel } from './DropPanel'
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
 /** The stroke width of every Lucide icon Kit UI draws, at every size (ribbon, menus, rail, panels). */
-export const ICON_STROKE = 1.75
+/** The stroke every control draws its icons with (Tessera's icon style, docs/icon-style.md). */
+export const ICON_STROKE = 1.5
 
 /** Control heights: `sm` 28px (kit toolbars), `md` 36px (panels, settings), `lg` 44px (kition docs/design.md CTAs and inputs). */
 export type ControlSize = 'sm' | 'md' | 'lg'

@@ -4,8 +4,8 @@
  */
 export type IconData = { readonly name: string; readonly family: 'ui' | 'tool'; readonly paths: readonly string[]; readonly fills: readonly string[] }
 
-/** How an icon is drawn. Defaults follow Kition's kit editors: 24 px, `currentColor`, 1.75 px strokes. */
+/** How an icon is drawn. Defaults follow Tessera's icon style (docs/icon-style.md): 24 px, `currentColor`, 1.5 px strokes. */
 export type IconStyle = { size?: number; color?: string; strokeWidth?: number; absoluteStrokeWidth?: boolean }
 
 export const ICON_GRID = 24
-export const DEFAULT_STROKE = 1.75
+export const DEFAULT_STROKE = 1.5

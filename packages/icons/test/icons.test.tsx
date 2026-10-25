@@ -72,7 +72,7 @@ describe('the lucide set', () => {
     for (const [name, entry] of Object.entries(manifest.icons)) {
       if (!entry.source.startsWith('lucide:')) continue
       const expected = pixels(lucideSvg(lucide.nodes.get(entry.source.slice('lucide:'.length))))
-      const actual = pixels(toSvg(ICONS[name], { color: 'black' }))
+      const actual = pixels(toSvg(ICONS[name], { color: 'black', strokeWidth: 1.75 }))
       const diff = differing(expected, actual)
       if (diff > 0) failures.push(`${name}: ${diff} pixels`)
     }
@@ -104,7 +104,7 @@ describe('icons', () => {
   })
 
   it('scales the stroke only when asked', () => {
-    expect(gridStroke({ size: 48 })).toBe(1.75)
+    expect(gridStroke({ size: 48 })).toBe(1.5)
     expect(gridStroke({ size: 48, strokeWidth: 2, absoluteStrokeWidth: true })).toBe(1)
   })
 
