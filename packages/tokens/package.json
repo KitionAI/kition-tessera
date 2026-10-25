@@ -9,7 +9,11 @@
     "./tokens.css": "./src/generated/tokens.css",
     "./tokens/*": "./tokens/*"
   },
-  "files": ["src", "tokens"],
+  "files": [
+    "src",
+    "tokens",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs --check"

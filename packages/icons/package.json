@@ -14,7 +14,9 @@
     "src",
     "kit",
     "icons.json",
-    "NOTICE"
+    "NOTICE",
+    "LICENSE",
+    "LICENSE-lucide"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",

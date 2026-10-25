@@ -12,7 +12,8 @@
   },
   "files": [
     "src",
-    "locales"
+    "locales",
+    "LICENSE"
   ],
   "dependencies": {
     "@kition/tessera-icons": "workspace:*",
