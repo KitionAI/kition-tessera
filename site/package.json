@@ -1,0 +1,11 @@
+{
+  "name": "@kition/tessera-site",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build" },
+  "dependencies": {
+    "@kition/tessera": "workspace:*",
+    "@kition/tessera-icons": "workspace:*",
+    "@kition/tessera-tokens": "workspace:*"
+  }
+}

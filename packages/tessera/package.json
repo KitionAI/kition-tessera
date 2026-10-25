@@ -1,0 +1,26 @@
+{
+  "name": "@kition/tessera",
+  "version": "0.1.0",
+  "description": "Kition Tessera's components for professional editors: base controls, ribbon, dock and floating panels, color controls, curves, histogram, level meter, timecode, transport, keyframes, and workspace layout. Styled only through theme tokens.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./workspaceTree": "./src/workspaceTree.ts",
+    "./locales/*": "./locales/*"
+  },
+  "files": [
+    "src",
+    "locales"
+  ],
+  "dependencies": {
+    "@kition/tessera-icons": "workspace:*",
+    "@kition/tessera-tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "//": "./workspaceTree is the frame tree alone, without React, for plain-Node tests (a kit's node --test): Node strips its types because a linked checkout is outside node_modules."
+}

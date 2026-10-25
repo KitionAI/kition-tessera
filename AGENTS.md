@@ -7,7 +7,8 @@ API is public and changes deliberately.
 ## Language and privacy
 
 - English for everything in this repository: code, comments, docs, token descriptions, icon
-  names.
+  names. The only exception is component strings in `packages/tessera/locales/<locale>.json`;
+  every locale has every key of `en-US.json`.
 - Never write a real local username, home directory, or absolute host path into a tracked file.
   Scripts find sibling repositories relative to this one or through environment variables.
 
@@ -37,6 +38,14 @@ API is public and changes deliberately.
   name an icon after a trademark.
 - Icons from Lucide keep Lucide's licenses (`NOTICE`, `LICENSE-lucide`). Bump the pinned Lucide
   version only on purpose: the pixel test compares every icon against it.
+
+## Components
+
+- Components style only through tokens and keep the `kui-` class names kits already target.
+- They reach the editor only through `context.tsx` (strings, element states); never import a
+  Kit Harness Protocol package or anything kit-specific.
+- Icons come from `@kition/tessera-icons`; an icon prop is an `IconComponent`, so a kit may pass
+  Tessera or lucide-react icons.
 
 ## Checks
 

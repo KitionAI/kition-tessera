@@ -3,7 +3,7 @@ import { gridStroke } from './index'
 import { DEFAULT_STROKE, type IconData, type IconStyle } from './types'
 
 /** Props of a Tessera icon component. They match lucide-react's, so components can switch without call-site changes. */
-export type IconProps = Omit<SVGProps<SVGSVGElement>, 'ref' | 'color' | 'strokeWidth'> & IconStyle & { size?: number | string; strokeWidth?: number | string }
+export type IconProps = Omit<SVGProps<SVGSVGElement>, 'ref' | 'color' | 'strokeWidth'> & Omit<IconStyle, 'size' | 'strokeWidth'> & { size?: number | string; strokeWidth?: number | string }
 
 export type TesseraIcon = ReturnType<typeof createIcon>
 

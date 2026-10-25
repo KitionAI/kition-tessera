@@ -19,7 +19,7 @@ follows that contract can be reskinned by any host; Tessera is the quickest way 
 | [`tessera-tokens`](crates/tessera-tokens) (Rust) | The same tokens for kit engines that draw on the canvas | 0.1 |
 | [`@kition/tessera-icons`](packages/icons) | Tessera Icons: every icon as SVG path data, React components, canvas drawing; kit app icons | 0.1 |
 | [`tessera-icons`](crates/tessera-icons) (Rust) | The same icons for kit engines | 0.1 |
-| `@kition/tessera` | Components: base controls, professional controls, editor shells | Planned |
+| [`@kition/tessera`](packages/tessera) | Components: base controls, ribbon, dock and floating panels, color controls, curves, histogram, level meter, timecode, transport, keyframes, workspace layout | 0.1 |
 
 ## Tokens
 
@@ -52,6 +52,29 @@ React, a canvas `Path2D`, and Rust draw identical shapes. The set is listed in
 Kition's repositories use today, under their Lucide names, so code moves off `lucide-react`
 without visual change (`FROM_LUCIDE` maps every lucide-react name); Tessera's own drawings
 replace them over time. Kit app icons are full-color tiles in `packages/icons/kit/`.
+
+## Components
+
+```tsx
+import '@kition/tessera/styles.css'
+import { Button, ColorPicker, ElementsProvider, StringsProvider } from '@kition/tessera'
+```
+
+Components draw only through the theme tokens. They ask the editor around them for two things:
+strings (`StringsProvider`; English without one, `zh-CN` included) and element states
+(`ElementsProvider`: whether an element id is hidden or disabled, and extra items such as a host's
+buttons). `@kition/kit-ui` fills both from the Kit UI protocol and re-exports the components
+under their old names, so kits need no change. Class names keep the `kui-` prefix kits style
+against.
+
+## Preview site
+
+```bash
+pnpm --filter @kition/tessera-site dev   # http://127.0.0.1:4340
+```
+
+Icons (search, sizes, strokes, usage snippets), tokens and skins, and every component live, with
+a skin switch.
 
 ## Development
 
