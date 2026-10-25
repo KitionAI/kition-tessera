@@ -113,6 +113,7 @@ pub const CLIP_EXTRACT: Icon = Icon { name: "clip-extract", paths: &["M12 12V3",
 pub const CLIP_INSERT: Icon = Icon { name: "clip-insert", paths: &["M12 3v9", "m8.5 8.5 3.5 3.5 3.5-3.5", "M3 15h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z", "M16 15h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
 pub const CLIP_LIFT: Icon = Icon { name: "clip-lift", paths: &["M12 13V3", "m8.5 6.5 3.5-3.5 3.5 3.5", "M3 15h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z", "M16 15h5a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
 pub const CLIP_OVERWRITE: Icon = Icon { name: "clip-overwrite", paths: &["M12 3v8", "m8.5 7.5 3.5 3.5 3.5-3.5", "M4 14h16a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
+pub const CLIPBOARD: Icon = Icon { name: "clipboard", paths: &["M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z", "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"], fills: &[], accents: &[] };
 pub const CLIPBOARD_CHECK: Icon = Icon { name: "clipboard-check", paths: &["M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z", "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2", "m9 14 2 2 4-4"], fills: &[], accents: &[] };
 pub const CLIPBOARD_LIST: Icon = Icon { name: "clipboard-list", paths: &["M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z", "M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2", "M12 11h4", "M12 16h4", "M8 11h.01", "M8 16h.01"], fills: &[], accents: &[] };
 pub const CLIPBOARD_PASTE: Icon = Icon { name: "clipboard-paste", paths: &["M11 14h10", "M16 4h2a2 2 0 0 1 2 2v1.344", "m17 18 4-4-4-4", "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113", "M9 2h6a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
@@ -121,6 +122,7 @@ pub const CLOCK_3: Icon = Icon { name: "clock-3", paths: &["M2 12a10 10 0 1 0 20
 pub const CLOUD: Icon = Icon { name: "cloud", paths: &["M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"], fills: &[], accents: &[] };
 pub const CLOUD_OFF: Icon = Icon { name: "cloud-off", paths: &["M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057", "M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78", "m2 2 20 20"], fills: &[], accents: &[] };
 pub const CLOUD_UPLOAD: Icon = Icon { name: "cloud-upload", paths: &["M12 13v8", "M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242", "m8 17 4-4 4 4"], fills: &[], accents: &[] };
+pub const CODE: Icon = Icon { name: "code", paths: &["m16 18 6-6-6-6", "m8 6-6 6 6 6"], fills: &[], accents: &[] };
 pub const CODE_XML: Icon = Icon { name: "code-xml", paths: &["m18 16 4-4-4-4", "m6 8-4 4 4 4", "m14.5 4-5 16"], fills: &[], accents: &[] };
 pub const COLUMNS_2: Icon = Icon { name: "columns-2", paths: &["M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z", "M12 3v18"], fills: &[], accents: &[] };
 pub const COLUMNS_3: Icon = Icon { name: "columns-3", paths: &["M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z", "M9 3v18", "M15 3v18"], fills: &[], accents: &[] };
@@ -158,6 +160,7 @@ pub const EXTERNAL_LINK: Icon = Icon { name: "external-link", paths: &["M15 3h6v
 pub const EYE: Icon = Icon { name: "eye", paths: &["M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0", "M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z"], fills: &[], accents: &[] };
 pub const EYE_OFF: Icon = Icon { name: "eye-off", paths: &["M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49", "M14.084 14.158a3 3 0 0 1-4.242-4.242", "M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143", "m2 2 20 20"], fills: &[], accents: &[] };
 pub const FACE_SLIGHTLY_SMILING: Icon = Icon { name: "face-slightly-smiling", paths: &["M15 10V9", "M16.472 15a6 6 0 01-8.943 0", "M9 10V9", "M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z"], fills: &[], accents: &[] };
+pub const FAST_FORWARD: Icon = Icon { name: "fast-forward", paths: &["M12 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 12 18z", "M2 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 2 18z"], fills: &[], accents: &[] };
 pub const FILE: Icon = Icon { name: "file", paths: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z", "M14 2v5a1 1 0 0 0 1 1h5"], fills: &[], accents: &[] };
 pub const FILE_CHECK_CORNER: Icon = Icon { name: "file-check-corner", paths: &["M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6", "M14 2v5a1 1 0 0 0 1 1h5", "m14 20 2 2 4-4"], fills: &[], accents: &[] };
 pub const FILE_CLOCK: Icon = Icon { name: "file-clock", paths: &["M16 22h2a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v2.85", "M14 2v5a1 1 0 0 0 1 1h5", "M8 14v2.2l1.6 1", "M2 16a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z"], fills: &[], accents: &[] };
@@ -266,6 +269,7 @@ pub const MONITOR_PLAY: Icon = Icon { name: "monitor-play", paths: &["M15.033 9.
 pub const MOON: Icon = Icon { name: "moon", paths: &["M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"], fills: &[], accents: &[] };
 pub const MOUSE_POINTER: Icon = Icon { name: "mouse-pointer", paths: &["M12.586 12.586 19 19", "M3.688 3.037a.497.497 0 0 0-.651.651l6.5 15.999a.501.501 0 0 0 .947-.062l1.569-6.083a2 2 0 0 1 1.448-1.479l6.124-1.579a.5.5 0 0 0 .063-.947z"], fills: &[], accents: &[] };
 pub const MOUSE_POINTER_2: Icon = Icon { name: "mouse-pointer-2", paths: &["M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"], fills: &[], accents: &[] };
+pub const MOUSE_POINTER_CLICK: Icon = Icon { name: "mouse-pointer-click", paths: &["M14 4.1 12 6", "m5.1 8-2.9-.8", "m6 12-1.9 2", "M7.2 2.2 8 5.1", "M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"], fills: &[], accents: &[] };
 pub const MOVE: Icon = Icon { name: "move", paths: &["M12 2v20", "m15 19-3 3-3-3", "m19 9 3 3-3 3", "M2 12h20", "m5 9-3 3 3 3", "m9 5 3-3 3 3"], fills: &[], accents: &[] };
 pub const MOVE_3D: Icon = Icon { name: "move-3d", paths: &["M5 3v16h16", "m5 19 6-6", "m2 6 3-3 3 3", "m18 16 3 3-3 3"], fills: &[], accents: &[] };
 pub const MOVE_HORIZONTAL: Icon = Icon { name: "move-horizontal", paths: &["m18 8 4 4-4 4", "M2 12h20", "m6 8-4 4 4 4"], fills: &[], accents: &[] };
@@ -454,6 +458,7 @@ pub const WAND_SPARKLES: Icon = Icon { name: "wand-sparkles", paths: &["m21.64 3
 pub const WAVES_HORIZONTAL: Icon = Icon { name: "waves-horizontal", paths: &["M2 12q2.5 2 5 0t5 0 5 0 5 0", "M2 19q2.5 2 5 0t5 0 5 0 5 0", "M2 5q2.5 2 5 0t5 0 5 0 5 0"], fills: &[], accents: &[] };
 pub const WAYPOINTS: Icon = Icon { name: "waypoints", paths: &["m10.586 5.414-5.172 5.172", "m18.586 13.414-5.172 5.172", "M6 12h12", "M10 20a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z", "M10 4a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z", "M18 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z", "M2 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z"], fills: &[], accents: &[] };
 pub const WEBHOOK: Icon = Icon { name: "webhook", paths: &["M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2", "m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06", "m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"], fills: &[], accents: &[] };
+pub const WHOLE_WORD: Icon = Icon { name: "whole-word", paths: &["M4 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M10 9v6", "M14 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M14 7v8", "M22 17v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1"], fills: &[], accents: &[] };
 pub const WORKFLOW: Icon = Icon { name: "workflow", paths: &["M5 3h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z", "M7 11v4a2 2 0 0 0 2 2h4", "M15 13h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const WRENCH: Icon = Icon { name: "wrench", paths: &["M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"], fills: &[], accents: &[] };
 pub const X: Icon = Icon { name: "x", paths: &["M18 6 6 18", "m6 6 12 12"], fills: &[], accents: &[] };
@@ -575,6 +580,7 @@ pub static ICONS: &[&Icon] = &[
     &CLIP_INSERT,
     &CLIP_LIFT,
     &CLIP_OVERWRITE,
+    &CLIPBOARD,
     &CLIPBOARD_CHECK,
     &CLIPBOARD_LIST,
     &CLIPBOARD_PASTE,
@@ -583,6 +589,7 @@ pub static ICONS: &[&Icon] = &[
     &CLOUD,
     &CLOUD_OFF,
     &CLOUD_UPLOAD,
+    &CODE,
     &CODE_XML,
     &COLUMNS_2,
     &COLUMNS_3,
@@ -620,6 +627,7 @@ pub static ICONS: &[&Icon] = &[
     &EYE,
     &EYE_OFF,
     &FACE_SLIGHTLY_SMILING,
+    &FAST_FORWARD,
     &FILE,
     &FILE_CHECK_CORNER,
     &FILE_CLOCK,
@@ -728,6 +736,7 @@ pub static ICONS: &[&Icon] = &[
     &MOON,
     &MOUSE_POINTER,
     &MOUSE_POINTER_2,
+    &MOUSE_POINTER_CLICK,
     &MOVE,
     &MOVE_3D,
     &MOVE_HORIZONTAL,
@@ -916,6 +925,7 @@ pub static ICONS: &[&Icon] = &[
     &WAVES_HORIZONTAL,
     &WAYPOINTS,
     &WEBHOOK,
+    &WHOLE_WORD,
     &WORKFLOW,
     &WRENCH,
     &X,

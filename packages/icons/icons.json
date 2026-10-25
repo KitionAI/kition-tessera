@@ -446,6 +446,10 @@
       "family": "tool",
       "source": "svg:clip-overwrite.svg"
     },
+    "clipboard": {
+      "family": "ui",
+      "source": "lucide:clipboard"
+    },
     "clipboard-check": {
       "family": "ui",
       "source": "lucide:clipboard-check"
@@ -477,6 +481,10 @@
     "cloud-upload": {
       "family": "ui",
       "source": "lucide:cloud-upload"
+    },
+    "code": {
+      "family": "ui",
+      "source": "lucide:code"
     },
     "code-xml": {
       "family": "ui",
@@ -625,6 +633,10 @@
     "face-slightly-smiling": {
       "family": "ui",
       "source": "lucide:face-slightly-smiling"
+    },
+    "fast-forward": {
+      "family": "ui",
+      "source": "lucide:fast-forward"
     },
     "file": {
       "family": "ui",
@@ -1057,6 +1069,10 @@
     "mouse-pointer-2": {
       "family": "ui",
       "source": "lucide:mouse-pointer-2"
+    },
+    "mouse-pointer-click": {
+      "family": "ui",
+      "source": "lucide:mouse-pointer-click"
     },
     "move": {
       "family": "ui",
@@ -1809,6 +1825,10 @@
     "webhook": {
       "family": "ui",
       "source": "lucide:webhook"
+    },
+    "whole-word": {
+      "family": "ui",
+      "source": "lucide:whole-word"
     },
     "workflow": {
       "family": "ui",
