@@ -28,6 +28,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
 const write = args.includes('--write')
 const skipDirty = args.includes('--skip-dirty')
+/** Take icons from kit-ui's TesseraIcons, for a kit whose package.json cannot gain @kition/tessera-icons yet. */
+const viaKitUi = args.includes('--via-kit-ui')
 const dirs = args.filter((arg) => !arg.startsWith('--'))
 
 /** Absolute paths git reports as changed or untracked in the repository holding `dir`. */
@@ -74,6 +76,7 @@ for (const dir of dirs) {
     }
     let text = before
     const renamedTypes = []
+    const deferred = []
     const unresolved = []
     text = text.replace(IMPORT, (_, typeOnly, body, quote, semi) => {
       const moved = []
@@ -96,11 +99,31 @@ for (const dir of dirs) {
         }
       }
       const out = []
-      if (moved.length) out.push(`import { ${moved.join(', ')} } from ${quote}@kition/tessera-icons/react${quote}${semi}`)
+      if (moved.length && viaKitUi) {
+        const types = moved.filter((spec) => spec.startsWith('type '))
+        const values = moved.filter((spec) => !spec.startsWith('type '))
+        if (types.length) out.push(`import { ${types.join(', ')} } from ${quote}@kition/kit-ui${quote}${semi}`)
+        if (values.length) {
+          out.push(`import { TesseraIcons } from ${quote}@kition/kit-ui${quote}${semi}`)
+          deferred.push(...values.map((spec) => {
+            const [component, local = component] = spec.split(/\s+as\s+/)
+            return `const ${local} = TesseraIcons.${component}`
+          }))
+        }
+      } else if (moved.length) out.push(`import { ${moved.join(', ')} } from ${quote}@kition/tessera-icons/react${quote}${semi}`)
       if (kept.length) out.push(`import ${typeOnly ?? ''}{ ${kept.join(', ')} } from ${quote}lucide-react${quote}${semi}`)
       return out.join('\n')
     })
     for (const [from, to] of renamedTypes) text = text.replace(new RegExp(`\\b${from}\\b`, 'g'), to)
+    if (deferred.length) {
+      // After the last import statement: the icons, read from kit-ui's TesseraIcons.
+      const imports = [...text.matchAll(/^import[\s\S]*?from\s+['"][^'"]+['"];?\s*$|^import\s+['"][^'"]+['"];?\s*$/gm)]
+      const end = imports.length ? imports[imports.length - 1].index + imports[imports.length - 1][0].length : 0
+      text = `${text.slice(0, end)}\n\n${deferred.join('\n')}\n${text.slice(end).replace(/^\n+/, '\n')}`
+      // One import of TesseraIcons per file.
+      let seen = false
+      text = text.replace(/^import \{ TesseraIcons \} from ['"]@kition\/kit-ui['"];?\n/gm, (line) => (seen ? '' : ((seen = true), line)))
+    }
     text = text.replace(/\.lucide-([a-z0-9-]+)/g, (match, name) => (NAMES.has(name) ? `.tessera-icon-${name}` : match))
     if (text === before) continue
     changed++
