@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
-import { ComponentsPage } from './ComponentsPage'
+import { DocsPage } from './docs/DocsPage'
 import { HomePage } from './home/HomePage'
 import { Landing } from './home/Landing'
 import { IconsPage } from './IconsPage'
@@ -10,11 +10,12 @@ import { TokensPage } from './TokensPage'
 
 const PAGES = [
   { id: 'home', label: 'Overview' },
+  { id: 'docs', label: 'Docs' },
+  { id: 'components', label: 'Components' },
   { id: 'icons', label: 'Icons' },
   { id: 'styles', label: 'Icon style lab' },
   { id: 'review', label: 'Redraw review' },
   { id: 'tokens', label: 'Tokens & skins' },
-  { id: 'components', label: 'Components' },
   { id: 'galaxy', label: 'Galaxy' },
 ] as const
 type PageId = (typeof PAGES)[number]['id']
@@ -81,7 +82,7 @@ export function App() {
         <Landing skin={skin} />
       ) : (
         <main className="site-main">
-          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'review' ? <ReviewPage /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
+          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'review' ? <ReviewPage /> : page === 'tokens' ? <TokensPage skin={skin} /> : <DocsPage id={detail ?? (page === 'docs' ? 'overview' : 'button')} />}
         </main>
       )}
     </div>

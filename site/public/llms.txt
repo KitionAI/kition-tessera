@@ -1,0 +1,68 @@
+# Kition Tessera
+
+> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera`). A kit editor imports all of it through `@kition/kit-ui`.
+
+## Getting started
+
+- [Overview](/#docs/overview): Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.
+- [Using Tessera in a kit](/#docs/kits): How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.
+- [Theming and skins](/#docs/theming): A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
+- [Icons](/#docs/icons-guide): Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.
+
+## General
+
+- [Button](/#docs/button): Starts an action. One primary button per view; the rest secondary or ghost.
+- [IconButton](/#docs/icon-button): An icon-only button with an accessible label; `pressed` makes it a toggle.
+- [Card](/#docs/card): A product card: 12px radius, a hairline, a light shadow.
+- [Disclosure](/#docs/disclosure): A section that opens and closes under its title.
+
+## Forms
+
+- [TextInput](/#docs/text-input): A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
+- [PasswordInput](/#docs/password-input): A password field with a show and hide button outside the tab order.
+- [Textarea](/#docs/textarea): Multi-line text.
+- [Select](/#docs/select): A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
+- [Field](/#docs/field): A label, a control, and its hint or error, wired for screen readers.
+- [NumberField](/#docs/number-field): A number with a label you drag to scrub, arrows to step, and units.
+- [Bar controls](/#docs/bar-controls): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
+
+## Menus and overlays
+
+- [MenuButton](/#docs/menu-button): A button that opens a menu of MenuItems, with shortcuts and check marks.
+- [ContextMenu](/#docs/context-menu): A menu at a point, for right-clicks.
+- [Dialog](/#docs/dialog): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
+- [PreviewDialog](/#docs/preview-dialog): A dialog whose values preview live in the document: the kit supplies begin, update and end.
+- [Toast](/#docs/toast): A short notice in the corner. Render Toaster once; call toast() anywhere.
+- [DropPanel](/#docs/drop-panel): A popover anchored to an element, closing on a press outside or Escape.
+
+## Editor chrome
+
+- [Ribbon](/#docs/ribbon): Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
+- [OverflowStrip](/#docs/overflow-strip): A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
+- [StatusBar](/#docs/status-bar): The bottom bar: document facts on the left, zoom on the right.
+- [TableSizePicker](/#docs/table-size-picker): Pick a table size by hovering a grid.
+- [Panel parts](/#docs/panel-parts): Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.
+
+## Workspace
+
+- [WorkspaceLayout](/#docs/workspace-layout): Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.
+- [DockArea](/#docs/dock-area): A column of collapsible, resizable panel groups, remembered per kit.
+- [FloatingPanels](/#docs/floating-panels): Movable, resizable windows over the workspace, remembered per kit.
+
+## Color
+
+- [ColorPicker](/#docs/color-picker): Saturation and brightness square, hue strip, hex and RGB fields.
+- [ColorWheel](/#docs/color-wheel): A grading wheel with a lightness slider, as colour correction panels use.
+- [GradientSlider](/#docs/gradient-slider): A slider drawn over its own gradient: temperature, tint, hue.
+- [CurveEditor](/#docs/curve-editor): Tone curves: drag points, double-click to add, with a histogram under them.
+- [Histogram](/#docs/histogram): A smoothed histogram of an image’s tones.
+
+## Media and time
+
+- [Timecode and transport](/#docs/timecode-transport): A timecode field you can type or scrub, and the transport buttons of a player.
+- [LevelMeter](/#docs/level-meter): Audio levels with peak hold, drawn on a canvas.
+- [KeyframeLane](/#docs/keyframe-lane): Keyframes on a time lane: select, drag, and their interpolation shapes.
+
+## Integration
+
+- [Strings and elements](/#docs/providers): What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.

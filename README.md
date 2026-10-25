@@ -73,14 +73,19 @@ against.
 pnpm --filter @kition/tessera-site dev   # http://127.0.0.1:4340
 ```
 
-Icons (search, sizes, strokes, usage snippets), tokens and skins, and every component live, with
-a skin switch.
+Icons (search, sizes, strokes, usage snippets), tokens and skins, and the docs: a sidebar of
+guides (using Tessera in a kit, theming, icons) and one page per component, with when to use it,
+live examples and their source, and props tables generated from the package's types
+(`site/scripts/component-api.mjs`). `site/public/llms.txt` and `llms-full.txt` give language
+models the same docs in Markdown. `pnpm docs` regenerates both; `pnpm check` fails when they are
+stale or an exported component has no page.
 
 ## Development
 
 ```bash
 pnpm install
 pnpm build            # regenerate tokens and icons
+pnpm docs             # regenerate the docs' API tables and llms.txt
 pnpm check            # generated files current, types, tests, rustfmt, clippy, cargo test
 pnpm check:consumers  # the token copies in kition-sdk's kit-ui and in Kition still match
 pnpm usage:lucide     # the lucide icons Kition's repositories import (--write adds new ones)

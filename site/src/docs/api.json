@@ -1,0 +1,2210 @@
+{
+ "BarSeparator": {
+  "description": "A hairline between groups of controls in a row.",
+  "props": []
+ },
+ "Button": {
+  "description": "A button. `primary` is the one main action (the theme's primary color); the default is the\noutlined secondary button (`secondary` names it); `ghost` has no border; `danger` destroys.\nWithout `size` it keeps the editor chrome's 30px.",
+  "props": [
+   {
+    "name": "variant",
+    "type": "'primary' | 'secondary' | 'ghost' | 'danger'",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "Card": {
+  "description": "A product card: 12px radius, a hairline, a light shadow.",
+  "props": [],
+  "domProps": true
+ },
+ "CardContent": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "CardHeader": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "Checkbox": {
+  "description": "A check box with its label.",
+  "props": [
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "checked",
+    "type": "boolean",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(checked: boolean) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Choice": {
+  "description": "A drop-down choice with its label before it.",
+  "props": [
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "quiet",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Draws no visible label (the drop-down still has `label` as its name)."
+   },
+   {
+    "name": "value",
+    "type": "V",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "choices",
+    "type": "readonly (readonly [V, string])[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(value: V) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "ColorGrid": {
+  "description": "A grid of color swatches; `onPick` gets `#RRGGBB`.",
+  "props": [
+   {
+    "name": "colors",
+    "type": "readonly string[]",
+    "required": false,
+    "default": "[...PALETTE_COLORS, ...STANDARD_COLORS]",
+    "doc": ""
+   },
+   {
+    "name": "onPick",
+    "type": "(color: string) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "ColorPicker": {
+  "description": "",
+  "props": [
+   {
+    "name": "value",
+    "type": "RGB",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(rgb: RGB, final: boolean) => void",
+    "required": true,
+    "default": null,
+    "doc": "Called on every pointer move and arrow key (`final: false` mid-drag, one `final: true` on release or key)."
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": "'color-picker'",
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "A Kit UI id when the picker is a declared element."
+   }
+  ],
+  "domProps": false
+ },
+ "ColorWheel": {
+  "description": "",
+  "props": [
+   {
+    "name": "value",
+    "type": "readonly [number, number]",
+    "required": true,
+    "default": null,
+    "doc": "The offset, `[x, y]`, y up, of length at most 1."
+   },
+   {
+    "name": "lightness",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "-100 to 100."
+   },
+   {
+    "name": "onChange",
+    "type": "(value: [number, number], phase: DragPhase) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onLightness",
+    "type": "(value: number, phase: DragPhase) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "Shown above the wheel, and its accessible name."
+   },
+   {
+    "name": "size",
+    "type": "number",
+    "required": false,
+    "default": "120",
+    "doc": "The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18`\npx wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws\nit inside the wheel's square. To fit upstream's row of three wheels (Film's Lumetri Color\nWheels, Task 29), pass `size = min((available - 24) / 3, 120) - 18`."
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The wheel's Kit UI id."
+   },
+   {
+    "name": "lightnessUiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The lightness slider's Kit UI id."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "ContextMenu": {
+  "description": "A menu at a point (a row's right-click menu): open while `at` is set, kept inside the window,\nits first row focused (Up, Down, Home, and End move through the rows; the focus goes back where\nit was when it closes), and closed through\n`onClose` by a press outside it, Escape, or a choice in it (a `MenuItem`, any button). Its rows\nare `MenuItem`s and `MenuSeparator`s, as in `MenuButton`.",
+  "props": [
+   {
+    "name": "at",
+    "type": "ContextMenuPoint | null",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onClose",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "CurveEditor": {
+  "description": "",
+  "props": [
+   {
+    "name": "points",
+    "type": "readonly CurvePoint[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "kind",
+    "type": "CurveKind",
+    "required": true,
+    "default": null,
+    "doc": "'rgb': a square with protected end points; 'hue': periodic in x, a hue strip below, 0.45 aspect."
+   },
+   {
+    "name": "samples",
+    "type": "readonly number[]",
+    "required": false,
+    "default": null,
+    "doc": "The curve's samples to draw (0..1 over x), given by the caller; `sampleCurve`'s by default."
+   },
+   {
+    "name": "color",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The line and points' CSS colour; the theme's text colour by default."
+   },
+   {
+    "name": "onChange",
+    "type": "(points: CurvePoint[], phase: DragPhase) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The plot's accessible name (\"Curve\" by default)."
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Dialog": {
+  "description": "",
+  "props": [
+   {
+    "name": "title",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "actions",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onClose",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onEscape",
+    "type": "(event: KeyboardEvent) => void",
+    "required": false,
+    "default": null,
+    "doc": "Called for Escape in place of `onClose` (a dialog that lets a field keep its own Escape)."
+   },
+   {
+    "name": "modal",
+    "type": "boolean",
+    "required": false,
+    "default": "true",
+    "doc": "Blocks the page behind a backdrop (the default), where a press outside closes it. With\n`false` the page stays usable: no backdrop, and the editor keeps its keys."
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "position",
+    "type": "{ x: number; y: number } | null",
+    "required": false,
+    "default": null,
+    "doc": "Where the dialog's top left sits in the window (with `onMove`); null or absent: where the layout puts it."
+   },
+   {
+    "name": "onMove",
+    "type": "(position: { x: number; y: number }) => void",
+    "required": false,
+    "default": null,
+    "doc": "Makes the dialog movable by its title: a drag moves it, and its place is reported once, on\nrelease (keep it, and give it back as `position`). Absent, the title does not move it."
+   }
+  ],
+  "domProps": false
+ },
+ "Disclosure": {
+  "description": "A section that opens and closes under its title.",
+  "props": [
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "defaultOpen",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": ""
+   },
+   {
+    "name": "onClose",
+    "type": "() => void",
+    "required": false,
+    "default": null,
+    "doc": "Called when the person closes it."
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "DockArea": {
+  "description": "",
+  "props": [
+   {
+    "name": "kit",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "Remembers the layout per kit, in the kit's store (`kit:<kit>:dock`, see `kitStore`)."
+   },
+   {
+    "name": "groups",
+    "type": "readonly DockGroup[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "shown",
+    "type": "ReadonlySet<string>",
+    "required": true,
+    "default": null,
+    "doc": "Groups the Window menu shows; others are not drawn."
+   },
+   {
+    "name": "onShownChange",
+    "type": "(shown: ReadonlySet<string>) => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "width",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "handle",
+    "type": "Ref<DockAreaHandle>",
+    "required": false,
+    "default": null,
+    "doc": "Receives the dock's `DockAreaHandle`."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": "'dock'",
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "DropPanel": {
+  "description": "",
+  "props": [
+   {
+    "name": "open",
+    "type": "boolean",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "anchor",
+    "type": "RefObject<HTMLElement | null>",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onClose",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": "''",
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Element": {
+  "description": "Content that belongs to one element: not drawn when hidden; its form controls disabled when\ndisabled. A `fieldset` disables every control inside it without each control knowing.",
+  "props": [
+   {
+    "name": "id",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "ElementsProvider": {
+  "description": "",
+  "props": [
+   {
+    "name": "elements",
+    "type": "Elements",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "EyeButton": {
+  "description": "A row's eye: the eye icon while shown, an empty box while hidden (as Photoshop draws it).\nA press toggles at once (`onPress` hears whether Alt was held); with `sweep`, dragging on from\nthe press down the eye column (mouse, pen, or touch) reaches every other eye of the group the\npointer crosses, through `sweep.onOver`, so the panel gives each the visibility the first press\nset. A keyboard click toggles too. It is pressed while its row shows; `tabIndex` takes it out of\nthe tab order where a list moves the focus itself.",
+  "props": [
+   {
+    "name": "visible",
+    "type": "boolean",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onPress",
+    "type": "(alt: boolean) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "sweep",
+    "type": "EyeSweep",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "tabIndex",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Field": {
+  "description": "A label, a control, and its help or error, wired together for screen readers.",
+  "props": [
+   {
+    "name": "label",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "hint",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Help under the control; replaced by `error` when there is one."
+   },
+   {
+    "name": "error",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode | ((ids: { id: string; describedBy: string | undefined; invalid: boolean }) => ReactNode)",
+    "required": true,
+    "default": null,
+    "doc": "The control. Given a function, it receives the ids to put on it (`id`, `aria-describedby`)."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "FloatingPanels": {
+  "description": "The floating windows layer (see the module's comment). Render it inside an element with a\nnon-static `position` (`relative`) that covers the area the windows may use: the layer fills\nthat element and keeps every window inside it.",
+  "props": [
+   {
+    "name": "kit",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "store",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "Store name for positions and sizes (`useKitStore`). It holds the windows' rectangles only:\nanything else under it is dropped on read, so a kit keeps its own list of open windows under\na different name."
+   },
+   {
+    "name": "panels",
+    "type": "readonly FloatingPanel[]",
+    "required": true,
+    "default": null,
+    "doc": "The open windows, bottom to top as first opened. Keep the array and each `render` stable (`useMemo`, `useCallback`)."
+   },
+   {
+    "name": "onClose",
+    "type": "(id: string) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "focused",
+    "type": "string | null",
+    "required": true,
+    "default": null,
+    "doc": "The window the kit treats as focused (drawn as such and raised); null for none."
+   },
+   {
+    "name": "onFocus",
+    "type": "(id: string) => void",
+    "required": true,
+    "default": null,
+    "doc": "A press or focus inside a window."
+   },
+   {
+    "name": "defaultSize",
+    "type": "FloatingSize",
+    "required": false,
+    "default": null,
+    "doc": "A new window's size (upstream's `default_size`, 520 × 360)."
+   },
+   {
+    "name": "minSize",
+    "type": "FloatingSize",
+    "required": false,
+    "default": null,
+    "doc": "The smallest a window resizes to (upstream's `min_size`, 320 × 220)."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "GradientSlider": {
+  "description": "",
+  "props": [
+   {
+    "name": "value",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "min",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "max",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "softMin",
+    "type": "number",
+    "required": false,
+    "default": "min",
+    "doc": "The track's range (upstream's `soft_min`/`soft_max`); `min` and `max` by default. The hot text reaches `min`..`max`."
+   },
+   {
+    "name": "softMax",
+    "type": "number",
+    "required": false,
+    "default": "max",
+    "doc": ""
+   },
+   {
+    "name": "decimals",
+    "type": "number",
+    "required": false,
+    "default": "0",
+    "doc": "Decimals a value is rounded to (0 by default)."
+   },
+   {
+    "name": "default",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": "Restored by a double-click on the track; no double-click without it."
+   },
+   {
+    "name": "stops",
+    "type": "readonly string[]",
+    "required": false,
+    "default": null,
+    "doc": "CSS gradient stops for the track (Temperature, Tint, Hue; see `SLIDER_GRADIENTS`); a plain track when absent."
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(value: number, phase: DragPhase) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Hint": {
+  "description": "A muted usage hint in a row.",
+  "props": [
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Histogram": {
+  "description": "",
+  "props": [
+   {
+    "name": "bins",
+    "type": "ArrayLike<number>",
+    "required": true,
+    "default": null,
+    "doc": "Bin counts (256 for an 8-bit channel), left (shadows) to right (highlights)."
+   },
+   {
+    "name": "color",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "A CSS color for the bars; the element's own (inherited) color by default."
+   },
+   {
+    "name": "height",
+    "type": "number",
+    "required": false,
+    "default": "100",
+    "doc": ""
+   },
+   {
+    "name": "smooth",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": "Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as its Camera Raw histogram does."
+   },
+   {
+    "name": "scale",
+    "type": "'interior' | 'rank'",
+    "required": false,
+    "default": "'interior'",
+    "doc": "What the bars are scaled to: `interior`, the interior bins' maximum (the default, see\n`scaleFor`), or `rank`, upstream's Histogram panel and tone editors (`tone.rs`\n`draw_histogram`): the 251st-smallest of 256 bins, so a handful of spikes (pure white, pure\nblack) are clipped instead of flattening the rest. Either with 10% headroom."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": "'histogram'",
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "IconButton": {
+  "description": "",
+  "props": [
+   {
+    "name": "icon",
+    "type": "IconComponent",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "pressed",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "KeyframeLane": {
+  "description": "",
+  "props": [
+   {
+    "name": "keyframes",
+    "type": "readonly Keyframe[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "start",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "Visible range in seconds and the lane's width map times to x."
+   },
+   {
+    "name": "end",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onSelect",
+    "type": "(ids: string[], add: boolean) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onMove",
+    "type": "(ids: string[], delta: number) => void",
+    "required": true,
+    "default": null,
+    "doc": "Called once on release with the dragged ids and the time delta."
+   },
+   {
+    "name": "snap",
+    "type": "(time: number) => number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "fps",
+    "type": "number",
+    "required": false,
+    "default": "30",
+    "doc": "Frames per second: an arrow key moves the selected keyframes one frame (30 by default)."
+   },
+   {
+    "name": "onMenu",
+    "type": "(id: string, at: ContextMenuPoint) => void",
+    "required": false,
+    "default": null,
+    "doc": "A keyframe's menu was asked for at a screen point (upstream's interpolation menu)."
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The Kit UI id every keyframe carries (`control:effects.keyframe`)."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "LevelMeter": {
+  "description": "",
+  "props": [
+   {
+    "name": "peaks",
+    "type": "readonly number[]",
+    "required": true,
+    "default": null,
+    "doc": "Current peak per channel, linear 0..1+ (above 1 clips)."
+   },
+   {
+    "name": "floor",
+    "type": "number",
+    "required": false,
+    "default": "-60",
+    "doc": "dB at the bottom of the scale (upstream meters: -60)."
+   },
+   {
+    "name": "holds",
+    "type": "readonly number[]",
+    "required": false,
+    "default": null,
+    "doc": "Peak hold per channel, linear."
+   },
+   {
+    "name": "orientation",
+    "type": "'vertical' | 'horizontal'",
+    "required": false,
+    "default": "'vertical'",
+    "doc": ""
+   },
+   {
+    "name": "labels",
+    "type": "readonly string[]",
+    "required": false,
+    "default": null,
+    "doc": "Channel captions under the bars (\"S\" \"S\" in upstream's solo buttons row, or \"L\" \"R\")."
+   },
+   {
+    "name": "ref",
+    "type": "Ref<LevelMeterHandle>",
+    "required": false,
+    "default": null,
+    "doc": "Draws live levels without a React render."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "MenuButton": {
+  "description": "A button that opens a menu below it; the menu takes the focus, and gives it back to the button\nwhen it closes. With `placement` `auto` (a button along a panel's bottom), the menu opens above\nthe button when it does not fit below and there is more room above.",
+  "props": [
+   {
+    "name": "trigger",
+    "type": "(props: { open: boolean; toggle: () => void }) => ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "align",
+    "type": "'start' | 'end'",
+    "required": false,
+    "default": "'start'",
+    "doc": ""
+   },
+   {
+    "name": "placement",
+    "type": "'below' | 'auto'",
+    "required": false,
+    "default": "'below'",
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "MenuItem": {
+  "description": "A menu row. With `checked` set (true or false) it is a toggle: a check mark shows in the icon's\nplace while it is on (the state wins over the icon), and assistive technology hears it as a\ncheckbox item.",
+  "props": [
+   {
+    "name": "icon",
+    "type": "IconComponent",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "shortcut",
+    "type": "string | null",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onSelect",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "checked",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "MenuSeparator": {
+  "description": "",
+  "props": []
+ },
+ "NumberField": {
+  "description": "",
+  "props": [
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The field's accessible name and tooltip when `label` is a symbol rather than words\n(Photoshop's Character panel labels its fields with glyphs: tT, A↕, VA); `label` by default."
+   },
+   {
+    "name": "value",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "min",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "max",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "step",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": "Step for arrows and scrubbing; decimals shown follow it (1 → integer)."
+   },
+   {
+    "name": "unit",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(value: number, final: boolean) => void",
+    "required": true,
+    "default": null,
+    "doc": "Called while scrubbing with `final: false`, and once with `final: true` on release, Enter, or blur."
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "width",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "A Kit UI id when the field is a declared element."
+   },
+   {
+    "name": "track",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "A slider row: the label and field on one line, a slider from `min` to `max` under them."
+   },
+   {
+    "name": "hot",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Hot text (Premiere's, upstream Film's `widgets::hot_number`): the value and its unit drawn as\naccent text, without a box or a visible label (`label` names it). Dragged sideways it scrubs\nby `speed` per CSS pixel (Shift ten times faster, Cmd, Ctrl, or Alt ten times finer), reporting\n`final: false` per move and the last value again with `final: true` on release; a click opens\na field to type into, which commits on Enter or blur and leaves unchanged on Escape."
+   },
+   {
+    "name": "speed",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": "Hot text: value units per CSS pixel dragged (`step` by default)."
+   },
+   {
+    "name": "onDone",
+    "type": "() => void",
+    "required": false,
+    "default": null,
+    "doc": "Hot text: called once a typed edit ends (Enter, Escape, or blur), so the editor can take the focus back."
+   }
+  ],
+  "domProps": false
+ },
+ "OverflowStrip": {
+  "description": "A row that scrolls sideways when its content does not fit (the ribbon's groups, a tool's options\nbar): the cut edge fades, and a button there scrolls by most of a width. `className` and\n`panelClassName` add to the outer box and the scrolled row; `resetKey` (the shown tab, the active\ntool) re-measures; the buttons' test ids are `${testId}-start` and `${testId}-end`.",
+  "props": [
+   {
+    "name": "className",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "panelClassName",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "role",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "resetKey",
+    "type": "unknown",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "labels",
+    "type": "{ start: string; end: string }",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "panelRef",
+    "type": "RefObject<HTMLDivElement | null>",
+    "required": false,
+    "default": null,
+    "doc": "The scrolled row, for a caller that measures it (the frame's step-down)."
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Panel": {
+  "description": "",
+  "props": [
+   {
+    "name": "side",
+    "type": "'left' | 'right'",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "width",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "title",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "PanelFooter": {
+  "description": "The buttons along a list panel's bottom, as Photoshop's: `start` on the left, `end` on the right.",
+  "props": [
+   {
+    "name": "start",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "end",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "PasswordInput": {
+  "description": "A password field with a show/hide button; the button keeps out of the tab order.",
+  "props": [
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "invalid",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "PreviewDialog": {
+  "description": "",
+  "props": [
+   {
+    "name": "title",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "preview",
+    "type": "PreviewDialogPreview",
+    "required": false,
+    "default": null,
+    "doc": "Shows the Preview check box (on at first) when given; without it the dialog behaves as `Dialog`."
+   },
+   {
+    "name": "okLabel",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "okDisabled",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": ""
+   },
+   {
+    "name": "hideOk",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": "Draws no OK: one button (Cancel, named by `cancelLabel`) for a dialog that only shows information."
+   },
+   {
+    "name": "onOk",
+    "type": "() => Promise<void> | void",
+    "required": true,
+    "default": null,
+    "doc": "Runs the command. The dialog does not close itself: once this resolves, the kit unmounts it\n(unless `keepOpen`). A failure shows in the dialog and leaves it open, previewing again."
+   },
+   {
+    "name": "onCancel",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": "Cancel, Escape, or a press outside (when modal). The kit unmounts the dialog. Not while OK runs."
+   },
+   {
+    "name": "cancelLabel",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The Cancel button's label (\"Done\" in upstream's Find, \"Close\" for information)."
+   },
+   {
+    "name": "onReset",
+    "type": "() => void",
+    "required": false,
+    "default": null,
+    "doc": "Alt turns Cancel into Reset, which calls this (restores the dialog's defaults)."
+   },
+   {
+    "name": "keepOpen",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": "OK runs without closing, and the preview stays open (upstream's Find)."
+   },
+   {
+    "name": "modal",
+    "type": "boolean",
+    "required": false,
+    "default": "true",
+    "doc": "Blocks the page (the default). With `false` there is no backdrop: a press outside does not\ncancel, Tab may leave the dialog, and the editor keeps its keys (to move the playhead under a\npicture preview). Escape still cancels."
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The dialog's Kit UI id."
+   },
+   {
+    "name": "ids",
+    "type": "{ ok?: string; cancel?: string; preview?: string }",
+    "required": false,
+    "default": null,
+    "doc": "The buttons' Kit UI ids; Reset is the Cancel button."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": "'preview-dialog'",
+    "doc": ""
+   },
+   {
+    "name": "position",
+    "type": "{ x: number; y: number } | null",
+    "required": false,
+    "default": null,
+    "doc": "Where the dialog sits (with `onMove`), as `Dialog`'s; absent: where the layout puts it."
+   },
+   {
+    "name": "onMove",
+    "type": "(position: { x: number; y: number }) => void",
+    "required": false,
+    "default": null,
+    "doc": "Makes the dialog movable by its title, as `Dialog`'s (a kit keeps the place); absent, it does not move."
+   }
+  ],
+  "domProps": false
+ },
+ "RenameField": {
+  "description": "A row name's in-place editor, focused with its text selected: Enter or leaving it commits,\nEscape cancels (`onDone` once, with which); a composing input method keeps Enter for itself.\nIt keeps its presses and keys from the row (no selection change, no editor shortcut).",
+  "props": [
+   {
+    "name": "value",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(text: string) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onDone",
+    "type": "(commit: boolean) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "RibbonButton": {
+  "description": "",
+  "props": [
+   {
+    "name": "icon",
+    "type": "IconComponent",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "size",
+    "type": "'large' | 'small' | 'icon'",
+    "required": false,
+    "default": "'small'",
+    "doc": ""
+   },
+   {
+    "name": "pressed",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "swatch",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "A colored mark under the icon (font color, fill)."
+   },
+   {
+    "name": "primary",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Shown in Single line's row (small); the group's other items wait in its popover."
+   },
+   {
+    "name": "lineLabel",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "In Single line's row, keep the label beside the icon; a primary item with an icon otherwise shows the icon alone there (its label stays its name and tooltip)."
+   }
+  ],
+  "domProps": true
+ },
+ "RibbonGroup": {
+  "description": "A ribbon group. With an `id` (`group:<tab>/<group>`, or an engine menu path `menu:<Menu>/<Group>`\nfor groups built from commands) it follows the UI configuration and ends with the host's\nbuttons for it. In Single line it shows its primary items and a popover with the rest; `icon`\nmarks the one button a group without primary items becomes there.",
+  "props": [
+   {
+    "name": "id",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "icon",
+    "type": "IconComponent",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "RibbonItem": {
+  "description": "Any content in a ribbon group that is not a ribbon button (a field, a gallery): `primary` shows\nit in Single line's row too; otherwise it waits in the group's popover there.",
+  "props": [
+   {
+    "name": "primary",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "RibbonRow": {
+  "description": "",
+  "props": [
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "RibbonStack": {
+  "description": "Small buttons stacked in up to three rows; in a Single line group, its primary buttons in the row.",
+  "props": [
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Segmented": {
+  "description": "Icon buttons of which one is pressed (selection modes, alignment, styles).",
+  "props": [
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "The group's accessible name (for example \"Selection mode\")."
+   },
+   {
+    "name": "value",
+    "type": "V",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "segments",
+    "type": "readonly Segment<V>[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(value: V) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "Each button's test id is `${testId}-${value}`."
+   }
+  ],
+  "domProps": false
+ },
+ "Select": {
+  "description": "A drop-down. It stays a native select, as kits' do, for the platform's popup and accessibility,\ndrawn as Tessera's control. Children are `<option>`s.",
+  "props": [
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "invalid",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "StatusBar": {
+  "description": "",
+  "props": [
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onClick",
+    "type": "(event: ReactMouseEvent<HTMLElement>) => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "StatusSpacer": {
+  "description": "",
+  "props": []
+ },
+ "StringsProvider": {
+  "description": "",
+  "props": [
+   {
+    "name": "strings",
+    "type": "Strings",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "TableSizePicker": {
+  "description": "Choosing a table's size by pointing at a grid of cells (Insert > Table).",
+  "props": [
+   {
+    "name": "rows",
+    "type": "number",
+    "required": false,
+    "default": "8",
+    "doc": ""
+   },
+   {
+    "name": "columns",
+    "type": "number",
+    "required": false,
+    "default": "10",
+    "doc": ""
+   },
+   {
+    "name": "onPick",
+    "type": "(rows: number, columns: number) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "(rows: number, columns: number) => string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Textarea": {
+  "description": "Multi-line text.",
+  "props": [
+   {
+    "name": "invalid",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "TextInput": {
+  "description": "A single-line text field. `invalid` marks it (and `aria-invalid`) after a failed check.",
+  "props": [
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "invalid",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "Thumbnail": {
+  "description": "A thumbnail: `image` fitted in a `size` × `size` cell at its own aspect, over a checkerboard\nwhere it is transparent, with a thin frame; an empty cell while there is no image (not drawn\nyet, or its source could not draw one).",
+  "props": [
+   {
+    "name": "image",
+    "type": "ThumbnailImage | null",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "size",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "TimecodeField": {
+  "description": "A timecode readout: `value` (seconds) shown as timecode at `fps`. With `onChange` it scrubs\n(one frame per 2 px, reported with `final: false`, then once with `final: true` on release) and\na click turns it into a text field (`parseTimecode`'s forms; Enter or blur commit with\n`final: true`, Escape or text that is not a time reverts). Without `onChange` it only shows.",
+  "props": [
+   {
+    "name": "value",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "Seconds."
+   },
+   {
+    "name": "fps",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "dropFrame",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(seconds: number, final: boolean) => void",
+    "required": false,
+    "default": null,
+    "doc": "Called while scrubbing (`final: false`) and once on release, Enter, or blur."
+   },
+   {
+    "name": "accent",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Upstream's accent-coloured playhead timecode."
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "uiId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Toaster": {
+  "description": "",
+  "props": []
+ },
+ "TransportBar": {
+  "description": "The buttons in `buttons`' order, centred. A button's `testId` is `<testId>-<id>`; one whose\nKit UI id the configuration hides is left out, and one it disables is disabled.",
+  "props": [
+   {
+    "name": "buttons",
+    "type": "readonly TransportButton[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "WorkspaceLayout": {
+  "description": "",
+  "props": [
+   {
+    "name": "tree",
+    "type": "WorkspaceNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onTree",
+    "type": "(tree: WorkspaceNode) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "panels",
+    "type": "readonly WorkspacePanel[]",
+    "required": true,
+    "default": null,
+    "doc": "Keep this array, and each panel's `render`, stable across renders (see above)."
+   },
+   {
+    "name": "focused",
+    "type": "string | null",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onFocus",
+    "type": "(panel: string) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "maximized",
+    "type": "string | null",
+    "required": true,
+    "default": null,
+    "doc": "The maximized panel fills the area without changing the tree (upstream `keys.maximized`, the\n` and Shift+` keys). The panel menu's Maximize Frame, as upstream, replaces the tree instead."
+   },
+   {
+    "name": "onMaximized",
+    "type": "(panel: string | null) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onRestore",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": "Restore Workspace in the panel menu."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "ZoomControl": {
+  "description": "Zoom out, a slider from `min` to `max`, zoom in, the value, and fit.",
+  "props": [
+   {
+    "name": "zoom",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onZoom",
+    "type": "(zoom: number) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onFit",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "min",
+    "type": "number",
+    "required": false,
+    "default": "0.1",
+    "doc": ""
+   },
+   {
+    "name": "max",
+    "type": "number",
+    "required": false,
+    "default": "4",
+    "doc": ""
+   },
+   {
+    "name": "labels",
+    "type": "{ out: string; in: string; fit: string }",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ }
+}

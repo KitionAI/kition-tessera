@@ -1,0 +1,1885 @@
+# Kition Tessera
+
+> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera`). A kit editor imports all of it through `@kition/kit-ui`.
+
+## Overview
+
+Getting started. Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.
+
+### Three packages
+
+`@kition/tessera-tokens`: the Kit Harness Protocol theme tokens (`--kit-*`), component tokens, and skins (Paper, Graphite) as CSS variables, TypeScript, and Rust.
+
+`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `tessera-icons` for engines.
+
+`@kition/tessera`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.
+
+```tsx
+import '@kition/tessera/styles.css'
+import { Button, ColorPicker } from '@kition/tessera'
+import { LayersIcon } from '@kition/tessera-icons/react'
+```
+
+### Principles
+
+Built for professional software: ribbons, docks, colour wheels, curves, timelines and meters sit beside buttons and fields.
+
+Styled only by tokens: no component hard-codes a colour, radius or shadow; skins and hosts change them all.
+
+One icon family: a 24 grid, a 1.5 stroke, round caps; tool icons carry accents in the skin colour.
+
+Accessible by default: labels, keyboard use, focus rings, and every skin held to WCAG AA contrast.
+
+## Using Tessera in a kit
+
+Getting started. How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.
+
+### Import from kit-ui
+
+A kit editor depends on `@kition/kit-ui` only. kit-ui re-exports every Tessera component under its usual name, wires them to the Kit UI protocol (the host’s theme, locale, hidden and disabled elements, host buttons), and loads Tessera’s stylesheet from its own.
+
+Icons come from `@kition/tessera-icons/react` when the kit lists it in package.json, or from kit-ui’s `TesseraIcons` namespace otherwise. Bundlers keep only the icons a kit uses.
+
+```tsx
+import '@kition/kit-ui/styles.css'
+import { Button, RibbonGroup, RibbonButton, NumberField, TesseraIcons } from '@kition/kit-ui'
+import { LayersIcon } from '@kition/tessera-icons/react' // or TesseraIcons.LayersIcon
+```
+
+### Icons for engine commands
+
+Ribbons and menus built from engine commands get their icons from kit-ui’s rules: a command’s verb first (`edit.undo`, `layer.mergeDown`), then what it acts on, then the neutral command mark.
+
+A kit names icons for the commands the rules cannot read in `web/src/commandIcons.ts`, imported once from `main.tsx`.
+
+```tsx
+import { registerCommandIcons } from '@kition/kit-ui'
+import { DimensionAlignedIcon, FilletIcon } from '@kition/tessera-icons/react'
+
+registerCommandIcons({
+  dimaligned: DimensionAlignedIcon,
+  fillet: FilletIcon,
+})
+```
+
+### Rules for kits
+
+Draw every colour, radius and shadow from the theme tokens (`var(--kit-*)`), never literal values, so skins reach your editor.
+
+Pass icon sizes and `strokeWidth={ICON_STROKE}` from kit-ui; never a number of your own.
+
+New icons go into Tessera (`packages/icons/svg/`, docs/icon-style.md), not into the kit.
+
+Give elements a Kit UI id (`uiId`, `RibbonGroup id`) so hosts can hide or disable them.
+
+### A new kit
+
+kition-sdk’s `tools/new-kit-ui.mjs` scaffolds a kit editor on kit-ui and Tessera Icons, with its dev server allowed to read kition-tessera.
+
+```tsx
+node tools/new-kit-ui.mjs --repo ../kition-mykit --id kit.mykit --name MyKit --crate mykit --module kition_mykit_sdk --class MyKitDocument --sample sample.mykit --accept .mykit --port 5300
+```
+
+## Theming and skins
+
+Getting started. A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
+
+### The theme
+
+Hosts send `theme` in `ui/initialize` and `ui/theme`: a colour scheme and the 15 `--kit-*` theme tokens. kit-ui applies them to the document root; components read them through CSS variables.
+
+`@kition/tessera-tokens` gives every skin’s theme ready to send (`SKINS.paper`, `SKINS.graphite`), and its tests hold each skin to WCAG AA.
+
+```tsx
+import { skinTheme } from '@kition/tessera-tokens'
+
+kit.notify('ui/theme', { theme: skinTheme('graphite') })
+```
+
+### Proposal: KitTheme 2.0
+
+KHP-0007 (draft) widens the theme to 35 tokens with fallbacks (chrome, panels, fields, overlays, accents), adds density and icon style, and defines a portable `skin.json`.
+
+## Icons
+
+Getting started. Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.
+
+### Use
+
+Browse and copy every icon on the Icons page. Tool icons (`family: "tool"`) carry accent areas filled with `--kit-icon-accent`; pass `accent={false}` for plain line.
+
+```tsx
+import { LayersIcon } from '@kition/tessera-icons/react'
+import { Layers, drawIcon, toSvg } from '@kition/tessera-icons'
+
+<LayersIcon size={16} />
+drawIcon(ctx, Layers, 8, 8, { size: 16, color: '#5645d4' })
+```
+
+### Style
+
+24 grid with a 20 live area, 1.5 round strokes, radius 2 corners, half-unit coordinates, 2-unit gaps; one metaphor per action. The full rules are in docs/icon-style.md; redraws are reviewed on the Redraw review page.
+
+## Button
+
+General. Starts an action. One primary button per view; the rest secondary or ghost.
+
+```ts
+import { Button } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- The main action of a dialog or panel (primary).
+- Other actions beside it (secondary, ghost).
+- Destructive actions after a choice (danger).
+
+When not to:
+
+- Navigation to another page: use a link.
+- Toolbar commands: use IconButton or a ribbon button.
+
+### Example: Variants
+
+```tsx
+import { Button } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <Button variant="primary" size="md">Save</Button>
+      <Button variant="secondary" size="md">Cancel</Button>
+      <Button variant="ghost" size="md">More</Button>
+      <Button variant="danger" size="md">Delete</Button>
+      <Button size="md" disabled>Disabled</Button>
+    </div>
+  )
+}
+```
+
+### Example: Sizes
+
+Without a size the button keeps the 30px of editor chrome.
+
+```tsx
+import { Button } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <Button variant="primary" size="sm">Small (28)</Button>
+      <Button variant="primary" size="md">Medium (36)</Button>
+      <Button variant="primary" size="lg">Large (44)</Button>
+      <Button>Editor chrome (30)</Button>
+    </div>
+  )
+}
+```
+
+### Button props
+
+A button. `primary` is the one main action (the theme's primary color); the default is the
+outlined secondary button (`secondary` names it); `ghost` has no border; `danger` destroys.
+Without `size` it keeps the editor chrome's 30px.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'danger'` |  |  |
+| `size` | `ControlSize` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## IconButton
+
+General. An icon-only button with an accessible label; `pressed` makes it a toggle.
+
+```ts
+import { IconButton } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Toolbars, tool rails, panel headers.
+
+When not to:
+
+- An action whose icon is not obvious: use a Button with a label.
+
+### Example: Toggles in a bar
+
+```tsx
+import { useState } from 'react'
+import { IconButton } from '@kition/tessera'
+import { BoldIcon, ItalicIcon, UnderlineIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [bold, setBold] = useState(true)
+  return (
+    <div className="demo-row">
+      <IconButton icon={BoldIcon} label="Bold" pressed={bold} onClick={() => setBold(!bold)} />
+      <IconButton icon={ItalicIcon} label="Italic" />
+      <IconButton icon={UnderlineIcon} label="Underline" disabled />
+    </div>
+  )
+}
+```
+
+### IconButton props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `icon` (required) | `IconComponent` |  |  |
+| `label` (required) | `string` |  |  |
+| `pressed` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## Card
+
+General. A product card: 12px radius, a hairline, a light shadow.
+
+```ts
+import { Card, CardHeader, CardContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Grouping settings or a summary on a page.
+
+### Example: Header and content
+
+```tsx
+import { Button, Card, CardContent, CardHeader } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <Card style={{ maxWidth: 360 }}>
+      <CardHeader>
+        <strong>Model</strong>
+        <Button size="sm">Change</Button>
+      </CardHeader>
+      <CardContent>Claude Opus · 1,240 credits this month</CardContent>
+    </Card>
+  )
+}
+```
+
+### Card props
+
+A product card: 12px radius, a hairline, a light shadow.
+
+Also takes the attributes of its HTML element.
+
+### CardHeader props
+
+Also takes the attributes of its HTML element.
+
+### CardContent props
+
+Also takes the attributes of its HTML element.
+
+## Disclosure
+
+General. A section that opens and closes under its title.
+
+```ts
+import { Disclosure } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Advanced settings most people do not need.
+
+### Example: Closed and open
+
+```tsx
+import { Disclosure, TextInput } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div style={{ maxWidth: 360 }}>
+      <Disclosure title="Advanced settings">
+        <TextInput size="md" defaultValue="0.7" aria-label="Temperature" />
+      </Disclosure>
+      <Disclosure title="Usage" defaultOpen>
+        1,240 credits this month
+      </Disclosure>
+    </div>
+  )
+}
+```
+
+### Disclosure props
+
+A section that opens and closes under its title.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` (required) | `ReactNode` |  |  |
+| `defaultOpen` | `boolean` | `false` |  |
+| `onClose` | `() => void` |  | Called when the person closes it. |
+| `children` | `ReactNode` |  |  |
+| `className` | `string` |  |  |
+
+## TextInput
+
+Forms. A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
+
+```ts
+import { TextInput } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Sizes and invalid
+
+```tsx
+import { TextInput } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-stack">
+      <TextInput placeholder="sm: kit toolbars (28)" />
+      <TextInput size="md" placeholder="md: panels and settings (36)" />
+      <TextInput size="lg" placeholder="lg: forms and dialogs (44)" />
+      <TextInput size="md" defaultValue="not-an-email" invalid />
+    </div>
+  )
+}
+```
+
+### TextInput props
+
+A single-line text field. `invalid` marks it (and `aria-invalid`) after a failed check.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `ControlSize` | `'sm'` |  |
+| `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## PasswordInput
+
+Forms. A password field with a show and hide button outside the tab order.
+
+```ts
+import { PasswordInput } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Show and hide
+
+```tsx
+import { PasswordInput } from '@kition/tessera'
+
+export default function Demo() {
+  return <PasswordInput size="md" defaultValue="sk-test-not-a-real-key" aria-label="API key" />
+}
+```
+
+### PasswordInput props
+
+A password field with a show/hide button; the button keeps out of the tab order.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `ControlSize` | `'sm'` |  |
+| `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## Textarea
+
+Forms. Multi-line text.
+
+```ts
+import { Textarea } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Prompt
+
+```tsx
+import { Textarea } from '@kition/tessera'
+
+export default function Demo() {
+  return <Textarea rows={3} placeholder="Describe the change for the agent…" />
+}
+```
+
+### Textarea props
+
+Multi-line text.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## Select
+
+Forms. A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
+
+```ts
+import { Select } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When not to:
+
+- Two or three options always visible: use Segmented or Choice.
+
+### Example: Sizes
+
+```tsx
+import { Select } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-stack">
+      <Select defaultValue="sheet" aria-label="Kit">
+        <option value="sheet">Sheet</option>
+        <option value="slide">Slide</option>
+        <option value="photo">Photo</option>
+      </Select>
+      <Select size="lg" defaultValue="slide" aria-label="Kit (large)">
+        <option value="sheet">Sheet</option>
+        <option value="slide">Slide</option>
+      </Select>
+    </div>
+  )
+}
+```
+
+### Select props
+
+A drop-down. It stays a native select, as kits' do, for the platform's popup and accessibility,
+drawn as Tessera's control. Children are `<option>`s.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `ControlSize` | `'sm'` |  |
+| `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## Field
+
+Forms. A label, a control, and its hint or error, wired for screen readers.
+
+```ts
+import { Field } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Every form control with a visible label.
+
+### Example: Validation
+
+```tsx
+import { useState } from 'react'
+import { Field, TextInput } from '@kition/tessera'
+
+export default function Demo() {
+  const [email, setEmail] = useState('not-an-email')
+  const valid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)
+  return (
+    <Field label="Email" hint="We only use it to sign you in." error={valid ? undefined : 'Enter an email address.'}>
+      {({ id, describedBy, invalid }) => (
+        <TextInput id={id} aria-describedby={describedBy} invalid={invalid} size="md" value={email} onChange={(event) => setEmail(event.target.value)} />
+      )}
+    </Field>
+  )
+}
+```
+
+### Field props
+
+A label, a control, and its help or error, wired together for screen readers.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` (required) | `ReactNode` |  |  |
+| `hint` | `ReactNode` |  | Help under the control; replaced by `error` when there is one. |
+| `error` | `ReactNode` |  |  |
+| `children` (required) | `ReactNode \| ((ids: { id: string; describedBy: string \| undefined; invalid: boolean }) => ReactNode)` |  | The control. Given a function, it receives the ids to put on it (`id`, `aria-describedby`). |
+| `className` | `string` |  |  |
+
+## NumberField
+
+Forms. A number with a label you drag to scrub, arrows to step, and units.
+
+```ts
+import { NumberField } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Opacity, size, angle, any bounded number in a panel.
+
+### Example: Scrub, type, or arrow
+
+```tsx
+import { useState } from 'react'
+import { NumberField } from '@kition/tessera'
+
+export default function Demo() {
+  const [opacity, setOpacity] = useState(80)
+  const [angle, setAngle] = useState(15)
+  return (
+    <div className="demo-stack">
+      <NumberField label="Opacity" value={opacity} min={0} max={100} unit="%" onChange={(value) => setOpacity(value)} />
+      <NumberField label="Angle" value={angle} min={-180} max={180} step={1} unit="°" onChange={(value) => setAngle(value)} />
+    </div>
+  )
+}
+```
+
+### NumberField props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` (required) | `string` |  |  |
+| `name` | `string` |  | The field's accessible name and tooltip when `label` is a symbol rather than words (Photoshop's Character panel labels its fields with glyphs: tT, A↕, VA); `label` by default. |
+| `value` (required) | `number` |  |  |
+| `min` (required) | `number` |  |  |
+| `max` (required) | `number` |  |  |
+| `step` | `number` |  | Step for arrows and scrubbing; decimals shown follow it (1 → integer). |
+| `unit` | `string` |  |  |
+| `onChange` (required) | `(value: number, final: boolean) => void` |  | Called while scrubbing with `final: false`, and once with `final: true` on release, Enter, or blur. |
+| `disabled` | `boolean` |  |  |
+| `width` | `number` |  |  |
+| `testId` | `string` |  |  |
+| `uiId` | `string` |  | A Kit UI id when the field is a declared element. |
+| `track` | `boolean` |  | A slider row: the label and field on one line, a slider from `min` to `max` under them. |
+| `hot` | `boolean` |  | Hot text (Premiere's, upstream Film's `widgets::hot_number`): the value and its unit drawn as accent text, without a box or a visible label (`label` names it). Dragged sideways it scrubs by `speed` per CSS pixel (Shift ten times faster, Cmd, Ctrl, or Alt ten times finer), reporting `final: false` per move and the last value again with `final: true` on release; a click opens a field to type into, which commits on Enter or blur and leaves unchanged on Escape. |
+| `speed` | `number` |  | Hot text: value units per CSS pixel dragged (`step` by default). |
+| `onDone` | `() => void` |  | Hot text: called once a typed edit ends (Enter, Escape, or blur), so the editor can take the focus back. |
+
+## Bar controls
+
+Forms. Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
+
+```ts
+import { Segmented, Choice, Checkbox, Hint, BarSeparator } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A tool’s options above the canvas.
+
+### Example: An options bar
+
+```tsx
+import { useState } from 'react'
+import { BarSeparator, Checkbox, Choice, Hint, Segmented } from '@kition/tessera'
+import { TextAlignCenterIcon, TextAlignEndIcon, TextAlignStartIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [align, setAlign] = useState<'start' | 'center' | 'end'>('start')
+  const [snap, setSnap] = useState(true)
+  const [mode, setMode] = useState<'normal' | 'multiply' | 'screen'>('normal')
+  return (
+    <div className="demo-row">
+      <Segmented
+        label="Alignment"
+        value={align}
+        onChange={setAlign}
+        segments={[
+          { value: 'start', icon: TextAlignStartIcon, label: 'Left' },
+          { value: 'center', icon: TextAlignCenterIcon, label: 'Center' },
+          { value: 'end', icon: TextAlignEndIcon, label: 'Right' },
+        ]}
+      />
+      <BarSeparator />
+      <Choice label="Mode" value={mode} onChange={setMode} choices={[['normal', 'Normal'], ['multiply', 'Multiply'], ['screen', 'Screen']]} />
+      <Checkbox label="Snap" checked={snap} onChange={setSnap} />
+      <Hint>Alt-drag to copy</Hint>
+    </div>
+  )
+}
+```
+
+### Segmented props
+
+Icon buttons of which one is pressed (selection modes, alignment, styles).
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` (required) | `string` |  | The group's accessible name (for example "Selection mode"). |
+| `value` (required) | `V` |  |  |
+| `segments` (required) | `readonly Segment<V>[]` |  |  |
+| `disabled` | `boolean` |  |  |
+| `onChange` (required) | `(value: V) => void` |  |  |
+| `testId` | `string` |  | Each button's test id is `${testId}-${value}`. |
+
+### Choice props
+
+A drop-down choice with its label before it.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` (required) | `string` |  |  |
+| `quiet` | `boolean` |  | Draws no visible label (the drop-down still has `label` as its name). |
+| `value` (required) | `V` |  |  |
+| `choices` (required) | `readonly (readonly [V, string])[]` |  |  |
+| `disabled` | `boolean` |  |  |
+| `onChange` (required) | `(value: V) => void` |  |  |
+| `testId` | `string` |  |  |
+
+### Checkbox props
+
+A check box with its label.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` (required) | `string` |  |  |
+| `checked` (required) | `boolean` |  |  |
+| `disabled` | `boolean` |  |  |
+| `onChange` (required) | `(checked: boolean) => void` |  |  |
+| `testId` | `string` |  |  |
+
+### Hint props
+
+A muted usage hint in a row.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` (required) | `ReactNode` |  |  |
+| `testId` | `string` |  |  |
+
+### BarSeparator props
+
+A hairline between groups of controls in a row.
+
+## MenuButton
+
+Menus and overlays. A button that opens a menu of MenuItems, with shortcuts and check marks.
+
+```ts
+import { MenuButton, MenuItem, MenuSeparator } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Edit menu
+
+```tsx
+import { useState } from 'react'
+import { Button, MenuButton, MenuItem, MenuSeparator, toast } from '@kition/tessera'
+import { ClipboardPasteIcon, CopyIcon, ScissorsIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [snap, setSnap] = useState(true)
+  return (
+    <MenuButton trigger={({ toggle }) => <Button onClick={toggle}>Edit ▾</Button>}>
+      <MenuItem icon={ScissorsIcon} label="Cut" shortcut="⌘X" onSelect={() => toast('info', 'Cut')} />
+      <MenuItem icon={CopyIcon} label="Copy" shortcut="⌘C" onSelect={() => toast('info', 'Copy')} />
+      <MenuItem icon={ClipboardPasteIcon} label="Paste" shortcut="⌘V" onSelect={() => toast('info', 'Paste')} />
+      <MenuSeparator />
+      <MenuItem label="Snap to grid" checked={snap} onSelect={() => setSnap(!snap)} />
+    </MenuButton>
+  )
+}
+```
+
+### MenuButton props
+
+A button that opens a menu below it; the menu takes the focus, and gives it back to the button
+when it closes. With `placement` `auto` (a button along a panel's bottom), the menu opens above
+the button when it does not fit below and there is more room above.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `trigger` (required) | `(props: { open: boolean; toggle: () => void }) => ReactNode` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+| `align` | `'start' \| 'end'` | `'start'` |  |
+| `placement` | `'below' \| 'auto'` | `'below'` |  |
+
+### MenuItem props
+
+A menu row. With `checked` set (true or false) it is a toggle: a check mark shows in the icon's
+place while it is on (the state wins over the icon), and assistive technology hears it as a
+checkbox item.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `icon` | `IconComponent` |  |  |
+| `label` (required) | `string` |  |  |
+| `shortcut` | `string \| null` |  |  |
+| `onSelect` (required) | `() => void` |  |  |
+| `disabled` | `boolean` |  |  |
+| `checked` | `boolean` |  |  |
+| `testId` | `string` |  |  |
+| `uiId` | `string` |  |  |
+
+### MenuSeparator props
+
+## ContextMenu
+
+Menus and overlays. A menu at a point, for right-clicks.
+
+```ts
+import { ContextMenu } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Right-click
+
+```tsx
+import { useState } from 'react'
+import { ContextMenu, MenuItem, type ContextMenuPoint } from '@kition/tessera'
+import { CopyIcon, TrashIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [at, setAt] = useState<ContextMenuPoint | null>(null)
+  return (
+    <>
+      <div
+        className="demo-target"
+        onContextMenu={(event) => {
+          event.preventDefault()
+          setAt({ x: event.clientX, y: event.clientY })
+        }}
+      >
+        Right-click here
+      </div>
+      <ContextMenu at={at} onClose={() => setAt(null)} label="Layer">
+        <MenuItem icon={CopyIcon} label="Duplicate layer" onSelect={() => setAt(null)} />
+        <MenuItem icon={TrashIcon} label="Delete layer" onSelect={() => setAt(null)} />
+      </ContextMenu>
+    </>
+  )
+}
+```
+
+### ContextMenu props
+
+A menu at a point (a row's right-click menu): open while `at` is set, kept inside the window,
+its first row focused (Up, Down, Home, and End move through the rows; the focus goes back where
+it was when it closes), and closed through
+`onClose` by a press outside it, Escape, or a choice in it (a `MenuItem`, any button). Its rows
+are `MenuItem`s and `MenuSeparator`s, as in `MenuButton`.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `at` (required) | `ContextMenuPoint \| null` |  |  |
+| `onClose` (required) | `() => void` |  |  |
+| `label` | `string` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+| `testId` | `string` |  |  |
+
+## Dialog
+
+Menus and overlays. A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
+
+```ts
+import { Dialog } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A short task that needs values before it runs.
+
+When not to:
+
+- Long forms: use a panel or a page.
+
+### Example: Image size
+
+```tsx
+import { useState } from 'react'
+import { Button, Dialog, NumberField } from '@kition/tessera'
+
+export default function Demo() {
+  const [open, setOpen] = useState(false)
+  const [width, setWidth] = useState(1920)
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Image size…</Button>
+      {open ? (
+        <Dialog
+          title="Image size"
+          onClose={() => setOpen(false)}
+          actions={
+            <>
+              <Button onClick={() => setOpen(false)}>Cancel</Button>
+              <Button variant="primary" onClick={() => setOpen(false)}>OK</Button>
+            </>
+          }
+        >
+          <NumberField label="Width" value={width} min={1} max={10000} unit="px" onChange={(value) => setWidth(value)} />
+        </Dialog>
+      ) : null}
+    </>
+  )
+}
+```
+
+### Dialog props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` (required) | `string` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+| `actions` (required) | `ReactNode` |  |  |
+| `onClose` (required) | `() => void` |  |  |
+| `onEscape` | `(event: KeyboardEvent) => void` |  | Called for Escape in place of `onClose` (a dialog that lets a field keep its own Escape). |
+| `modal` | `boolean` | `true` | Blocks the page behind a backdrop (the default), where a press outside closes it. With `false` the page stays usable: no backdrop, and the editor keeps its keys. |
+| `uiId` | `string` |  |  |
+| `testId` | `string` |  |  |
+| `position` | `{ x: number; y: number } \| null` |  | Where the dialog's top left sits in the window (with `onMove`); null or absent: where the layout puts it. |
+| `onMove` | `(position: { x: number; y: number }) => void` |  | Makes the dialog movable by its title: a drag moves it, and its place is reported once, on release (keep it, and give it back as `position`). Absent, the title does not move it. |
+
+## PreviewDialog
+
+Menus and overlays. A dialog whose values preview live in the document: the kit supplies begin, update and end.
+
+```ts
+import { PreviewDialog } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Filters and adjustments (blur, levels) people tune by eye.
+
+### Example: A filter
+
+```tsx
+import { useState } from 'react'
+import { Button, GradientSlider, PreviewDialog } from '@kition/tessera'
+
+// A dialog whose changes preview live in the document; the kit supplies begin, update and end.
+export default function Demo() {
+  const [open, setOpen] = useState(false)
+  const [amount, setAmount] = useState(40)
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>Gaussian Blur…</Button>
+      {open ? (
+        <PreviewDialog
+          title="Gaussian Blur"
+          preview={{ begin: () => undefined, update: () => undefined, end: () => undefined, draft: amount }}
+          onOk={() => setOpen(false)}
+          onCancel={() => setOpen(false)}
+          onReset={() => setAmount(40)}
+        >
+          <GradientSlider label="Radius" value={amount} min={0} max={250} onChange={(value) => setAmount(value)} />
+        </PreviewDialog>
+      ) : null}
+    </>
+  )
+}
+```
+
+### PreviewDialog props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` (required) | `string` |  |  |
+| `preview` | `PreviewDialogPreview` |  | Shows the Preview check box (on at first) when given; without it the dialog behaves as `Dialog`. |
+| `okLabel` | `string` |  |  |
+| `okDisabled` | `boolean` | `false` |  |
+| `hideOk` | `boolean` | `false` | Draws no OK: one button (Cancel, named by `cancelLabel`) for a dialog that only shows information. |
+| `onOk` (required) | `() => Promise<void> \| void` |  | Runs the command. The dialog does not close itself: once this resolves, the kit unmounts it (unless `keepOpen`). A failure shows in the dialog and leaves it open, previewing again. |
+| `onCancel` (required) | `() => void` |  | Cancel, Escape, or a press outside (when modal). The kit unmounts the dialog. Not while OK runs. |
+| `cancelLabel` | `string` |  | The Cancel button's label ("Done" in upstream's Find, "Close" for information). |
+| `onReset` | `() => void` |  | Alt turns Cancel into Reset, which calls this (restores the dialog's defaults). |
+| `keepOpen` | `boolean` | `false` | OK runs without closing, and the preview stays open (upstream's Find). |
+| `modal` | `boolean` | `true` | Blocks the page (the default). With `false` there is no backdrop: a press outside does not cancel, Tab may leave the dialog, and the editor keeps its keys (to move the playhead under a picture preview). Escape still cancels. |
+| `children` (required) | `ReactNode` |  |  |
+| `uiId` | `string` |  | The dialog's Kit UI id. |
+| `ids` | `{ ok?: string; cancel?: string; preview?: string }` |  | The buttons' Kit UI ids; Reset is the Cancel button. |
+| `testId` | `string` | `'preview-dialog'` |  |
+| `position` | `{ x: number; y: number } \| null` |  | Where the dialog sits (with `onMove`), as `Dialog`'s; absent: where the layout puts it. |
+| `onMove` | `(position: { x: number; y: number }) => void` |  | Makes the dialog movable by its title, as `Dialog`'s (a kit keeps the place); absent, it does not move. |
+
+## Toast
+
+Menus and overlays. A short notice in the corner. Render Toaster once; call toast() anywhere.
+
+```ts
+import { Toaster } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Levels
+
+```tsx
+import { Button, toast } from '@kition/tessera'
+
+// Render <Toaster /> once near the root of the editor; toast() can then be called from anywhere.
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <Button onClick={() => toast('success', 'Saved', 'Budget 2027.xlsx')}>Success</Button>
+      <Button onClick={() => toast('info', 'Agent is working', 'Rewriting slide 3')}>Info</Button>
+      <Button onClick={() => toast('error', 'Could not save', 'The disk is full')}>Error</Button>
+    </div>
+  )
+}
+```
+
+### Toaster props
+
+## DropPanel
+
+Menus and overlays. A popover anchored to an element, closing on a press outside or Escape.
+
+```ts
+import { DropPanel } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: A setting under a button
+
+```tsx
+import { useRef, useState } from 'react'
+import { Button, DropPanel, NumberField } from '@kition/tessera'
+
+export default function Demo() {
+  const anchor = useRef<HTMLSpanElement>(null)
+  const [open, setOpen] = useState(false)
+  const [radius, setRadius] = useState(8)
+  return (
+    <span ref={anchor}>
+      <Button onClick={() => setOpen(!open)}>Corner radius ▾</Button>
+      <DropPanel open={open} anchor={anchor} onClose={() => setOpen(false)} label="Corner radius">
+        <div style={{ padding: 12, width: 220 }}>
+          <NumberField label="Radius" value={radius} min={0} max={64} unit="px" onChange={(value) => setRadius(value)} />
+        </div>
+      </DropPanel>
+    </span>
+  )
+}
+```
+
+### DropPanel props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` (required) | `boolean` |  |  |
+| `anchor` (required) | `RefObject<HTMLElement \| null>` |  |  |
+| `onClose` (required) | `() => void` |  |  |
+| `label` (required) | `string` |  |  |
+| `className` | `string` | `''` |  |
+| `testId` | `string` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+
+## Ribbon
+
+Editor chrome. Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
+
+```ts
+import { RibbonGroup, RibbonButton, RibbonStack, RibbonRow, RibbonItem, ColorGrid } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A kit’s Home, Insert, Format tabs.
+
+### Example: Home tab
+
+```tsx
+import { useState } from 'react'
+import { ColorGrid, MenuButton, RibbonButton, RibbonGroup, RibbonStack } from '@kition/tessera'
+import { BoldIcon, ClipboardPasteIcon, CopyIcon, ItalicIcon, LayersIcon, ScissorsIcon, SquareIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [bold, setBold] = useState(false)
+  const [fill, setFill] = useState('#5645d4')
+  return (
+    <div className="demo-ribbon">
+      <RibbonGroup label="Clipboard">
+        <RibbonButton icon={ClipboardPasteIcon} label="Paste" size="large" />
+        <RibbonStack>
+          <RibbonButton icon={ScissorsIcon} label="Cut" />
+          <RibbonButton icon={CopyIcon} label="Copy" />
+        </RibbonStack>
+      </RibbonGroup>
+      <RibbonGroup label="Font">
+        <RibbonStack>
+          <RibbonButton icon={BoldIcon} label="Bold" size="icon" pressed={bold} onClick={() => setBold(!bold)} />
+          <RibbonButton icon={ItalicIcon} label="Italic" size="icon" />
+        </RibbonStack>
+      </RibbonGroup>
+      <RibbonGroup label="Fill">
+        <MenuButton trigger={({ toggle }) => <RibbonButton icon={SquareIcon} label="Fill" swatch={fill} onClick={toggle} />}>
+          <ColorGrid onPick={setFill} />
+        </MenuButton>
+      </RibbonGroup>
+      <RibbonGroup label="Arrange">
+        <RibbonButton icon={LayersIcon} label="Layers" size="large" />
+      </RibbonGroup>
+    </div>
+  )
+}
+```
+
+### RibbonGroup props
+
+A ribbon group. With an `id` (`group:<tab>/<group>`, or an engine menu path `menu:<Menu>/<Group>`
+for groups built from commands) it follows the UI configuration and ends with the host's
+buttons for it. In Single line it shows its primary items and a popover with the rest; `icon`
+marks the one button a group without primary items becomes there.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `id` | `string` |  |  |
+| `label` (required) | `string` |  |  |
+| `icon` | `IconComponent` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+
+### RibbonButton props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `icon` | `IconComponent` |  |  |
+| `label` (required) | `string` |  |  |
+| `size` | `'large' \| 'small' \| 'icon'` | `'small'` |  |
+| `pressed` | `boolean` |  |  |
+| `swatch` | `string` |  | A colored mark under the icon (font color, fill). |
+| `primary` | `boolean` |  | Shown in Single line's row (small); the group's other items wait in its popover. |
+| `lineLabel` | `boolean` |  | In Single line's row, keep the label beside the icon; a primary item with an icon otherwise shows the icon alone there (its label stays its name and tooltip). |
+
+Also takes the attributes of its HTML element.
+
+### RibbonStack props
+
+Small buttons stacked in up to three rows; in a Single line group, its primary buttons in the row.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` (required) | `ReactNode` |  |  |
+
+### RibbonRow props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` (required) | `ReactNode` |  |  |
+
+### RibbonItem props
+
+Any content in a ribbon group that is not a ribbon button (a field, a gallery): `primary` shows
+it in Single line's row too; otherwise it waits in the group's popover there.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `primary` | `boolean` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+
+### ColorGrid props
+
+A grid of color swatches; `onPick` gets `#RRGGBB`.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `colors` | `readonly string[]` | `[...PALETTE_COLORS, ...STANDARD_COLORS]` |  |
+| `onPick` (required) | `(color: string) => void` |  |  |
+| `testId` | `string` |  |  |
+
+## OverflowStrip
+
+Editor chrome. A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
+
+```ts
+import { OverflowStrip } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A ribbon’s groups or a tool’s options bar in a narrow window.
+
+When not to:
+
+- Vertical lists: let the panel scroll.
+
+### Example: Options bar
+
+The row is wider than its box; use the arrows at the faded edges.
+
+```tsx
+import { Button, OverflowStrip } from '@kition/tessera'
+
+const TOOLS = ['Brush', 'Eraser', 'Clone', 'Heal', 'Dodge', 'Burn', 'Sponge', 'Smudge', 'Blur', 'Sharpen', 'Gradient', 'Fill', 'Text', 'Shape', 'Crop', 'Slice']
+
+export default function Demo() {
+  return (
+    <div style={{ width: 'min(100%, 420px)', border: '1px solid var(--kit-border)', borderRadius: 8, background: 'var(--kit-surface)' }}>
+      <OverflowStrip className="" panelClassName="demo-strip" labels={{ start: 'Scroll left', end: 'Scroll right' }} testId="tools">
+        {TOOLS.map((tool) => (
+          <Button key={tool}>{tool}</Button>
+        ))}
+      </OverflowStrip>
+    </div>
+  )
+}
+```
+
+### OverflowStrip props
+
+A row that scrolls sideways when its content does not fit (the ribbon's groups, a tool's options
+bar): the cut edge fades, and a button there scrolls by most of a width. `className` and
+`panelClassName` add to the outer box and the scrolled row; `resetKey` (the shown tab, the active
+tool) re-measures; the buttons' test ids are `${testId}-start` and `${testId}-end`.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `className` (required) | `string` |  |  |
+| `panelClassName` (required) | `string` |  |  |
+| `role` | `string` |  |  |
+| `resetKey` | `unknown` |  |  |
+| `labels` (required) | `{ start: string; end: string }` |  |  |
+| `testId` (required) | `string` |  |  |
+| `panelRef` | `RefObject<HTMLDivElement \| null>` |  | The scrolled row, for a caller that measures it (the frame's step-down). |
+| `children` (required) | `ReactNode` |  |  |
+
+## StatusBar
+
+Editor chrome. The bottom bar: document facts on the left, zoom on the right.
+
+```ts
+import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Zoom
+
+```tsx
+import { useState } from 'react'
+import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera'
+
+export default function Demo() {
+  const [zoom, setZoom] = useState(1)
+  return (
+    <div className="demo-frame">
+      <StatusBar>
+        <span>Slide 3 of 12</span>
+        <StatusSpacer />
+        <ZoomControl zoom={zoom} onZoom={setZoom} onFit={() => setZoom(1)} labels={{ out: 'Zoom out', in: 'Zoom in', fit: 'Fit' }} />
+      </StatusBar>
+    </div>
+  )
+}
+```
+
+### StatusBar props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` (required) | `ReactNode` |  |  |
+| `onClick` | `(event: ReactMouseEvent<HTMLElement>) => void` |  |  |
+
+### StatusSpacer props
+
+### ZoomControl props
+
+Zoom out, a slider from `min` to `max`, zoom in, the value, and fit.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `zoom` (required) | `number` |  |  |
+| `onZoom` (required) | `(zoom: number) => void` |  |  |
+| `onFit` (required) | `() => void` |  |  |
+| `min` | `number` | `0.1` |  |
+| `max` | `number` | `4` |  |
+| `labels` (required) | `{ out: string; in: string; fit: string }` |  |  |
+
+## TableSizePicker
+
+Editor chrome. Pick a table size by hovering a grid.
+
+```ts
+import { TableSizePicker } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Insert a table
+
+```tsx
+import { useState } from 'react'
+import { TableSizePicker } from '@kition/tessera'
+
+export default function Demo() {
+  const [picked, setPicked] = useState('')
+  return (
+    <div className="demo-stack">
+      <TableSizePicker onPick={(rows, columns) => setPicked(`${rows} × ${columns}`)} label={(rows, columns) => `${columns} × ${rows} table`} />
+      <span>{picked ? `Inserted a ${picked} table` : 'Pick a size'}</span>
+    </div>
+  )
+}
+```
+
+### TableSizePicker props
+
+Choosing a table's size by pointing at a grid of cells (Insert > Table).
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `rows` | `number` | `8` |  |
+| `columns` | `number` | `10` |  |
+| `onPick` (required) | `(rows: number, columns: number) => void` |  |  |
+| `label` (required) | `(rows: number, columns: number) => string` |  |  |
+
+## Panel parts
+
+Editor chrome. Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.
+
+```ts
+import { EyeButton, RenameField, PanelFooter, Thumbnail, Panel } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Layers, tracks, pages panels.
+
+### Example: A layer row
+
+```tsx
+import { useState } from 'react'
+import { EyeButton, PanelFooter, RenameField } from '@kition/tessera'
+
+export default function Demo() {
+  const [visible, setVisible] = useState(true)
+  const [name, setName] = useState('Background')
+  const [editing, setEditing] = useState(false)
+  return (
+    <div className="demo-frame" style={{ width: 280 }}>
+      <div className="demo-layer-row">
+        <EyeButton visible={visible} label={`Show ${name}`} onPress={() => setVisible(!visible)} />
+        {editing ? (
+          <RenameField value={name} label="Layer name" onChange={setName} onDone={() => setEditing(false)} />
+        ) : (
+          <span onDoubleClick={() => setEditing(true)}>{name}</span>
+        )}
+      </div>
+      <PanelFooter start={<span>1 layer</span>} end={<span>Double-click to rename</span>} />
+    </div>
+  )
+}
+```
+
+### EyeButton props
+
+A row's eye: the eye icon while shown, an empty box while hidden (as Photoshop draws it).
+A press toggles at once (`onPress` hears whether Alt was held); with `sweep`, dragging on from
+the press down the eye column (mouse, pen, or touch) reaches every other eye of the group the
+pointer crosses, through `sweep.onOver`, so the panel gives each the visibility the first press
+set. A keyboard click toggles too. It is pressed while its row shows; `tabIndex` takes it out of
+the tab order where a list moves the focus itself.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `visible` (required) | `boolean` |  |  |
+| `label` (required) | `string` |  |  |
+| `onPress` (required) | `(alt: boolean) => void` |  |  |
+| `sweep` | `EyeSweep` |  |  |
+| `tabIndex` | `number` |  |  |
+| `testId` | `string` |  |  |
+
+### RenameField props
+
+A row name's in-place editor, focused with its text selected: Enter or leaving it commits,
+Escape cancels (`onDone` once, with which); a composing input method keeps Enter for itself.
+It keeps its presses and keys from the row (no selection change, no editor shortcut).
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` (required) | `string` |  |  |
+| `label` (required) | `string` |  |  |
+| `onChange` (required) | `(text: string) => void` |  |  |
+| `onDone` (required) | `(commit: boolean) => void` |  |  |
+| `testId` | `string` |  |  |
+
+### PanelFooter props
+
+The buttons along a list panel's bottom, as Photoshop's: `start` on the left, `end` on the right.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `start` | `ReactNode` |  |  |
+| `end` | `ReactNode` |  |  |
+
+### Thumbnail props
+
+A thumbnail: `image` fitted in a `size` × `size` cell at its own aspect, over a checkerboard
+where it is transparent, with a thin frame; an empty cell while there is no image (not drawn
+yet, or its source could not draw one).
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `image` (required) | `ThumbnailImage \| null` |  |  |
+| `size` (required) | `number` |  |  |
+| `testId` | `string` |  |  |
+
+### Panel props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `side` (required) | `'left' \| 'right'` |  |  |
+| `width` (required) | `number` |  |  |
+| `title` | `string` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+| `testId` | `string` |  |  |
+
+## WorkspaceLayout
+
+Workspace. Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.
+
+```ts
+import { WorkspaceLayout } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Editing workspace
+
+Drag the gutters; drag tabs between groups.
+
+```tsx
+import { useState } from 'react'
+import { WorkspaceLayout, type WorkspaceNode } from '@kition/tessera'
+
+const START: WorkspaceNode = {
+  split: 'row',
+  size: { ratio: 0.32 },
+  a: { tabs: ['project', 'effects'], active: 0 },
+  b: { split: 'column', size: { ratio: 0.6 }, a: { tabs: ['program'], active: 0 }, b: { tabs: ['timeline'], active: 0 } },
+}
+
+export default function Demo() {
+  const [tree, setTree] = useState(START)
+  const [focused, setFocused] = useState<string | null>('program')
+  const [maximized, setMaximized] = useState<string | null>(null)
+  const panel = (id: string, label: string) => ({ id, label, render: () => <div className="demo-pane">{label}</div> })
+  return (
+    <div style={{ height: 320 }}>
+      <WorkspaceLayout
+        tree={tree}
+        onTree={setTree}
+        panels={[panel('project', 'Project'), panel('effects', 'Effects'), panel('program', 'Program'), panel('timeline', 'Timeline')]}
+        focused={focused}
+        onFocus={setFocused}
+        maximized={maximized}
+        onMaximized={setMaximized}
+        onRestore={() => setTree(START)}
+      />
+    </div>
+  )
+}
+```
+
+### WorkspaceLayout props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `tree` (required) | `WorkspaceNode` |  |  |
+| `onTree` (required) | `(tree: WorkspaceNode) => void` |  |  |
+| `panels` (required) | `readonly WorkspacePanel[]` |  | Keep this array, and each panel's `render`, stable across renders (see above). |
+| `focused` (required) | `string \| null` |  |  |
+| `onFocus` (required) | `(panel: string) => void` |  |  |
+| `maximized` (required) | `string \| null` |  | The maximized panel fills the area without changing the tree (upstream `keys.maximized`, the ` and Shift+` keys). The panel menu's Maximize Frame, as upstream, replaces the tree instead. |
+| `onMaximized` (required) | `(panel: string \| null) => void` |  |  |
+| `onRestore` (required) | `() => void` |  | Restore Workspace in the panel menu. |
+| `testId` | `string` |  |  |
+
+## DockArea
+
+Workspace. A column of collapsible, resizable panel groups, remembered per kit.
+
+```ts
+import { DockArea } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Right dock
+
+```tsx
+import { useState } from 'react'
+import { DockArea } from '@kition/tessera'
+
+export default function Demo() {
+  const [shown, setShown] = useState<ReadonlySet<string>>(new Set(['color', 'layers']))
+  return (
+    <div style={{ height: 320, display: 'flex', justifyContent: 'flex-end' }}>
+      <DockArea
+        kit="tessera-docs"
+        width={260}
+        shown={shown}
+        onShownChange={setShown}
+        groups={[
+          { id: 'color', defaultHeight: 140, tabs: [{ id: 'color', label: 'Color', render: () => <div className="demo-pane">Color</div> }, { id: 'swatches', label: 'Swatches', render: () => <div className="demo-pane">Swatches</div> }] },
+          { id: 'layers', defaultHeight: 160, tabs: [{ id: 'layers', label: 'Layers', render: () => <div className="demo-pane">Layers</div> }] },
+        ]}
+      />
+    </div>
+  )
+}
+```
+
+### DockArea props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `kit` (required) | `string` |  | Remembers the layout per kit, in the kit's store (`kit:<kit>:dock`, see `kitStore`). |
+| `groups` (required) | `readonly DockGroup[]` |  |  |
+| `shown` (required) | `ReadonlySet<string>` |  | Groups the Window menu shows; others are not drawn. |
+| `onShownChange` | `(shown: ReadonlySet<string>) => void` |  |  |
+| `width` | `number` |  |  |
+| `handle` | `Ref<DockAreaHandle>` |  | Receives the dock's `DockAreaHandle`. |
+| `testId` | `string` | `'dock'` |  |
+
+## FloatingPanels
+
+Workspace. Movable, resizable windows over the workspace, remembered per kit.
+
+```ts
+import { FloatingPanels } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: A floating bin
+
+```tsx
+import { useState } from 'react'
+import { Button, FloatingPanels } from '@kition/tessera'
+
+export default function Demo() {
+  const [open, setOpen] = useState<string[]>(['bin'])
+  const [focused, setFocused] = useState<string | null>('bin')
+  return (
+    <div style={{ position: 'relative', height: 300 }}>
+      <Button onClick={() => setOpen(['bin'])}>Open the bin</Button>
+      <FloatingPanels
+        kit="tessera-docs"
+        store="floating"
+        panels={open.map((id) => ({ id, title: 'Bin: Interviews', render: () => <div className="demo-pane">12 clips</div> }))}
+        onClose={(id) => setOpen(open.filter((item) => item !== id))}
+        focused={focused}
+        onFocus={setFocused}
+        defaultSize={{ width: 280, height: 180 }}
+      />
+    </div>
+  )
+}
+```
+
+### FloatingPanels props
+
+The floating windows layer (see the module's comment). Render it inside an element with a
+non-static `position` (`relative`) that covers the area the windows may use: the layer fills
+that element and keeps every window inside it.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `kit` (required) | `string` |  |  |
+| `store` (required) | `string` |  | Store name for positions and sizes (`useKitStore`). It holds the windows' rectangles only: anything else under it is dropped on read, so a kit keeps its own list of open windows under a different name. |
+| `panels` (required) | `readonly FloatingPanel[]` |  | The open windows, bottom to top as first opened. Keep the array and each `render` stable (`useMemo`, `useCallback`). |
+| `onClose` (required) | `(id: string) => void` |  |  |
+| `focused` (required) | `string \| null` |  | The window the kit treats as focused (drawn as such and raised); null for none. |
+| `onFocus` (required) | `(id: string) => void` |  | A press or focus inside a window. |
+| `defaultSize` | `FloatingSize` |  | A new window's size (upstream's `default_size`, 520 × 360). |
+| `minSize` | `FloatingSize` |  | The smallest a window resizes to (upstream's `min_size`, 320 × 220). |
+| `testId` | `string` |  |  |
+
+## ColorPicker
+
+Color. Saturation and brightness square, hue strip, hex and RGB fields.
+
+```ts
+import { ColorPicker } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Pick a colour
+
+```tsx
+import { useState } from 'react'
+import { ColorPicker, rgbToHex, type RGB } from '@kition/tessera'
+
+export default function Demo() {
+  const [rgb, setRgb] = useState<RGB>([86, 69, 212])
+  return (
+    <div className="demo-row" style={{ alignItems: 'flex-start' }}>
+      <div style={{ width: 240 }}>
+        <ColorPicker value={rgb} onChange={(value) => setRgb(value)} />
+      </div>
+      <div className="demo-swatch" style={{ background: rgbToHex(rgb) }}>{rgbToHex(rgb)}</div>
+    </div>
+  )
+}
+```
+
+### ColorPicker props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` (required) | `RGB` |  |  |
+| `onChange` (required) | `(rgb: RGB, final: boolean) => void` |  | Called on every pointer move and arrow key (`final: false` mid-drag, one `final: true` on release or key). |
+| `disabled` | `boolean` |  |  |
+| `testId` | `string` | `'color-picker'` |  |
+| `uiId` | `string` |  | A Kit UI id when the picker is a declared element. |
+
+## ColorWheel
+
+Color. A grading wheel with a lightness slider, as colour correction panels use.
+
+```ts
+import { ColorWheel } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Shadows wheel
+
+```tsx
+import { useState } from 'react'
+import { ColorWheel } from '@kition/tessera'
+
+export default function Demo() {
+  const [shadows, setShadows] = useState<[number, number]>([0.2, -0.1])
+  const [lightness, setLightness] = useState(0)
+  return <ColorWheel label="Shadows" value={shadows} lightness={lightness} onChange={(value) => setShadows(value)} onLightness={(value) => setLightness(value)} />
+}
+```
+
+### ColorWheel props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` (required) | `readonly [number, number]` |  | The offset, `[x, y]`, y up, of length at most 1. |
+| `lightness` (required) | `number` |  | -100 to 100. |
+| `onChange` (required) | `(value: [number, number], phase: DragPhase) => void` |  |  |
+| `onLightness` (required) | `(value: number, phase: DragPhase) => void` |  |  |
+| `label` (required) | `string` |  | Shown above the wheel, and its accessible name. |
+| `size` | `number` | `120` | The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18` px wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws it inside the wheel's square. To fit upstream's row of three wheels (Film's Lumetri Color Wheels, Task 29), pass `size = min((available - 24) / 3, 120) - 18`. |
+| `disabled` | `boolean` |  |  |
+| `uiId` | `string` |  | The wheel's Kit UI id. |
+| `lightnessUiId` | `string` |  | The lightness slider's Kit UI id. |
+| `testId` | `string` |  |  |
+
+## GradientSlider
+
+Color. A slider drawn over its own gradient: temperature, tint, hue.
+
+```ts
+import { GradientSlider } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: White balance
+
+```tsx
+import { useState } from 'react'
+import { GradientSlider, SLIDER_GRADIENTS } from '@kition/tessera'
+
+export default function Demo() {
+  const [temperature, setTemperature] = useState(10)
+  const [tint, setTint] = useState(-5)
+  return (
+    <div className="demo-stack" style={{ width: 300 }}>
+      <GradientSlider label="Temperature" value={temperature} min={-100} max={100} stops={SLIDER_GRADIENTS.temperature} onChange={(value) => setTemperature(value)} />
+      <GradientSlider label="Tint" value={tint} min={-100} max={100} stops={SLIDER_GRADIENTS.tint} onChange={(value) => setTint(value)} />
+    </div>
+  )
+}
+```
+
+### GradientSlider props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` (required) | `number` |  |  |
+| `min` (required) | `number` |  |  |
+| `max` (required) | `number` |  |  |
+| `softMin` | `number` | `min` | The track's range (upstream's `soft_min`/`soft_max`); `min` and `max` by default. The hot text reaches `min`..`max`. |
+| `softMax` | `number` | `max` |  |
+| `decimals` | `number` | `0` | Decimals a value is rounded to (0 by default). |
+| `default` | `number` |  | Restored by a double-click on the track; no double-click without it. |
+| `stops` | `readonly string[]` |  | CSS gradient stops for the track (Temperature, Tint, Hue; see `SLIDER_GRADIENTS`); a plain track when absent. |
+| `label` (required) | `string` |  |  |
+| `onChange` (required) | `(value: number, phase: DragPhase) => void` |  |  |
+| `disabled` | `boolean` |  |  |
+| `uiId` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+## CurveEditor
+
+Color. Tone curves: drag points, double-click to add, with a histogram under them.
+
+```ts
+import { CurveEditor } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: An RGB curve
+
+```tsx
+import { useState } from 'react'
+import { CurveEditor, RGB_IDENTITY, type CurvePoint } from '@kition/tessera'
+
+export default function Demo() {
+  const [points, setPoints] = useState<CurvePoint[]>([RGB_IDENTITY[0], [0.3, 0.22], [0.7, 0.8], RGB_IDENTITY[1]])
+  return (
+    <div style={{ width: 240 }}>
+      <CurveEditor kind="rgb" points={points} onChange={(next) => setPoints(next)} />
+    </div>
+  )
+}
+```
+
+### CurveEditor props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `points` (required) | `readonly CurvePoint[]` |  |  |
+| `kind` (required) | `CurveKind` |  | 'rgb': a square with protected end points; 'hue': periodic in x, a hue strip below, 0.45 aspect. |
+| `samples` | `readonly number[]` |  | The curve's samples to draw (0..1 over x), given by the caller; `sampleCurve`'s by default. |
+| `color` | `string` |  | The line and points' CSS colour; the theme's text colour by default. |
+| `onChange` (required) | `(points: CurvePoint[], phase: DragPhase) => void` |  |  |
+| `label` | `string` |  | The plot's accessible name ("Curve" by default). |
+| `disabled` | `boolean` |  |  |
+| `uiId` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+## Histogram
+
+Color. A smoothed histogram of an image’s tones.
+
+```ts
+import { Histogram } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Luminance
+
+```tsx
+import { Histogram } from '@kition/tessera'
+
+const bins = Array.from({ length: 256 }, (_, i) => Math.exp(-((i - 110) ** 2) / 1800) * 900 + Math.exp(-((i - 200) ** 2) / 600) * 500 + 40)
+
+export default function Demo() {
+  return (
+    <div style={{ width: 300 }}>
+      <Histogram bins={bins} />
+    </div>
+  )
+}
+```
+
+### Histogram props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `bins` (required) | `ArrayLike<number>` |  | Bin counts (256 for an 8-bit channel), left (shadows) to right (highlights). |
+| `color` | `string` |  | A CSS color for the bars; the element's own (inherited) color by default. |
+| `height` | `number` | `100` |  |
+| `smooth` | `boolean` | `false` | Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as its Camera Raw histogram does. |
+| `scale` | `'interior' \| 'rank'` | `'interior'` | What the bars are scaled to: `interior`, the interior bins' maximum (the default, see `scaleFor`), or `rank`, upstream's Histogram panel and tone editors (`tone.rs` `draw_histogram`): the 251st-smallest of 256 bins, so a handful of spikes (pure white, pure black) are clipped instead of flattening the rest. Either with 10% headroom. |
+| `testId` | `string` | `'histogram'` |  |
+
+## Timecode and transport
+
+Media and time. A timecode field you can type or scrub, and the transport buttons of a player.
+
+```ts
+import { TimecodeField, TransportBar } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: A player
+
+```tsx
+import { useEffect, useState } from 'react'
+import { TimecodeField, TransportBar } from '@kition/tessera'
+import { PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [time, setTime] = useState(83.4)
+  const [playing, setPlaying] = useState(false)
+  useEffect(() => {
+    if (!playing) return
+    const timer = setInterval(() => setTime((value) => value + 0.04), 40)
+    return () => clearInterval(timer)
+  }, [playing])
+  return (
+    <div className="demo-stack" style={{ width: 300 }}>
+      <TimecodeField label="Playhead" value={time} fps={25} onChange={(seconds) => setTime(seconds)} accent />
+      <TransportBar
+        buttons={[
+          { id: 'start', label: 'Go to start', icon: SkipBackIcon, onPress: () => setTime(0) },
+          { id: 'play', label: playing ? 'Pause' : 'Play', icon: playing ? PauseIcon : PlayIcon, large: true, onPress: () => setPlaying(!playing) },
+          { id: 'end', label: 'Go to end', icon: SkipForwardIcon, onPress: () => setTime(600) },
+        ]}
+      />
+    </div>
+  )
+}
+```
+
+### TimecodeField props
+
+A timecode readout: `value` (seconds) shown as timecode at `fps`. With `onChange` it scrubs
+(one frame per 2 px, reported with `final: false`, then once with `final: true` on release) and
+a click turns it into a text field (`parseTimecode`'s forms; Enter or blur commit with
+`final: true`, Escape or text that is not a time reverts). Without `onChange` it only shows.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` (required) | `number` |  | Seconds. |
+| `fps` (required) | `number` |  |  |
+| `dropFrame` | `boolean` |  |  |
+| `onChange` | `(seconds: number, final: boolean) => void` |  | Called while scrubbing (`final: false`) and once on release, Enter, or blur. |
+| `accent` | `boolean` |  | Upstream's accent-coloured playhead timecode. |
+| `label` (required) | `string` |  |  |
+| `uiId` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+### TransportBar props
+
+The buttons in `buttons`' order, centred. A button's `testId` is `<testId>-<id>`; one whose
+Kit UI id the configuration hides is left out, and one it disables is disabled.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `buttons` (required) | `readonly TransportButton[]` |  |  |
+| `testId` | `string` |  |  |
+
+## LevelMeter
+
+Media and time. Audio levels with peak hold, drawn on a canvas.
+
+```ts
+import { LevelMeter } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Stereo
+
+```tsx
+import { useEffect, useState } from 'react'
+import { LevelMeter } from '@kition/tessera'
+
+export default function Demo() {
+  const [peaks, setPeaks] = useState([-12, -9])
+  useEffect(() => {
+    const timer = setInterval(() => setPeaks([-6 - Math.random() * 30, -4 - Math.random() * 30]), 100)
+    return () => clearInterval(timer)
+  }, [])
+  return (
+    <div style={{ height: 180 }}>
+      <LevelMeter peaks={peaks} labels={['L', 'R']} />
+    </div>
+  )
+}
+```
+
+### LevelMeter props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `peaks` (required) | `readonly number[]` |  | Current peak per channel, linear 0..1+ (above 1 clips). |
+| `floor` | `number` | `-60` | dB at the bottom of the scale (upstream meters: -60). |
+| `holds` | `readonly number[]` |  | Peak hold per channel, linear. |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` |  |
+| `labels` | `readonly string[]` |  | Channel captions under the bars ("S" "S" in upstream's solo buttons row, or "L" "R"). |
+| `ref` | `Ref<LevelMeterHandle>` |  | Draws live levels without a React render. |
+| `testId` | `string` |  |  |
+
+## KeyframeLane
+
+Media and time. Keyframes on a time lane: select, drag, and their interpolation shapes.
+
+```ts
+import { KeyframeLane } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Three keyframes
+
+```tsx
+import { useState } from 'react'
+import { KeyframeLane, type Keyframe } from '@kition/tessera'
+
+export default function Demo() {
+  const [keyframes, setKeyframes] = useState<Keyframe[]>([
+    { id: 'a', time: 1 },
+    { id: 'b', time: 3.5, interpolation: 'bezier' },
+    { id: 'c', time: 6, interpolation: 'hold' },
+  ])
+  return (
+    <div style={{ width: 360 }}>
+      <KeyframeLane
+        keyframes={keyframes}
+        start={0}
+        end={8}
+        onSelect={(ids) => setKeyframes((list) => list.map((key) => ({ ...key, selected: ids.includes(key.id) })))}
+        onMove={(ids, delta) => setKeyframes((list) => list.map((key) => (ids.includes(key.id) ? { ...key, time: Math.max(0, key.time + delta) } : key)))}
+      />
+    </div>
+  )
+}
+```
+
+### KeyframeLane props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `keyframes` (required) | `readonly Keyframe[]` |  |  |
+| `start` (required) | `number` |  | Visible range in seconds and the lane's width map times to x. |
+| `end` (required) | `number` |  |  |
+| `onSelect` (required) | `(ids: string[], add: boolean) => void` |  |  |
+| `onMove` (required) | `(ids: string[], delta: number) => void` |  | Called once on release with the dragged ids and the time delta. |
+| `snap` | `(time: number) => number` |  |  |
+| `fps` | `number` | `30` | Frames per second: an arrow key moves the selected keyframes one frame (30 by default). |
+| `onMenu` | `(id: string, at: ContextMenuPoint) => void` |  | A keyframe's menu was asked for at a screen point (upstream's interpolation menu). |
+| `uiId` | `string` |  | The Kit UI id every keyframe carries (`control:effects.keyframe`). |
+| `testId` | `string` |  |  |
+
+## Strings and elements
+
+Integration. What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.
+
+```ts
+import { StringsProvider, ElementsProvider, Element } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: A host without kit-ui
+
+zh-CN strings; one group disabled, one hidden by the host.
+
+```tsx
+import { ElementsProvider, StringsProvider, createStrings, TESSERA_CATALOGS, PasswordInput, RibbonButton, RibbonGroup, type Elements } from '@kition/tessera'
+import { ClipboardPasteIcon } from '@kition/tessera-icons/react'
+
+// A host outside kit-ui gives Tessera its strings and element states itself.
+// (Inside a kit, kit-ui's KitEditorProvider does this from the Kit UI protocol.)
+const elements: Elements = {
+  state: (id) => ({ hidden: id === 'group:home/hidden', disabled: id === 'group:home/clipboard' }),
+  renderExtras: () => null,
+  drawn: () => undefined,
+}
+
+export default function Demo() {
+  return (
+    <StringsProvider strings={createStrings(TESSERA_CATALOGS, 'zh-CN')}>
+      <ElementsProvider elements={elements}>
+        <div className="demo-ribbon">
+          <RibbonGroup id="group:home/clipboard" label="Clipboard (disabled by the host)">
+            <RibbonButton icon={ClipboardPasteIcon} label="Paste" size="large" />
+          </RibbonGroup>
+          <RibbonGroup id="group:home/hidden" label="Hidden by the host">
+            <RibbonButton icon={ClipboardPasteIcon} label="Never drawn" size="large" />
+          </RibbonGroup>
+        </div>
+        <div style={{ marginTop: 12, maxWidth: 280 }}>
+          <PasswordInput size="md" defaultValue="secret" aria-label="Password" />
+        </div>
+      </ElementsProvider>
+    </StringsProvider>
+  )
+}
+```
+
+### StringsProvider props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `strings` (required) | `Strings` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+
+### ElementsProvider props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `elements` (required) | `Elements` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+
+### Element props
+
+Content that belongs to one element: not drawn when hidden; its form controls disabled when
+disabled. A `fieldset` disables every control inside it without each control knowing.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `id` (required) | `string` |  |  |
+| `children` (required) | `ReactNode` |  |  |
