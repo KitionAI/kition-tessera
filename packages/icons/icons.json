@@ -122,6 +122,18 @@
       "family": "ui",
       "source": "lucide:app-window"
     },
+    "arc": {
+      "family": "tool",
+      "source": "svg:arc.svg"
+    },
+    "array-polar": {
+      "family": "tool",
+      "source": "svg:array-polar.svg"
+    },
+    "array-rectangular": {
+      "family": "tool",
+      "source": "svg:array-rectangular.svg"
+    },
     "arrow-down": {
       "family": "ui",
       "source": "lucide:arrow-down"
@@ -314,6 +326,14 @@
       "family": "ui",
       "source": "lucide:case-upper"
     },
+    "center-mark": {
+      "family": "tool",
+      "source": "svg:center-mark.svg"
+    },
+    "chamfer": {
+      "family": "tool",
+      "source": "svg:chamfer.svg"
+    },
     "chart-area": {
       "family": "ui",
       "source": "lucide:chart-area"
@@ -401,6 +421,10 @@
     "circle-alert": {
       "family": "ui",
       "source": "lucide:circle-alert"
+    },
+    "circle-center-radius": {
+      "family": "tool",
+      "source": "svg:circle-center-radius.svg"
     },
     "circle-check": {
       "family": "ui",
@@ -510,9 +534,57 @@
       "family": "ui",
       "source": "svg:command-generic.svg"
     },
+    "compass": {
+      "family": "ui",
+      "source": "lucide:compass"
+    },
     "component": {
       "family": "ui",
       "source": "lucide:component"
+    },
+    "constraint-coincident": {
+      "family": "tool",
+      "source": "svg:constraint-coincident.svg"
+    },
+    "constraint-collinear": {
+      "family": "tool",
+      "source": "svg:constraint-collinear.svg"
+    },
+    "constraint-concentric": {
+      "family": "tool",
+      "source": "svg:constraint-concentric.svg"
+    },
+    "constraint-equal": {
+      "family": "tool",
+      "source": "svg:constraint-equal.svg"
+    },
+    "constraint-fix": {
+      "family": "tool",
+      "source": "svg:constraint-fix.svg"
+    },
+    "constraint-horizontal": {
+      "family": "tool",
+      "source": "svg:constraint-horizontal.svg"
+    },
+    "constraint-parallel": {
+      "family": "tool",
+      "source": "svg:constraint-parallel.svg"
+    },
+    "constraint-perpendicular": {
+      "family": "tool",
+      "source": "svg:constraint-perpendicular.svg"
+    },
+    "constraint-symmetric": {
+      "family": "tool",
+      "source": "svg:constraint-symmetric.svg"
+    },
+    "constraint-tangent": {
+      "family": "tool",
+      "source": "svg:constraint-tangent.svg"
+    },
+    "constraint-vertical": {
+      "family": "tool",
+      "source": "svg:constraint-vertical.svg"
     },
     "contact": {
       "family": "ui",
@@ -550,6 +622,10 @@
       "family": "ui",
       "source": "lucide:crop"
     },
+    "crosshair": {
+      "family": "ui",
+      "source": "lucide:crosshair"
+    },
     "dash-dashed": {
       "family": "tool",
       "source": "svg:dash-dashed.svg"
@@ -586,6 +662,42 @@
       "family": "ui",
       "source": "lucide:diamond"
     },
+    "dimension-aligned": {
+      "family": "tool",
+      "source": "svg:dimension-aligned.svg"
+    },
+    "dimension-angular": {
+      "family": "tool",
+      "source": "svg:dimension-angular.svg"
+    },
+    "dimension-arc-length": {
+      "family": "tool",
+      "source": "svg:dimension-arc-length.svg"
+    },
+    "dimension-baseline": {
+      "family": "tool",
+      "source": "svg:dimension-baseline.svg"
+    },
+    "dimension-continue": {
+      "family": "tool",
+      "source": "svg:dimension-continue.svg"
+    },
+    "dimension-diameter": {
+      "family": "tool",
+      "source": "svg:dimension-diameter.svg"
+    },
+    "dimension-linear": {
+      "family": "tool",
+      "source": "svg:dimension-linear.svg"
+    },
+    "dimension-ordinate": {
+      "family": "tool",
+      "source": "svg:dimension-ordinate.svg"
+    },
+    "dimension-radius": {
+      "family": "tool",
+      "source": "svg:dimension-radius.svg"
+    },
     "disc": {
       "family": "ui",
       "source": "lucide:disc"
@@ -593,6 +705,10 @@
     "dollar-sign": {
       "family": "ui",
       "source": "lucide:dollar-sign"
+    },
+    "donut": {
+      "family": "tool",
+      "source": "svg:donut.svg"
     },
     "download": {
       "family": "ui",
@@ -617,6 +733,14 @@
     "expand": {
       "family": "ui",
       "source": "lucide:expand"
+    },
+    "explode": {
+      "family": "tool",
+      "source": "svg:explode.svg"
+    },
+    "extend": {
+      "family": "tool",
+      "source": "svg:extend.svg"
     },
     "external-link": {
       "family": "ui",
@@ -717,6 +841,10 @@
     "files": {
       "family": "ui",
       "source": "lucide:files"
+    },
+    "fillet": {
+      "family": "tool",
+      "source": "svg:fillet.svg"
     },
     "film": {
       "family": "ui",
@@ -834,6 +962,10 @@
       "family": "ui",
       "source": "lucide:hash"
     },
+    "hatch": {
+      "family": "tool",
+      "source": "svg:hatch.svg"
+    },
     "heading": {
       "family": "ui",
       "source": "lucide:heading"
@@ -841,6 +973,10 @@
     "heart": {
       "family": "ui",
       "source": "lucide:heart"
+    },
+    "helix": {
+      "family": "tool",
+      "source": "svg:helix.svg"
     },
     "hexagon": {
       "family": "ui",
@@ -906,6 +1042,14 @@
       "family": "ui",
       "source": "lucide:layout-template"
     },
+    "leader": {
+      "family": "tool",
+      "source": "svg:leader.svg"
+    },
+    "lengthen": {
+      "family": "tool",
+      "source": "svg:lengthen.svg"
+    },
     "life-buoy": {
       "family": "ui",
       "source": "lucide:life-buoy"
@@ -913,6 +1057,14 @@
     "lightbulb": {
       "family": "ui",
       "source": "lucide:lightbulb"
+    },
+    "linetype": {
+      "family": "tool",
+      "source": "svg:linetype.svg"
+    },
+    "lineweight": {
+      "family": "tool",
+      "source": "svg:lineweight.svg"
     },
     "link": {
       "family": "ui",
@@ -1098,6 +1250,10 @@
       "family": "ui",
       "source": "lucide:move-vertical"
     },
+    "multiline": {
+      "family": "tool",
+      "source": "svg:multiline.svg"
+    },
     "music": {
       "family": "ui",
       "source": "lucide:music"
@@ -1117,6 +1273,10 @@
     "omega": {
       "family": "ui",
       "source": "lucide:omega"
+    },
+    "ortho-mode": {
+      "family": "tool",
+      "source": "svg:ortho-mode.svg"
     },
     "package": {
       "family": "ui",
@@ -1234,6 +1394,14 @@
       "family": "ui",
       "source": "lucide:pointer"
     },
+    "polar-tracking": {
+      "family": "tool",
+      "source": "svg:polar-tracking.svg"
+    },
+    "polyline": {
+      "family": "tool",
+      "source": "svg:polyline.svg"
+    },
     "power": {
       "family": "ui",
       "source": "lucide:power"
@@ -1266,6 +1434,10 @@
       "family": "ui",
       "source": "lucide:rainbow"
     },
+    "ray": {
+      "family": "tool",
+      "source": "svg:ray.svg"
+    },
     "rectangle-horizontal": {
       "family": "ui",
       "source": "lucide:rectangle-horizontal"
@@ -1286,6 +1458,10 @@
       "family": "ui",
       "source": "lucide:refresh-cw"
     },
+    "region": {
+      "family": "tool",
+      "source": "svg:region.svg"
+    },
     "remove-formatting": {
       "family": "ui",
       "source": "lucide:remove-formatting"
@@ -1297,6 +1473,10 @@
     "replace": {
       "family": "ui",
       "source": "lucide:replace"
+    },
+    "revision-cloud": {
+      "family": "tool",
+      "source": "svg:revision-cloud.svg"
     },
     "rocket": {
       "family": "ui",
@@ -1554,6 +1734,10 @@
       "family": "ui",
       "source": "lucide:sticky-note"
     },
+    "stretch": {
+      "family": "tool",
+      "source": "svg:stretch.svg"
+    },
     "stretch-horizontal": {
       "family": "ui",
       "source": "lucide:stretch-horizontal"
@@ -1789,6 +1973,10 @@
     "users": {
       "family": "ui",
       "source": "lucide:users"
+    },
+    "variable": {
+      "family": "ui",
+      "source": "lucide:variable"
     },
     "vector-polygon": {
       "family": "ui",

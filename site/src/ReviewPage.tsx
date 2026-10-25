@@ -1,6 +1,6 @@
 import { useMemo, type ReactNode } from 'react'
 import { RibbonButton, RibbonGroup } from '@kition/tessera'
-import { SparkleIcon, SparklesIcon, createIcon } from '@kition/tessera-icons/react'
+import { CommandGenericIcon, SparkleIcon, SparklesIcon, createIcon } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES } from '@kition/tessera-icons/registry'
 import type { IconData } from '@kition/tessera-icons'
 
@@ -16,6 +16,14 @@ const BATCHES = [
     groups: [
       { label: 'Animations', prefix: 'animation-', before: SparklesIcon, labels: { appear: 'Appear', fade: 'Fade', 'fly-in': 'Fly In', 'float-in': 'Float In', split: 'Split', wipe: 'Wipe', zoom: 'Zoom', pulse: 'Pulse', spin: 'Spin', 'grow-shrink': 'Grow/Shrink', 'fade-out': 'Fade Out', 'fly-out': 'Fly Out', path: 'Lines' } },
       { label: 'Transitions', prefix: 'transition-', before: SparkleIcon, labels: { none: 'None', morph: 'Morph', fade: 'Fade', push: 'Push', wipe: 'Wipe', split: 'Split', reveal: 'Reveal', cut: 'Cut', 'random-bars': 'Random Bars', shape: 'Shape', uncover: 'Uncover', cover: 'Cover', flash: 'Flash', 'fall-over': 'Fall Over', drape: 'Drape', curtains: 'Curtains', wind: 'Wind', prestige: 'Prestige' } },
+    ],
+  },
+  {
+    id: 'cad-drafting',
+    title: 'Batch 2 · CAD drafting',
+    note: 'CAD drew a third of its commands (draw, dimension, modify, constraints) with one fallback mark, because general icon sets have no drafting symbols. Tessera now has its own: geometry with its defining points, dimensions with extension lines and ticks, constraints as their geometric relation.',
+    groups: [
+      { label: 'CAD', prefix: '', before: CommandGenericIcon, labels: {"polyline": "Polyline", "arc": "Arc", "circle-center-radius": "Circle center radius", "ray": "Ray", "donut": "Donut", "revision-cloud": "Revision cloud", "multiline": "Multiline", "helix": "Helix", "center-mark": "Center mark", "region": "Region", "hatch": "Hatch", "dimension-linear": "Linear", "dimension-aligned": "Aligned", "dimension-radius": "Radius", "dimension-diameter": "Diameter", "dimension-angular": "Angular", "dimension-arc-length": "Arc length", "dimension-ordinate": "Ordinate", "dimension-baseline": "Baseline", "dimension-continue": "Continue", "leader": "Leader", "stretch": "Stretch", "extend": "Extend", "fillet": "Fillet", "chamfer": "Chamfer", "explode": "Explode", "array-rectangular": "Array rectangular", "array-polar": "Array polar", "lengthen": "Lengthen", "constraint-coincident": "Coincident", "constraint-perpendicular": "Perpendicular", "constraint-parallel": "Parallel", "constraint-tangent": "Tangent", "constraint-horizontal": "Horizontal", "constraint-vertical": "Vertical", "constraint-collinear": "Collinear", "constraint-concentric": "Concentric", "constraint-symmetric": "Symmetric", "constraint-equal": "Equal", "constraint-fix": "Fix", "lineweight": "Lineweight", "linetype": "Linetype", "polar-tracking": "Polar tracking", "ortho-mode": "Ortho mode"} },
     ],
   },
 ] as const
