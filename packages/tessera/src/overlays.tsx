@@ -104,7 +104,7 @@ export const PopoverClose = PopoverPrimitive.Close
 export function PopoverContent({ align = 'center', sideOffset = 4, className, ...props }: ComponentProps<typeof PopoverPrimitive.Content>) {
   return (
     <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content align={align} sideOffset={sideOffset} className={join('kui-popover', className)} {...props} />
+      <PopoverPrimitive.Content align={align} sideOffset={sideOffset} className={join('kui-popover-panel', className)} {...props} />
     </PopoverPrimitive.Portal>
   )
 }

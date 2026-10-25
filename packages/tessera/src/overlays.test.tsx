@@ -125,7 +125,7 @@ describe('Popover', () => {
     const trigger = document.querySelector('button')!
     act(() => trigger.click())
     const panel = document.querySelector('[data-testid="panel"]')!
-    expect(panel.classList.contains('kui-popover')).toBe(true)
+    expect(panel.classList.contains('kui-popover-panel')).toBe(true)
     expect(panel.textContent).toBe('Conditions')
   })
 })

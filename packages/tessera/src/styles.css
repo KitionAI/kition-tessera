@@ -2444,7 +2444,7 @@ select.kui-ribbon-field:disabled {
   }
 }
 
-.kui-popover {
+.kui-popover-panel {
   z-index: var(--kui-z-popover, 110);
   box-sizing: border-box;
   width: 288px;
@@ -2688,7 +2688,7 @@ select.kui-ribbon-field:disabled {
 @media (prefers-reduced-motion: reduce) {
   .kui-modal,
   .kui-modal-overlay,
-  .kui-popover {
+  .kui-popover-panel {
     animation: none;
   }
 }
