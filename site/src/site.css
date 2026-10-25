@@ -589,3 +589,4 @@ h2 {
     justify-content: center;
   }
 }
+.status-demo span { white-space: nowrap; }

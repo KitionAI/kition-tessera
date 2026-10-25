@@ -13,8 +13,16 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 /** The stroke width of every Lucide icon Kit UI draws, at every size (ribbon, menus, rail, panels). */
 export const ICON_STROKE = 1.75
 
-export function Button({ variant, ...props }: ButtonProps & { variant?: 'primary' | 'ghost' }) {
-  return <button type="button" className="kui-button" data-variant={variant} {...props} />
+/** Control heights: `sm` 28px (kit toolbars), `md` 36px (panels, settings), `lg` 44px (kition docs/design.md CTAs and inputs). */
+export type ControlSize = 'sm' | 'md' | 'lg'
+
+/**
+ * A button. `primary` is the one main action (the theme's primary color); the default is the
+ * outlined secondary button (`secondary` names it); `ghost` has no border; `danger` destroys.
+ * Without `size` it keeps the editor chrome's 30px.
+ */
+export function Button({ variant, size, ...props }: ButtonProps & { variant?: 'primary' | 'secondary' | 'ghost' | 'danger'; size?: ControlSize }) {
+  return <button type="button" className="kui-button" data-variant={variant} data-size={size} {...props} />
 }
 
 export function IconButton({ icon: Icon, label, pressed, ...props }: ButtonProps & { icon: IconComponent; label: string; pressed?: boolean }) {

@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import {
   Button,
+  Card,
+  CardContent,
+  CardHeader,
   Checkbox,
   ColorGrid,
   ColorPicker,
   ColorWheel,
   CurveEditor,
   Dialog,
+  Disclosure,
+  Field,
   GradientSlider,
   Histogram,
   IconButton,
@@ -16,14 +21,18 @@ import {
   MenuItem,
   MenuSeparator,
   NumberField,
+  PasswordInput,
   RGB_IDENTITY,
   RibbonButton,
   RibbonGroup,
   RibbonStack,
   SLIDER_GRADIENTS,
   Segmented,
+  Select,
   StatusBar,
   StatusSpacer,
+  TextInput,
+  Textarea,
   TimecodeField,
   TransportBar,
   ZoomControl,
@@ -63,6 +72,7 @@ export function ComponentsPage() {
       </section>
       <Toaster />
       <BaseControls />
+      <Forms />
       <Ribbon />
       <ColorControls />
       <MediaControls />
@@ -103,6 +113,35 @@ function BaseControls() {
             <IconButton icon={BoldIcon} label="Bold" pressed={bold} onClick={() => setBold(!bold)} />
             <IconButton icon={ItalicIcon} label="Italic" />
             <IconButton icon={UnderlineIcon} label="Underline" disabled />
+          </div>
+        </Demo>
+        <Demo title="Button variants and sizes" note="primary · secondary · ghost · danger; sm 28 · md 36 · lg 44 (design.md CTA).">
+          <div style={{ display: 'grid', gap: 10 }}>
+            <div className="row">
+              <Button variant="primary" size="md">
+                Primary
+              </Button>
+              <Button variant="secondary" size="md">
+                Secondary
+              </Button>
+              <Button variant="ghost" size="md">
+                Ghost
+              </Button>
+              <Button variant="danger" size="md">
+                Delete
+              </Button>
+            </div>
+            <div className="row">
+              <Button variant="primary" size="sm">
+                Small
+              </Button>
+              <Button variant="primary" size="md">
+                Medium
+              </Button>
+              <Button variant="primary" size="lg">
+                Large
+              </Button>
+            </div>
           </div>
         </Demo>
         <Demo title="Segmented, Checkbox">
@@ -158,6 +197,54 @@ function BaseControls() {
           <NumberField label="Width" value={1920} min={1} max={10000} unit="px" onChange={() => undefined} />
         </Dialog>
       ) : null}
+    </>
+  )
+}
+
+function Forms() {
+  const [email, setEmail] = useState('not-an-email')
+  const valid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)
+  return (
+    <>
+      <h2>Forms and containers</h2>
+      <div className="demo-grid">
+        <Demo title="Field, TextInput, PasswordInput" note="Labels, help and errors are wired for screen readers.">
+          <div style={{ display: 'grid', gap: 14 }}>
+            <Field label="Email" hint="We only use it to sign you in." error={valid ? undefined : 'Enter an email address.'}>
+              {({ id, describedBy, invalid }) => <TextInput id={id} aria-describedby={describedBy} invalid={invalid} size="md" value={email} onChange={(event) => setEmail(event.target.value)} />}
+            </Field>
+            <Field label="API key">{({ id }) => <PasswordInput id={id} size="md" defaultValue="sk-test-not-a-real-key" />}</Field>
+          </div>
+        </Demo>
+        <Demo title="Select, Textarea" note="sm (toolbar), md (panel), lg (design.md text-input).">
+          <div style={{ display: 'grid', gap: 10 }}>
+            {(['sm', 'md', 'lg'] as const).map((size) => (
+              <Select key={size} size={size} defaultValue="sheet" aria-label={`Kit (${size})`}>
+                <option value="sheet">Sheet</option>
+                <option value="slide">Slide</option>
+                <option value="photo">Photo</option>
+              </Select>
+            ))}
+            <Textarea placeholder="Describe the change for the agent…" rows={3} />
+          </div>
+        </Demo>
+        <Demo title="Card, Disclosure">
+          <Card>
+            <CardHeader>
+              <strong>Model</strong>
+              <Button size="sm">Change</Button>
+            </CardHeader>
+            <CardContent>
+              <Disclosure title="Advanced settings">
+                <TextInput size="md" defaultValue="0.7" aria-label="Temperature" />
+              </Disclosure>
+              <Disclosure title="Usage" defaultOpen>
+                <span style={{ color: 'var(--kit-text-muted)' }}>1,240 credits this month</span>
+              </Disclosure>
+            </CardContent>
+          </Card>
+        </Demo>
+      </div>
     </>
   )
 }

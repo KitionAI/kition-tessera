@@ -1,13 +1,44 @@
 {
   "$description": "Graphite skin: dark, low contrast, for long photo and video sessions. Overrides the Paper values of the theme tokens it lists; the rest keep Paper's. Seeded from kit-dev-host's dark preset.",
-  "$extensions": { "ai.kition.tessera": { "skin": "graphite", "colorScheme": "dark" } },
+  "$extensions": {
+    "ai.kition.tessera": {
+      "skin": "graphite",
+      "colorScheme": "dark"
+    }
+  },
   "kit": {
-    "surface": { "$type": "color", "$value": "#1b1e23" },
-    "surface-muted": { "$type": "color", "$value": "#22262c" },
-    "canvas": { "$type": "color", "$value": "#15171b" },
-    "text": { "$type": "color", "$value": "#eceff1" },
-    "text-muted": { "$type": "color", "$value": "#a9b0ba" },
-    "border": { "$type": "color", "$value": "#33373e" },
-    "primary": { "$type": "color", "$value": "#8b7ff0" }
+    "surface": {
+      "$type": "color",
+      "$value": "#1b1e23"
+    },
+    "surface-muted": {
+      "$type": "color",
+      "$value": "#22262c"
+    },
+    "canvas": {
+      "$type": "color",
+      "$value": "#15171b"
+    },
+    "text": {
+      "$type": "color",
+      "$value": "#eceff1"
+    },
+    "text-muted": {
+      "$type": "color",
+      "$value": "#a9b0ba"
+    },
+    "border": {
+      "$type": "color",
+      "$value": "#33373e"
+    },
+    "primary": {
+      "$type": "color",
+      "$value": "#8b7ff0"
+    },
+    "primary-text": {
+      "$type": "color",
+      "$value": "#0b0a1f",
+      "$description": "Dark text on the light Graphite primary, for at least 4.5:1 contrast"
+    }
   }
 }

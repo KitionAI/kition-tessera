@@ -58,6 +58,23 @@ describe('tokens', () => {
     expect(SKINS.graphite.tokens['--kit-radius-card']).toBe('12px')
   })
 
+  it('keeps text readable in every skin (WCAG AA, 4.5:1)', () => {
+    const luminance = (hex: string) => {
+      const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b
+    }
+    const contrast = (a: string, b: string) => {
+      const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p)
+      return (x + 0.05) / (y + 0.05)
+    }
+    for (const id of SKIN_IDS) {
+      const tokens = SKINS[id].tokens
+      expect(contrast(tokens['--kit-primary'], tokens['--kit-primary-text']), `${id}: primary text`).toBeGreaterThanOrEqual(4.5)
+      expect(contrast(tokens['--kit-surface'], tokens['--kit-text']), `${id}: text`).toBeGreaterThanOrEqual(4.5)
+      expect(contrast(tokens['--kit-surface'], tokens['--kit-text-muted']), `${id}: muted text`).toBeGreaterThanOrEqual(4.5)
+    }
+  })
+
   it('hands out copies of a skin theme', () => {
     const theme = skinTheme('paper')!
     theme.tokens['--kit-primary'] = '#000000'

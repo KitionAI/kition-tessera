@@ -26,5 +26,7 @@
   "restoreWorkspace": "Restore Workspace",
   "panelMenu": "Panel menu",
   "moreTabs": "More tabs",
-  "resizePanels": "Resize panels"
+  "resizePanels": "Resize panels",
+  "passwordShow": "Show password",
+  "passwordHide": "Hide password"
 }

@@ -79,7 +79,7 @@ export const SKINS: Readonly<Record<SkinId, SkinTheme>> = {
       "--kit-text-muted": "#a9b0ba",
       "--kit-border": "#33373e",
       "--kit-primary": "#8b7ff0",
-      "--kit-primary-text": "#ffffff",
+      "--kit-primary-text": "#0b0a1f",
       "--kit-primary-soft": "rgba(86, 69, 212, 0.1)",
       "--kit-danger": "#e03131",
       "--kit-radius-control": "8px",

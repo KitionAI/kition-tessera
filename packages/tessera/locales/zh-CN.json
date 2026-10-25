@@ -26,5 +26,7 @@
   "restoreWorkspace": "恢复工作区",
   "panelMenu": "面板菜单",
   "moreTabs": "更多选项卡",
-  "resizePanels": "调整面板大小"
+  "resizePanels": "调整面板大小",
+  "passwordShow": "显示密码",
+  "passwordHide": "隐藏密码"
 }
