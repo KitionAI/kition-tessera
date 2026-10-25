@@ -28,5 +28,9 @@
   "moreTabs": "More tabs",
   "resizePanels": "Resize panels",
   "passwordShow": "Show password",
-  "passwordHide": "Hide password"
+  "passwordHide": "Hide password",
+  "close": "Close",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "sheet": "Side panel"
 }

@@ -28,5 +28,9 @@
   "moreTabs": "更多选项卡",
   "resizePanels": "调整面板大小",
   "passwordShow": "显示密码",
-  "passwordHide": "隐藏密码"
+  "passwordHide": "隐藏密码",
+  "close": "关闭",
+  "confirm": "确定",
+  "cancel": "取消",
+  "sheet": "侧边面板"
 }

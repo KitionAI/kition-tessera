@@ -44,6 +44,41 @@ export {
   type TextInputProps,
   type TextareaProps,
 } from './forms'
+export {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+  ConfirmProvider,
+  Modal,
+  ModalClose,
+  ModalContent,
+  ModalDescription,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  ModalTrigger,
+  Popover,
+  PopoverAnchor,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
+  Sheet,
+  Switch,
+  useConfirm,
+  type ConfirmFn,
+  type ConfirmOptions,
+  type ModalContentProps,
+  type ModalProps,
+  type ModalSize,
+  type SheetProps,
+  type SwitchProps,
+} from './overlays'
+export { useDialogFocus, useDismissableLayer, useMediaQuery, useOnClickOutside } from './hooks'
 export { NumberField, type NumberFieldProps } from './NumberField'
 export { BarSeparator, Checkbox, Choice, Hint, Segmented, type CheckboxProps, type ChoiceProps, type Segment, type SegmentedProps } from './BarControls'
 export { DropPanel } from './DropPanel'

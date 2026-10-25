@@ -2020,11 +2020,19 @@ select.kui-ribbon-field:disabled {
 
 /*
  * Button sizes and variants beyond the editor chrome's default (30px, outlined). Sizes follow
- * kition docs/design.md: 8px radius, 14px medium labels, 10px 18px padding at `lg`.
+ * kition docs/product-ui-style.md: 8px radius, 13-14px medium labels; sm 32, md 36, lg 40.
  */
+.kui-button svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
 .kui-button[data-size='sm'] {
-  height: 28px;
-  padding: 0 10px;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .kui-button[data-size='md'] {
@@ -2035,15 +2043,45 @@ select.kui-ribbon-field:disabled {
 }
 
 .kui-button[data-size='lg'] {
-  height: 44px;
-  padding: 10px 18px;
+  height: 40px;
+  padding: 0 18px;
   font-size: 14px;
   font-weight: 500;
+}
+
+.kui-button[data-icon-only] {
+  width: 30px;
+  padding: 0;
+}
+
+.kui-button[data-icon-only][data-size='sm'] {
+  width: 32px;
+}
+
+.kui-button[data-icon-only][data-size='md'] {
+  width: 36px;
+}
+
+.kui-button[data-icon-only][data-size='lg'] {
+  width: 40px;
 }
 
 .kui-button[data-variant='secondary'] {
   border-color: var(--kit-border);
   background: var(--kit-surface);
+}
+
+.kui-button[data-variant='subtle'] {
+  border-color: transparent;
+  background: var(--kit-surface-muted);
+}
+
+.kui-button[data-variant='subtle']:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--kit-text) 8%, var(--kit-surface-muted));
+}
+
+.kui-button[data-variant='ghost']:hover:not(:disabled) {
+  background: var(--kui-hover);
 }
 
 /* The danger token darkened a little under white text, for at least 4.5:1 contrast. */
@@ -2055,6 +2093,37 @@ select.kui-ribbon-field:disabled {
 
 .kui-button[data-variant='danger']:hover:not(:disabled) {
   filter: brightness(0.94);
+}
+
+/* A disabled filled button turns muted rather than faint, so it stays readable on any skin. */
+.kui-button[data-variant='primary']:disabled,
+.kui-button[data-variant='danger']:disabled {
+  border-color: var(--kit-border);
+  background: var(--kit-surface-muted);
+  color: var(--kit-text-muted);
+  filter: none;
+  opacity: 1;
+}
+
+.kui-button[aria-busy='true'] {
+  cursor: progress;
+}
+
+.kui-spinner {
+  flex-shrink: 0;
+  animation: kui-spin 0.8s linear infinite;
+}
+
+@keyframes kui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kui-spinner {
+    animation-duration: 2.4s;
+  }
 }
 
 /* Forms: text fields, password, multi-line text, select, labelled fields. */
@@ -2076,8 +2145,8 @@ select.kui-ribbon-field:disabled {
 
 .kui-input,
 .kui-select select {
-  height: 28px;
-  padding: 0 8px;
+  height: 32px;
+  padding: 0 10px;
 }
 
 .kui-input[data-size='md'],
@@ -2089,7 +2158,7 @@ select.kui-ribbon-field:disabled {
 
 .kui-input[data-size='lg'],
 .kui-select[data-size='lg'] select {
-  height: 44px;
+  height: 40px;
   padding: 0 12px;
   font-size: 14px;
 }
@@ -2250,4 +2319,375 @@ select.kui-ribbon-field:disabled {
 
 .kui-disclosure-body {
   padding: 0 0 12px 22px;
+}
+
+/*
+ * Overlays: modal, popover, switch, sheet, command list (overlays.tsx). Floating surfaces share
+ * one treatment (kition docs/product-ui-style.md): 12px radius, a hairline, the floating shadow
+ * (`--kui-shadow-floating`, which a host maps to its own, dark skins included).
+ */
+.kui-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.kui-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--kui-z-modal, 100);
+  background: rgba(0, 0, 0, 0.4);
+  animation: kui-fade-in 0.15s ease-out;
+}
+
+.kui-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: calc(var(--kui-z-modal, 100) + 1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: calc(100% - 32px);
+  max-width: 512px;
+  max-height: calc(100vh - 32px);
+  padding: 24px;
+  overflow: auto;
+  border: 1px solid var(--kit-border);
+  border-radius: var(--kit-radius-card);
+  background: var(--kit-surface);
+  color: var(--kit-text);
+  box-shadow: var(--kui-shadow-floating, 0 16px 48px rgba(15, 15, 15, 0.14));
+  transform: translate(-50%, -50%);
+  animation: kui-modal-in 0.18s ease-out;
+}
+
+.kui-modal:focus {
+  outline: none;
+}
+
+.kui-modal[data-size='xs'] { max-width: 320px; }
+.kui-modal[data-size='sm'] { max-width: 384px; }
+.kui-modal[data-size='md'] { max-width: 448px; }
+.kui-modal[data-size='lg'] { max-width: 512px; }
+.kui-modal[data-size='xl'] { max-width: 576px; }
+.kui-modal[data-size='2xl'] { max-width: 672px; }
+.kui-modal[data-size='3xl'] { max-width: 768px; }
+.kui-modal[data-size='4xl'] { max-width: 896px; }
+.kui-modal[data-size='none'] { max-width: none; }
+
+.kui-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--kit-radius-control);
+  background: transparent;
+  color: var(--kit-text-muted);
+  cursor: pointer;
+}
+
+.kui-modal-close:hover {
+  background: var(--kui-hover);
+  color: var(--kit-text);
+}
+
+.kui-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.kui-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.kui-modal-description {
+  margin: 0;
+  color: var(--kit-text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.kui-modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .kui-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .kui-modal-footer > .kui-button {
+    width: 100%;
+  }
+}
+
+.kui-popover {
+  z-index: var(--kui-z-popover, 110);
+  box-sizing: border-box;
+  width: 288px;
+  max-width: calc(100vw - 24px);
+  overflow: hidden;
+  border: 1px solid var(--kit-border);
+  border-radius: var(--kit-radius-card);
+  background: var(--kit-surface);
+  color: var(--kit-text);
+  box-shadow: var(--kui-shadow-floating, 0 16px 48px rgba(15, 15, 15, 0.14));
+  outline: none;
+  animation: kui-fade-in 0.12s ease-out;
+}
+
+.kui-switch {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: 28px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--kit-text-muted) 35%, var(--kit-surface));
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.kui-switch[data-state='checked'] {
+  background: var(--kit-primary);
+}
+
+.kui-switch:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.kui-switch-thumb {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--kit-surface);
+  box-shadow: 0 1px 2px rgba(15, 15, 15, 0.2);
+  transform: translateX(1px);
+  transition: transform 0.15s ease;
+}
+
+.kui-switch[data-state='checked'] .kui-switch-thumb {
+  background: var(--kit-primary-text);
+  transform: translateX(13px);
+}
+
+.kui-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--kui-z-sheet, 30);
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.kui-sheet-backdrop[data-visible] {
+  opacity: 1;
+}
+
+.kui-sheet {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: calc(var(--kui-z-sheet, 30) + 10);
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  height: 100%;
+  border-left: 1px solid var(--kit-border);
+  background: var(--kit-surface);
+  color: var(--kit-text);
+  box-shadow: var(--kui-shadow-floating, 0 16px 48px rgba(15, 15, 15, 0.14));
+  transform: translateX(100%);
+  transition: transform 0.2s ease-out;
+}
+
+.kui-sheet[data-visible] {
+  transform: translateX(0);
+}
+
+.kui-sheet:focus {
+  outline: none;
+}
+
+.kui-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--kit-border);
+}
+
+.kui-sheet-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kui-sheet-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--kit-radius-control);
+  background: transparent;
+  color: var(--kit-text-muted);
+  cursor: pointer;
+}
+
+.kui-sheet-close:hover {
+  background: var(--kui-hover);
+  color: var(--kit-text);
+}
+
+.kui-sheet-body {
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.kui-sheet-footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid var(--kit-border);
+}
+
+.kui-command {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--kit-radius-control);
+  background: var(--kit-surface);
+  color: var(--kit-text);
+}
+
+.kui-command-input-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 6px 12px;
+}
+
+.kui-command-list {
+  max-height: 500px;
+  padding: 6px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.kui-command-empty {
+  padding: 24px 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+.kui-command-group {
+  padding: 4px;
+  overflow: hidden;
+}
+
+.kui-command-group [cmdk-group-heading] {
+  padding: 6px 8px;
+  color: var(--kit-text-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.kui-command-separator {
+  height: 1px;
+  margin: 0 -4px;
+  background: var(--kit-border);
+}
+
+.kui-command-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  margin: 0 4px;
+  padding: 0 8px;
+  border-radius: calc(var(--kit-radius-control) - 2px);
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.kui-command-item[data-selected='true'] {
+  background: var(--kit-primary-soft);
+}
+
+.kui-command-item[data-disabled='true'] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.kui-command-shortcut {
+  margin-left: auto;
+  color: var(--kit-text-muted);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+@keyframes kui-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes kui-modal-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kui-modal,
+  .kui-modal-overlay,
+  .kui-popover {
+    animation: none;
+  }
 }

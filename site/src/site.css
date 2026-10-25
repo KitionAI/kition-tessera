@@ -2335,6 +2335,8 @@ h2 {
   margin: 0 0 24px;
   padding: 12px 14px;
   overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
   border: 1px solid var(--kit-border);
   border-radius: var(--kit-radius-control);
   background: var(--kit-surface);

@@ -2,8 +2,8 @@
  * Shared kit editor components: buttons and fields, the ribbon, menus, panels, the status bar,
  * dialogs, and notices. Styled only through the Kit UI protocol's theme tokens (styles.css).
  */
-import { Children, cloneElement, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
-import { CheckIcon as Check, ChevronDownIcon as ChevronDown, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight } from '@kition/tessera-icons/react'
+import { Children, cloneElement, type ComponentProps, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
+import { CheckIcon as Check, ChevronDownIcon as ChevronDown, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight, LoaderCircleIcon as LoaderCircle } from '@kition/tessera-icons/react'
 import type { IconComponent } from './icon'
 import { useElements } from './context'
 import { DropPanel } from './DropPanel'
@@ -14,24 +14,68 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 /** The stroke every control draws its icons with (Tessera's icon style, docs/icon-style.md). */
 export const ICON_STROKE = 1.5
 
-/** Control heights: `sm` 28px (kit toolbars), `md` 36px (panels, settings), `lg` 44px (kition docs/design.md CTAs and inputs). */
+/** Control heights: `sm` 32px (toolbars, dense rows), `md` 36px (panels, settings, dialogs), `lg` 40px (forms and calls to action). */
 export type ControlSize = 'sm' | 'md' | 'lg'
 
 /**
- * A button. `primary` is the one main action (the theme's primary color); the default is the
- * outlined secondary button (`secondary` names it); `ghost` has no border; `danger` destroys.
- * Without `size` it keeps the editor chrome's 30px.
+ * How much a button stands out: `primary` is the one main action (the theme's primary color);
+ * `secondary` is outlined; `subtle` is a quiet filled button; `ghost` has no border or fill until
+ * hovered; `danger` destroys. Without a variant a button is outlined, like `secondary`.
  */
-export function Button({ variant, size, ...props }: ButtonProps & { variant?: 'primary' | 'secondary' | 'ghost' | 'danger'; size?: ControlSize }) {
-  return <button type="button" className="kui-button" data-variant={variant} data-size={size} {...props} />
+export type ButtonVariant = 'primary' | 'secondary' | 'subtle' | 'ghost' | 'danger'
+
+export type TesseraButtonProps = ComponentProps<'button'> & {
+  variant?: ButtonVariant
+  /** Without `size` a button keeps the editor chrome's 30px. */
+  size?: ControlSize
+  /** A square button holding only an icon; give it an `aria-label`. */
+  iconOnly?: boolean
+  /** Shows a spinner before the label and marks the button busy, while its action runs. */
+  loading?: boolean
 }
 
-export function IconButton({ icon: Icon, label, pressed, ...props }: ButtonProps & { icon: IconComponent; label: string; pressed?: boolean }) {
+/** A button. Its `className` adds to Tessera's, so a host can adjust one button's layout. */
+export function Button({ variant, size, iconOnly, loading, className, children, ...props }: TesseraButtonProps) {
   return (
-    <button type="button" className="kui-icon-button" aria-label={label} title={label} aria-pressed={pressed} {...props}>
+    <button
+      type="button"
+      className={joinClass('kui-button', className)}
+      data-variant={variant}
+      data-size={size}
+      data-icon-only={iconOnly || undefined}
+      aria-busy={loading || undefined}
+      {...props}
+    >
+      {loading ? <Spinner size={16} /> : null}
+      {children}
+    </button>
+  )
+}
+
+/** A spinning circle for work in progress; `label` names it for screen readers (otherwise it is decorative). */
+export function Spinner({ size = 16, label, className }: { size?: number; label?: string; className?: string }) {
+  return (
+    <LoaderCircle
+      className={joinClass('kui-spinner', className)}
+      size={size}
+      strokeWidth={ICON_STROKE}
+      role={label ? 'status' : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+    />
+  )
+}
+
+export function IconButton({ icon: Icon, label, pressed, className, ...props }: ButtonProps & { icon: IconComponent; label: string; pressed?: boolean }) {
+  return (
+    <button type="button" className={joinClass('kui-icon-button', className)} aria-label={label} title={label} aria-pressed={pressed} {...props}>
       <Icon size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
     </button>
   )
+}
+
+function joinClass(...names: (string | undefined | false)[]) {
+  return names.filter(Boolean).join(' ')
 }
 
 /* Ribbon */

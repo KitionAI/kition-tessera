@@ -4,11 +4,11 @@
   "props": []
  },
  "Button": {
-  "description": "A button. `primary` is the one main action (the theme's primary color); the default is the\noutlined secondary button (`secondary` names it); `ghost` has no border; `danger` destroys.\nWithout `size` it keeps the editor chrome's 30px.",
+  "description": "A button. Its `className` adds to Tessera's, so a host can adjust one button's layout.",
   "props": [
    {
     "name": "variant",
-    "type": "'primary' | 'secondary' | 'ghost' | 'danger'",
+    "type": "ButtonVariant",
     "required": false,
     "default": null,
     "doc": ""
@@ -18,7 +18,21 @@
     "type": "ControlSize",
     "required": false,
     "default": null,
-    "doc": ""
+    "doc": "Without `size` a button keeps the editor chrome's 30px."
+   },
+   {
+    "name": "iconOnly",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "A square button holding only an icon; give it an `aria-label`."
+   },
+   {
+    "name": "loading",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Shows a spinner before the label and marks the button busy, while its action runs."
    }
   ],
   "domProps": true
@@ -271,6 +285,67 @@
    {
     "name": "testId",
     "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Command": {
+  "description": "A searchable list of commands or choices (cmdk): type to filter, arrows and Enter to pick.",
+  "props": [],
+  "domProps": true
+ },
+ "CommandEmpty": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "CommandGroup": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "CommandInput": {
+  "description": "",
+  "props": [
+   {
+    "name": "wrapClassName",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "CommandItem": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "CommandList": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "CommandSeparator": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "CommandShortcut": {
+  "description": "A shortcut at the end of a command item.",
+  "props": [],
+  "domProps": true
+ },
+ "ConfirmProvider": {
+  "description": "Lets `useConfirm` ask from anywhere inside it; asks queue and show one at a time.",
+  "props": [
+   {
+    "name": "children",
+    "type": "ReactNode",
     "required": false,
     "default": null,
     "doc": ""
@@ -1236,6 +1311,65 @@
   "description": "",
   "props": []
  },
+ "Modal": {
+  "description": "A modal dialog. Controlled with `open` and `onOpenChange`; Escape and an outside press close it.",
+  "props": [],
+  "domProps": true
+ },
+ "ModalContent": {
+  "description": "The dialog's panel, over a dimmed page: 12px radius, a hairline, the modal shadow.",
+  "props": [
+   {
+    "name": "size",
+    "type": "ModalSize",
+    "required": false,
+    "default": "'lg'",
+    "doc": "Its widest: `xs` 320px to `4xl` 896px; `none` leaves the width to `className`."
+   },
+   {
+    "name": "hideClose",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "No close button in the corner (the footer has its own way out)."
+   },
+   {
+    "name": "dismissible",
+    "type": "boolean",
+    "required": false,
+    "default": "true",
+    "doc": "When false, an outside press does not close it (Escape still does)."
+   },
+   {
+    "name": "disableAutoFocus",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Keeps focus where it was instead of moving it into the dialog when it opens."
+   }
+  ],
+  "domProps": true
+ },
+ "ModalDescription": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
+ "ModalFooter": {
+  "description": "The actions at the bottom of a modal, right-aligned; full width on a narrow window.",
+  "props": [],
+  "domProps": true
+ },
+ "ModalHeader": {
+  "description": "The title and description at the top of a modal.",
+  "props": [],
+  "domProps": true
+ },
+ "ModalTitle": {
+  "description": "",
+  "props": [],
+  "domProps": true
+ },
  "NumberField": {
   "description": "",
   "props": [
@@ -1495,6 +1629,16 @@
     "doc": ""
    }
   ],
+  "domProps": true
+ },
+ "Popover": {
+  "description": "Floating content anchored to a trigger: filters, pickers, small forms.",
+  "props": [],
+  "domProps": true
+ },
+ "PopoverContent": {
+  "description": "The popover's panel: 12px radius, a hairline, the floating shadow; 288px wide unless `className` says otherwise.",
+  "props": [],
   "domProps": true
  },
  "PreviewDialog": {
@@ -1866,6 +2010,102 @@
   ],
   "domProps": true
  },
+ "Sheet": {
+  "description": "A panel that slides in from the right over a dimmed page, for editing one thing beside the work.",
+  "props": [
+   {
+    "name": "open",
+    "type": "boolean",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onClose",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "footer",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Actions at the bottom, right-aligned."
+   },
+   {
+    "name": "dirty",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": "With unsaved changes, closing (Escape, the backdrop, the close button) calls `onRequestClose` instead."
+   },
+   {
+    "name": "onRequestClose",
+    "type": "() => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "width",
+    "type": "number",
+    "required": false,
+    "default": "400",
+    "doc": "Its width in pixels."
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": "'sheet'",
+    "doc": "Test id of the sheet; its parts take `${testId}-backdrop`, `-header`, `-close`, `-footer`."
+   }
+  ],
+  "domProps": false
+ },
+ "Spinner": {
+  "description": "A spinning circle for work in progress; `label` names it for screen readers (otherwise it is decorative).",
+  "props": [
+   {
+    "name": "size",
+    "type": "number",
+    "required": false,
+    "default": "16",
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "StatusBar": {
   "description": "",
   "props": [
@@ -1909,6 +2149,11 @@
    }
   ],
   "domProps": false
+ },
+ "Switch": {
+  "description": "An on/off switch for a setting that applies at once. Controlled with `checked` and `onCheckedChange`.",
+  "props": [],
+  "domProps": true
  },
  "TableSizePicker": {
   "description": "Choosing a table's size by pointing at a grid of cells (Insert > Table).",

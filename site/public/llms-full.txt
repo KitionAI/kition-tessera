@@ -141,6 +141,8 @@ When not to:
 
 ### Example: Variants
 
+Secondary is outlined; subtle is a quiet filled button; a disabled filled button turns muted, not faint.
+
 ```tsx
 import { Button } from '@kition/tessera'
 
@@ -149,9 +151,10 @@ export default function Demo() {
     <div className="demo-row">
       <Button variant="primary" size="md">Save</Button>
       <Button variant="secondary" size="md">Cancel</Button>
+      <Button variant="subtle" size="md">Duplicate</Button>
       <Button variant="ghost" size="md">More</Button>
       <Button variant="danger" size="md">Delete</Button>
-      <Button size="md" disabled>Disabled</Button>
+      <Button variant="primary" size="md" disabled>Disabled</Button>
     </div>
   )
 }
@@ -167,10 +170,48 @@ import { Button } from '@kition/tessera'
 export default function Demo() {
   return (
     <div className="demo-row">
-      <Button variant="primary" size="sm">Small (28)</Button>
+      <Button variant="primary" size="sm">Small (32)</Button>
       <Button variant="primary" size="md">Medium (36)</Button>
-      <Button variant="primary" size="lg">Large (44)</Button>
+      <Button variant="primary" size="lg">Large (40)</Button>
       <Button>Editor chrome (30)</Button>
+    </div>
+  )
+}
+```
+
+### Example: Loading, icons, icon only
+
+Icons inside a button draw at 16px; an icon-only button is square and needs an aria-label.
+
+```tsx
+import { useState } from 'react'
+import { Button } from '@kition/tessera'
+import { PlusIcon, SettingsIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [saving, setSaving] = useState(false)
+  return (
+    <div className="demo-row">
+      <Button
+        variant="primary"
+        size="md"
+        loading={saving}
+        onClick={() => {
+          setSaving(true)
+          setTimeout(() => setSaving(false), 1500)
+        }}
+      >
+        {saving ? 'Saving…' : 'Save'}
+      </Button>
+      <Button variant="secondary" size="md">
+        <PlusIcon /> New record
+      </Button>
+      <Button variant="ghost" size="md" iconOnly aria-label="Settings">
+        <SettingsIcon />
+      </Button>
+      <Button variant="secondary" size="sm" iconOnly aria-label="Add">
+        <PlusIcon />
+      </Button>
     </div>
   )
 }
@@ -178,16 +219,61 @@ export default function Demo() {
 
 ### Button props
 
-A button. `primary` is the one main action (the theme's primary color); the default is the
-outlined secondary button (`secondary` names it); `ghost` has no border; `danger` destroys.
-Without `size` it keeps the editor chrome's 30px.
+A button. Its `className` adds to Tessera's, so a host can adjust one button's layout.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `variant` | `'primary' \| 'secondary' \| 'ghost' \| 'danger'` |  |  |
-| `size` | `ControlSize` |  |  |
+| `variant` | `ButtonVariant` |  |  |
+| `size` | `ControlSize` |  | Without `size` a button keeps the editor chrome's 30px. |
+| `iconOnly` | `boolean` |  | A square button holding only an icon; give it an `aria-label`. |
+| `loading` | `boolean` |  | Shows a spinner before the label and marks the button busy, while its action runs. |
 
 Also takes the attributes of its HTML element.
+
+## Spinner
+
+General. A spinning circle for work in progress.
+
+```ts
+import { Spinner } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Inside a button while its action runs (Button `loading`).
+- Next to a status that is still updating.
+
+When not to:
+
+- Long work with known progress: show the progress.
+
+### Example: Sizes and a label
+
+```tsx
+import { Spinner } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <Spinner />
+      <Spinner size={24} label="Loading the workspace" />
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--kit-text-muted)' }}>
+        <Spinner size={14} /> Syncing…
+      </span>
+    </div>
+  )
+}
+```
+
+### Spinner props
+
+A spinning circle for work in progress; `label` names it for screen readers (otherwise it is decorative).
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `number` | `16` |  |
+| `label` | `string` |  |  |
+| `className` | `string` |  |  |
 
 ## IconButton
 
@@ -457,6 +543,49 @@ drawn as Tessera's control. Children are `<option>`s.
 | --- | --- | --- | --- |
 | `size` | `ControlSize` | `'sm'` |  |
 | `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+## Switch
+
+Forms. An on/off switch for a setting that applies at once.
+
+```ts
+import { Switch } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A setting that takes effect without a Save.
+
+When not to:
+
+- A choice saved with a form: use Checkbox.
+
+### Example: On, off, disabled
+
+```tsx
+import { useState } from 'react'
+import { Switch } from '@kition/tessera'
+
+export default function Demo() {
+  const [sync, setSync] = useState(true)
+  return (
+    <div className="demo-stack">
+      <label style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14 }}>
+        <Switch checked={sync} onCheckedChange={setSync} aria-label="Sync across devices" /> Sync across devices: {sync ? 'on' : 'off'}
+      </label>
+      <label style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14, color: 'var(--kit-text-muted)' }}>
+        <Switch disabled aria-label="Beta features" /> Beta features (unavailable)
+      </label>
+    </div>
+  )
+}
+```
+
+### Switch props
+
+An on/off switch for a setting that applies at once. Controlled with `checked` and `onCheckedChange`.
 
 Also takes the attributes of its HTML element.
 
@@ -915,6 +1044,373 @@ export default function Demo() {
 ```
 
 ### Toaster props
+
+## Modal
+
+Menus and overlays. A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
+
+```ts
+import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Confirming details or collecting a few values in an app (rename, share, create).
+
+When not to:
+
+- A kit tool’s settings: use Dialog.
+- Editing beside the work: use Sheet.
+
+### Example: Rename
+
+```tsx
+import { useState } from 'react'
+import { Button, Field, Modal, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, TextInput } from '@kition/tessera'
+
+export default function Demo() {
+  const [open, setOpen] = useState(false)
+  const [name, setName] = useState('Quarterly plan')
+  return (
+    <>
+      <Button variant="secondary" size="md" onClick={() => setOpen(true)}>Rename…</Button>
+      <Modal open={open} onOpenChange={setOpen}>
+        <ModalContent size="sm">
+          <ModalHeader>
+            <ModalTitle>Rename document</ModalTitle>
+            <ModalDescription>The name shows in the tab and the file tree.</ModalDescription>
+          </ModalHeader>
+          <Field label="Name">{({ id }) => <TextInput id={id} size="lg" value={name} onChange={(event) => setName(event.target.value)} />}</Field>
+          <ModalFooter>
+            <Button variant="secondary" size="md" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button variant="primary" size="md" onClick={() => setOpen(false)}>Rename</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+```
+
+### Modal props
+
+A modal dialog. Controlled with `open` and `onOpenChange`; Escape and an outside press close it.
+
+Also takes the attributes of its HTML element.
+
+### ModalContent props
+
+The dialog's panel, over a dimmed page: 12px radius, a hairline, the modal shadow.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `ModalSize` | `'lg'` | Its widest: `xs` 320px to `4xl` 896px; `none` leaves the width to `className`. |
+| `hideClose` | `boolean` |  | No close button in the corner (the footer has its own way out). |
+| `dismissible` | `boolean` | `true` | When false, an outside press does not close it (Escape still does). |
+| `disableAutoFocus` | `boolean` |  | Keeps focus where it was instead of moving it into the dialog when it opens. |
+
+Also takes the attributes of its HTML element.
+
+### ModalHeader props
+
+The title and description at the top of a modal.
+
+Also takes the attributes of its HTML element.
+
+### ModalTitle props
+
+Also takes the attributes of its HTML element.
+
+### ModalDescription props
+
+Also takes the attributes of its HTML element.
+
+### ModalFooter props
+
+The actions at the bottom of a modal, right-aligned; full width on a narrow window.
+
+Also takes the attributes of its HTML element.
+
+## Popover
+
+Menus and overlays. Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
+
+```ts
+import { Popover, PopoverContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Filter, sort, and group controls of a table.
+- A picker under a button.
+
+When not to:
+
+- A list of commands: use MenuButton.
+
+### Example: A filter
+
+```tsx
+import { Button, Popover, PopoverContent, PopoverTrigger, Select, Switch } from '@kition/tessera'
+import { FunnelIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="secondary" size="sm">
+          <FunnelIcon /> Filter
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent align="start">
+        <div style={{ display: 'grid', gap: 12, padding: 14 }}>
+          <strong style={{ fontSize: 13 }}>Show records where</strong>
+          <Select size="md" defaultValue="open">
+            <option value="open">Status is Open</option>
+            <option value="done">Status is Done</option>
+          </Select>
+          <label style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 13 }}>
+            Include archived <Switch aria-label="Include archived" />
+          </label>
+        </div>
+      </PopoverContent>
+    </Popover>
+  )
+}
+```
+
+### Popover props
+
+Floating content anchored to a trigger: filters, pickers, small forms.
+
+Also takes the attributes of its HTML element.
+
+### PopoverContent props
+
+The popover's panel: 12px radius, a hairline, the floating shadow; 288px wide unless `className` says otherwise.
+
+Also takes the attributes of its HTML element.
+
+## Sheet
+
+Menus and overlays. A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes.
+
+```ts
+import { Sheet } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Editing a record’s field, a connection, a rule.
+
+When not to:
+
+- A quick question: use Modal or Confirm.
+
+### Example: Edit a field
+
+With unsaved changes, Escape, the backdrop, and the close button ask first.
+
+```tsx
+import { useState } from 'react'
+import { Button, Field, Sheet, TextInput } from '@kition/tessera'
+
+export default function Demo() {
+  const [open, setOpen] = useState(false)
+  const [label, setLabel] = useState('Status')
+  const [saved, setSaved] = useState('Status')
+  const dirty = label !== saved
+  return (
+    <>
+      <Button variant="secondary" size="md" onClick={() => setOpen(true)}>Edit field…</Button>
+      <Sheet
+        open={open}
+        title="Edit field"
+        dirty={dirty}
+        onRequestClose={() => {
+          if (window.confirm('Discard your changes?')) {
+            setLabel(saved)
+            setOpen(false)
+          }
+        }}
+        onClose={() => setOpen(false)}
+        footer={
+          <>
+            <Button variant="secondary" size="md" onClick={() => setOpen(false)}>Close</Button>
+            <Button variant="primary" size="md" disabled={!dirty} onClick={() => setSaved(label)}>Save</Button>
+          </>
+        }
+      >
+        <Field label="Field name">{({ id }) => <TextInput id={id} size="lg" value={label} onChange={(event) => setLabel(event.target.value)} />}</Field>
+      </Sheet>
+    </>
+  )
+}
+```
+
+### Sheet props
+
+A panel that slides in from the right over a dimmed page, for editing one thing beside the work.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `open` (required) | `boolean` |  |  |
+| `onClose` (required) | `() => void` |  |  |
+| `title` (required) | `ReactNode` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+| `footer` | `ReactNode` |  | Actions at the bottom, right-aligned. |
+| `dirty` | `boolean` | `false` | With unsaved changes, closing (Escape, the backdrop, the close button) calls `onRequestClose` instead. |
+| `onRequestClose` | `() => void` |  |  |
+| `width` | `number` | `400` | Its width in pixels. |
+| `testId` | `string` | `'sheet'` | Test id of the sheet; its parts take `${testId}-backdrop`, `-header`, `-close`, `-footer`. |
+
+## Confirm
+
+Menus and overlays. `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
+
+```ts
+import { ConfirmProvider } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Before deleting or discarding.
+
+When not to:
+
+- Questions with more than two answers: use Modal.
+
+### Example: Delete
+
+A danger confirm puts focus on Cancel.
+
+```tsx
+import { useState } from 'react'
+import { Button, ConfirmProvider, useConfirm } from '@kition/tessera'
+
+function DeleteButton() {
+  const confirm = useConfirm()
+  const [result, setResult] = useState('')
+  return (
+    <div className="demo-row">
+      <Button
+        variant="danger"
+        size="md"
+        onClick={async () => {
+          const ok = await confirm({ title: 'Delete this table?', message: 'Its 240 records go to the trash for 30 days.', confirmLabel: 'Delete', variant: 'danger' })
+          setResult(ok ? 'Deleted' : 'Kept')
+        }}
+      >
+        Delete table
+      </Button>
+      <span>{result}</span>
+    </div>
+  )
+}
+
+export default function Demo() {
+  return (
+    <ConfirmProvider>
+      <DeleteButton />
+    </ConfirmProvider>
+  )
+}
+```
+
+### ConfirmProvider props
+
+Lets `useConfirm` ask from anywhere inside it; asks queue and show one at a time.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` |  |  |
+
+## Command
+
+Menus and overlays. A searchable list of commands or choices: type to filter, arrows and Enter to pick.
+
+```ts
+import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A command palette, a searchable picker inside a popover.
+
+### Example: A command palette
+
+```tsx
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, toast } from '@kition/tessera'
+import { FileTextIcon, SettingsIcon, TableIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const run = (name: string) => toast('info', name)
+  return (
+    <div style={{ width: 'min(100%, 420px)', border: '1px solid var(--kit-border)', borderRadius: 12, background: 'var(--kit-surface)' }}>
+      <Command>
+        <CommandInput placeholder="Type a command…" />
+        <CommandList>
+          <CommandEmpty>No matching command.</CommandEmpty>
+          <CommandGroup heading="Create">
+            <CommandItem onSelect={() => run('New document')}>
+              <FileTextIcon size={16} /> New document <CommandShortcut>⌘N</CommandShortcut>
+            </CommandItem>
+            <CommandItem onSelect={() => run('New table')}>
+              <TableIcon size={16} /> New table
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="App">
+            <CommandItem onSelect={() => run('Settings')}>
+              <SettingsIcon size={16} /> Settings <CommandShortcut>⌘,</CommandShortcut>
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </div>
+  )
+}
+```
+
+### Command props
+
+A searchable list of commands or choices (cmdk): type to filter, arrows and Enter to pick.
+
+Also takes the attributes of its HTML element.
+
+### CommandInput props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `wrapClassName` | `string` |  |  |
+
+Also takes the attributes of its HTML element.
+
+### CommandList props
+
+Also takes the attributes of its HTML element.
+
+### CommandEmpty props
+
+Also takes the attributes of its HTML element.
+
+### CommandGroup props
+
+Also takes the attributes of its HTML element.
+
+### CommandItem props
+
+Also takes the attributes of its HTML element.
+
+### CommandSeparator props
+
+Also takes the attributes of its HTML element.
+
+### CommandShortcut props
+
+A shortcut at the end of a command item.
+
+Also takes the attributes of its HTML element.
 
 ## DropPanel
 

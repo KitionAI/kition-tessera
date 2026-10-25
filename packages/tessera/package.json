@@ -17,11 +17,13 @@
   ],
   "dependencies": {
     "@kition/tessera-icons": "workspace:*",
-    "@kition/tessera-tokens": "workspace:*"
+    "@kition/tessera-tokens": "workspace:*",
+    "cmdk": "1.1.1",
+    "radix-ui": "1.4.3"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": ">=19",
+    "react-dom": ">=19"
   },
   "//": "./workspaceTree is the frame tree alone, without React, for plain-Node tests (a kit's node --test): Node strips its types because a linked checkout is outside node_modules."
 }

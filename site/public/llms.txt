@@ -12,6 +12,7 @@
 ## General
 
 - [Button](/#docs/button): Starts an action. One primary button per view; the rest secondary or ghost.
+- [Spinner](/#docs/spinner): A spinning circle for work in progress.
 - [IconButton](/#docs/icon-button): An icon-only button with an accessible label; `pressed` makes it a toggle.
 - [Card](/#docs/card): A product card: 12px radius, a hairline, a light shadow.
 - [Disclosure](/#docs/disclosure): A section that opens and closes under its title.
@@ -22,6 +23,7 @@
 - [PasswordInput](/#docs/password-input): A password field with a show and hide button outside the tab order.
 - [Textarea](/#docs/textarea): Multi-line text.
 - [Select](/#docs/select): A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
+- [Switch](/#docs/switch): An on/off switch for a setting that applies at once.
 - [Field](/#docs/field): A label, a control, and its hint or error, wired for screen readers.
 - [NumberField](/#docs/number-field): A number with a label you drag to scrub, arrows to step, and units.
 - [Bar controls](/#docs/bar-controls): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
@@ -33,6 +35,11 @@
 - [Dialog](/#docs/dialog): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
 - [PreviewDialog](/#docs/preview-dialog): A dialog whose values preview live in the document: the kit supplies begin, update and end.
 - [Toast](/#docs/toast): A short notice in the corner. Render Toaster once; call toast() anywhere.
+- [Modal](/#docs/modal): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
+- [Popover](/#docs/popover): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
+- [Sheet](/#docs/sheet): A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes.
+- [Confirm](/#docs/confirm): `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
+- [Command](/#docs/command): A searchable list of commands or choices: type to filter, arrows and Enter to pick.
 - [DropPanel](/#docs/drop-panel): A popover anchored to an element, closing on a press outside or Escape.
 
 ## Editor chrome
