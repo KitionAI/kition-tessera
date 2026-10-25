@@ -130,6 +130,10 @@
       "family": "tool",
       "source": "svg:arc.svg"
     },
+    "array-path": {
+      "family": "tool",
+      "source": "svg:array-path.svg"
+    },
     "array-polar": {
       "family": "tool",
       "source": "svg:array-polar.svg"
@@ -274,6 +278,10 @@
       "family": "ui",
       "source": "lucide:braces"
     },
+    "break-line": {
+      "family": "tool",
+      "source": "svg:break-line.svg"
+    },
     "briefcase": {
       "family": "ui",
       "source": "lucide:briefcase"
@@ -333,6 +341,10 @@
     "case-upper": {
       "family": "ui",
       "source": "lucide:case-upper"
+    },
+    "center-line": {
+      "family": "tool",
+      "source": "svg:center-line.svg"
     },
     "center-mark": {
       "family": "tool",
@@ -594,6 +606,10 @@
       "family": "tool",
       "source": "svg:constraint-vertical.svg"
     },
+    "construction-line": {
+      "family": "tool",
+      "source": "svg:construction-line.svg"
+    },
     "contact": {
       "family": "ui",
       "source": "lucide:contact"
@@ -733,6 +749,10 @@
     "earth": {
       "family": "ui",
       "source": "lucide:earth"
+    },
+    "ellipse": {
+      "family": "tool",
+      "source": "svg:ellipse.svg"
     },
     "ellipsis": {
       "family": "ui",
@@ -1094,6 +1114,10 @@
       "family": "ui",
       "source": "lucide:lightbulb"
     },
+    "line-segment": {
+      "family": "tool",
+      "source": "svg:line-segment.svg"
+    },
     "linetype": {
       "family": "tool",
       "source": "svg:linetype.svg"
@@ -1309,6 +1333,10 @@
     "notebook-text": {
       "family": "ui",
       "source": "lucide:notebook-text"
+    },
+    "offset": {
+      "family": "tool",
+      "source": "svg:offset.svg"
     },
     "omega": {
       "family": "ui",
