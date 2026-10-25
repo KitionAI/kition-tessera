@@ -78,6 +78,12 @@ describe('PasswordInput', () => {
     )
     expect(out.querySelector('button')!.getAttribute('aria-label')).toBe(TESSERA_CATALOGS['zh-CN'].passwordShow)
   })
+
+  it('puts className on the field, like TextInput, and wrapperClassName on the box around it', () => {
+    const out = render(<PasswordInput className="field-look" wrapperClassName="row-width" />)
+    expect(out.querySelector('input')!.className).toBe('kui-input field-look')
+    expect(out.querySelector('.kui-password')!.className).toBe('kui-password row-width')
+  })
 })
 
 describe('Select and Textarea', () => {

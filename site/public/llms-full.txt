@@ -463,12 +463,14 @@ export default function Demo() {
 
 ### PasswordInput props
 
-A password field with a show/hide button; the button keeps out of the tab order.
+A password field with a show/hide button; the button keeps out of the tab order. `className`
+goes on the field itself, as on TextInput.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `size` | `ControlSize` | `'sm'` |  |
 | `invalid` | `boolean` |  |  |
+| `wrapperClassName` | `string` |  | Classes for the box around the field and its show/hide button (layout: width, margins). |
 
 Also takes the attributes of its HTML element.
 

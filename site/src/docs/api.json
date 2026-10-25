@@ -1612,7 +1612,7 @@
   "domProps": false
  },
  "PasswordInput": {
-  "description": "A password field with a show/hide button; the button keeps out of the tab order.",
+  "description": "A password field with a show/hide button; the button keeps out of the tab order. `className`\ngoes on the field itself, as on TextInput.",
   "props": [
    {
     "name": "size",
@@ -1627,6 +1627,13 @@
     "required": false,
     "default": null,
     "doc": ""
+   },
+   {
+    "name": "wrapperClassName",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "Classes for the box around the field and its show/hide button (layout: width, margins)."
    }
   ],
   "domProps": true

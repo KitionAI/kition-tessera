@@ -18,17 +18,23 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function T
   return <input ref={ref} className={join('kui-input', className)} data-size={size} aria-invalid={invalid || undefined} {...props} />
 })
 
-export type PasswordInputProps = Omit<TextInputProps, 'type'>
+export type PasswordInputProps = Omit<TextInputProps, 'type'> & {
+  /** Classes for the box around the field and its show/hide button (layout: width, margins). */
+  wrapperClassName?: string
+}
 
-/** A password field with a show/hide button; the button keeps out of the tab order. */
-export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(function PasswordInput({ size = 'sm', className, ...props }, ref) {
+/**
+ * A password field with a show/hide button; the button keeps out of the tab order. `className`
+ * goes on the field itself, as on TextInput.
+ */
+export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(function PasswordInput({ size = 'sm', className, wrapperClassName, ...props }, ref) {
   const t = useStrings()
   const [visible, setVisible] = useState(false)
   const label = visible ? t('passwordHide') : t('passwordShow')
   const Icon = visible ? EyeOffIcon : EyeIcon
   return (
-    <span className={join('kui-password', className)} data-size={size}>
-      <TextInput ref={ref} size={size} {...props} type={visible ? 'text' : 'password'} />
+    <span className={join('kui-password', wrapperClassName)} data-size={size}>
+      <TextInput ref={ref} size={size} className={className} {...props} type={visible ? 'text' : 'password'} />
       <button type="button" className="kui-password-toggle" aria-label={label} title={label} tabIndex={-1} onClick={() => setVisible((value) => !value)}>
         <Icon size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
       </button>
