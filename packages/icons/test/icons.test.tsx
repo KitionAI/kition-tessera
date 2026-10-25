@@ -136,9 +136,19 @@ describe('react', () => {
   })
 
   it('draws an icon of your own', () => {
-    const Custom = createIcon({ name: 'custom', family: 'tool', paths: ['M1 1L2 2'], fills: ['M3 3h1v1h-1z'] })
+    const Custom = createIcon({ name: 'custom', family: 'tool', paths: ['M1 1L2 2'], fills: ['M3 3h1v1h-1z'], accents: ['M5 5h4v4h-4z'] })
     const html = renderToStaticMarkup(<Custom color="#5645d4" />)
     expect(html).toContain('d="M1 1L2 2"')
     expect(html).toContain('fill="#5645d4"')
+    // The accent sits first (under the strokes), in the skin's accent at 25%.
+    expect(html.indexOf('M5 5h4v4h-4z')).toBeLessThan(html.indexOf('M1 1L2 2'))
+    expect(html).toContain('fill="var(--kit-icon-accent, var(--kit-primary, currentColor))" fill-opacity="0.25" stroke="none"')
+    expect(renderToStaticMarkup(<Custom accent={false} />)).not.toContain('M5 5h4v4h-4z')
+  })
+
+  it('writes accents into SVG markup, or leaves them out', () => {
+    const icon = { name: 'custom', family: 'tool' as const, paths: ['M1 1L2 2'], fills: [], accents: ['M5 5h4v4h-4z'] }
+    expect(toSvg(icon, { accent: '#00ff00' })).toContain('<path d="M5 5h4v4h-4z" fill="#00ff00" fill-opacity="0.25" stroke="none"/>')
+    expect(toSvg(icon, { accent: false })).not.toContain('M5 5h4v4h-4z')
   })
 })

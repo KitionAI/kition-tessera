@@ -66,6 +66,58 @@
       "family": "ui",
       "source": "lucide:align-vertical-justify-start"
     },
+    "animation-appear": {
+      "family": "tool",
+      "source": "svg:animation-appear.svg"
+    },
+    "animation-fade": {
+      "family": "tool",
+      "source": "svg:animation-fade.svg"
+    },
+    "animation-fade-out": {
+      "family": "tool",
+      "source": "svg:animation-fade-out.svg"
+    },
+    "animation-float-in": {
+      "family": "tool",
+      "source": "svg:animation-float-in.svg"
+    },
+    "animation-fly-in": {
+      "family": "tool",
+      "source": "svg:animation-fly-in.svg"
+    },
+    "animation-fly-out": {
+      "family": "tool",
+      "source": "svg:animation-fly-out.svg"
+    },
+    "animation-grow-shrink": {
+      "family": "tool",
+      "source": "svg:animation-grow-shrink.svg"
+    },
+    "animation-path": {
+      "family": "tool",
+      "source": "svg:animation-path.svg"
+    },
+    "animation-pulse": {
+      "family": "tool",
+      "source": "svg:animation-pulse.svg"
+    },
+    "animation-spin": {
+      "family": "tool",
+      "source": "svg:animation-spin.svg"
+    },
+    "animation-split": {
+      "family": "tool",
+      "source": "svg:animation-split.svg"
+    },
+    "animation-wipe": {
+      "family": "tool",
+      "source": "svg:animation-wipe.svg"
+    },
+    "animation-zoom": {
+      "family": "tool",
+      "source": "svg:animation-zoom.svg"
+    },
     "app-window": {
       "family": "ui",
       "source": "lucide:app-window"
@@ -1537,6 +1589,78 @@
     "timer": {
       "family": "ui",
       "source": "lucide:timer"
+    },
+    "transition-cover": {
+      "family": "tool",
+      "source": "svg:transition-cover.svg"
+    },
+    "transition-curtains": {
+      "family": "tool",
+      "source": "svg:transition-curtains.svg"
+    },
+    "transition-cut": {
+      "family": "tool",
+      "source": "svg:transition-cut.svg"
+    },
+    "transition-drape": {
+      "family": "tool",
+      "source": "svg:transition-drape.svg"
+    },
+    "transition-fade": {
+      "family": "tool",
+      "source": "svg:transition-fade.svg"
+    },
+    "transition-fall-over": {
+      "family": "tool",
+      "source": "svg:transition-fall-over.svg"
+    },
+    "transition-flash": {
+      "family": "tool",
+      "source": "svg:transition-flash.svg"
+    },
+    "transition-morph": {
+      "family": "tool",
+      "source": "svg:transition-morph.svg"
+    },
+    "transition-none": {
+      "family": "tool",
+      "source": "svg:transition-none.svg"
+    },
+    "transition-prestige": {
+      "family": "tool",
+      "source": "svg:transition-prestige.svg"
+    },
+    "transition-push": {
+      "family": "tool",
+      "source": "svg:transition-push.svg"
+    },
+    "transition-random-bars": {
+      "family": "tool",
+      "source": "svg:transition-random-bars.svg"
+    },
+    "transition-reveal": {
+      "family": "tool",
+      "source": "svg:transition-reveal.svg"
+    },
+    "transition-shape": {
+      "family": "tool",
+      "source": "svg:transition-shape.svg"
+    },
+    "transition-split": {
+      "family": "tool",
+      "source": "svg:transition-split.svg"
+    },
+    "transition-uncover": {
+      "family": "tool",
+      "source": "svg:transition-uncover.svg"
+    },
+    "transition-wind": {
+      "family": "tool",
+      "source": "svg:transition-wind.svg"
+    },
+    "transition-wipe": {
+      "family": "tool",
+      "source": "svg:transition-wipe.svg"
     },
     "trash": {
       "family": "ui",

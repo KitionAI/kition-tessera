@@ -11,7 +11,12 @@ pub struct Icon {
     pub name: &'static str,
     pub paths: &'static [&'static str],
     pub fills: &'static [&'static str],
+    /// Accent areas (tool icons): filled with the skin's accent at [`ACCENT_OPACITY`], under the strokes.
+    pub accents: &'static [&'static str],
 }
+
+/// How strongly accent areas are filled.
+pub const ACCENT_OPACITY: f32 = 0.25;
 
 /// The grid every icon is drawn on.
 pub const GRID: f32 = 24.0;
@@ -35,6 +40,13 @@ impl Icon {
         let mut out = format!(
             "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{size}\" height=\"{size}\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{color}\" stroke-width=\"{STROKE}\" stroke-linecap=\"round\" stroke-linejoin=\"round\">"
         );
+        for path in self.accents {
+            out.push_str("<path d=\"");
+            out.push_str(path);
+            out.push_str("\" fill=\"");
+            out.push_str(&color);
+            out.push_str(&format!("\" fill-opacity=\"{ACCENT_OPACITY}\" stroke=\"none\"/>"));
+        }
         for path in self.paths {
             out.push_str("<path d=\"");
             out.push_str(path);

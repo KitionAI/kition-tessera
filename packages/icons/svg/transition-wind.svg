@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Wind: the slide blown in (slide)</title>
+  <path d="M13 7h6a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M13 7h6a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"/>
+  <path d="M3 9h5a1.5 1.5 0 1 0 -1.5-1.5"/>
+  <path d="M3 12h6"/>
+  <path d="M3 15h4a1.5 1.5 0 1 1 -1.5 1.5"/>
+</svg>

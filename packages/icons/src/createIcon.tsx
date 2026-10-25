@@ -1,9 +1,12 @@
 import { forwardRef, type ComponentType, type CSSProperties, type SVGProps } from 'react'
 import { gridStroke } from './index'
-import { DEFAULT_STROKE, type IconData, type IconStyle } from './types'
+import { ACCENT_OPACITY, DEFAULT_STROKE, type IconData, type IconStyle } from './types'
 
 /** Props of a Tessera icon component. They match lucide-react's, so components can switch without call-site changes. */
 export type IconProps = Omit<SVGProps<SVGSVGElement>, 'ref' | 'color' | 'strokeWidth'> & Omit<IconStyle, 'size' | 'strokeWidth'> & { size?: number | string; strokeWidth?: number | string }
+
+/** The skin's icon accent (KHP-0007 `--kit-icon-accent`), then its primary. */
+const ACCENT = 'var(--kit-icon-accent, var(--kit-primary, currentColor))'
 
 export type TesseraIcon = ReturnType<typeof createIcon>
 
@@ -23,7 +26,7 @@ export type IconComponent = ComponentType<{
 /** A React component that draws `icon`. */
 export function createIcon(icon: IconData) {
   const Component = forwardRef<SVGSVGElement, IconProps>(function TesseraIcon(
-    { size = 24, color = 'currentColor', strokeWidth = DEFAULT_STROKE, absoluteStrokeWidth = false, className, children, ...rest },
+    { size = 24, color = 'currentColor', strokeWidth = DEFAULT_STROKE, absoluteStrokeWidth = false, accent, className, children, ...rest },
     ref,
   ) {
     const px = Number(size)
@@ -43,6 +46,9 @@ export function createIcon(icon: IconData) {
         aria-hidden={rest['aria-label'] || rest['aria-labelledby'] ? undefined : true}
         {...rest}
       >
+        {accent === false
+          ? null
+          : icon.accents.map((d, i) => <path key={`accent-${i}`} d={d} fill={accent ?? ACCENT} fillOpacity={ACCENT_OPACITY} stroke="none" />)}
         {icon.paths.map((d, i) => (
           <path key={i} d={d} />
         ))}

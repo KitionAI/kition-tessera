@@ -4,6 +4,7 @@ import { ComponentsPage } from './ComponentsPage'
 import { HomePage } from './home/HomePage'
 import { Landing } from './home/Landing'
 import { IconsPage } from './IconsPage'
+import { ReviewPage } from './ReviewPage'
 import { StyleLab } from './StyleLab'
 import { TokensPage } from './TokensPage'
 
@@ -11,6 +12,7 @@ const PAGES = [
   { id: 'home', label: 'Overview' },
   { id: 'icons', label: 'Icons' },
   { id: 'styles', label: 'Icon style lab' },
+  { id: 'review', label: 'Redraw review' },
   { id: 'tokens', label: 'Tokens & skins' },
   { id: 'components', label: 'Components' },
   { id: 'galaxy', label: 'Galaxy' },
@@ -79,7 +81,7 @@ export function App() {
         <Landing skin={skin} />
       ) : (
         <main className="site-main">
-          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
+          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'review' ? <ReviewPage /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
         </main>
       )}
     </div>

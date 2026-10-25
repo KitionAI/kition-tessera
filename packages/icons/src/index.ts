@@ -3,10 +3,10 @@
  * so the same list draws in React (`@kition/tessera-icons/react`), on a canvas (`drawIcon`, which
  * works in workers with OffscreenCanvas), as SVG markup (`toSvg`), and in Rust (`tessera-icons`).
  */
-import { DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types'
+import { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types'
 
 export * from './generated/icons'
-export { DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types'
+export { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types'
 
 /** The stroke width in grid units: `absoluteStrokeWidth` keeps the stroke `strokeWidth` px wide at any size. */
 export function gridStroke({ size = ICON_GRID, strokeWidth = DEFAULT_STROKE, absoluteStrokeWidth = false }: IconStyle = {}) {
@@ -19,7 +19,10 @@ const escapeAttr = (value: string) => value.replace(/&/g, '&amp;').replace(/"/g,
 export function toSvg(icon: IconData, style: IconStyle = {}) {
   const size = style.size ?? ICON_GRID
   const color = escapeAttr(style.color ?? 'currentColor')
+  const accent = style.accent === false ? null : escapeAttr(style.accent ?? style.color ?? 'currentColor')
+  const accents = accent ? icon.accents.map((d) => `<path d="${escapeAttr(d)}" fill="${accent}" fill-opacity="${ACCENT_OPACITY}" stroke="none"/>`).join('') : ''
   const paths =
+    accents +
     icon.paths.map((d) => `<path d="${escapeAttr(d)}"/>`).join('') + icon.fills.map((d) => `<path d="${escapeAttr(d)}" fill="${color}"/>`).join('')
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" ` +
@@ -27,15 +30,15 @@ export function toSvg(icon: IconData, style: IconStyle = {}) {
   )
 }
 
-type Canvas2D = Pick<CanvasRenderingContext2D, 'save' | 'restore' | 'translate' | 'scale' | 'stroke' | 'fill' | 'lineWidth' | 'lineCap' | 'lineJoin' | 'strokeStyle' | 'fillStyle'>
+type Canvas2D = Pick<CanvasRenderingContext2D, 'save' | 'restore' | 'translate' | 'scale' | 'stroke' | 'fill' | 'lineWidth' | 'lineCap' | 'lineJoin' | 'strokeStyle' | 'fillStyle' | 'globalAlpha'>
 
-const cache = new WeakMap<IconData, { paths: Path2D[]; fills: Path2D[] }>()
+const cache = new WeakMap<IconData, { paths: Path2D[]; fills: Path2D[]; accents: Path2D[] }>()
 
 /** Strokes the icon on a 2D canvas with its top-left corner at (x, y). `color` defaults to black, as canvases have no `currentColor`. */
 export function drawIcon(ctx: Canvas2D, icon: IconData, x: number, y: number, style: IconStyle = {}) {
   let shapes = cache.get(icon)
   if (!shapes) {
-    shapes = { paths: icon.paths.map((d) => new Path2D(d)), fills: icon.fills.map((d) => new Path2D(d)) }
+    shapes = { paths: icon.paths.map((d) => new Path2D(d)), fills: icon.fills.map((d) => new Path2D(d)), accents: icon.accents.map((d) => new Path2D(d)) }
     cache.set(icon, shapes)
   }
   const size = style.size ?? ICON_GRID
@@ -46,6 +49,12 @@ export function drawIcon(ctx: Canvas2D, icon: IconData, x: number, y: number, st
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   ctx.strokeStyle = style.color ?? '#000000'
+  if (style.accent !== false && shapes.accents.length > 0) {
+    ctx.fillStyle = style.accent ?? style.color ?? '#000000'
+    ctx.globalAlpha *= ACCENT_OPACITY
+    for (const path of shapes.accents) ctx.fill(path)
+    ctx.globalAlpha /= ACCENT_OPACITY
+  }
   ctx.fillStyle = style.color ?? '#000000'
   for (const path of shapes.paths) ctx.stroke(path)
   for (const path of shapes.fills) {

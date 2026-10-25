@@ -22,7 +22,7 @@ if (lucide.version !== manifest.lucide) throw new Error(`icons.json pins lucide 
 const pascal = (name) => name.split('-').map((part) => part[0].toUpperCase() + part.slice(1)).join('')
 const snake = (name) => name.replace(/-/g, '_').toUpperCase()
 
-/** @type {{ name: string, family: string, paths: string[], fills: string[], lucide: string[] }[]} */
+/** @type {{ name: string, family: string, paths: string[], fills: string[], accents: string[], lucide: string[] }[]} */
 const icons = []
 for (const [name, entry] of Object.entries(manifest.icons)) {
   if (!/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/.test(name)) throw new Error(`${name}: names are lowercase kebab-case and start with a letter`)
@@ -33,7 +33,7 @@ for (const [name, entry] of Object.entries(manifest.icons)) {
   if (kind === 'lucide') {
     const nodes = lucide.nodes.get(ref)
     if (!nodes) throw new Error(`${name}: lucide ${lucide.version} has no ${ref}`)
-    shapes = toPaths(nodes)
+    shapes = { ...toPaths(nodes), accents: [] }
     lucideNames = lucide.exportsOf.get(ref) ?? []
   } else if (kind === 'svg') {
     shapes = svgPaths(readFileSync(join(pkg, 'svg', ref), 'utf8'), name)
@@ -50,19 +50,24 @@ for (const [label, ids] of [
   if (new Set(ids).size !== ids.length) throw new Error(`two icons share a ${label} identifier`)
 }
 
-/** A Tessera SVG drawing (24 × 24, `<path>` elements only; `fill="currentColor"` marks a filled one) as paths and fills. */
+/**
+ * A Tessera SVG drawing (24 × 24, `<path>` elements only) as paths, fills, and accents:
+ * `fill="currentColor"` marks a filled mark, `data-accent="true"` an accent area (filled with the
+ * skin's accent under the strokes, never stroked).
+ */
 function svgPaths(svg, name) {
   if (!/viewBox="0 0 24 24"/.test(svg)) throw new Error(`${name}: drawings use viewBox="0 0 24 24"`)
   if (/<(circle|rect|line|polyline|polygon|ellipse|g|use)\b/.test(svg)) throw new Error(`${name}: convert shapes to paths`)
   const paths = []
   const fills = []
+  const accents = []
   for (const [element] of svg.matchAll(/<path\b[^>]*>/g)) {
     const d = /\sd="([^"]+)"/.exec(element)?.[1]
     if (!d) throw new Error(`${name}: a path without d`)
-    ;(/\sfill="currentColor"/.test(element) ? fills : paths).push(d)
+    ;(/\sdata-accent="true"/.test(element) ? accents : /\sfill="currentColor"/.test(element) ? fills : paths).push(d)
   }
   if (paths.length + fills.length === 0) throw new Error(`${name}: no paths`)
-  return { paths, fills }
+  return { paths, fills, accents }
 }
 
 const kitFiles = readdirSync(join(pkg, 'kit')).filter((file) => file.endsWith('.svg'))
@@ -79,7 +84,7 @@ const iconsTs = [
   '',
   "import type { IconData } from '../types'",
   '',
-  ...icons.map((icon) => `export const ${pascal(icon.name)}: IconData = { name: ${js(icon.name)}, family: ${js(icon.family)}, paths: ${js(icon.paths)}, fills: ${js(icon.fills)} }`),
+  ...icons.map((icon) => `export const ${pascal(icon.name)}: IconData = { name: ${js(icon.name)}, family: ${js(icon.family)}, paths: ${js(icon.paths)}, fills: ${js(icon.fills)}, accents: ${js(icon.accents)} }`),
   '',
 ].join('\n')
 
@@ -120,7 +125,7 @@ const rust = [
   '',
   'use crate::Icon;',
   '',
-  ...icons.map((icon) => `pub const ${snake(icon.name)}: Icon = Icon { name: ${js(icon.name)}, paths: &[${icon.paths.map(js).join(', ')}], fills: &[${icon.fills.map(js).join(', ')}] };`),
+  ...icons.map((icon) => `pub const ${snake(icon.name)}: Icon = Icon { name: ${js(icon.name)}, paths: &[${icon.paths.map(js).join(', ')}], fills: &[${icon.fills.map(js).join(', ')}], accents: &[${icon.accents.map(js).join(', ')}] };`),
   '',
   '/// Every icon, sorted by name.',
   'pub static ICONS: &[&Icon] = &[',
