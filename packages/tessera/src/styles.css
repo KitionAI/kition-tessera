@@ -2133,7 +2133,8 @@ select.kui-ribbon-field:disabled {
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  border: 1px solid var(--kit-border);
+  /* A host may draw fields with a stronger border than its hairlines (`--kui-input-border`). */
+  border: 1px solid var(--kui-input-border, var(--kit-border));
   border-radius: var(--kit-radius-control);
   background: var(--kit-surface);
   color: var(--kit-text);
