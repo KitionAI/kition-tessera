@@ -1014,6 +1014,10 @@
       "family": "ui",
       "source": "lucide:monitor"
     },
+    "monitor-cog": {
+      "family": "ui",
+      "source": "lucide:monitor-cog"
+    },
     "monitor-play": {
       "family": "ui",
       "source": "lucide:monitor-play"
@@ -1049,6 +1053,10 @@
     "move-up-right": {
       "family": "ui",
       "source": "lucide:move-up-right"
+    },
+    "move-vertical": {
+      "family": "ui",
+      "source": "lucide:move-vertical"
     },
     "music": {
       "family": "ui",

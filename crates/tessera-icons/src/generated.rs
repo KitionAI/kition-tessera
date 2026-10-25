@@ -255,6 +255,7 @@ pub const MESSAGE_SQUARE_TEXT: Icon = Icon { name: "message-square-text", paths:
 pub const MINIMIZE_2: Icon = Icon { name: "minimize-2", paths: &["m14 10 7-7", "M20 10h-6V4", "m3 21 7-7", "M4 14h6v6"], fills: &[], accents: &[] };
 pub const MINUS: Icon = Icon { name: "minus", paths: &["M5 12h14"], fills: &[], accents: &[] };
 pub const MONITOR: Icon = Icon { name: "monitor", paths: &["M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z", "M8 21L16 21", "M12 17L12 21"], fills: &[], accents: &[] };
+pub const MONITOR_COG: Icon = Icon { name: "monitor-cog", paths: &["M12 17v4", "m14.305 7.53.923-.382", "m15.228 4.852-.923-.383", "m16.852 3.228-.383-.924", "m16.852 8.772-.383.923", "m19.148 3.228.383-.924", "m19.53 9.696-.382-.924", "m20.772 4.852.924-.383", "m20.772 7.148.924.383", "M22 13v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7", "M8 21h8", "M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z"], fills: &[], accents: &[] };
 pub const MONITOR_PLAY: Icon = Icon { name: "monitor-play", paths: &["M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z", "M12 17v4", "M8 21h8", "M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const MOON: Icon = Icon { name: "moon", paths: &["M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"], fills: &[], accents: &[] };
 pub const MOUSE_POINTER: Icon = Icon { name: "mouse-pointer", paths: &["M12.586 12.586 19 19", "M3.688 3.037a.497.497 0 0 0-.651.651l6.5 15.999a.501.501 0 0 0 .947-.062l1.569-6.083a2 2 0 0 1 1.448-1.479l6.124-1.579a.5.5 0 0 0 .063-.947z"], fills: &[], accents: &[] };
@@ -264,6 +265,7 @@ pub const MOVE_3D: Icon = Icon { name: "move-3d", paths: &["M5 3v16h16", "m5 19 
 pub const MOVE_HORIZONTAL: Icon = Icon { name: "move-horizontal", paths: &["m18 8 4 4-4 4", "M2 12h20", "m6 8-4 4 4 4"], fills: &[], accents: &[] };
 pub const MOVE_RIGHT: Icon = Icon { name: "move-right", paths: &["M18 8L22 12L18 16", "M2 12H22"], fills: &[], accents: &[] };
 pub const MOVE_UP_RIGHT: Icon = Icon { name: "move-up-right", paths: &["M13 5H19V11", "M19 5L5 19"], fills: &[], accents: &[] };
+pub const MOVE_VERTICAL: Icon = Icon { name: "move-vertical", paths: &["M12 2v20", "m8 18 4 4 4-4", "m8 6 4-4 4 4"], fills: &[], accents: &[] };
 pub const MUSIC: Icon = Icon { name: "music", paths: &["M9 18V5l12-2v13", "M3 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M15 16a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z"], fills: &[], accents: &[] };
 pub const NETWORK: Icon = Icon { name: "network", paths: &["M17 16h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z", "M3 16h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z", "M10 2h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z", "M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3", "M12 12V8"], fills: &[], accents: &[] };
 pub const NOTEBOOK_PEN: Icon = Icon { name: "notebook-pen", paths: &["M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4", "M2 6h4", "M2 10h4", "M2 14h4", "M2 18h4", "M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"], fills: &[], accents: &[] };
@@ -706,6 +708,7 @@ pub static ICONS: &[&Icon] = &[
     &MINIMIZE_2,
     &MINUS,
     &MONITOR,
+    &MONITOR_COG,
     &MONITOR_PLAY,
     &MOON,
     &MOUSE_POINTER,
@@ -715,6 +718,7 @@ pub static ICONS: &[&Icon] = &[
     &MOVE_HORIZONTAL,
     &MOVE_RIGHT,
     &MOVE_UP_RIGHT,
+    &MOVE_VERTICAL,
     &MUSIC,
     &NETWORK,
     &NOTEBOOK_PEN,
