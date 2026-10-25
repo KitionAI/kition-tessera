@@ -82,7 +82,7 @@ const js = (value) => JSON.stringify(value)
 const iconsTs = [
   `// ${BANNER}`,
   '',
-  "import type { IconData } from '../types'",
+  "import type { IconData } from '../types.ts'",
   '',
   ...icons.map((icon) => `export const ${pascal(icon.name)}: IconData = { name: ${js(icon.name)}, family: ${js(icon.family)}, paths: ${js(icon.paths)}, fills: ${js(icon.fills)}, accents: ${js(icon.accents)} }`),
   '',
@@ -92,8 +92,8 @@ const lucideMap = icons.flatMap((icon) => icon.lucide.map((alias) => [alias, ico
 const registryTs = [
   `// ${BANNER}`,
   '',
-  "import type { IconData } from '../types'",
-  "import * as all from './icons'",
+  "import type { IconData } from '../types.ts'",
+  "import * as all from './icons.ts'",
   '',
   '/** Every icon, by name. Importing this pulls in the whole set; import single icons from the package root instead. */',
   `export const ICONS: Readonly<Record<string, IconData>> = Object.fromEntries(Object.values(all).map((icon) => [icon.name, icon]))`,
@@ -113,8 +113,8 @@ const registryTs = [
 const reactTs = [
   `// ${BANNER}`,
   '',
-  "import { createIcon } from '../createIcon'",
-  "import * as data from './icons'",
+  "import { createIcon } from '../createIcon.ts'",
+  "import * as data from './icons.ts'",
   '',
   // Pure, so bundlers drop the icons a page never uses.
   ...icons.map((icon) => `export const ${pascal(icon.name)}Icon = /* @__PURE__ */ createIcon(data.${pascal(icon.name)})`),

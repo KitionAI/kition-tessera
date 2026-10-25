@@ -3,10 +3,10 @@
  * so the same list draws in React (`@kition/tessera-icons/react`), on a canvas (`drawIcon`, which
  * works in workers with OffscreenCanvas), as SVG markup (`toSvg`), and in Rust (`tessera-icons`).
  */
-import { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types'
+import { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types.ts'
 
-export * from './generated/icons'
-export { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types'
+export * from './generated/icons.ts'
+export { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types.ts'
 
 /** The stroke width in grid units: `absoluteStrokeWidth` keeps the stroke `strokeWidth` px wide at any size. */
 export function gridStroke({ size = ICON_GRID, strokeWidth = DEFAULT_STROKE, absoluteStrokeWidth = false }: IconStyle = {}) {

@@ -8,7 +8,7 @@
     "build": "pnpm build:tokens && pnpm build:icons",
     "build:tokens": "node packages/tokens/scripts/build.mjs",
     "build:icons": "node packages/icons/scripts/build.mjs",
-    "check": "pnpm check:tokens && pnpm check:icons && pnpm check:docs && pnpm typecheck && pnpm test && cargo fmt --all --check && cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace",
+    "check": "pnpm check:tokens && pnpm check:icons && pnpm check:node-icons && pnpm check:docs && pnpm typecheck && pnpm test && cargo fmt --all --check && cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace",
     "check:tokens": "node packages/tokens/scripts/build.mjs --check",
     "check:icons": "node packages/icons/scripts/build.mjs --check",
     "check:consumers": "node scripts/check-consumers.mjs",
@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
     "check:docs": "node site/scripts/component-api.mjs --check && node --no-warnings site/scripts/llms.mjs --check",
-    "docs": "node site/scripts/component-api.mjs && node --no-warnings site/scripts/llms.mjs"
+    "docs": "node site/scripts/component-api.mjs && node --no-warnings site/scripts/llms.mjs",
+    "check:node-icons": "node --no-warnings scripts/check-node-icons.mjs"
   },
   "devDependencies": {
     "@types/node": "22.20.5",
