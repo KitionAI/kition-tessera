@@ -12,11 +12,12 @@ for (const [alias, name] of Object.entries(FROM_LUCIDE)) ALIASES.set(name, [...(
 
 const SIZES = [16, 20, 24, 32, 48]
 
-export function IconsPage() {
-  const [query, setQuery] = useState('')
+export function IconsPage({ initial = null }: { initial?: string | null }) {
+  const known = initial && ICONS[initial] ? initial : null
+  const [query, setQuery] = useState(known ?? '')
   const [size, setSize] = useState(24)
   const [stroke, setStroke] = useState(DEFAULT_STROKE)
-  const [selected, setSelected] = useState<string | null>(null)
+  const [selected, setSelected] = useState<string | null>(known)
 
   const names = useMemo(() => {
     const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean)

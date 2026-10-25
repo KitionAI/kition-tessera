@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
 import { ComponentsPage } from './ComponentsPage'
+import { HomePage } from './home/HomePage'
 import { IconsPage } from './IconsPage'
 import { TokensPage } from './TokensPage'
 
 const PAGES = [
+  { id: 'home', label: 'Galaxy' },
   { id: 'icons', label: 'Icons' },
   { id: 'tokens', label: 'Tokens & skins' },
   { id: 'components', label: 'Components' },
@@ -13,17 +15,21 @@ type PageId = (typeof PAGES)[number]['id']
 
 const SKIN_LABELS: Record<SkinId, string> = { paper: 'Paper', graphite: 'Graphite' }
 
-function pageFromHash(): PageId {
-  const id = location.hash.slice(1)
-  return PAGES.some((page) => page.id === id) ? (id as PageId) : 'icons'
+/** `#icons/layers` opens the icons page at one icon. */
+function route(): { page: PageId; detail: string | null } {
+  const [id, detail = null] = location.hash.slice(1).split('/')
+  return { page: PAGES.some((page) => page.id === id) ? (id as PageId) : 'home', detail }
 }
 
 export function App() {
-  const [page, setPage] = useState<PageId>(pageFromHash)
+  const [{ page, detail }, setRoute] = useState(route)
   const [skin, setSkin] = useState<SkinId>('paper')
 
   useEffect(() => {
-    const onHash = () => setPage(pageFromHash())
+    const onHash = () => {
+      setRoute(route())
+      window.scrollTo(0, 0)
+    }
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
@@ -37,9 +43,9 @@ export function App() {
   }, [skin])
 
   return (
-    <div className="site">
+    <div className="site" data-page={page}>
       <header className="site-header">
-        <a className="site-brand" href="#icons">
+        <a className="site-brand" href="#home">
           <TesseraMark />
           <span>
             Kition <strong>Tessera</strong>
@@ -63,9 +69,13 @@ export function App() {
           </select>
         </label>
       </header>
-      <main className="site-main">
-        {page === 'icons' ? <IconsPage /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
-      </main>
+      {page === 'home' ? (
+        <HomePage dark={SKINS[skin].colorScheme === 'dark'} />
+      ) : (
+        <main className="site-main">
+          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'tokens' ? <TokensPage skin={skin} /> : <ComponentsPage />}
+        </main>
+      )}
     </div>
   )
 }
