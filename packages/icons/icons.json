@@ -118,6 +118,10 @@
       "family": "tool",
       "source": "svg:animation-zoom.svg"
     },
+    "aperture": {
+      "family": "ui",
+      "source": "lucide:aperture"
+    },
     "app-window": {
       "family": "ui",
       "source": "lucide:app-window"
@@ -317,6 +321,10 @@
     "captions": {
       "family": "ui",
       "source": "lucide:captions"
+    },
+    "case-lower": {
+      "family": "ui",
+      "source": "lucide:case-lower"
     },
     "case-sensitive": {
       "family": "ui",
@@ -614,6 +622,10 @@
       "family": "ui",
       "source": "lucide:corner-up-right"
     },
+    "cpu": {
+      "family": "ui",
+      "source": "lucide:cpu"
+    },
     "credit-card": {
       "family": "ui",
       "source": "lucide:credit-card"
@@ -774,6 +786,10 @@
       "family": "ui",
       "source": "lucide:file-clock"
     },
+    "file-code": {
+      "family": "ui",
+      "source": "lucide:file-code"
+    },
     "file-code-corner": {
       "family": "ui",
       "source": "lucide:file-code-corner"
@@ -922,6 +938,10 @@
       "family": "ui",
       "source": "lucide:git-branch-plus"
     },
+    "git-compare": {
+      "family": "ui",
+      "source": "lucide:git-compare"
+    },
     "globe": {
       "family": "ui",
       "source": "lucide:globe"
@@ -933,6 +953,10 @@
     "go-to-out": {
       "family": "tool",
       "source": "svg:go-to-out.svg"
+    },
+    "graduation-cap": {
+      "family": "ui",
+      "source": "lucide:graduation-cap"
     },
     "grid-2x2": {
       "family": "ui",
@@ -986,6 +1010,10 @@
       "family": "ui",
       "source": "lucide:highlighter"
     },
+    "hourglass": {
+      "family": "ui",
+      "source": "lucide:hourglass"
+    },
     "image": {
       "family": "ui",
       "source": "lucide:image"
@@ -1009,6 +1037,10 @@
     "key-round": {
       "family": "ui",
       "source": "lucide:key-round"
+    },
+    "keyboard": {
+      "family": "ui",
+      "source": "lucide:keyboard"
     },
     "languages": {
       "family": "ui",
@@ -1049,6 +1081,10 @@
     "lengthen": {
       "family": "tool",
       "source": "svg:lengthen.svg"
+    },
+    "library": {
+      "family": "ui",
+      "source": "lucide:library"
     },
     "life-buoy": {
       "family": "ui",
@@ -1101,6 +1137,10 @@
     "list-restart": {
       "family": "ui",
       "source": "lucide:list-restart"
+    },
+    "list-todo": {
+      "family": "ui",
+      "source": "lucide:list-todo"
     },
     "list-tree": {
       "family": "ui",
@@ -1422,6 +1462,10 @@
       "family": "ui",
       "source": "lucide:qr-code"
     },
+    "quote": {
+      "family": "ui",
+      "source": "lucide:quote"
+    },
     "radar": {
       "family": "ui",
       "source": "lucide:radar"
@@ -1525,6 +1569,10 @@
     "scan-search": {
       "family": "ui",
       "source": "lucide:scan-search"
+    },
+    "scan-text": {
+      "family": "ui",
+      "source": "lucide:scan-text"
     },
     "scissors": {
       "family": "ui",
@@ -1777,6 +1825,10 @@
     "table-cells-merge": {
       "family": "ui",
       "source": "lucide:table-cells-merge"
+    },
+    "table-cells-split": {
+      "family": "ui",
+      "source": "lucide:table-cells-split"
     },
     "table-properties": {
       "family": "ui",

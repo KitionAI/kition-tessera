@@ -6,7 +6,7 @@ import * as all from './icons'
 /** Every icon, by name. Importing this pulls in the whole set; import single icons from the package root instead. */
 export const ICONS: Readonly<Record<string, IconData>> = Object.fromEntries(Object.values(all).map((icon) => [icon.name, icon]))
 
-export const ICON_NAMES: readonly string[] = ["a-arrow-down","a-arrow-up","a-large-small","accessibility","activity","alarm-clock","align-center-horizontal","align-center-vertical","align-end-horizontal","align-end-vertical","align-horizontal-justify-center","align-start-horizontal","align-start-vertical","align-vertical-justify-center","align-vertical-justify-end","align-vertical-justify-start","animation-appear","animation-fade","animation-fade-out","animation-float-in","animation-fly-in","animation-fly-out","animation-grow-shrink","animation-path","animation-pulse","animation-spin","animation-split","animation-wipe","animation-zoom","app-window","arc","array-polar","array-rectangular","arrow-down","arrow-down-a-z","arrow-down-to-line","arrow-down-wide-narrow","arrow-left","arrow-left-from-line","arrow-left-right","arrow-left-to-line","arrow-right","arrow-right-from-line","arrow-right-left","arrow-right-to-line","arrow-up","arrow-up-down","audio-lines","audio-waveform","ban","bandage","baseline","bell","between-horizontal-end","between-horizontal-start","between-vertical-end","between-vertical-start","blend","blocks","bold","book-bookmark","book-open","book-open-text","bookmark","bot","box","braces","briefcase","briefcase-business","bring-to-front","brush","brush-cleaning","cable","calendar","calendar-clock","calendar-days","calendar-range","camera","captions","case-sensitive","case-upper","center-mark","chamfer","chart-area","chart-column","chart-column-stacked","chart-gantt","chart-line","chart-no-axes-combined","chart-pie","chart-scatter","check","chevron-down","chevron-first","chevron-last","chevron-left","chevron-right","chevron-up","chevrons-down-up","chevrons-left","chevrons-right","chevrons-right-left","chevrons-up-down","circle","circle-alert","circle-center-radius","circle-check","circle-dashed","circle-dot","circle-question-mark","circle-user-round","circle-x","clapperboard","clip-extract","clip-insert","clip-lift","clip-overwrite","clipboard","clipboard-check","clipboard-list","clipboard-paste","clock","clock-3","cloud","cloud-off","cloud-upload","code","code-xml","columns-2","columns-3","combine","command","command-generic","compass","component","constraint-coincident","constraint-collinear","constraint-concentric","constraint-equal","constraint-fix","constraint-horizontal","constraint-parallel","constraint-perpendicular","constraint-symmetric","constraint-tangent","constraint-vertical","contact","contrast","copy","copy-check","copy-plus","corner-down-right","corner-up-right","credit-card","crop","crosshair","dash-dashed","dash-dotted","dash-solid","database","decimals-arrow-left","decimals-arrow-right","delete","diameter","diamond","dimension-aligned","dimension-angular","dimension-arc-length","dimension-baseline","dimension-continue","dimension-diameter","dimension-linear","dimension-ordinate","dimension-radius","disc","dollar-sign","donut","download","droplet","earth","ellipsis","eraser","expand","explode","extend","external-link","eye","eye-off","face-slightly-smiling","fast-forward","file","file-check-corner","file-clock","file-code-corner","file-diff","file-digit","file-exclamation-point","file-image","file-input","file-output","file-pen-line","file-plus","file-plus-corner","file-spreadsheet","file-symlink","file-text","file-type-corner","file-up","file-video-camera","files","fillet","film","flag","flame","flask-conical","flip-horizontal","focus","fold-horizontal","folder","folder-check","folder-lock","folder-open","folder-plus","folder-up","frame","funnel","gallery-horizontal-end","gauge","git-branch","git-branch-plus","globe","go-to-in","go-to-out","grid-2x2","grid-3x3","grip-horizontal","grip-vertical","group","hand","hash","hatch","heading","heart","helix","hexagon","highlighter","image","image-plus","inbox","info","italic","key-round","languages","laptop","lasso","lasso-select","layers","layout-dashboard","layout-grid","layout-template","leader","lengthen","life-buoy","lightbulb","linetype","lineweight","link","link-2","list","list-checks","list-indent-decrease","list-indent-increase","list-ordered","list-plus","list-restart","list-tree","list-video","loader-circle","lock","lock-keyhole","lock-open","log-out","lollipop","magnet","mail","map-pin","mark-in","mark-out","maximize","maximize-2","megaphone","menu","merge","message-square","message-square-dashed","message-square-plus","message-square-text","minimize-2","minus","monitor","monitor-cog","monitor-play","moon","mouse-pointer","mouse-pointer-2","mouse-pointer-click","move","move-3d","move-horizontal","move-right","move-up-right","move-vertical","multiline","music","network","notebook-pen","notebook-text","omega","ortho-mode","package","paint-bucket","paintbrush","palette","panel-bottom","panel-left","panel-left-close","panel-left-open","panel-right","panel-top","panels-top-left","paperclip","parallelogram","pause","pen","pen-line","pen-tool","pencil","pencil-line","pentagon","percent","pilcrow","pill","pin","pin-off","pipette","play","plus","pointer","polar-tracking","polyline","power","presentation","printer","puzzle","qr-code","radar","radius","rainbow","ray","rectangle-horizontal","rectangle-vertical","redo-2","refresh-ccw","refresh-cw","region","remove-formatting","repeat","replace","revision-cloud","rocket","rotate-ccw","rotate-ccw-clock","rotate-cw","rows-3","ruler","ruler-dimension-line","save","scale","scaling","scan","scan-search","scissors","search","send","send-to-back","separator-horizontal","settings","settings-2","shapes","share-2","shell","shield-alert","shield-check","shrink","sigma","signature","skip-back","skip-forward","slash","slice","sliders-horizontal","snowflake","sparkle","sparkles","spell-check","spline","split","square","square-check","square-check-big","square-dashed","square-dashed-mouse-pointer","square-dot","square-function","square-kanban","square-minus","square-mouse-pointer","square-plus","square-split-horizontal","square-split-vertical","square-stack","square-terminal","square-x","squares-exclude","squares-intersect","squares-subtract","squircle","stamp","star","step-back","step-forward","sticker","sticky-note","stretch","stretch-horizontal","strikethrough","subscript","sun","sun-medium","superscript","swatch-book","table","table-2","table-cells-merge","table-properties","tag","target","terminal","text-align-center","text-align-end","text-align-justify","text-align-start","text-cursor","text-cursor-input","text-wrap","thumbs-up","timer","toggle-left","transition-cover","transition-curtains","transition-cut","transition-drape","transition-fade","transition-fall-over","transition-flash","transition-morph","transition-none","transition-prestige","transition-push","transition-random-bars","transition-reveal","transition-shape","transition-split","transition-uncover","transition-wind","transition-wipe","trash","trending-up","triangle","triangle-alert","triangles-centerline-dashed-horizontal","type","underline","undo-2","unfold-horizontal","unfold-vertical","ungroup","unlink","upload","user","user-minus","user-round","users","variable","vector-polygon","vector-square","video","volume-2","wallet-cards","wand-sparkles","waves-horizontal","waypoints","webhook","whole-word","workflow","wrench","x","zap","zap-off","zoom-in","zoom-out"]
+export const ICON_NAMES: readonly string[] = ["a-arrow-down","a-arrow-up","a-large-small","accessibility","activity","alarm-clock","align-center-horizontal","align-center-vertical","align-end-horizontal","align-end-vertical","align-horizontal-justify-center","align-start-horizontal","align-start-vertical","align-vertical-justify-center","align-vertical-justify-end","align-vertical-justify-start","animation-appear","animation-fade","animation-fade-out","animation-float-in","animation-fly-in","animation-fly-out","animation-grow-shrink","animation-path","animation-pulse","animation-spin","animation-split","animation-wipe","animation-zoom","aperture","app-window","arc","array-polar","array-rectangular","arrow-down","arrow-down-a-z","arrow-down-to-line","arrow-down-wide-narrow","arrow-left","arrow-left-from-line","arrow-left-right","arrow-left-to-line","arrow-right","arrow-right-from-line","arrow-right-left","arrow-right-to-line","arrow-up","arrow-up-down","audio-lines","audio-waveform","ban","bandage","baseline","bell","between-horizontal-end","between-horizontal-start","between-vertical-end","between-vertical-start","blend","blocks","bold","book-bookmark","book-open","book-open-text","bookmark","bot","box","braces","briefcase","briefcase-business","bring-to-front","brush","brush-cleaning","cable","calendar","calendar-clock","calendar-days","calendar-range","camera","captions","case-lower","case-sensitive","case-upper","center-mark","chamfer","chart-area","chart-column","chart-column-stacked","chart-gantt","chart-line","chart-no-axes-combined","chart-pie","chart-scatter","check","chevron-down","chevron-first","chevron-last","chevron-left","chevron-right","chevron-up","chevrons-down-up","chevrons-left","chevrons-right","chevrons-right-left","chevrons-up-down","circle","circle-alert","circle-center-radius","circle-check","circle-dashed","circle-dot","circle-question-mark","circle-user-round","circle-x","clapperboard","clip-extract","clip-insert","clip-lift","clip-overwrite","clipboard","clipboard-check","clipboard-list","clipboard-paste","clock","clock-3","cloud","cloud-off","cloud-upload","code","code-xml","columns-2","columns-3","combine","command","command-generic","compass","component","constraint-coincident","constraint-collinear","constraint-concentric","constraint-equal","constraint-fix","constraint-horizontal","constraint-parallel","constraint-perpendicular","constraint-symmetric","constraint-tangent","constraint-vertical","contact","contrast","copy","copy-check","copy-plus","corner-down-right","corner-up-right","cpu","credit-card","crop","crosshair","dash-dashed","dash-dotted","dash-solid","database","decimals-arrow-left","decimals-arrow-right","delete","diameter","diamond","dimension-aligned","dimension-angular","dimension-arc-length","dimension-baseline","dimension-continue","dimension-diameter","dimension-linear","dimension-ordinate","dimension-radius","disc","dollar-sign","donut","download","droplet","earth","ellipsis","eraser","expand","explode","extend","external-link","eye","eye-off","face-slightly-smiling","fast-forward","file","file-check-corner","file-clock","file-code","file-code-corner","file-diff","file-digit","file-exclamation-point","file-image","file-input","file-output","file-pen-line","file-plus","file-plus-corner","file-spreadsheet","file-symlink","file-text","file-type-corner","file-up","file-video-camera","files","fillet","film","flag","flame","flask-conical","flip-horizontal","focus","fold-horizontal","folder","folder-check","folder-lock","folder-open","folder-plus","folder-up","frame","funnel","gallery-horizontal-end","gauge","git-branch","git-branch-plus","git-compare","globe","go-to-in","go-to-out","graduation-cap","grid-2x2","grid-3x3","grip-horizontal","grip-vertical","group","hand","hash","hatch","heading","heart","helix","hexagon","highlighter","hourglass","image","image-plus","inbox","info","italic","key-round","keyboard","languages","laptop","lasso","lasso-select","layers","layout-dashboard","layout-grid","layout-template","leader","lengthen","library","life-buoy","lightbulb","linetype","lineweight","link","link-2","list","list-checks","list-indent-decrease","list-indent-increase","list-ordered","list-plus","list-restart","list-todo","list-tree","list-video","loader-circle","lock","lock-keyhole","lock-open","log-out","lollipop","magnet","mail","map-pin","mark-in","mark-out","maximize","maximize-2","megaphone","menu","merge","message-square","message-square-dashed","message-square-plus","message-square-text","minimize-2","minus","monitor","monitor-cog","monitor-play","moon","mouse-pointer","mouse-pointer-2","mouse-pointer-click","move","move-3d","move-horizontal","move-right","move-up-right","move-vertical","multiline","music","network","notebook-pen","notebook-text","omega","ortho-mode","package","paint-bucket","paintbrush","palette","panel-bottom","panel-left","panel-left-close","panel-left-open","panel-right","panel-top","panels-top-left","paperclip","parallelogram","pause","pen","pen-line","pen-tool","pencil","pencil-line","pentagon","percent","pilcrow","pill","pin","pin-off","pipette","play","plus","pointer","polar-tracking","polyline","power","presentation","printer","puzzle","qr-code","quote","radar","radius","rainbow","ray","rectangle-horizontal","rectangle-vertical","redo-2","refresh-ccw","refresh-cw","region","remove-formatting","repeat","replace","revision-cloud","rocket","rotate-ccw","rotate-ccw-clock","rotate-cw","rows-3","ruler","ruler-dimension-line","save","scale","scaling","scan","scan-search","scan-text","scissors","search","send","send-to-back","separator-horizontal","settings","settings-2","shapes","share-2","shell","shield-alert","shield-check","shrink","sigma","signature","skip-back","skip-forward","slash","slice","sliders-horizontal","snowflake","sparkle","sparkles","spell-check","spline","split","square","square-check","square-check-big","square-dashed","square-dashed-mouse-pointer","square-dot","square-function","square-kanban","square-minus","square-mouse-pointer","square-plus","square-split-horizontal","square-split-vertical","square-stack","square-terminal","square-x","squares-exclude","squares-intersect","squares-subtract","squircle","stamp","star","step-back","step-forward","sticker","sticky-note","stretch","stretch-horizontal","strikethrough","subscript","sun","sun-medium","superscript","swatch-book","table","table-2","table-cells-merge","table-cells-split","table-properties","tag","target","terminal","text-align-center","text-align-end","text-align-justify","text-align-start","text-cursor","text-cursor-input","text-wrap","thumbs-up","timer","toggle-left","transition-cover","transition-curtains","transition-cut","transition-drape","transition-fade","transition-fall-over","transition-flash","transition-morph","transition-none","transition-prestige","transition-push","transition-random-bars","transition-reveal","transition-shape","transition-split","transition-uncover","transition-wind","transition-wipe","trash","trending-up","triangle","triangle-alert","triangles-centerline-dashed-horizontal","type","underline","undo-2","unfold-horizontal","unfold-vertical","ungroup","unlink","upload","user","user-minus","user-round","users","variable","vector-polygon","vector-square","video","volume-2","wallet-cards","wand-sparkles","waves-horizontal","waypoints","webhook","whole-word","workflow","wrench","x","zap","zap-off","zoom-in","zoom-out"]
 
 /** lucide-react export name (canonical or alias) to Tessera icon name, for moving code off lucide. */
 export const FROM_LUCIDE: Readonly<Record<string, string>> = {
@@ -32,6 +32,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   AlignVerticalJustifyCenter: "align-vertical-justify-center",
   AlignVerticalJustifyEnd: "align-vertical-justify-end",
   AlignVerticalJustifyStart: "align-vertical-justify-start",
+  Aperture: "aperture",
   AppWindow: "app-window",
   AreaChart: "chart-area",
   ArrowDown: "arrow-down",
@@ -86,6 +87,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   CalendarRange: "calendar-range",
   Camera: "camera",
   Captions: "captions",
+  CaseLower: "case-lower",
   CaseSensitive: "case-sensitive",
   CaseUpper: "case-upper",
   ChartArea: "chart-area",
@@ -147,6 +149,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   CopyPlus: "copy-plus",
   CornerDownRight: "corner-down-right",
   CornerUpRight: "corner-up-right",
+  Cpu: "cpu",
   CreditCard: "credit-card",
   Crop: "crop",
   Crosshair: "crosshair",
@@ -177,6 +180,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   FileCheck2: "file-check-corner",
   FileCheckCorner: "file-check-corner",
   FileClock: "file-clock",
+  FileCode: "file-code",
   FileCode2: "file-code-corner",
   FileCodeCorner: "file-code-corner",
   FileDiff: "file-diff",
@@ -221,8 +225,10 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   Gauge: "gauge",
   GitBranch: "git-branch",
   GitBranchPlus: "git-branch-plus",
+  GitCompare: "git-compare",
   Globe: "globe",
   Globe2: "earth",
+  GraduationCap: "graduation-cap",
   Grid: "grid-3x3",
   Grid2x2: "grid-2x2",
   Grid2X2: "grid-2x2",
@@ -239,6 +245,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   Hexagon: "hexagon",
   Highlighter: "highlighter",
   History: "rotate-ccw-clock",
+  Hourglass: "hourglass",
   Image: "image",
   ImagePlus: "image-plus",
   Inbox: "inbox",
@@ -249,6 +256,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   Inspect: "square-mouse-pointer",
   Italic: "italic",
   KanbanSquare: "square-kanban",
+  Keyboard: "keyboard",
   KeyRound: "key-round",
   Languages: "languages",
   Laptop: "laptop",
@@ -260,6 +268,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   LayoutDashboard: "layout-dashboard",
   LayoutGrid: "layout-grid",
   LayoutTemplate: "layout-template",
+  Library: "library",
   LifeBuoy: "life-buoy",
   Lightbulb: "lightbulb",
   LineChart: "chart-line",
@@ -272,6 +281,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   ListOrdered: "list-ordered",
   ListPlus: "list-plus",
   ListRestart: "list-restart",
+  ListTodo: "list-todo",
   ListTree: "list-tree",
   ListVideo: "list-video",
   Loader2: "loader-circle",
@@ -355,6 +365,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   Printer: "printer",
   Puzzle: "puzzle",
   QrCode: "qr-code",
+  Quote: "quote",
   Radar: "radar",
   Radius: "radius",
   Rainbow: "rainbow",
@@ -378,6 +389,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   Scaling: "scaling",
   Scan: "scan",
   ScanSearch: "scan-search",
+  ScanText: "scan-text",
   ScatterChart: "chart-scatter",
   Scissors: "scissors",
   Search: "search",
@@ -450,6 +462,7 @@ export const FROM_LUCIDE: Readonly<Record<string, string>> = {
   Table: "table",
   Table2: "table-2",
   TableCellsMerge: "table-cells-merge",
+  TableCellsSplit: "table-cells-split",
   TableProperties: "table-properties",
   Tag: "tag",
   Target: "target",

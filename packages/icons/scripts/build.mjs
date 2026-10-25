@@ -116,7 +116,8 @@ const reactTs = [
   "import { createIcon } from '../createIcon'",
   "import * as data from './icons'",
   '',
-  ...icons.map((icon) => `export const ${pascal(icon.name)}Icon = createIcon(data.${pascal(icon.name)})`),
+  // Pure, so bundlers drop the icons a page never uses.
+  ...icons.map((icon) => `export const ${pascal(icon.name)}Icon = /* @__PURE__ */ createIcon(data.${pascal(icon.name)})`),
   '',
 ].join('\n')
 
