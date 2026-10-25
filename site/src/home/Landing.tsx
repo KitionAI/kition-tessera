@@ -1,16 +1,19 @@
-import { useMemo, useState, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import {
-  Button,
   ColorPicker,
+  ColorWheel,
+  CurveEditor,
   Histogram,
   IconButton,
   NumberField,
+  RGB_IDENTITY,
   RibbonButton,
   RibbonGroup,
   RibbonStack,
   Segmented,
   TimecodeField,
   TransportBar,
+  type CurvePoint,
   type RGB,
 } from '@kition/tessera'
 import {
@@ -18,24 +21,18 @@ import {
   BrushIcon,
   ChartColumnIcon,
   ClipboardPasteIcon,
-  ClipInsertIcon,
   CopyIcon,
   CropIcon,
   EraserIcon,
   ItalicIcon,
   LassoIcon,
   LayersIcon,
-  MarkInIcon,
-  MarkOutIcon,
   MoveIcon,
   PenToolIcon,
   PlayIcon,
   ScissorsIcon,
-  SigmaIcon,
   SkipBackIcon,
   SkipForwardIcon,
-  SunMediumIcon,
-  TableIcon,
   TextAlignCenterIcon,
   TextAlignStartIcon,
   TypeIcon,
@@ -44,110 +41,161 @@ import {
 } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES, KIT_ICONS } from '@kition/tessera-icons/registry'
 import { KHP_TOKENS, SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
-import iconKits from './iconKits.json'
 
-const KITS = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad'] as const
-const KIT_COLORS: Record<string, string> = {
-  note: '#7b6cf0',
-  doc: '#4a7cf0',
-  table: '#16a594',
-  sheet: '#2aa857',
-  board: '#e0a800',
-  slide: '#e0711f',
-  design: '#ef4a6c',
-  vector: '#78a81e',
-  photo: '#159fc4',
-  effect: '#bf5ee0',
-  film: '#7d8299',
-  pdf: '#ea5243',
-  cad: '#6a8aa8',
+const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad']
+const KIT_NAMES: Record<string, string> = {
+  note: 'Note',
+  table: 'Table',
+  board: 'Board',
+  photo: 'Photo',
+  film: 'Film',
+  doc: 'Doc',
+  sheet: 'Sheet',
+  slide: 'Slide',
+  pdf: 'PDF',
+  vector: 'Vector',
+  design: 'Design',
+  effect: 'Effect',
+  cad: 'CAD',
 }
 
 const kitFiles = import.meta.glob('../../../packages/icons/kit/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
 const kitUrl = (kit: string) => Object.entries(kitFiles).find(([path]) => path.endsWith(`/${kit}.svg`))?.[1]
 
-/** The kit that uses an icon most specifically, for its tile's hue; shared icons are the brand's. */
-function hueOf(name: string) {
-  const scopes = (iconKits as Record<string, string[]>)[name] ?? []
-  const kits = scopes.filter((scope) => (KITS as readonly string[]).includes(scope))
-  if (scopes.length >= 5 || kits.length === 0) return '#7b6cf0'
-  return KIT_COLORS[kits.sort((a, b) => KITS.indexOf(a as never) - KITS.indexOf(b as never))[0]]
-}
-
 const skinStyle = (id: SkinId) => ({ ...SKINS[id].tokens, colorScheme: SKINS[id].colorScheme }) as CSSProperties
+
+const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const components = new Map<string, IconComponent>()
+const iconOf = (name: string) => {
+  let component = components.get(name)
+  if (!component) components.set(name, (component = createIcon(ICONS[name])))
+  return component
+}
 
 export function Landing({ skin }: { skin: SkinId }) {
   return (
-    <div className="landing">
+    <div className="lx">
       <Hero skin={skin} />
-      <EveryKit />
-      <Layers />
+      <IconMarquee />
+      <Bento />
+      <Kits />
+      <Closing />
     </div>
   )
 }
 
+/* ------------------------------------------------------------------ hero */
+
 function Hero({ skin }: { skin: SkinId }) {
+  const stage = useRef<HTMLDivElement>(null)
+  // Pointer parallax: the floating cards lean toward the pointer, each by its own depth.
+  useEffect(() => {
+    const element = stage.current
+    if (!element || reducedMotion()) return
+    let frame = 0
+    const onMove = (event: PointerEvent) => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect()
+        const x = (event.clientX - rect.left) / rect.width - 0.5
+        const y = (event.clientY - rect.top) / rect.height - 0.5
+        element.style.setProperty('--px', x.toFixed(3))
+        element.style.setProperty('--py', y.toFixed(3))
+      })
+    }
+    window.addEventListener('pointermove', onMove)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('pointermove', onMove)
+    }
+  }, [])
   return (
-    <section className="landing-hero">
-      <MosaicWall />
-      <div className="landing-hero-inner">
-        <div className="landing-copy">
-          <p className="landing-kicker">Kition Tessera</p>
-          <h1>One design language for every kit.</h1>
-          <p className="landing-lede">
-            A tessera is one tile of a mosaic. Kition Tessera is the tiles every Kition kit is built from: icons, design tokens and editor components, so a photo editor, a
-            spreadsheet and a timeline read as one suite, and any host can reskin them all at once.
-          </p>
-          <div className="landing-actions">
-            <a className="landing-cta" href="#components">
-              Explore components
-            </a>
-            <a className="landing-link" href="#icons">
-              Browse {ICON_NAMES.length} icons
-            </a>
+    <section className="lx-hero">
+      <div className="lx-aurora" aria-hidden="true">
+        <span className="lx-blob lx-blob-a" />
+        <span className="lx-blob lx-blob-b" />
+        <span className="lx-blob lx-blob-c" />
+        <span className="lx-grid" />
+      </div>
+      <div className="lx-hero-copy">
+        <a className="lx-pill" href="#review">
+          <span className="lx-pill-dot" /> New · 51 CAD drafting icons and every slide transition redrawn
+        </a>
+        <h1 className="lx-title">
+          Every <span className="lx-gradient">kit.</span>
+          <br />
+          One design language.
+        </h1>
+        <p className="lx-lede">
+          Kition Tessera is the design system for AI-native professional software: icons, design tokens and editor components that a photo editor, a spreadsheet and a
+          timeline share, so they read as one suite and any host can reskin them all at once.
+        </p>
+        <div className="lx-actions">
+          <a className="lx-cta" href="#components">
+            Explore components
+          </a>
+          <a className="lx-ghost" href="#icons">
+            Browse {ICON_NAMES.length} icons
+          </a>
+          <CopyCommand text="pnpm add @kition/tessera" />
+        </div>
+      </div>
+      <div className="lx-stage" ref={stage} style={skinStyle(skin)}>
+        <div className="lx-stage-main">
+          <EditorWindow />
+        </div>
+        <FloatCard className="lx-float-wheel" depth={26} label="ColorWheel">
+          <WheelDemo />
+        </FloatCard>
+        <FloatCard className="lx-float-curve" depth={18} label="CurveEditor">
+          <CurveDemo />
+        </FloatCard>
+        <FloatCard className="lx-float-transport" depth={30} label="TransportBar">
+          <TransportDemo />
+        </FloatCard>
+        <FloatCard className="lx-float-icons" depth={14} label="Tessera Icons">
+          <div className="lx-icon-chips">
+            {['pen-tool', 'lasso', 'animation-fly-in', 'transition-push', 'dimension-aligned', 'fillet', 'array-polar', 'clip-insert'].map((name) => {
+              const Icon = iconOf(name)
+              return (
+                <span key={name} className="lx-chip" title={name}>
+                  <Icon size={20} />
+                </span>
+              )
+            })}
           </div>
-        </div>
-        <div className="landing-window-slot" style={skinStyle(skin)}>
-          <MiniEditor kit="photo" title="Harbor at dusk.psd">
-            <PhotoBody />
-          </MiniEditor>
-        </div>
+        </FloatCard>
       </div>
     </section>
   )
 }
 
-/** Every icon as a small tile, in bands of the kit hues; tiles light up under the pointer. */
-function MosaicWall() {
-  const tiles = useMemo(
-    () =>
-      [...ICON_NAMES]
-        .map((name) => ({ name, hue: hueOf(name), Icon: createIcon(ICONS[name]) }))
-        .sort((a, b) => a.hue.localeCompare(b.hue))
-        .slice(0, 260),
-    [],
-  )
+function CopyCommand({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
   return (
-    <div className="mosaic-wall" aria-hidden="true">
-      {tiles.map(({ name, hue, Icon }) => (
-        <span key={name} className="mosaic-tile" style={{ '--hue': hue } as CSSProperties}>
-          <Icon size={16} strokeWidth={1.75} />
-        </span>
-      ))}
-    </div>
+    <button
+      type="button"
+      className="lx-command"
+      onClick={() => {
+        void navigator.clipboard?.writeText(text)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1400)
+      }}
+    >
+      <span className="lx-command-prompt">$</span> {text}
+      <span className="lx-command-hint">{copied ? 'Copied' : 'Copy'}</span>
+    </button>
   )
 }
 
-/** A small editor window built only from Tessera components. */
-function MiniEditor({ kit, title, ribbon, children }: { kit: string; title: string; ribbon?: ReactNode; children: ReactNode }) {
+function FloatCard({ className, depth, label, children }: { className: string; depth: number; label: string; children: ReactNode }) {
   return (
-    <div className="mini-editor">
-      <div className="mini-titlebar">
-        <img src={kitUrl(kit)} alt="" width={18} height={18} />
-        <span>{title}</span>
+    <div className={`lx-float ${className}`} style={{ '--depth': depth } as CSSProperties}>
+      <div className="lx-float-inner">
+        <span className="lx-float-label">{label}</span>
+        {children}
       </div>
-      {ribbon ? <div className="mini-ribbon">{ribbon}</div> : null}
-      <div className="mini-body">{children}</div>
     </div>
   )
 }
@@ -162,230 +210,304 @@ const TOOLS: [string, IconComponent][] = [
   ['Type', TypeIcon],
 ]
 
-function PhotoBody() {
+function EditorWindow() {
   const [tool, setTool] = useState(3)
-  const [rgb, setRgb] = useState<RGB>([86, 69, 212])
   const [exposure, setExposure] = useState(12)
+  const [rgb, setRgb] = useState<RGB>([86, 69, 212])
   const bins = useMemo(() => Array.from({ length: 128 }, (_, i) => Math.exp(-((i - 50) ** 2) / 500) * 900 + Math.exp(-((i - 100) ** 2) / 120) * 400 + 30), [])
   return (
-    <div className="photo-body">
-      <div className="mini-rail">
-        {TOOLS.map(([label, Icon], i) => (
-          <IconButton key={label} icon={Icon} label={label} pressed={tool === i} onClick={() => setTool(i)} />
-        ))}
+    <div className="lx-window">
+      <div className="lx-window-bar">
+        <span className="lx-lights" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+        <img src={kitUrl('photo')} alt="" width={16} height={16} />
+        <span>Harbor at dusk.psd</span>
       </div>
-      <div className="mini-canvas photo-canvas" />
-      <div className="mini-panel">
-        <div className="mini-panel-title">
-          <LayersIcon size={14} /> Adjust
+      <div className="lx-window-ribbon">
+        <RibbonGroup label="Clipboard">
+          <RibbonButton icon={ClipboardPasteIcon} label="Paste" size="large" />
+          <RibbonStack>
+            <RibbonButton icon={ScissorsIcon} label="Cut" />
+            <RibbonButton icon={CopyIcon} label="Copy" />
+          </RibbonStack>
+        </RibbonGroup>
+        <RibbonGroup label="Layer">
+          <RibbonButton icon={LayersIcon} label="Layers" size="large" />
+          <RibbonButton icon={ChartColumnIcon} label="Levels" size="large" />
+        </RibbonGroup>
+      </div>
+      <div className="lx-window-body">
+        <div className="lx-rail">
+          {TOOLS.map(([label, Icon], i) => (
+            <IconButton key={label} icon={Icon} label={label} pressed={tool === i} onClick={() => setTool(i)} />
+          ))}
         </div>
-        <Histogram bins={bins} height={48} />
-        <NumberField label="Exposure" value={exposure} min={-100} max={100} onChange={(value) => setExposure(value)} />
-        <ColorPicker value={rgb} onChange={(value) => setRgb(value)} />
+        <div className="lx-canvas" />
+        <div className="lx-panel">
+          <div className="lx-panel-title">Adjust</div>
+          <Histogram bins={bins} height={44} />
+          <NumberField label="Exposure" value={exposure} min={-100} max={100} onChange={(value) => setExposure(value)} />
+          <ColorPicker value={rgb} onChange={(value) => setRgb(value)} />
+        </div>
       </div>
     </div>
   )
 }
 
-function EveryKit() {
-  const [skin, setSkin] = useState<SkinId>('paper')
+function WheelDemo() {
+  const [value, setValue] = useState<[number, number]>([0.25, -0.15])
+  const [lightness, setLightness] = useState(0)
+  return <ColorWheel label="Midtones" value={value} lightness={lightness} onChange={(next) => setValue(next)} onLightness={(next) => setLightness(next)} />
+}
+
+function CurveDemo({ size = 180 }: { size?: number }) {
+  const [points, setPoints] = useState<CurvePoint[]>([...RGB_IDENTITY.slice(0, 1), [0.28, 0.18], [0.72, 0.86], ...RGB_IDENTITY.slice(1)])
   return (
-    <section className="landing-section">
-      <div className="landing-section-head">
-        <div>
-          <h2>Same tiles, every kit.</h2>
-          <p>
-            Three kits, three kinds of work, one set of icons and components. Switch the skin: a host sends one theme over the Kit Harness Protocol and every kit takes it at
-            once.
-          </p>
-        </div>
-        <div className="skin-switch" role="group" aria-label="Skin">
-          {SKIN_IDS.map((id) => (
-            <button key={id} type="button" aria-pressed={skin === id} onClick={() => setSkin(id)}>
-              {id === 'paper' ? 'Paper' : id === 'graphite' ? 'Graphite' : id}
-            </button>
-          ))}
-        </div>
+    <div style={{ width: size }}>
+      <CurveEditor kind="rgb" points={points} onChange={(next) => setPoints(next)} />
+    </div>
+  )
+}
+
+function TransportDemo() {
+  const [time, setTime] = useState(83.4)
+  const [playing, setPlaying] = useState(false)
+  useEffect(() => {
+    if (!playing) return
+    const timer = setInterval(() => setTime((value) => value + 0.04), 40)
+    return () => clearInterval(timer)
+  }, [playing])
+  return (
+    <div className="lx-transport">
+      <TimecodeField label="Playhead" value={time} fps={25} onChange={(seconds) => setTime(seconds)} accent />
+      <TransportBar
+        buttons={[
+          { id: 'back', label: 'Back', icon: SkipBackIcon, onPress: () => setTime(0) },
+          { id: 'play', label: playing ? 'Pause' : 'Play', icon: PlayIcon, large: true, pressed: playing, onPress: () => setPlaying(!playing) },
+          { id: 'fwd', label: 'Forward', icon: SkipForwardIcon, onPress: () => setTime(time + 5) },
+        ]}
+      />
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------- marquee */
+
+function IconMarquee() {
+  const rows = useMemo(() => {
+    const names = [...ICON_NAMES]
+    const third = Math.ceil(names.length / 3)
+    return [names.slice(0, third), names.slice(third, third * 2), names.slice(third * 2)]
+  }, [])
+  return (
+    <section className="lx-marquee-section">
+      <div className="lx-section-head lx-center">
+        <p className="lx-eyebrow">Tessera Icons</p>
+        <h2>
+          {ICON_NAMES.length} icons. <span className="lx-gradient">One stroke.</span>
+        </h2>
+        <p>A 24 grid, a 1.5 line, round caps, and accents that follow the skin: from Undo to a polar array, every kit draws the same family.</p>
       </div>
-      <div className="kit-row" style={skinStyle(skin)} data-color-scheme={SKINS[skin].colorScheme}>
-        <MiniEditor kit="sheet" title="Budget 2027.xlsx" ribbon={<SheetRibbon />}>
-          <SheetBody />
-        </MiniEditor>
-        <MiniEditor kit="film" title="Launch film.kfilm" ribbon={<FilmRibbon />}>
-          <FilmBody />
-        </MiniEditor>
-        <MiniEditor kit="slide" title="Kickoff.pptx" ribbon={<SlideRibbon />}>
-          <SlideBody />
-        </MiniEditor>
+      <div className="lx-marquee">
+        {rows.map((row, i) => (
+          <div key={i} className={`lx-marquee-row ${i % 2 ? 'lx-reverse' : ''}`} style={{ '--speed': `${110 + i * 25}s` } as CSSProperties}>
+            {[...row, ...row].map((name, j) => {
+              const Icon = iconOf(name)
+              return (
+                <a key={`${name}-${j}`} className="lx-marquee-tile" href={`#icons/${name}`} title={name} tabIndex={j < row.length ? 0 : -1}>
+                  <Icon size={22} />
+                </a>
+              )
+            })}
+          </div>
+        ))}
       </div>
     </section>
   )
 }
 
-function SheetRibbon() {
-  return (
-    <>
-      <RibbonGroup label="Clipboard">
-        <RibbonButton icon={ClipboardPasteIcon} label="Paste" size="large" />
-      </RibbonGroup>
-      <RibbonGroup label="Font">
-        <RibbonStack>
-          <RibbonButton icon={BoldIcon} label="Bold" size="icon" pressed />
-          <RibbonButton icon={ItalicIcon} label="Italic" size="icon" />
-        </RibbonStack>
-      </RibbonGroup>
-      <RibbonGroup label="Insert">
-        <RibbonButton icon={ChartColumnIcon} label="Chart" size="large" />
-        <RibbonButton icon={SigmaIcon} label="Sum" size="large" />
-      </RibbonGroup>
-    </>
-  )
-}
+/* --------------------------------------------------------------- bento */
 
-function SheetBody() {
-  const rows = [
-    ['Design', '42,000', '38,500'],
-    ['Engineering', '180,000', '171,200'],
-    ['Marketing', '65,000', '70,100'],
-    ['Total', '287,000', '279,800'],
-  ]
+function Bento() {
+  const [skin, setSkin] = useState<SkinId>('graphite')
   return (
-    <table className="mini-sheet">
-      <thead>
-        <tr>
-          <th />
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={row[0]}>
-            <th>{i + 1}</th>
-            {row.map((cell, j) => (
-              <td key={j} data-selected={i === 1 && j === 2 ? true : undefined}>
-                {cell}
-              </td>
+    <section className="lx-section">
+      <div className="lx-section-head">
+        <p className="lx-eyebrow">Components</p>
+        <h2>Built for the work professional editors do.</h2>
+        <p>General design systems stop at forms and tables. Tessera goes on: ribbons, docks, wheels, curves, timelines, meters, all styled only by theme tokens.</p>
+      </div>
+      <div className="lx-bento">
+        <div className="lx-cell lx-cell-skin" style={skinStyle(skin)} data-scheme={SKINS[skin].colorScheme}>
+          <div className="lx-cell-head">
+            <strong>One theme, every kit</strong>
+            <div className="lx-skin-switch" role="group" aria-label="Skin">
+              {SKIN_IDS.map((id) => (
+                <button key={id} type="button" aria-pressed={skin === id} onClick={() => setSkin(id)}>
+                  {id === 'paper' ? 'Paper' : id === 'graphite' ? 'Graphite' : id}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="lx-mini-ribbon">
+            <RibbonGroup label="Font">
+              <RibbonStack>
+                <RibbonButton icon={BoldIcon} label="Bold" size="icon" pressed />
+                <RibbonButton icon={ItalicIcon} label="Italic" size="icon" />
+              </RibbonStack>
+            </RibbonGroup>
+            <RibbonGroup label="Paragraph">
+              <Segmented
+                label="Align"
+                value="start"
+                onChange={() => undefined}
+                segments={[
+                  { value: 'start', icon: TextAlignStartIcon, label: 'Left' },
+                  { value: 'center', icon: TextAlignCenterIcon, label: 'Center' },
+                ]}
+              />
+            </RibbonGroup>
+            <RibbonGroup label="Insert">
+              <RibbonButton icon={iconOf('animation-fly-in')} label="Fly In" size="large" />
+              <RibbonButton icon={iconOf('transition-cover')} label="Cover" size="large" />
+            </RibbonGroup>
+          </div>
+          <div className="lx-skin-body">
+            <table className="lx-skin-sheet">
+              <thead>
+                <tr>
+                  <th />
+                  <th>A</th>
+                  <th>B</th>
+                  <th>C</th>
+                  <th>D</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Design', '42,000', '38,500', '−8%'],
+                  ['Engineering', '180,000', '171,200', '−5%'],
+                  ['Marketing', '65,000', '70,100', '+8%'],
+                  ['Total', '287,000', '279,800', '−3%'],
+                ].map((row, i) => (
+                  <tr key={row[0]}>
+                    <th>{i + 1}</th>
+                    {row.map((cell, j) => (
+                      <td key={j} data-selected={i === 1 && j === 2 ? true : undefined}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="lx-skin-bars" aria-hidden="true">
+              {[62, 88, 54, 96, 71].map((height, i) => (
+                <span key={i} style={{ height: `${height}%` }} />
+              ))}
+            </div>
+          </div>
+          <p className="lx-cell-note">A host sends one theme over the Kit Harness Protocol; every kit takes it, readable at WCAG AA.</p>
+        </div>
+        <div className="lx-cell lx-cell-wheel">
+          <span className="lx-cell-tag">ColorWheel</span>
+          <WheelDemo />
+        </div>
+        <div className="lx-cell lx-cell-tokens">
+          <span className="lx-cell-tag">{KHP_TOKENS.length} theme tokens</span>
+          <div className="lx-swatches">
+            {SKIN_IDS.map((id) => (
+              <div key={id} className="lx-swatch-col">
+                {['--kit-primary', '--kit-surface', '--kit-surface-muted', '--kit-canvas', '--kit-text', '--kit-border'].map((token) => (
+                  <span key={token} style={{ background: SKINS[id].tokens[token as keyof (typeof SKINS)['paper']['tokens']] }} title={`${id} ${token}`} />
+                ))}
+                <small>{id}</small>
+              </div>
             ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  )
-}
-
-function FilmRibbon() {
-  return (
-    <>
-      <RibbonGroup label="Marks">
-        <RibbonStack>
-          <RibbonButton icon={MarkInIcon} label="Mark In" size="icon" />
-          <RibbonButton icon={MarkOutIcon} label="Mark Out" size="icon" />
-        </RibbonStack>
-      </RibbonGroup>
-      <RibbonGroup label="Edit">
-        <RibbonButton icon={ClipInsertIcon} label="Insert" size="large" />
-        <RibbonButton icon={ScissorsIcon} label="Razor" size="large" />
-      </RibbonGroup>
-    </>
-  )
-}
-
-function FilmBody() {
-  const [time, setTime] = useState(12.4)
-  return (
-    <div className="film-body">
-      <div className="mini-canvas film-canvas" />
-      <div className="film-controls">
-        <TimecodeField label="Playhead" value={time} fps={25} onChange={(seconds) => setTime(seconds)} accent />
-        <TransportBar
-          buttons={[
-            { id: 'back', label: 'Back', icon: SkipBackIcon, onPress: () => setTime(0) },
-            { id: 'play', label: 'Play', icon: PlayIcon, large: true, onPress: () => setTime(time + 1) },
-            { id: 'fwd', label: 'Forward', icon: SkipForwardIcon, onPress: () => setTime(time + 5) },
-          ]}
-        />
-        <div className="film-track" aria-label="Timeline">
-          {[
-            ['Intro', 18],
-            ['Interview', 34],
-            ['B-roll', 22],
-            ['Outro', 14],
-          ].map(([label, width]) => (
-            <span key={label} style={{ flexBasis: `${width}%` }}>
-              {label}
-            </span>
-          ))}
-          <i style={{ left: `${Math.min(96, (time / 40) * 100)}%` }} />
+          </div>
+        </div>
+        <div className="lx-cell lx-cell-code">
+          <span className="lx-cell-tag">ui/theme</span>
+          <pre>
+            <code>
+              {`{
+  "theme": {
+    "colorScheme": "dark",
+    "tokens": {
+      "--kit-primary": "#8b7ff0",
+      "--kit-surface": "#1b1e23",
+      "--kit-radius-card": "12px"
+    }
+  }
+}`}
+            </code>
+          </pre>
+        </div>
+        <div className="lx-cell lx-cell-cad">
+          <span className="lx-cell-tag">Tool icons, with accents</span>
+          <div className="lx-tool-grid">
+            {['polyline', 'arc', 'dimension-linear', 'dimension-angular', 'fillet', 'chamfer', 'array-rectangular', 'constraint-tangent', 'hatch', 'animation-spin', 'transition-reveal', 'clip-extract'].map((name) => {
+              const Icon = iconOf(name)
+              return (
+                <span key={name} title={name}>
+                  <Icon size={26} />
+                </span>
+              )
+            })}
+          </div>
+        </div>
+        <div className="lx-cell lx-cell-curve">
+          <span className="lx-cell-tag">CurveEditor</span>
+          <CurveDemo size={130} />
+        </div>
+        <div className="lx-cell lx-cell-transport">
+          <span className="lx-cell-tag">Timecode and transport</span>
+          <TransportDemo />
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
-function SlideRibbon() {
-  return (
-    <>
-      <RibbonGroup label="Clipboard">
-        <RibbonStack>
-          <RibbonButton icon={ScissorsIcon} label="Cut" />
-          <RibbonButton icon={CopyIcon} label="Copy" />
-        </RibbonStack>
-      </RibbonGroup>
-      <RibbonGroup label="Insert">
-        <RibbonButton icon={TableIcon} label="Table" size="large" />
-        <RibbonButton icon={SunMediumIcon} label="Theme" size="large" />
-      </RibbonGroup>
-    </>
-  )
-}
+/* ---------------------------------------------------------------- kits */
 
-function SlideBody() {
-  const [align, setAlign] = useState<'start' | 'center'>('start')
+function Kits() {
+  const kits = KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit))
   return (
-    <div className="slide-body">
-      <div className="slide-page" data-align={align}>
-        <strong>Kickoff</strong>
-        <span>One suite, every kit</span>
+    <section className="lx-section">
+      <div className="lx-section-head lx-center">
+        <p className="lx-eyebrow">Kition kits</p>
+        <h2>Thirteen kits. One family.</h2>
       </div>
-      <div className="slide-controls">
-        <Segmented
-          label="Alignment"
-          value={align}
-          onChange={setAlign}
-          segments={[
-            { value: 'start', icon: TextAlignStartIcon, label: 'Left' },
-            { value: 'center', icon: TextAlignCenterIcon, label: 'Center' },
-          ]}
-        />
-        <Button variant="primary" size="sm">
-          Present
-        </Button>
-      </div>
-    </div>
-  )
-}
-
-function Layers() {
-  const cards = [
-    { href: '#icons', count: String(ICON_NAMES.length), unit: 'icons', title: 'Tessera Icons', body: `${KIT_ICONS.length} kit icons and one stroke style, as React components, canvas paths and Rust, so the editor and the engine draw the same shapes.` },
-    { href: '#tokens', count: String(KHP_TOKENS.length), unit: 'theme tokens', title: 'Tokens and skins', body: `The Kit Harness Protocol's theme tokens with ${SKIN_IDS.length} skins. A host sends one theme; every kit follows, readable at WCAG AA.` },
-    { href: '#components', count: '40+', unit: 'components', title: 'Components', body: 'What professional editors need and general design systems lack: ribbons, docks, color wheels, curves, timelines, meters.' },
-  ]
-  return (
-    <section className="landing-section">
-      <h2>Three layers, one system.</h2>
-      <div className="layer-cards">
-        {cards.map((card) => (
-          <a key={card.href} className="layer-card" href={card.href}>
-            <span className="layer-count">
-              {card.count} <small>{card.unit}</small>
-            </span>
-            <strong>{card.title}</strong>
-            <p>{card.body}</p>
-          </a>
+      <div className="lx-kits">
+        {kits.map((kit) => (
+          <figure key={kit} className="lx-kit">
+            <img src={kitUrl(kit)} alt="" width={56} height={56} />
+            <figcaption>{KIT_NAMES[kit] ?? kit}</figcaption>
+          </figure>
         ))}
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------- closing */
+
+function Closing() {
+  return (
+    <section className="lx-closing">
+      <div className="lx-closing-inner">
+        <h2>Build your kit on Tessera.</h2>
+        <p>Tokens, icons and components in three packages, for React, the canvas, and Rust engines.</p>
+        <div className="lx-actions lx-center-row">
+          <a className="lx-cta lx-cta-light" href="#components">
+            Start with components
+          </a>
+          <CopyCommand text="pnpm add @kition/tessera @kition/tessera-icons" />
+        </div>
       </div>
     </section>
   )
