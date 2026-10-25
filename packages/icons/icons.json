@@ -126,6 +126,10 @@
       "family": "ui",
       "source": "lucide:app-window"
     },
+    "app-window-mac": {
+      "family": "ui",
+      "source": "lucide:app-window-mac"
+    },
     "arc": {
       "family": "tool",
       "source": "svg:arc.svg"
@@ -274,6 +278,10 @@
       "family": "ui",
       "source": "lucide:box"
     },
+    "boxes": {
+      "family": "ui",
+      "source": "lucide:boxes"
+    },
     "braces": {
       "family": "ui",
       "source": "lucide:braces"
@@ -374,6 +382,10 @@
       "family": "ui",
       "source": "lucide:chart-line"
     },
+    "chart-no-axes-column": {
+      "family": "ui",
+      "source": "lucide:chart-no-axes-column"
+    },
     "chart-no-axes-combined": {
       "family": "ui",
       "source": "lucide:chart-no-axes-combined"
@@ -385,6 +397,10 @@
     "chart-scatter": {
       "family": "ui",
       "source": "lucide:chart-scatter"
+    },
+    "chart-spline": {
+      "family": "ui",
+      "source": "lucide:chart-spline"
     },
     "check": {
       "family": "ui",
@@ -526,6 +542,10 @@
       "family": "ui",
       "source": "lucide:cloud-upload"
     },
+    "cloudy": {
+      "family": "ui",
+      "source": "lucide:cloudy"
+    },
     "code": {
       "family": "ui",
       "source": "lucide:code"
@@ -617,6 +637,10 @@
     "contrast": {
       "family": "ui",
       "source": "lucide:contrast"
+    },
+    "cookie": {
+      "family": "ui",
+      "source": "lucide:cookie"
     },
     "copy": {
       "family": "ui",
@@ -746,6 +770,10 @@
       "family": "ui",
       "source": "lucide:droplet"
     },
+    "droplets": {
+      "family": "ui",
+      "source": "lucide:droplets"
+    },
     "earth": {
       "family": "ui",
       "source": "lucide:earth"
@@ -793,6 +821,10 @@
     "fast-forward": {
       "family": "ui",
       "source": "lucide:fast-forward"
+    },
+    "feather": {
+      "family": "ui",
+      "source": "lucide:feather"
     },
     "file": {
       "family": "ui",
@@ -902,6 +934,10 @@
       "family": "ui",
       "source": "svg:flip-horizontal.svg"
     },
+    "flower": {
+      "family": "ui",
+      "source": "lucide:flower"
+    },
     "focus": {
       "family": "ui",
       "source": "lucide:focus"
@@ -938,6 +974,10 @@
       "family": "ui",
       "source": "lucide:frame"
     },
+    "fullscreen": {
+      "family": "ui",
+      "source": "lucide:fullscreen"
+    },
     "funnel": {
       "family": "ui",
       "source": "lucide:funnel"
@@ -950,6 +990,10 @@
       "family": "ui",
       "source": "lucide:gauge"
     },
+    "gem": {
+      "family": "ui",
+      "source": "lucide:gem"
+    },
     "git-branch": {
       "family": "ui",
       "source": "lucide:git-branch"
@@ -961,6 +1005,10 @@
     "git-compare": {
       "family": "ui",
       "source": "lucide:git-compare"
+    },
+    "glasses": {
+      "family": "ui",
+      "source": "lucide:glasses"
     },
     "globe": {
       "family": "ui",
@@ -981,6 +1029,10 @@
     "grid-2x2": {
       "family": "ui",
       "source": "lucide:grid-2x2"
+    },
+    "grid-3x2": {
+      "family": "ui",
+      "source": "lucide:grid-3x2"
     },
     "grid-3x3": {
       "family": "ui",
@@ -1038,9 +1090,21 @@
       "family": "ui",
       "source": "lucide:image"
     },
+    "image-down": {
+      "family": "ui",
+      "source": "lucide:image-down"
+    },
     "image-plus": {
       "family": "ui",
       "source": "lucide:image-plus"
+    },
+    "image-up": {
+      "family": "ui",
+      "source": "lucide:image-up"
+    },
+    "images": {
+      "family": "ui",
+      "source": "lucide:images"
     },
     "inbox": {
       "family": "ui",
@@ -1062,6 +1126,10 @@
       "family": "ui",
       "source": "lucide:keyboard"
     },
+    "lamp": {
+      "family": "ui",
+      "source": "lucide:lamp"
+    },
     "languages": {
       "family": "ui",
       "source": "lucide:languages"
@@ -1082,6 +1150,14 @@
       "family": "ui",
       "source": "lucide:layers"
     },
+    "layers-2": {
+      "family": "ui",
+      "source": "lucide:layers-2"
+    },
+    "layers-plus": {
+      "family": "ui",
+      "source": "lucide:layers-plus"
+    },
     "layout-dashboard": {
       "family": "ui",
       "source": "lucide:layout-dashboard"
@@ -1089,6 +1165,10 @@
     "layout-grid": {
       "family": "ui",
       "source": "lucide:layout-grid"
+    },
+    "layout-panel-left": {
+      "family": "ui",
+      "source": "lucide:layout-panel-left"
     },
     "layout-template": {
       "family": "ui",
@@ -1109,6 +1189,10 @@
     "life-buoy": {
       "family": "ui",
       "source": "lucide:life-buoy"
+    },
+    "ligature": {
+      "family": "ui",
+      "source": "lucide:ligature"
     },
     "lightbulb": {
       "family": "ui",
@@ -1278,6 +1362,14 @@
       "family": "ui",
       "source": "lucide:moon"
     },
+    "mountain": {
+      "family": "ui",
+      "source": "lucide:mountain"
+    },
+    "mountain-snow": {
+      "family": "ui",
+      "source": "lucide:mountain-snow"
+    },
     "mouse-pointer": {
       "family": "ui",
       "source": "lucide:mouse-pointer"
@@ -1322,6 +1414,10 @@
       "family": "ui",
       "source": "lucide:music"
     },
+    "navigation": {
+      "family": "ui",
+      "source": "lucide:navigation"
+    },
     "network": {
       "family": "ui",
       "source": "lucide:network"
@@ -1341,6 +1437,10 @@
     "omega": {
       "family": "ui",
       "source": "lucide:omega"
+    },
+    "orbit": {
+      "family": "ui",
+      "source": "lucide:orbit"
     },
     "ortho-mode": {
       "family": "tool",
@@ -1506,6 +1606,10 @@
       "family": "ui",
       "source": "lucide:rainbow"
     },
+    "ratio": {
+      "family": "ui",
+      "source": "lucide:ratio"
+    },
     "ray": {
       "family": "tool",
       "source": "svg:ray.svg"
@@ -1554,6 +1658,10 @@
       "family": "ui",
       "source": "lucide:rocket"
     },
+    "rotate-3d": {
+      "family": "ui",
+      "source": "lucide:rotate-3d"
+    },
     "rotate-ccw": {
       "family": "ui",
       "source": "lucide:rotate-ccw"
@@ -1565,6 +1673,10 @@
     "rotate-cw": {
       "family": "ui",
       "source": "lucide:rotate-cw"
+    },
+    "rows-2": {
+      "family": "ui",
+      "source": "lucide:rows-2"
     },
     "rows-3": {
       "family": "ui",
@@ -1593,6 +1705,14 @@
     "scan": {
       "family": "ui",
       "source": "lucide:scan"
+    },
+    "scan-eye": {
+      "family": "ui",
+      "source": "lucide:scan-eye"
+    },
+    "scan-face": {
+      "family": "ui",
+      "source": "lucide:scan-face"
     },
     "scan-search": {
       "family": "ui",
@@ -1682,6 +1802,10 @@
       "family": "ui",
       "source": "lucide:sliders-horizontal"
     },
+    "sliders-vertical": {
+      "family": "ui",
+      "source": "lucide:sliders-vertical"
+    },
     "snowflake": {
       "family": "ui",
       "source": "lucide:snowflake"
@@ -1701,6 +1825,10 @@
     "spline": {
       "family": "ui",
       "source": "lucide:spline"
+    },
+    "spline-pointer": {
+      "family": "ui",
+      "source": "lucide:spline-pointer"
     },
     "split": {
       "family": "ui",
@@ -1758,6 +1886,10 @@
       "family": "ui",
       "source": "lucide:square-split-vertical"
     },
+    "square-square": {
+      "family": "ui",
+      "source": "lucide:square-square"
+    },
     "square-stack": {
       "family": "ui",
       "source": "lucide:square-stack"
@@ -1781,6 +1913,10 @@
     "squares-subtract": {
       "family": "ui",
       "source": "lucide:squares-subtract"
+    },
+    "squares-unite": {
+      "family": "ui",
+      "source": "lucide:squares-unite"
     },
     "squircle": {
       "family": "ui",
@@ -1830,9 +1966,25 @@
       "family": "ui",
       "source": "lucide:sun"
     },
+    "sun-dim": {
+      "family": "ui",
+      "source": "lucide:sun-dim"
+    },
     "sun-medium": {
       "family": "ui",
       "source": "lucide:sun-medium"
+    },
+    "sun-moon": {
+      "family": "ui",
+      "source": "lucide:sun-moon"
+    },
+    "sun-snow": {
+      "family": "ui",
+      "source": "lucide:sun-snow"
+    },
+    "sunrise": {
+      "family": "ui",
+      "source": "lucide:sunrise"
     },
     "superscript": {
       "family": "ui",
@@ -1902,6 +2054,10 @@
       "family": "ui",
       "source": "lucide:text-wrap"
     },
+    "thermometer": {
+      "family": "ui",
+      "source": "lucide:thermometer"
+    },
     "thumbs-up": {
       "family": "ui",
       "source": "lucide:thumbs-up"
@@ -1913,6 +2069,10 @@
     "toggle-left": {
       "family": "ui",
       "source": "lucide:toggle-left"
+    },
+    "tornado": {
+      "family": "ui",
+      "source": "lucide:tornado"
     },
     "transition-cover": {
       "family": "tool",
@@ -2010,6 +2170,10 @@
       "family": "ui",
       "source": "lucide:type"
     },
+    "type-outline": {
+      "family": "ui",
+      "source": "lucide:type-outline"
+    },
     "underline": {
       "family": "ui",
       "source": "lucide:underline"
@@ -2097,6 +2261,10 @@
     "whole-word": {
       "family": "ui",
       "source": "lucide:whole-word"
+    },
+    "wind": {
+      "family": "ui",
+      "source": "lucide:wind"
     },
     "workflow": {
       "family": "ui",
