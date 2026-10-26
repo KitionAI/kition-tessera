@@ -42,7 +42,7 @@ const sdk = repo('KITION_SDK_DIR', 'kition-sdk')
 const styles = join(sdk, 'packages', 'kit-editor', 'src', 'styles.css')
 if (existsSync(styles)) {
   const text = readFileSync(styles, 'utf8')
-  if (/@import\s+['"]@kition\/tessera\/styles\.css['"]/.test(text)) {
+  if (/@import\s+['"]@kition\/tessera-ui\/styles\.css['"]/.test(text)) {
     // kit-editor takes the tokens through Tessera's stylesheet; it must not declare its own.
     if (/(^|\n)\s*:root\s*(\[[^\]]*\])?\s*\{/.test(text.replace(/\/\*[\s\S]*?\*\//g, ''))) fail('kit-editor styles.css imports Tessera but still declares :root tokens')
   } else {

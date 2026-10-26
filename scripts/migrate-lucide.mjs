@@ -122,7 +122,7 @@ for (const dir of dirs) {
       text = `${text.slice(0, end)}\n\n${deferred.join('\n')}\n${text.slice(end).replace(/^\n+/, '\n')}`
       // One import of TesseraIcons per file.
       let seen = false
-      text = text.replace(/^import \{ TesseraIcons \} from ['"]@kition\/kit-ui['"];?\n/gm, (line) => (seen ? '' : ((seen = true), line)))
+      text = text.replace(/^import \{ TesseraIcons \} from ['"]@kition\/kit-editor['"];?\n/gm, (line) => (seen ? '' : ((seen = true), line)))
     }
     text = text.replace(/\.lucide-([a-z0-9-]+)/g, (match, name) => (NAMES.has(name) ? `.tessera-icon-${name}` : match))
     const where = relative(process.cwd(), file)
