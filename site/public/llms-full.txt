@@ -1449,12 +1449,12 @@ A placeholder in the shape of content that is loading; `lines` draws a paragraph
 | `lines` | `number` |  |  |
 | `className` | `string` |  |  |
 
-## LineChart
+## Charts
 
-Data display. Lines of one or more series over ordered categories, with a legend and a readout under the pointer, in the chart palette tokens.
+Data display. LineChart and BarChart draw one or more series over ordered categories; PieChart draws parts of a whole, as a pie or a donut. A legend, a readout under the pointer, the chart palette tokens or a colour of yours; height="fill" takes the height of its box.
 
 ```ts
-import { LineChart } from '@kition/tessera-ui'
+import { LineChart, BarChart, PieChart } from '@kition/tessera-ui'
 ```
 
 ### Example: Growth by day
@@ -1474,6 +1474,29 @@ export default function Demo() {
 }
 ```
 
+### Example: Bars and a donut
+
+```tsx
+import { BarChart, PieChart } from '@kition/tessera-ui'
+
+const STAGES = [
+  { stage: 'Backlog', tasks: 14 },
+  { stage: 'To do', tasks: 9 },
+  { stage: 'Doing', tasks: 6 },
+  { stage: 'Review', tasks: 4 },
+  { stage: 'Done', tasks: 21 },
+]
+
+export default function Demo() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 24 }}>
+      <BarChart label="Tasks by stage" data={STAGES} xField="stage" yField="tasks" height={240} />
+      <PieChart label="Share of tasks" data={STAGES} labelField="stage" valueField="tasks" innerRadius={0.6} height={200} />
+    </div>
+  )
+}
+```
+
 ### LineChart props
 
 Lines of one or more series over ordered categories, with a legend and a hover readout.
@@ -1484,9 +1507,47 @@ Lines of one or more series over ordered categories, with a legend and a hover r
 | `xField` (required) | `keyof T & string` |  | The field of each datum on the horizontal axis (categories in order of first appearance). |
 | `yField` (required) | `keyof T & string` |  | The field holding the number. |
 | `seriesField` | `keyof T & string` |  | The field naming the series a datum belongs to; one series without it. |
-| `height` | `number` | `280` |  |
-| `formatX` | `(value: string) => string` | `(value) => value` |  |
-| `formatY` | `(value: number) => string` | `(value) => value.toLocaleString()` |  |
+| `height` | `ChartHeight` |  |  |
+| `color` | `string` |  | The colour of a single series (the palette's first by default). |
+| `formatX` | `(value: string) => string` |  |  |
+| `formatY` | `(value: number) => string` |  |  |
+| `label` (required) | `string` |  | The chart's accessible name. |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+| `dots` | `boolean` |  | Marks each point with a dot. |
+
+### BarChart props
+
+Bars of one or more series per category, side by side, with rounded tops.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `data` (required) | `readonly T[]` |  |  |
+| `xField` (required) | `keyof T & string` |  | The field of each datum on the horizontal axis (categories in order of first appearance). |
+| `yField` (required) | `keyof T & string` |  | The field holding the number. |
+| `seriesField` | `keyof T & string` |  | The field naming the series a datum belongs to; one series without it. |
+| `height` | `ChartHeight` |  |  |
+| `color` | `string` |  | The colour of a single series (the palette's first by default). |
+| `formatX` | `(value: string) => string` |  |  |
+| `formatY` | `(value: number) => string` |  |  |
+| `label` (required) | `string` |  | The chart's accessible name. |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+| `maxBarWidth` | `number` |  | The widest a bar draws, in px. |
+
+### PieChart props
+
+Parts of a whole as slices of a pie (or a donut), with a legend and a readout of the slice under the pointer.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `data` (required) | `readonly T[]` |  |  |
+| `labelField` (required) | `keyof T & string` |  | The field naming each slice. |
+| `valueField` (required) | `keyof T & string` |  | The field holding each slice's number. |
+| `height` | `ChartHeight` | `240` |  |
+| `innerRadius` | `number` | `0` | The hole's size as a share of the radius (0.6 for a donut); a full pie by default. |
+| `colors` | `readonly string[]` |  | Colours for the slices, in order; the chart palette by default. |
+| `formatValue` | `(value: number) => string` | `(value) => value.toLocaleString()` |  |
 | `label` (required) | `string` |  | The chart's accessible name. |
 | `className` | `string` |  |  |
 | `testId` | `string` |  |  |
@@ -1872,7 +1933,7 @@ export default function Demo() {
 
 ## Toast
 
-Menus and overlays. A short notice in the corner. Render Toaster once; call toast() anywhere.
+Menus and overlays. A short notice at the top. Render Toaster once; call toast() or toast.success(), .error(), .loading(), .promise() anywhere, with an id to replace a notice and an action button.
 
 ```ts
 import { Toaster } from '@kition/tessera-ui'
@@ -1895,7 +1956,33 @@ export default function Demo() {
 }
 ```
 
+### Example: Actions, promises, sticky notices
+
+```tsx
+import { Button, toast } from '@kition/tessera-ui'
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <Button onClick={() => toast.info('Row deleted', { action: { label: 'Undo', onClick: () => toast.success('Row restored') } })}>With an action</Button>
+      <Button onClick={() => void toast.promise(wait(1500).then(() => 3), { loading: 'Exporting…', success: (count) => `Exported ${count} files`, error: 'Export failed' })}>A promise</Button>
+      <Button onClick={() => toast.error('Offline', { id: 'network', duration: Number.POSITIVE_INFINITY, description: 'Changes are kept until you reconnect.' })}>Sticky</Button>
+      <Button variant="ghost" onClick={() => toast.dismiss()}>Dismiss all</Button>
+    </div>
+  )
+}
+```
+
 ### Toaster props
+
+Where notices appear: centred at the top, `offset` px down (below a host's tab strip).
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `offset` | `number` | `12` |  |
+| `closeButton` | `boolean` | `true` |  |
 
 ## Modal
 

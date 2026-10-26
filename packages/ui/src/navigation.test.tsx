@@ -3,7 +3,7 @@ import { act } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, describe, expect, it } from 'vitest'
 import { Segmented } from './BarControls'
-import { LineChart, niceTicks } from './charts'
+import { BarChart, LineChart, PieChart, niceTicks, slicePath } from './charts'
 import { NavMenu, Tabs } from './navigation'
 import { LayersIcon } from '@kition/tessera-icons/react'
 
@@ -109,5 +109,38 @@ describe('LineChart', () => {
     expect(out.querySelector('svg')?.getAttribute('aria-label')).toBe('Growth')
     expect(out.querySelectorAll('polyline')).toHaveLength(2)
     expect([...out.querySelectorAll('.kui-chart-legend-item')].map((item) => item.textContent)).toEqual(['Visitors', 'Signups'])
+  })
+})
+
+describe('BarChart and PieChart', () => {
+  const stages = [
+    { stage: 'To do', count: 4 },
+    { stage: 'Doing', count: 7 },
+    { stage: 'Done', count: 2 },
+  ]
+
+  it('draws a bar per category in one colour, and a line with dots', () => {
+    const out = render(
+      <>
+        <BarChart label="By stage" data={stages} xField="stage" yField="count" color="#5645d4" />
+        <LineChart label="Trend" data={stages} xField="stage" yField="count" dots />
+      </>,
+    )
+    const bars = out.querySelectorAll<SVGPathElement>('.kui-chart-bar')
+    expect(bars).toHaveLength(3)
+    expect(bars[0].style.fill).toBe('#5645d4')
+    expect(out.querySelectorAll('.kui-chart-dot')).toHaveLength(3)
+  })
+
+  it('draws a slice per part with a legend, leaving out empty parts', () => {
+    const out = render(<PieChart label="Share" data={[...stages, { stage: 'Dropped', count: 0 }]} labelField="stage" valueField="count" innerRadius={0.6} />)
+    expect(out.querySelectorAll('.kui-chart-slice')).toHaveLength(3)
+    expect([...out.querySelectorAll('.kui-chart-legend-item')].map((item) => item.textContent)).toEqual(['To do', 'Doing', 'Done'])
+  })
+
+  it('draws a whole circle as two arcs, with its hole', () => {
+    const d = slicePath(50, 50, 40, 20, 0, 1)
+    expect(d.match(/A/g)).toHaveLength(4)
+    expect(slicePath(50, 50, 40, 0, 0, 0.25)).toBe('M50,50L50,10A40,40 0 0 1 90,50Z')
   })
 })

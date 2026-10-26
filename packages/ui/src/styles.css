@@ -763,18 +763,81 @@ select.kui-ribbon-field:disabled {
 }
 
 .kui-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   min-width: 240px;
   max-width: 420px;
-  padding: 10px 14px;
+  padding: 10px 10px 10px 14px;
   border: 1px solid var(--kit-border);
   border-radius: var(--kit-radius-card);
   background: var(--kit-surface);
-  box-shadow: var(--kit-shadow-card);
+  box-shadow: var(--kui-shadow-floating, var(--kit-shadow-card));
+  font-size: 13px;
+  animation: kui-fade-in 0.15s ease-out;
 }
 
 .kui-toast[data-level='error'] {
-  border-color: var(--kit-danger);
+  border-color: color-mix(in srgb, var(--kit-danger) 45%, var(--kit-border));
+}
+
+.kui-toast[data-level='error'] .kui-toast-title {
   color: var(--kit-danger);
+}
+
+.kui-toast[data-level='success'] .kui-toast-title {
+  color: var(--kui-success);
+}
+
+.kui-toast[data-level='warning'] .kui-toast-title {
+  color: var(--kui-warning);
+}
+
+.kui-toast-icon {
+  flex: none;
+  margin-top: 1px;
+}
+
+.kui-toast-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.kui-toast-title {
+  font-weight: 500;
+}
+
+.kui-toast-action {
+  flex: none;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--kit-border);
+  border-radius: var(--kit-radius-control);
+  background: var(--kit-surface);
+  color: var(--kit-text);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.kui-toast-action:hover {
+  background: var(--kui-hover);
+}
+
+.kui-toast-close {
+  display: inline-flex;
+  flex: none;
+  padding: 4px;
+  border: 0;
+  border-radius: var(--kit-radius-control);
+  background: transparent;
+  color: var(--kit-text-muted);
+  cursor: pointer;
+}
+
+.kui-toast-close:hover {
+  background: var(--kui-hover);
+  color: var(--kit-text);
 }
 
 .kui-toast-description {
@@ -3466,7 +3529,9 @@ div.kui-divider::after {
 }
 
 /* Charts */
+/* A chart takes the width its container gives it and never widens it (in a grid or flex row). */
 .kui-chart {
+  min-width: 0;
   margin: 0;
 }
 
@@ -3495,6 +3560,8 @@ div.kui-divider::after {
 .kui-chart-plot {
   position: relative;
   width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .kui-chart-plot svg {
@@ -3517,6 +3584,41 @@ div.kui-divider::after {
   stroke-width: 2;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+.kui-chart[data-fill] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.kui-chart[data-fill] .kui-chart-plot {
+  flex: 1;
+  min-height: 80px;
+}
+
+.kui-chart-legend-below {
+  justify-content: center;
+  margin: 8px 0 0;
+}
+
+.kui-chart-dot {
+  stroke: var(--kit-surface);
+  stroke-width: 1.5;
+}
+
+.kui-chart-band {
+  fill: color-mix(in srgb, var(--kit-text) 5%, transparent);
+}
+
+.kui-chart-slice {
+  stroke: var(--kit-surface);
+  stroke-width: 1.5;
+  transition: opacity 0.12s ease;
+}
+
+.kui-chart svg:has(.kui-chart-slice[data-hovered]) .kui-chart-slice:not([data-hovered]) {
+  opacity: 0.55;
 }
 
 .kui-chart-hover line {

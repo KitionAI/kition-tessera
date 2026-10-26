@@ -39,7 +39,7 @@
 - [Descriptions](https://tessera.kition.ai/docs/descriptions/): Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.
 - [Empty and Result](https://tessera.kition.ai/docs/empty-result/): Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.
 - [Skeleton](https://tessera.kition.ai/docs/skeleton/): A placeholder in the shape of content that is loading.
-- [LineChart](https://tessera.kition.ai/docs/line-chart/): Lines of one or more series over ordered categories, with a legend and a readout under the pointer, in the chart palette tokens.
+- [Charts](https://tessera.kition.ai/docs/line-chart/): LineChart and BarChart draw one or more series over ordered categories; PieChart draws parts of a whole, as a pie or a donut. A legend, a readout under the pointer, the chart palette tokens or a colour of yours; height="fill" takes the height of its box.
 
 ## Navigation
 
@@ -53,7 +53,7 @@
 - [ContextMenu](https://tessera.kition.ai/docs/context-menu/): A menu at a point, for right-clicks.
 - [Dialog](https://tessera.kition.ai/docs/dialog/): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
 - [PreviewDialog](https://tessera.kition.ai/docs/preview-dialog/): A dialog whose values preview live in the document: the kit supplies begin, update and end.
-- [Toast](https://tessera.kition.ai/docs/toast/): A short notice in the corner. Render Toaster once; call toast() anywhere.
+- [Toast](https://tessera.kition.ai/docs/toast/): A short notice at the top. Render Toaster once; call toast() or toast.success(), .error(), .loading(), .promise() anywhere, with an id to replace a notice and an action button.
 - [Modal](https://tessera.kition.ai/docs/modal/): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
 - [Tooltip](https://tessera.kition.ai/docs/tooltip/): A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
 - [Popover](https://tessera.kition.ai/docs/popover/): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.

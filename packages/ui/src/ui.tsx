@@ -4,9 +4,9 @@
  * dialogs, and notices. Styled only through the Kit UI protocol's theme tokens (styles.css).
  */
 import { Children, cloneElement, forwardRef, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type AnchorHTMLAttributes, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
-import { CheckIcon as Check, ChevronDownIcon as ChevronDown, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight, LoaderCircleIcon as LoaderCircle } from '@kition/tessera-icons/react'
+import { CheckIcon as Check, ChevronDownIcon as ChevronDown, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight, LoaderCircleIcon as LoaderCircle, XIcon } from '@kition/tessera-icons/react'
 import type { IconComponent } from './icon'
-import { useElements } from './context'
+import { useElements, useStrings } from './context'
 import { DropPanel } from './DropPanel'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
@@ -784,58 +784,133 @@ export function Dialog({
 
 /* Notices */
 
-type Toast = { id: number; level: 'info' | 'success' | 'warning' | 'error'; title: string; description?: string }
+/** A notice's kind; `loading` shows a spinner and stays until it is replaced or dismissed. */
+export type ToastLevel = 'info' | 'success' | 'warning' | 'error' | 'loading'
+export type ToastId = string | number
+
+export type ToastOptions = {
+  /** Replaces the notice with this id instead of stacking another (a loading notice turning into its result). */
+  id?: ToastId
+  description?: string
+  /** How long it shows, in ms; `Infinity` keeps it until dismissed. By default 4 s, 6 s for errors, until replaced for loading. */
+  duration?: number
+  /** A button in the notice (Undo, Retry); pressing it closes the notice. */
+  action?: { label: string; onClick: () => void }
+}
+
+type Toast = { id: ToastId; level: ToastLevel; title: string; description?: string; action?: ToastOptions['action'] }
 const listeners = new Set<(toasts: Toast[]) => void>()
 let toasts: Toast[] = []
 let nextToast = 1
-const expiries = new Map<number, ReturnType<typeof setTimeout>>()
+const expiries = new Map<ToastId, ReturnType<typeof setTimeout>>()
 
-/** Removes the notice `id` once its time is up, starting the count again if it was already running. */
-function expire(id: number, level: Toast['level']) {
+const publish = () => {
+  for (const listener of listeners) listener(toasts)
+}
+
+function defaultDuration(level: ToastLevel) {
+  return level === 'loading' ? Number.POSITIVE_INFINITY : level === 'error' ? 6000 : 4000
+}
+
+/** Removes the notice `id` after `duration`, starting the count again if it was already running. */
+function expire(id: ToastId, duration: number) {
   clearTimeout(expiries.get(id))
+  expiries.delete(id)
+  if (!Number.isFinite(duration)) return
   expiries.set(
     id,
-    setTimeout(
-      () => {
-        expiries.delete(id)
-        toasts = toasts.filter((item) => item.id !== id)
-        for (const listener of listeners) listener(toasts)
-      },
-      level === 'error' ? 6000 : 3000,
-    ),
+    setTimeout(() => dismiss(id), duration),
   )
 }
 
-/**
- * Shows a notice at the top of the editor for a few seconds. The same notice again while it is
- * still showing (a command failing stroke after stroke) refreshes it instead of stacking another.
- */
-export function toast(level: Toast['level'], title: string, description?: string) {
-  const shown = toasts.find((item) => item.level === level && item.title === title && item.description === description)
-  if (shown) {
-    expire(shown.id, level)
-    return
-  }
-  const id = nextToast++
-  toasts = [...toasts, { id, level, title, description }]
-  for (const listener of listeners) listener(toasts)
-  expire(id, level)
+function show(level: ToastLevel, title: string, options: ToastOptions = {}): ToastId {
+  const { id: given, description, action, duration = defaultDuration(level) } = options
+  // The same notice again while it shows (a command failing stroke after stroke) refreshes it.
+  const same = given === undefined ? toasts.find((item) => item.level === level && item.title === title && item.description === description && !item.action) : undefined
+  const id = given ?? same?.id ?? `toast-${nextToast++}`
+  const next: Toast = { id, level, title, description, action }
+  toasts = toasts.some((item) => item.id === id) ? toasts.map((item) => (item.id === id ? next : item)) : [...toasts, next]
+  publish()
+  expire(id, duration)
+  return id
 }
 
-export function Toaster() {
+/** Closes the notice `id`, or every notice without an id. */
+function dismiss(id?: ToastId) {
+  const gone = id === undefined ? toasts.map((item) => item.id) : [id]
+  for (const item of gone) {
+    clearTimeout(expiries.get(item))
+    expiries.delete(item)
+  }
+  toasts = id === undefined ? [] : toasts.filter((item) => item.id !== id)
+  publish()
+}
+
+/**
+ * Shows a notice at the top of the window: `toast(level, title, description?)`, or
+ * `toast.success(title, options)` and its siblings. `toast.loading` stays until replaced (pass its
+ * id to the result), `toast.promise` does that for a promise, and `toast.dismiss` closes notices.
+ */
+export const toast = Object.assign(
+  function toast(level: ToastLevel, title: string, description?: string): ToastId {
+    return show(level, title, { description })
+  },
+  {
+    info: (title: string, options?: ToastOptions) => show('info', title, options),
+    success: (title: string, options?: ToastOptions) => show('success', title, options),
+    warning: (title: string, options?: ToastOptions) => show('warning', title, options),
+    error: (title: string, options?: ToastOptions) => show('error', title, options),
+    loading: (title: string, options?: ToastOptions) => show('loading', title, options),
+    dismiss,
+    /** A loading notice while `promise` runs, replaced by its success or error notice. */
+    promise<T>(promise: Promise<T>, messages: { loading: string; success: string | ((value: T) => string); error: string | ((error: unknown) => string) }, options: ToastOptions = {}): Promise<T> {
+      const id = show('loading', messages.loading, { ...options, duration: Number.POSITIVE_INFINITY })
+      promise.then(
+        (value) => show('success', typeof messages.success === 'function' ? messages.success(value) : messages.success, { ...options, id }),
+        (error: unknown) => show('error', typeof messages.error === 'function' ? messages.error(error) : messages.error, { ...options, id }),
+      )
+      return promise
+    },
+  },
+)
+
+/** Where notices appear: centred at the top, `offset` px down (below a host's tab strip). */
+export function Toaster({ offset = 12, closeButton = true }: { offset?: number; closeButton?: boolean }) {
+  const t = useStrings()
   const [shown, setShown] = useState(toasts)
   useEffect(() => {
     listeners.add(setShown)
+    setShown(toasts)
     return () => {
       listeners.delete(setShown)
     }
   }, [])
   return (
-    <div className="kui-toasts" aria-live="polite">
+    <div className="kui-toasts" aria-live="polite" style={{ top: offset }}>
       {shown.map((item) => (
         <div key={item.id} className="kui-toast" data-level={item.level} role={item.level === 'error' ? 'alert' : 'status'}>
-          <div>{item.title}</div>
-          {item.description ? <div className="kui-toast-description">{item.description}</div> : null}
+          {item.level === 'loading' ? <Spinner size={16} className="kui-toast-icon" /> : null}
+          <div className="kui-toast-text">
+            <div className="kui-toast-title">{item.title}</div>
+            {item.description ? <div className="kui-toast-description">{item.description}</div> : null}
+          </div>
+          {item.action ? (
+            <button
+              type="button"
+              className="kui-toast-action"
+              onClick={() => {
+                item.action?.onClick()
+                dismiss(item.id)
+              }}
+            >
+              {item.action.label}
+            </button>
+          ) : null}
+          {closeButton ? (
+            <button type="button" className="kui-toast-close" aria-label={t('close')} onClick={() => dismiss(item.id)}>
+              <XIcon size={12} strokeWidth={ICON_STROKE} aria-hidden="true" />
+            </button>
+          ) : null}
         </div>
       ))}
     </div>

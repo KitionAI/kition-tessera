@@ -93,6 +93,96 @@
   "props": [],
   "domProps": true
  },
+ "BarChart": {
+  "description": "Bars of one or more series per category, side by side, with rounded tops.",
+  "props": [
+   {
+    "name": "data",
+    "type": "readonly T[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "xField",
+    "type": "keyof T & string",
+    "required": true,
+    "default": null,
+    "doc": "The field of each datum on the horizontal axis (categories in order of first appearance)."
+   },
+   {
+    "name": "yField",
+    "type": "keyof T & string",
+    "required": true,
+    "default": null,
+    "doc": "The field holding the number."
+   },
+   {
+    "name": "seriesField",
+    "type": "keyof T & string",
+    "required": false,
+    "default": null,
+    "doc": "The field naming the series a datum belongs to; one series without it."
+   },
+   {
+    "name": "height",
+    "type": "ChartHeight",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "color",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The colour of a single series (the palette's first by default)."
+   },
+   {
+    "name": "formatX",
+    "type": "(value: string) => string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "formatY",
+    "type": "(value: number) => string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "The chart's accessible name."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "maxBarWidth",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": "The widest a bar draws, in px."
+   }
+  ],
+  "domProps": false
+ },
  "BarSeparator": {
   "description": "A hairline between groups of controls in a row.",
   "props": []
@@ -1791,23 +1881,30 @@
    },
    {
     "name": "height",
-    "type": "number",
+    "type": "ChartHeight",
     "required": false,
-    "default": "280",
+    "default": null,
     "doc": ""
+   },
+   {
+    "name": "color",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The colour of a single series (the palette's first by default)."
    },
    {
     "name": "formatX",
     "type": "(value: string) => string",
     "required": false,
-    "default": "(value) => value",
+    "default": null,
     "doc": ""
    },
    {
     "name": "formatY",
     "type": "(value: number) => string",
     "required": false,
-    "default": "(value) => value.toLocaleString()",
+    "default": null,
     "doc": ""
    },
    {
@@ -1830,6 +1927,13 @@
     "required": false,
     "default": null,
     "doc": ""
+   },
+   {
+    "name": "dots",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Marks each point with a dot."
    }
   ],
   "domProps": false
@@ -2511,6 +2615,82 @@
    }
   ],
   "domProps": true
+ },
+ "PieChart": {
+  "description": "Parts of a whole as slices of a pie (or a donut), with a legend and a readout of the slice under the pointer.",
+  "props": [
+   {
+    "name": "data",
+    "type": "readonly T[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "labelField",
+    "type": "keyof T & string",
+    "required": true,
+    "default": null,
+    "doc": "The field naming each slice."
+   },
+   {
+    "name": "valueField",
+    "type": "keyof T & string",
+    "required": true,
+    "default": null,
+    "doc": "The field holding each slice's number."
+   },
+   {
+    "name": "height",
+    "type": "ChartHeight",
+    "required": false,
+    "default": "240",
+    "doc": ""
+   },
+   {
+    "name": "innerRadius",
+    "type": "number",
+    "required": false,
+    "default": "0",
+    "doc": "The hole's size as a share of the radius (0.6 for a donut); a full pie by default."
+   },
+   {
+    "name": "colors",
+    "type": "readonly string[]",
+    "required": false,
+    "default": null,
+    "doc": "Colours for the slices, in order; the chart palette by default."
+   },
+   {
+    "name": "formatValue",
+    "type": "(value: number) => string",
+    "required": false,
+    "default": "(value) => value.toLocaleString()",
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "The chart's accessible name."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
  },
  "Popconfirm": {
   "description": "Asks \"are you sure?\" next to the button that does something, before it does.",
@@ -3523,8 +3703,24 @@
   "domProps": false
  },
  "Toaster": {
-  "description": "",
-  "props": []
+  "description": "Where notices appear: centred at the top, `offset` px down (below a host's tab strip).",
+  "props": [
+   {
+    "name": "offset",
+    "type": "number",
+    "required": false,
+    "default": "12",
+    "doc": ""
+   },
+   {
+    "name": "closeButton",
+    "type": "boolean",
+    "required": false,
+    "default": "true",
+    "doc": ""
+   }
+  ],
+  "domProps": false
  },
  "Tooltip": {
   "description": "A short label shown on hover or keyboard focus. Works on its own; a TooltipProvider above it shares one delay among several.",
