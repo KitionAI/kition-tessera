@@ -295,7 +295,6 @@ const textOf = (node: ReactNode): string => (typeof node === 'string' || typeof 
 /** A labelled control bound to one field of the form around it, with its rules and error. */
 export function FormItem({ name, label, rules = [], extra, required, valuePropName = 'value', trigger = 'onChange', getValueFromEvent = fromEvent, dependencies = [], hidden, className, children }: FormItemProps) {
   const context = useContext(FormContext)
-  const t = useStrings()
   const id = useId()
   const latest = useRef({ rules, label })
   latest.current = { rules, label }
@@ -325,6 +324,7 @@ export function FormItem({ name, label, rules = [], extra, required, valuePropNa
           },
           disabled: (control.props.disabled as boolean | undefined) ?? (context.disabled || undefined),
           'aria-invalid': error ? true : undefined,
+          'aria-required': rules.some((rule) => rule.required) || undefined,
           'aria-describedby': note ? noteId : undefined,
         })
       : isValidElement(control) && control.props.id === undefined
@@ -334,13 +334,8 @@ export function FormItem({ name, label, rules = [], extra, required, valuePropNa
   return (
     <div className={join('kui-form-field', className)} data-invalid={error ? true : undefined}>
       {label ? (
-        <label className="kui-form-label" htmlFor={(isValidElement(control) && (control.props.id as string | undefined)) || id}>
+        <label className="kui-form-label" htmlFor={(isValidElement(control) && (control.props.id as string | undefined)) || id} data-required={mark || undefined}>
           {label}
-          {mark ? (
-            <span className="kui-form-required" aria-label={t('formRequiredMark')}>
-              *
-            </span>
-          ) : null}
         </label>
       ) : null}
       {bound}

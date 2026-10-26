@@ -156,5 +156,7 @@ describe('Sheet', () => {
   it('slides in from the left when told, for an app’s navigation', async () => {
     await mount(createElement(Sheet, { open: true, onClose: () => undefined, side: 'left', title: 'Menu', children: createElement('span', null, 'x') }))
     expect(container.querySelector('.kui-sheet')?.getAttribute('data-side')).toBe('left')
+    await mount(createElement(Sheet, { open: true, onClose: () => undefined, label: 'Kition Admin', title: createElement('b', null, 'Logo'), children: createElement('span', null, 'x') }))
+    expect(container.querySelector('.kui-sheet')?.getAttribute('aria-label')).toBe('Kition Admin')
   })
 })

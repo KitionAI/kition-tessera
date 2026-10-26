@@ -44,7 +44,6 @@
   "pageSize": "每页行数",
   "perPage": "{size} 条/页",
   "formRequired": "请填写{label}",
-  "formRequiredMark": "必填",
   "formEmail": "{label}必须是邮箱地址",
   "formUrl": "{label}必须是网址",
   "formPattern": "{label}格式不正确",

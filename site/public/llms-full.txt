@@ -2285,6 +2285,7 @@ A panel that slides in from the right over a dimmed page, for editing one thing 
 | `dirty` | `boolean` | `false` | With unsaved changes, closing (Escape, the backdrop, the close button) calls `onRequestClose` instead. |
 | `onRequestClose` | `() => void` |  |  |
 | `width` | `number` | `400` | Its width in pixels. |
+| `label` | `string` |  | Its accessible name, when `title` is not plain text (a logo and a name). |
 | `side` | `'left' \| 'right'` | `'right'` | The edge it slides in from: `right` (default, editing beside the work) or `left` (an app's navigation on a phone). |
 | `testId` | `string` | `'sheet'` | Test id of the sheet; its parts take `${testId}-backdrop`, `-header`, `-close`, `-footer`. |
 

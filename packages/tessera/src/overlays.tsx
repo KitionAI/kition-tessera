@@ -179,6 +179,8 @@ export type SheetProps = {
   onRequestClose?: () => void
   /** Its width in pixels. */
   width?: number
+  /** Its accessible name, when `title` is not plain text (a logo and a name). */
+  label?: string
   /** The edge it slides in from: `right` (default, editing beside the work) or `left` (an app's navigation on a phone). */
   side?: 'left' | 'right'
   /** Test id of the sheet; its parts take `${testId}-backdrop`, `-header`, `-close`, `-footer`. */
@@ -186,7 +188,7 @@ export type SheetProps = {
 }
 
 /** A panel that slides in from the right over a dimmed page, for editing one thing beside the work. */
-export function Sheet({ open, onClose, title, children, footer, dirty = false, onRequestClose, width = 400, side = 'right', testId = 'sheet' }: SheetProps) {
+export function Sheet({ open, onClose, title, label, children, footer, dirty = false, onRequestClose, width = 400, side = 'right', testId = 'sheet' }: SheetProps) {
   const t = useStrings()
   const [visible, setVisible] = useState(false)
   const close = useRef(() => {})
@@ -210,7 +212,7 @@ export function Sheet({ open, onClose, title, children, footer, dirty = false, o
   }, [open])
 
   if (!open) return null
-  return <SheetPanel title={title} footer={footer} width={width} side={side} visible={visible} testId={testId} label={typeof title === 'string' ? title : t('sheet')} closeLabel={t('close')} onClose={() => close.current()}>{children}</SheetPanel>
+  return <SheetPanel title={title} footer={footer} width={width} side={side} visible={visible} testId={testId} label={label ?? (typeof title === 'string' ? title : t('sheet'))} closeLabel={t('close')} onClose={() => close.current()}>{children}</SheetPanel>
 }
 
 function SheetPanel({ title, footer, width, side, visible, testId, label, closeLabel, onClose, children }: { title: ReactNode; footer?: ReactNode; width: number; side: 'left' | 'right'; visible: boolean; testId: string; label: string; closeLabel: string; onClose: () => void; children: ReactNode }) {

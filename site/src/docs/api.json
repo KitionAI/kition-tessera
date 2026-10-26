@@ -3054,6 +3054,13 @@
     "doc": "Its width in pixels."
    },
    {
+    "name": "label",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "Its accessible name, when `title` is not plain text (a logo and a name)."
+   },
+   {
     "name": "side",
     "type": "'left' | 'right'",
     "required": false,

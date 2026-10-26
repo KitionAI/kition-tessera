@@ -3371,7 +3371,9 @@ div.kui-divider::after {
   gap: 12px;
 }
 
-.kui-form-required {
+/* The required mark: drawn, not text, so the label stays the field's name; the control says aria-required. */
+.kui-form-label[data-required]::after {
+  content: '*';
   margin-left: 4px;
   color: var(--kit-danger);
 }
