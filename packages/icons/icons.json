@@ -205,6 +205,10 @@
       "family": "ui",
       "source": "lucide:arrow-up-down"
     },
+    "arrow-up-right": {
+      "family": "ui",
+      "source": "lucide:arrow-up-right"
+    },
     "audio-lines": {
       "family": "ui",
       "source": "lucide:audio-lines"
@@ -834,6 +838,10 @@
       "family": "ui",
       "source": "lucide:ellipsis"
     },
+    "ellipsis-vertical": {
+      "family": "ui",
+      "source": "lucide:ellipsis-vertical"
+    },
     "eraser": {
       "family": "ui",
       "source": "svg:eraser.svg",
@@ -883,6 +891,10 @@
       "accents": [
         "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"
       ]
+    },
+    "file-archive": {
+      "family": "ui",
+      "source": "lucide:file-archive"
     },
     "file-check-corner": {
       "family": "ui",
@@ -1054,6 +1066,10 @@
       "family": "ui",
       "source": "lucide:gem"
     },
+    "gift": {
+      "family": "ui",
+      "source": "lucide:gift"
+    },
     "git-branch": {
       "family": "ui",
       "source": "lucide:git-branch"
@@ -1065,6 +1081,10 @@
     "git-compare": {
       "family": "ui",
       "source": "lucide:git-compare"
+    },
+    "github": {
+      "family": "ui",
+      "source": "svg:github.svg"
     },
     "glasses": {
       "family": "ui",
@@ -1390,6 +1410,10 @@
       "family": "ui",
       "source": "lucide:mail"
     },
+    "mail-warning": {
+      "family": "ui",
+      "source": "lucide:mail-warning"
+    },
     "map-pin": {
       "family": "ui",
       "source": "lucide:map-pin"
@@ -1459,6 +1483,10 @@
     "monitor-play": {
       "family": "ui",
       "source": "lucide:monitor-play"
+    },
+    "monitor-smartphone": {
+      "family": "ui",
+      "source": "lucide:monitor-smartphone"
     },
     "moon": {
       "family": "ui",
@@ -1748,6 +1776,10 @@
       "family": "tool",
       "source": "svg:ray.svg"
     },
+    "receipt": {
+      "family": "ui",
+      "source": "lucide:receipt"
+    },
     "rectangle-horizontal": {
       "family": "ui",
       "source": "lucide:rectangle-horizontal",
@@ -1868,10 +1900,18 @@
       "source": "svg:scissors.svg",
       "replaces": "lucide:scissors"
     },
+    "scroll-text": {
+      "family": "ui",
+      "source": "lucide:scroll-text"
+    },
     "search": {
       "family": "ui",
       "source": "svg:search.svg",
       "replaces": "lucide:search"
+    },
+    "search-check": {
+      "family": "ui",
+      "source": "lucide:search-check"
     },
     "send": {
       "family": "ui",
@@ -1911,6 +1951,10 @@
     "shield-alert": {
       "family": "ui",
       "source": "lucide:shield-alert"
+    },
+    "shield-ban": {
+      "family": "ui",
+      "source": "lucide:shield-ban"
     },
     "shield-check": {
       "family": "ui",
@@ -2191,6 +2235,10 @@
       "family": "ui",
       "source": "lucide:tag"
     },
+    "tags": {
+      "family": "ui",
+      "source": "lucide:tags"
+    },
     "target": {
       "family": "ui",
       "source": "lucide:target"
@@ -2251,6 +2299,10 @@
     "thumbs-up": {
       "family": "ui",
       "source": "lucide:thumbs-up"
+    },
+    "ticket": {
+      "family": "ui",
+      "source": "lucide:ticket"
     },
     "timer": {
       "family": "ui",

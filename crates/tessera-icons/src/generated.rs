@@ -52,6 +52,7 @@ pub const ARROW_RIGHT_LEFT: Icon = Icon { name: "arrow-right-left", paths: &["m1
 pub const ARROW_RIGHT_TO_LINE: Icon = Icon { name: "arrow-right-to-line", paths: &["M17 12H3", "m11 18 6-6-6-6", "M21 5v14"], fills: &[], accents: &[] };
 pub const ARROW_UP: Icon = Icon { name: "arrow-up", paths: &["M12 19.5V4.5", "M6.5 10L12 4.5 17.5 10"], fills: &[], accents: &[] };
 pub const ARROW_UP_DOWN: Icon = Icon { name: "arrow-up-down", paths: &["m21 16-4 4-4-4", "M17 20V4", "m3 8 4-4 4 4", "M7 4v16"], fills: &[], accents: &[] };
+pub const ARROW_UP_RIGHT: Icon = Icon { name: "arrow-up-right", paths: &["M7 7h10v10", "M7 17 17 7"], fills: &[], accents: &[] };
 pub const AUDIO_LINES: Icon = Icon { name: "audio-lines", paths: &["M2 10v3", "M6 6v11", "M10 3v18", "M14 8v7", "M18 5v13", "M22 10v3"], fills: &[], accents: &[] };
 pub const AUDIO_WAVEFORM: Icon = Icon { name: "audio-waveform", paths: &["M2 13a2 2 0 0 0 2-2V7a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0v-4a2 2 0 0 1 2-2"], fills: &[], accents: &[] };
 pub const BAN: Icon = Icon { name: "ban", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M4.929 4.929 19.07 19.071"], fills: &[], accents: &[] };
@@ -198,6 +199,7 @@ pub const DROPLETS: Icon = Icon { name: "droplets", paths: &["M7 16.3c2.2 0 4-1.
 pub const EARTH: Icon = Icon { name: "earth", paths: &["M21.54 15H17a2 2 0 0 0-2 2v4.54", "M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17", "M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05", "M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z"], fills: &[], accents: &[] };
 pub const ELLIPSE: Icon = Icon { name: "ellipse", paths: &["M3 12a9 5.5 0 1 0 18 0a9 5.5 0 1 0 -18 0z", "M12 12h9"], fills: &["M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z"], accents: &["M3 12a9 5.5 0 1 0 18 0a9 5.5 0 1 0 -18 0z"] };
 pub const ELLIPSIS: Icon = Icon { name: "ellipsis", paths: &["M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z"], fills: &[], accents: &[] };
+pub const ELLIPSIS_VERTICAL: Icon = Icon { name: "ellipsis-vertical", paths: &["M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M11 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M11 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z"], fills: &[], accents: &[] };
 pub const ERASER: Icon = Icon { name: "eraser", paths: &["M14 4.5l6 6-9 9H7l-4-4z", "M8 10.5l6 6", "M13 19.5h7"], fills: &[], accents: &["M3 15.5l5-5 6 6-3 3H7z"] };
 pub const EXPAND: Icon = Icon { name: "expand", paths: &["m15 15 6 6", "m15 9 6-6", "M21 16v5h-5", "M21 8V3h-5", "M3 16v5h5", "m3 21 6-6", "M3 8V3h5", "M9 9 3 3"], fills: &[], accents: &[] };
 pub const EXPLODE: Icon = Icon { name: "explode", paths: &["M4 9V5a1 1 0 0 1 1-1h4", "M15 4h4a1 1 0 0 1 1 1v4", "M20 15v4a1 1 0 0 1 -1 1h-4", "M9 20H5a1 1 0 0 1 -1-1v-4", "M12 9v-1", "M12 16v-1", "M9 12h-1", "M16 12h-1"], fills: &[], accents: &[] };
@@ -209,6 +211,7 @@ pub const FACE_SLIGHTLY_SMILING: Icon = Icon { name: "face-slightly-smiling", pa
 pub const FAST_FORWARD: Icon = Icon { name: "fast-forward", paths: &["M12 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 12 18z", "M2 6a2 2 0 0 1 3.414-1.414l6 6a2 2 0 0 1 0 2.828l-6 6A2 2 0 0 1 2 18z"], fills: &[], accents: &[] };
 pub const FEATHER: Icon = Icon { name: "feather", paths: &["M14.086 18.412A2 2 0 0112.67 19H5v-7.672a2 2 0 01.586-1.414L11.75 3.75a6 6 0 118.49 8.49z", "M16 8 2 22", "M17.488 15H9"], fills: &[], accents: &[] };
 pub const FILE: Icon = Icon { name: "file", paths: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z", "M14 2v5a1 1 0 0 0 1 1h5"], fills: &[], accents: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"] };
+pub const FILE_ARCHIVE: Icon = Icon { name: "file-archive", paths: &["M13.659 22H18a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v11.5", "M14 2v5a1 1 0 0 0 1 1h5", "M8 12v-1", "M8 18v-2", "M8 7V6", "M6 20a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z"], fills: &[], accents: &[] };
 pub const FILE_CHECK_CORNER: Icon = Icon { name: "file-check-corner", paths: &["M10.5 22H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v6", "M14 2v5a1 1 0 0 0 1 1h5", "m14 20 2 2 4-4"], fills: &[], accents: &[] };
 pub const FILE_CLOCK: Icon = Icon { name: "file-clock", paths: &["M16 22h2a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v2.85", "M14 2v5a1 1 0 0 0 1 1h5", "M8 14v2.2l1.6 1", "M2 16a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z"], fills: &[], accents: &[] };
 pub const FILE_CODE: Icon = Icon { name: "file-code", paths: &["M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z", "M14 2v5a1 1 0 0 0 1 1h5", "M10 12.5 8 15l2 2.5", "m14 12.5 2 2.5-2 2.5"], fills: &[], accents: &[] };
@@ -250,9 +253,11 @@ pub const FUNNEL: Icon = Icon { name: "funnel", paths: &["M10 20a1 1 0 0 0 .553.
 pub const GALLERY_HORIZONTAL_END: Icon = Icon { name: "gallery-horizontal-end", paths: &["M2 7v10", "M6 5v14", "M12 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const GAUGE: Icon = Icon { name: "gauge", paths: &["m12 14 4-4", "M3.34 19a10 10 0 1 1 17.32 0"], fills: &[], accents: &[] };
 pub const GEM: Icon = Icon { name: "gem", paths: &["M10.5 3 8 9l4 13 4-13-2.5-6", "M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z", "M2 9h20"], fills: &[], accents: &[] };
+pub const GIFT: Icon = Icon { name: "gift", paths: &["M12 7v14", "M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8", "M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5", "M4 7h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
 pub const GIT_BRANCH: Icon = Icon { name: "git-branch", paths: &["M15 6a9 9 0 0 0-9 9V3", "M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M3 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z"], fills: &[], accents: &[] };
 pub const GIT_BRANCH_PLUS: Icon = Icon { name: "git-branch-plus", paths: &["M6 3v12", "M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z", "M15 6a9 9 0 0 0-9 9", "M18 15v6", "M21 18h-6"], fills: &[], accents: &[] };
 pub const GIT_COMPARE: Icon = Icon { name: "git-compare", paths: &["M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M3 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M13 6h3a2 2 0 0 1 2 2v7", "M11 18H8a2 2 0 0 1-2-2V9"], fills: &[], accents: &[] };
+pub const GITHUB: Icon = Icon { name: "github", paths: &["M15 22v-4a4.5 4.5 0 0 0 -1 -3.5c3 0 6 -2 6 -5.5c0 -1.5 -0.5 -2.5 -1 -3.5c0.5 -1 0.5 -2.5 0 -3.5c0 0 -1 0 -3 1.5c-2.5 -0.5 -5.5 -0.5 -8 0c-2 -1.5 -3 -1.5 -3 -1.5c-0.5 1 -0.5 2.5 0 3.5c-0.5 1 -1 2 -1 3.5c0 3.5 3 5.5 6 5.5c-0.5 0.5 -1 1.5 -1 3.5v4", "M9 18c-4.5 2 -5 -2 -7 -2"], fills: &[], accents: &[] };
 pub const GLASSES: Icon = Icon { name: "glasses", paths: &["M2 15a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z", "M14 15a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z", "M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2", "M2.5 13 5 7c.7-1.3 1.4-2 3-2", "M21.5 13 19 7c-.7-1.3-1.5-2-3-2"], fills: &[], accents: &[] };
 pub const GLOBE: Icon = Icon { name: "globe", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", "M2 12h20"], fills: &[], accents: &[] };
 pub const GO_TO_IN: Icon = Icon { name: "go-to-in", paths: &["M8 4H6v16h2", "M20 12h-9", "m14 8-4 4 4 4"], fills: &[], accents: &[] };
@@ -328,6 +333,7 @@ pub const LOG_OUT: Icon = Icon { name: "log-out", paths: &["m16 17 5-5-5-5", "M2
 pub const LOLLIPOP: Icon = Icon { name: "lollipop", paths: &["M3 11a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z", "m21 21-4.3-4.3", "M11 11a2 2 0 0 0 4 0 4 4 0 0 0-8 0 6 6 0 0 0 12 0"], fills: &[], accents: &["M3 11a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z"] };
 pub const MAGNET: Icon = Icon { name: "magnet", paths: &["m12 15 4 4", "M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282z", "m5 8 4 4"], fills: &[], accents: &[] };
 pub const MAIL: Icon = Icon { name: "mail", paths: &["m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7", "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
+pub const MAIL_WARNING: Icon = Icon { name: "mail-warning", paths: &["M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12.5", "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7", "M20 14v4", "M20 22v.01"], fills: &[], accents: &[] };
 pub const MAP_PIN: Icon = Icon { name: "map-pin", paths: &["M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0", "M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z"], fills: &[], accents: &[] };
 pub const MARK_IN: Icon = Icon { name: "mark-in", paths: &["M14 4h-3a1 1 0 0 0-1 1v5.5L8 12l2 1.5V19a1 1 0 0 0 1 1h3"], fills: &[], accents: &[] };
 pub const MARK_OUT: Icon = Icon { name: "mark-out", paths: &["M10 4h3a1 1 0 0 1 1 1v5.5l2 1.5-2 1.5V19a1 1 0 0 1-1 1h-3"], fills: &[], accents: &[] };
@@ -345,6 +351,7 @@ pub const MINUS: Icon = Icon { name: "minus", paths: &["M4.5 12h15"], fills: &[]
 pub const MONITOR: Icon = Icon { name: "monitor", paths: &["M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z", "M8 21L16 21", "M12 17L12 21"], fills: &[], accents: &[] };
 pub const MONITOR_COG: Icon = Icon { name: "monitor-cog", paths: &["M12 17v4", "m14.305 7.53.923-.382", "m15.228 4.852-.923-.383", "m16.852 3.228-.383-.924", "m16.852 8.772-.383.923", "m19.148 3.228.383-.924", "m19.53 9.696-.382-.924", "m20.772 4.852.924-.383", "m20.772 7.148.924.383", "M22 13v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7", "M8 21h8", "M15 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z"], fills: &[], accents: &[] };
 pub const MONITOR_PLAY: Icon = Icon { name: "monitor-play", paths: &["M15.033 9.44a.647.647 0 0 1 0 1.12l-4.065 2.352a.645.645 0 0 1-.968-.56V7.648a.645.645 0 0 1 .967-.56z", "M12 17v4", "M8 21h8", "M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
+pub const MONITOR_SMARTPHONE: Icon = Icon { name: "monitor-smartphone", paths: &["M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8", "M10 19v-3.96 3.15", "M7 19h5", "M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const MOON: Icon = Icon { name: "moon", paths: &["M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"], fills: &[], accents: &[] };
 pub const MOUNTAIN: Icon = Icon { name: "mountain", paths: &["m8 3 4 8 5-5 5 15H2L8 3z"], fills: &[], accents: &[] };
 pub const MOUNTAIN_SNOW: Icon = Icon { name: "mountain-snow", paths: &["m8 3 4 8 5-5 5 15H2L8 3z", "M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19"], fills: &[], accents: &[] };
@@ -409,6 +416,7 @@ pub const RADIUS: Icon = Icon { name: "radius", paths: &["M20.34 17.52a10 10 0 1
 pub const RAINBOW: Icon = Icon { name: "rainbow", paths: &["M22 17a10 10 0 0 0-20 0", "M6 17a6 6 0 0 1 12 0", "M10 17a2 2 0 0 1 4 0"], fills: &[], accents: &[] };
 pub const RATIO: Icon = Icon { name: "ratio", paths: &["M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-16a2 2 0 0 1 2 -2z", "M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const RAY: Icon = Icon { name: "ray", paths: &["M5 19 19 5", "M14 5h5v5"], fills: &["M3.5 19a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0 -3 0z"], accents: &[] };
+pub const RECEIPT: Icon = Icon { name: "receipt", paths: &["M12 17V7", "M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8", "M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"], fills: &[], accents: &[] };
 pub const RECTANGLE_HORIZONTAL: Icon = Icon { name: "rectangle-horizontal", paths: &["M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z"], fills: &[], accents: &["M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"] };
 pub const RECTANGLE_VERTICAL: Icon = Icon { name: "rectangle-vertical", paths: &["M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-16a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const REDO_2: Icon = Icon { name: "redo-2", paths: &["m15 14 5-5-5-5", "M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13"], fills: &[], accents: &[] };
@@ -437,7 +445,9 @@ pub const SCAN_FACE: Icon = Icon { name: "scan-face", paths: &["M3 7V5a2 2 0 0 1
 pub const SCAN_SEARCH: Icon = Icon { name: "scan-search", paths: &["M3 7V5a2 2 0 0 1 2-2h2", "M17 3h2a2 2 0 0 1 2 2v2", "M21 17v2a2 2 0 0 1-2 2h-2", "M7 21H5a2 2 0 0 1-2-2v-2", "M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "m16 16-1.9-1.9"], fills: &[], accents: &[] };
 pub const SCAN_TEXT: Icon = Icon { name: "scan-text", paths: &["M3 7V5a2 2 0 0 1 2-2h2", "M17 3h2a2 2 0 0 1 2 2v2", "M21 17v2a2 2 0 0 1-2 2h-2", "M7 21H5a2 2 0 0 1-2-2v-2", "M7 8h8", "M7 12h10", "M7 16h6"], fills: &[], accents: &[] };
 pub const SCISSORS: Icon = Icon { name: "scissors", paths: &["M3.5 6.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z", "M3.5 17.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z", "M8 8l12 10", "M8 16L20 6"], fills: &[], accents: &[] };
+pub const SCROLL_TEXT: Icon = Icon { name: "scroll-text", paths: &["M15 12h-5", "M15 8h-5", "M19 17V5a2 2 0 0 0-2-2H4", "M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"], fills: &[], accents: &[] };
 pub const SEARCH: Icon = Icon { name: "search", paths: &["M4 10.5a6.5 6.5 0 1 0 13 0a6.5 6.5 0 1 0 -13 0z", "M15.5 15.5L20 20"], fills: &[], accents: &[] };
+pub const SEARCH_CHECK: Icon = Icon { name: "search-check", paths: &["m8 11 2 2 4-4", "M3 11a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z", "m21 21-4.3-4.3"], fills: &[], accents: &[] };
 pub const SEND: Icon = Icon { name: "send", paths: &["M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z", "m21.854 2.147-10.94 10.939"], fills: &[], accents: &[] };
 pub const SEND_TO_BACK: Icon = Icon { name: "send-to-back", paths: &["M16 14h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z", "M4 2h4a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-4a2 2 0 0 1 -2 -2v-4a2 2 0 0 1 2 -2z", "M7 14v1a2 2 0 0 0 2 2h1", "M14 7h1a2 2 0 0 1 2 2v1"], fills: &[], accents: &[] };
 pub const SEPARATOR_HORIZONTAL: Icon = Icon { name: "separator-horizontal", paths: &["m16 16-4 4-4-4", "M3 12h18", "m8 8 4-4 4 4"], fills: &[], accents: &[] };
@@ -447,6 +457,7 @@ pub const SHAPES: Icon = Icon { name: "shapes", paths: &["M8.3 10a.7.7 0 0 1-.62
 pub const SHARE_2: Icon = Icon { name: "share-2", paths: &["M15 5a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M3 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M15 19a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M8.59 13.51L15.42 17.49", "M15.41 6.51L8.59 10.49"], fills: &[], accents: &[] };
 pub const SHELL: Icon = Icon { name: "shell", paths: &["M14 11a2 2 0 1 1-4 0 4 4 0 0 1 8 0 6 6 0 0 1-12 0 8 8 0 0 1 16 0 10 10 0 1 1-20 0 11.93 11.93 0 0 1 2.42-7.22 2 2 0 1 1 3.16 2.44"], fills: &[], accents: &[] };
 pub const SHIELD_ALERT: Icon = Icon { name: "shield-alert", paths: &["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z", "M12 8v4", "M12 16h.01"], fills: &[], accents: &[] };
+pub const SHIELD_BAN: Icon = Icon { name: "shield-ban", paths: &["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z", "m4.243 5.21 14.39 12.472"], fills: &[], accents: &[] };
 pub const SHIELD_CHECK: Icon = Icon { name: "shield-check", paths: &["M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z", "m9 12 2 2 4-4"], fills: &[], accents: &[] };
 pub const SHRINK: Icon = Icon { name: "shrink", paths: &["m15 15 6 6m-6-6v4.8m0-4.8h4.8", "M9 19.8V15m0 0H4.2M9 15l-6 6", "M15 4.2V9m0 0h4.8M15 9l6-6", "M9 4.2V9m0 0H4.2M9 9 3 3"], fills: &[], accents: &[] };
 pub const SIGMA: Icon = Icon { name: "sigma", paths: &["M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2"], fills: &[], accents: &[] };
@@ -510,6 +521,7 @@ pub const TABLE_CELLS_MERGE: Icon = Icon { name: "table-cells-merge", paths: &["
 pub const TABLE_CELLS_SPLIT: Icon = Icon { name: "table-cells-split", paths: &["M12 15V9", "M3 15h18", "M3 9h18", "M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
 pub const TABLE_PROPERTIES: Icon = Icon { name: "table-properties", paths: &["M15 3v18", "M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2z", "M21 9H3", "M21 15H3"], fills: &[], accents: &[] };
 pub const TAG: Icon = Icon { name: "tag", paths: &["M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"], fills: &["M7 7.5a0.5 0.5 0 1 0 1 0a0.5 0.5 0 1 0 -1 0z"], accents: &[] };
+pub const TAGS: Icon = Icon { name: "tags", paths: &["M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z", "M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"], fills: &["M10 6.5a0.5 0.5 0 1 0 1 0a0.5 0.5 0 1 0 -1 0z"], accents: &[] };
 pub const TARGET: Icon = Icon { name: "target", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M6 12a6 6 0 1 0 12 0a6 6 0 1 0 -12 0z", "M10 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0z"], fills: &[], accents: &[] };
 pub const TERMINAL: Icon = Icon { name: "terminal", paths: &["M12 19h8", "m4 17 6-6-6-6"], fills: &[], accents: &[] };
 pub const TEXT_ALIGN_CENTER: Icon = Icon { name: "text-align-center", paths: &["M3.5 6h17", "M6.5 10h11", "M3.5 14h17", "M6.5 18h11"], fills: &[], accents: &[] };
@@ -524,6 +536,7 @@ pub const TEXT_JUSTIFY_START: Icon = Icon { name: "text-justify-start", paths: &
 pub const TEXT_WRAP: Icon = Icon { name: "text-wrap", paths: &["m16 16-3 3 3 3", "M3 12h14.5a1 1 0 0 1 0 7H13", "M3 19h6", "M3 5h18"], fills: &[], accents: &[] };
 pub const THERMOMETER: Icon = Icon { name: "thermometer", paths: &["M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"], fills: &[], accents: &[] };
 pub const THUMBS_UP: Icon = Icon { name: "thumbs-up", paths: &["M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z", "M7 10v12"], fills: &[], accents: &[] };
+pub const TICKET: Icon = Icon { name: "ticket", paths: &["M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z", "M13 5v2", "M13 17v2", "M13 11v2"], fills: &[], accents: &[] };
 pub const TIMER: Icon = Icon { name: "timer", paths: &["M10 2L14 2", "M12 14L15 11", "M4 14a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z"], fills: &[], accents: &[] };
 pub const TOGGLE_LEFT: Icon = Icon { name: "toggle-left", paths: &["M6 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0z", "M9 5h6a7 7 0 0 1 7 7v0a7 7 0 0 1 -7 7h-6a7 7 0 0 1 -7 -7v0a7 7 0 0 1 7 -7z"], fills: &[], accents: &[] };
 pub const TORNADO: Icon = Icon { name: "tornado", paths: &["M21 4H3", "M18 8H6", "M19 12H9", "M16 16h-6", "M11 20H9"], fills: &[], accents: &[] };
@@ -635,6 +648,7 @@ pub static ICONS: &[&Icon] = &[
     &ARROW_RIGHT_TO_LINE,
     &ARROW_UP,
     &ARROW_UP_DOWN,
+    &ARROW_UP_RIGHT,
     &AUDIO_LINES,
     &AUDIO_WAVEFORM,
     &BAN,
@@ -781,6 +795,7 @@ pub static ICONS: &[&Icon] = &[
     &EARTH,
     &ELLIPSE,
     &ELLIPSIS,
+    &ELLIPSIS_VERTICAL,
     &ERASER,
     &EXPAND,
     &EXPLODE,
@@ -792,6 +807,7 @@ pub static ICONS: &[&Icon] = &[
     &FAST_FORWARD,
     &FEATHER,
     &FILE,
+    &FILE_ARCHIVE,
     &FILE_CHECK_CORNER,
     &FILE_CLOCK,
     &FILE_CODE,
@@ -833,9 +849,11 @@ pub static ICONS: &[&Icon] = &[
     &GALLERY_HORIZONTAL_END,
     &GAUGE,
     &GEM,
+    &GIFT,
     &GIT_BRANCH,
     &GIT_BRANCH_PLUS,
     &GIT_COMPARE,
+    &GITHUB,
     &GLASSES,
     &GLOBE,
     &GO_TO_IN,
@@ -911,6 +929,7 @@ pub static ICONS: &[&Icon] = &[
     &LOLLIPOP,
     &MAGNET,
     &MAIL,
+    &MAIL_WARNING,
     &MAP_PIN,
     &MARK_IN,
     &MARK_OUT,
@@ -928,6 +947,7 @@ pub static ICONS: &[&Icon] = &[
     &MONITOR,
     &MONITOR_COG,
     &MONITOR_PLAY,
+    &MONITOR_SMARTPHONE,
     &MOON,
     &MOUNTAIN,
     &MOUNTAIN_SNOW,
@@ -992,6 +1012,7 @@ pub static ICONS: &[&Icon] = &[
     &RAINBOW,
     &RATIO,
     &RAY,
+    &RECEIPT,
     &RECTANGLE_HORIZONTAL,
     &RECTANGLE_VERTICAL,
     &REDO_2,
@@ -1020,7 +1041,9 @@ pub static ICONS: &[&Icon] = &[
     &SCAN_SEARCH,
     &SCAN_TEXT,
     &SCISSORS,
+    &SCROLL_TEXT,
     &SEARCH,
+    &SEARCH_CHECK,
     &SEND,
     &SEND_TO_BACK,
     &SEPARATOR_HORIZONTAL,
@@ -1030,6 +1053,7 @@ pub static ICONS: &[&Icon] = &[
     &SHARE_2,
     &SHELL,
     &SHIELD_ALERT,
+    &SHIELD_BAN,
     &SHIELD_CHECK,
     &SHRINK,
     &SIGMA,
@@ -1093,6 +1117,7 @@ pub static ICONS: &[&Icon] = &[
     &TABLE_CELLS_SPLIT,
     &TABLE_PROPERTIES,
     &TAG,
+    &TAGS,
     &TARGET,
     &TERMINAL,
     &TEXT_ALIGN_CENTER,
@@ -1107,6 +1132,7 @@ pub static ICONS: &[&Icon] = &[
     &TEXT_WRAP,
     &THERMOMETER,
     &THUMBS_UP,
+    &TICKET,
     &TIMER,
     &TOGGLE_LEFT,
     &TORNADO,
