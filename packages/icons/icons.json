@@ -569,6 +569,10 @@
         "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"
       ]
     },
+    "cloud-download": {
+      "family": "ui",
+      "source": "lucide:cloud-download"
+    },
     "cloud-off": {
       "family": "ui",
       "source": "lucide:cloud-off"
@@ -2457,6 +2461,10 @@
     "user-minus": {
       "family": "ui",
       "source": "lucide:user-minus"
+    },
+    "user-plus": {
+      "family": "ui",
+      "source": "lucide:user-plus"
     },
     "user-round": {
       "family": "ui",

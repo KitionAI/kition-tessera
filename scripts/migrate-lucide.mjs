@@ -125,9 +125,16 @@ for (const dir of dirs) {
       text = text.replace(/^import \{ TesseraIcons \} from ['"]@kition\/kit-ui['"];?\n/gm, (line) => (seen ? '' : ((seen = true), line)))
     }
     text = text.replace(/\.lucide-([a-z0-9-]+)/g, (match, name) => (NAMES.has(name) ? `.tessera-icon-${name}` : match))
-    if (text === before) continue
-    changed++
     const where = relative(process.cwd(), file)
+    if (text === before) {
+      // Every name it imports is one Tessera lacks: nothing to rewrite, but still a leftover.
+      if (unresolved.length) {
+        leftovers += unresolved.length
+        console.log(`${where}: kept in lucide-react: ${unresolved.join(', ')}`)
+      }
+      continue
+    }
+    changed++
     if (unresolved.length) {
       leftovers += unresolved.length
       console.log(`${where}: kept in lucide-react: ${unresolved.join(', ')}`)

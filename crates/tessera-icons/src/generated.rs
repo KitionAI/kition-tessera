@@ -136,6 +136,7 @@ pub const CLIPBOARD_PASTE: Icon = Icon { name: "clipboard-paste", paths: &["M8 4
 pub const CLOCK: Icon = Icon { name: "clock", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M12 6v6l4 2"], fills: &[], accents: &[] };
 pub const CLOCK_3: Icon = Icon { name: "clock-3", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M12 6v6h4"], fills: &[], accents: &[] };
 pub const CLOUD: Icon = Icon { name: "cloud", paths: &["M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"], fills: &[], accents: &["M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"] };
+pub const CLOUD_DOWNLOAD: Icon = Icon { name: "cloud-download", paths: &["M12 13v8l-4-4", "m12 21 4-4", "M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284"], fills: &[], accents: &[] };
 pub const CLOUD_OFF: Icon = Icon { name: "cloud-off", paths: &["M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057", "M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78", "m2 2 20 20"], fills: &[], accents: &[] };
 pub const CLOUD_UPLOAD: Icon = Icon { name: "cloud-upload", paths: &["M12 13v8", "M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242", "m8 17 4-4 4 4"], fills: &[], accents: &[] };
 pub const CLOUDY: Icon = Icon { name: "cloudy", paths: &["M17.5 12a1 1 0 1 1 0 9H9.006a7 7 0 1 1 6.702-9z", "M21.832 9A3 3 0 0 0 19 7h-2.207a5.5 5.5 0 0 0-10.72.61"], fills: &[], accents: &[] };
@@ -574,6 +575,7 @@ pub const UNLINK: Icon = Icon { name: "unlink", paths: &["m18.84 12.25 1.72-1.71
 pub const UPLOAD: Icon = Icon { name: "upload", paths: &["M12 3v12", "m17 8-5-5-5 5", "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"], fills: &[], accents: &[] };
 pub const USER: Icon = Icon { name: "user", paths: &["M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2", "M8 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z"], fills: &[], accents: &[] };
 pub const USER_MINUS: Icon = Icon { name: "user-minus", paths: &["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z", "M22 11L16 11"], fills: &[], accents: &[] };
+pub const USER_PLUS: Icon = Icon { name: "user-plus", paths: &["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z", "M19 8L19 14", "M22 11L16 11"], fills: &[], accents: &[] };
 pub const USER_ROUND: Icon = Icon { name: "user-round", paths: &["M7 8a5 5 0 1 0 10 0a5 5 0 1 0 -10 0z", "M20 21a8 8 0 0 0-16 0"], fills: &[], accents: &[] };
 pub const USERS: Icon = Icon { name: "users", paths: &["M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", "M16 3.128a4 4 0 0 1 0 7.744", "M22 21v-2a4 4 0 0 0-3-3.87", "M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z"], fills: &[], accents: &[] };
 pub const VARIABLE: Icon = Icon { name: "variable", paths: &["M8 21s-4-3-4-9 4-9 4-9", "M16 3s4 3 4 9-4 9-4 9", "M15 9L9 15", "M9 9L15 15"], fills: &[], accents: &[] };
@@ -732,6 +734,7 @@ pub static ICONS: &[&Icon] = &[
     &CLOCK,
     &CLOCK_3,
     &CLOUD,
+    &CLOUD_DOWNLOAD,
     &CLOUD_OFF,
     &CLOUD_UPLOAD,
     &CLOUDY,
@@ -1170,6 +1173,7 @@ pub static ICONS: &[&Icon] = &[
     &UPLOAD,
     &USER,
     &USER_MINUS,
+    &USER_PLUS,
     &USER_ROUND,
     &USERS,
     &VARIABLE,
