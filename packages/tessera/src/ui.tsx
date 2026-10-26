@@ -20,9 +20,11 @@ export type ControlSize = 'sm' | 'md' | 'lg'
 /**
  * How much a button stands out: `primary` is the one main action (the theme's primary color);
  * `secondary` is outlined; `subtle` is a quiet filled button; `ghost` has no border or fill until
- * hovered; `danger` destroys. Without a variant a button is outlined, like `secondary`.
+ * hovered; `danger` destroys; `danger-outline` destroys too, outlined in the danger color, for a
+ * destructive action repeated down a list (Disable on every row). Without a variant a button is
+ * outlined, like `secondary`.
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'subtle' | 'ghost' | 'danger'
+export type ButtonVariant = 'primary' | 'secondary' | 'subtle' | 'ghost' | 'danger' | 'danger-outline'
 
 export type TesseraButtonProps = ButtonProps & {
   variant?: ButtonVariant

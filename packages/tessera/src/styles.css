@@ -2102,6 +2102,17 @@ select.kui-ribbon-field:disabled {
   filter: brightness(0.94);
 }
 
+.kui-button[data-variant='danger-outline'] {
+  border-color: color-mix(in srgb, var(--kit-danger) 45%, var(--kit-border));
+  background: var(--kit-surface);
+  color: var(--kit-danger);
+}
+
+.kui-button[data-variant='danger-outline']:hover:not(:disabled) {
+  border-color: var(--kit-danger);
+  background: color-mix(in srgb, var(--kit-danger) 8%, var(--kit-surface));
+}
+
 /* A disabled filled button turns muted rather than faint, so it stays readable on any skin. */
 .kui-button[data-variant='primary']:disabled,
 .kui-button[data-variant='danger']:disabled {

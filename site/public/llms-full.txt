@@ -154,6 +154,7 @@ export default function Demo() {
       <Button variant="subtle" size="md">Duplicate</Button>
       <Button variant="ghost" size="md">More</Button>
       <Button variant="danger" size="md">Delete</Button>
+      <Button variant="danger-outline" size="md">Disable</Button>
       <Button variant="primary" size="md" disabled>Disabled</Button>
     </div>
   )

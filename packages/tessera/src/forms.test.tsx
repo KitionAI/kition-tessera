@@ -200,3 +200,10 @@ describe('Disclosure held open from outside', () => {
     expect(out.textContent).toContain('Filters')
   })
 })
+
+describe('danger-outline', () => {
+  it('marks a quiet destructive button', () => {
+    const out = render(<Button variant="danger-outline">Disable</Button>)
+    expect(out.querySelector('button')?.getAttribute('data-variant')).toBe('danger-outline')
+  })
+})
