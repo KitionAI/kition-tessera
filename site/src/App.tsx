@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { Component, useEffect, useState, type ReactNode } from 'react'
 import { SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
 import { DocsPage } from './docs/DocsPage'
 import { DOCS } from './docs/registry'
-import { HomePage } from './home/HomePage'
 import { Landing } from './home/Landing'
 import { IconsPage } from './IconsPage'
 import { ReviewPage } from './ReviewPage'
@@ -13,8 +12,8 @@ import { PAGES, SITE_URL, metaOf, pathOf, routeOf } from './routes'
 const SKIN_LABELS: Record<SkinId, string> = { paper: 'Paper', graphite: 'Graphite' }
 
 /** The site at `path`: prerendered on the server with the page's path, hydrated in the browser. */
-export function App({ path }: { path: string }) {
-  const [{ page, detail }, setRoute] = useState(() => routeOf(path))
+export function App({ path }: { path?: string }) {
+  const [{ page, detail }, setRoute] = useState(() => routeOf(path ?? location.pathname))
   const [skin, setSkin] = useState<SkinId>('paper')
 
   // Links within the site change the page without a reload; Back and Forward follow.
@@ -85,17 +84,42 @@ export function App({ path }: { path: string }) {
           </select>
         </label>
       </header>
-      {page === 'galaxy' ? (
-        <HomePage dark={SKINS[skin].colorScheme === 'dark'} />
-      ) : page === 'home' ? (
-        <Landing skin={skin} />
-      ) : (
-        <main className="site-main">
-          {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'review' ? <ReviewPage /> : page === 'tokens' ? <TokensPage skin={skin} /> : <DocsPage id={detail ?? 'overview'} />}
-        </main>
-      )}
+      <PageBoundary key={`${page}/${detail ?? ''}`}>
+        {page === 'home' ? (
+          <Landing skin={skin} />
+        ) : (
+          <main className="site-main">
+            {page === 'icons' ? <IconsPage key={detail ?? ''} initial={detail} /> : page === 'styles' ? <StyleLab /> : page === 'review' ? <ReviewPage /> : page === 'tokens' ? <TokensPage skin={skin} /> : <DocsPage id={detail ?? 'overview'} />}
+          </main>
+        )}
+      </PageBoundary>
     </div>
   )
+}
+
+/**
+ * A page that fails to draw shows what went wrong and a way on, instead of a blank screen; the
+ * header stays, and moving to another page tries again.
+ */
+class PageBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null }
+  static getDerivedStateFromError(error: Error) {
+    return { error }
+  }
+  render() {
+    if (!this.state.error) return this.props.children
+    return (
+      <main className="site-main">
+        <section className="page-intro">
+          <h1>This page could not be shown</h1>
+          <p>{this.state.error.message}</p>
+          <p>
+            <a href={location.pathname} onClick={() => location.reload()}>Reload the page</a> or <a href="/">go to the overview</a>.
+          </p>
+        </section>
+      </main>
+    )
+  }
 }
 
 /** Whether a docs page is a component's (Components highlights for those, Docs for the guides). */

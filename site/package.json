@@ -10,10 +10,6 @@
   "dependencies": {
     "@kition/tessera": "workspace:*",
     "@kition/tessera-icons": "workspace:*",
-    "@kition/tessera-tokens": "workspace:*",
-    "three": "^0.186.1"
-  },
-  "devDependencies": {
-    "@types/three": "^0.186.0"
+    "@kition/tessera-tokens": "workspace:*"
   }
 }

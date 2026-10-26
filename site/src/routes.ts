@@ -18,7 +18,6 @@ export const PAGES = [
   { id: 'styles', label: 'Icon style lab' },
   { id: 'review', label: 'Redraw review' },
   { id: 'tokens', label: 'Tokens & skins' },
-  { id: 'galaxy', label: 'Galaxy' },
 ] as const
 export type PageId = (typeof PAGES)[number]['id']
 export type Route = { page: PageId; detail: string | null }
@@ -51,7 +50,6 @@ export function allRoutes(): Route[] {
     { page: 'styles', detail: null },
     { page: 'review', detail: null },
     { page: 'tokens', detail: null },
-    { page: 'galaxy', detail: null },
   ]
 }
 
@@ -79,8 +77,6 @@ export function metaOf(route: Route): { title: string; description: string } {
       return { title: title('Redraw review'), description: 'Tessera Icons redrawn batch by batch: slide animations and transitions, CAD drafting, tool accents, and the icons most kits share.' }
     case 'tokens':
       return { title: title('Tokens and skins'), description: 'Tessera design tokens: the Kit Harness Protocol theme tokens, component tokens, and the Paper and Graphite skins as CSS variables, TypeScript, and Rust.' }
-    case 'galaxy':
-      return { title: title('Galaxy'), description: 'Every Tessera icon as a tile in a galaxy of Kition kits.' }
     default:
       return { title: `${SITE_NAME}: the design system for professional editors`, description: DESCRIPTION }
   }
