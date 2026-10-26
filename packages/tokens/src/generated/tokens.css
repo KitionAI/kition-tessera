@@ -26,6 +26,14 @@
   --kui-tab-selected-weight: 600;
   --kui-hover: color-mix(in srgb, var(--kit-text) 7%, transparent);
   --kui-select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d5b54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --kui-success: #18794e;
+  --kui-warning: #ad5700;
+  --kui-chart-1: #5645d4;
+  --kui-chart-2: #0d74ce;
+  --kui-chart-3: #18794e;
+  --kui-chart-4: #ad5700;
+  --kui-chart-5: #ce2c31;
+  --kui-chart-6: #8145b5;
 }
 
 :root[data-color-scheme='dark'] {
@@ -35,4 +43,12 @@
   --kit-meter-warn: #f0f04f;
   --kit-meter-clip: #e34850;
   --kui-select-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a9a7a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --kui-success: #3dd68c;
+  --kui-warning: #ffca16;
+  --kui-chart-1: #8b7ff0;
+  --kui-chart-2: #70b8ff;
+  --kui-chart-3: #3dd68c;
+  --kui-chart-4: #ffca16;
+  --kui-chart-5: #ff9592;
+  --kui-chart-6: #d19dff;
 }

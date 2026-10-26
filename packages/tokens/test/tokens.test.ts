@@ -35,12 +35,13 @@ describe('tokens', () => {
     expect([...KHP_TOKENS]).toEqual(PROTOCOL_TOKENS)
   })
 
-  it('generates the same :root variables kit-ui declares today', () => {
-    expect(declarations(css, ':root')).toEqual(declarations(fixture, ':root'))
+  // Tokens added since (status tones, the chart palette) come on top of these.
+  it('keeps every :root variable kit-ui declared, with its value', () => {
+    expect(declarations(css, ':root')).toMatchObject(declarations(fixture, ':root'))
   })
 
-  it('generates the same dark overrides kit-ui declares today', () => {
-    expect(declarations(css, ":root[data-color-scheme='dark']")).toEqual(declarations(fixture, ":root[data-color-scheme='dark']"))
+  it('keeps every dark override kit-ui declared, with its value', () => {
+    expect(declarations(css, ":root[data-color-scheme='dark']")).toMatchObject(declarations(fixture, ":root[data-color-scheme='dark']"))
   })
 
   it('keeps the design rules of kition docs/design.md in Paper', () => {

@@ -1,4 +1,93 @@
 {
+ "Alert": {
+  "description": "A message in the page: what happened or what to know, in its tone, with an optional action.",
+  "props": [
+   {
+    "name": "tone",
+    "type": "Exclude<Tone, 'neutral'>",
+    "required": false,
+    "default": "'info'",
+    "doc": ""
+   },
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "description",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "action",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "A button or link at the end (Retry, Upgrade)."
+   },
+   {
+    "name": "onClose",
+    "type": "() => void",
+    "required": false,
+    "default": null,
+    "doc": "Shows a close button that calls it."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Avatar": {
+  "description": "A person's picture, or their initial on a tint when there is none.",
+  "props": [
+   {
+    "name": "src",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "size",
+    "type": "number",
+    "required": false,
+    "default": "28",
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Badge": {
   "description": "A small count or status beside a label (records in a view, a beta mark).",
   "props": [],
@@ -7,6 +96,26 @@
  "BarSeparator": {
   "description": "A hairline between groups of controls in a row.",
   "props": []
+ },
+ "Breadcrumb": {
+  "description": "Where the page sits: its parents (links in `title`) and then itself.",
+  "props": [
+   {
+    "name": "items",
+    "type": "readonly BreadcrumbItem[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
  },
  "Button": {
   "description": "A button. Its `className` adds to Tessera's, so a host can adjust one button's layout.",
@@ -62,7 +171,7 @@
   "props": [
    {
     "name": "label",
-    "type": "string",
+    "type": "ReactNode",
     "required": true,
     "default": null,
     "doc": ""
@@ -70,8 +179,8 @@
    {
     "name": "checked",
     "type": "boolean",
-    "required": true,
-    "default": null,
+    "required": false,
+    "default": "false",
     "doc": ""
    },
    {
@@ -84,12 +193,19 @@
    {
     "name": "onChange",
     "type": "(checked: boolean) => void",
-    "required": true,
+    "required": false,
     "default": null,
     "doc": ""
    },
    {
     "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "id",
     "type": "string",
     "required": false,
     "default": null,
@@ -468,6 +584,81 @@
   ],
   "domProps": false
  },
+ "DateTimeInput": {
+  "description": "A date, or a date and time, from the platform's picker; cleared to `null`.",
+  "props": [
+   {
+    "name": "value",
+    "type": "string | null",
+    "required": false,
+    "default": null,
+    "doc": "Optional inside a `FormItem`, which supplies it."
+   },
+   {
+    "name": "onChange",
+    "type": "(value: string | null) => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "withTime",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Asks for a time too."
+   },
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "invalid",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
+ "Descriptions": {
+  "description": "Labelled values of one record (an order, a user), laid out in `columns` columns.",
+  "props": [
+   {
+    "name": "items",
+    "type": "readonly DescriptionItem[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "columns",
+    "type": "number",
+    "required": false,
+    "default": "3",
+    "doc": ""
+   },
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Dialog": {
   "description": "",
   "props": [
@@ -568,6 +759,26 @@
     "default": null,
     "doc": "Called when the person closes it."
    },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Divider": {
+  "description": "A hairline between sections, with an optional label in it.",
+  "props": [
    {
     "name": "children",
     "type": "ReactNode",
@@ -735,6 +946,47 @@
   ],
   "domProps": false
  },
+ "Empty": {
+  "description": "Nothing to show yet: a quiet drawing, what is missing, and what to do about it.",
+  "props": [
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "description",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "image",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Replaces the inbox drawing (an icon of the situation)."
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Actions under the text (Create, Retry)."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "EyeButton": {
   "description": "A row's eye: the eye icon while shown, an empty box while hidden (as Photoshop draws it).\nA press toggles at once (`onPress` hears whether Alt was held); with `sweep`, dragging on from\nthe press down the eye column (mouse, pen, or touch) reaches every other eye of the group the\npointer crosses, through `sweep.onOver`, so the panel gives each the visibility the first press\nset. A keyboard click toggles too. It is pressed while its row shows; `tabIndex` takes it out of\nthe tab order where a list moves the focus itself.",
   "props": [
@@ -889,6 +1141,165 @@
     "required": false,
     "default": null,
     "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Form": {
+  "description": "A form that keeps its fields' values and checks them before `onFinish`.",
+  "props": [
+   {
+    "name": "form",
+    "type": "FormInstance<T>",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "initialValues",
+    "type": "Partial<T>",
+    "required": false,
+    "default": null,
+    "doc": "The values it starts with (read once)."
+   },
+   {
+    "name": "onFinish",
+    "type": "(values: T) => void",
+    "required": false,
+    "default": null,
+    "doc": "Called with the values when the person submits and every field passes."
+   },
+   {
+    "name": "onValuesChange",
+    "type": "(changed: Partial<T>, values: T) => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "layout",
+    "type": "FormLayout",
+    "required": false,
+    "default": "'vertical'",
+    "doc": "`vertical` (default): labels above controls; `inline`: fields in a row (filters)."
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": "false",
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "id",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "FormItem": {
+  "description": "A labelled control bound to one field of the form around it, with its rules and error.",
+  "props": [
+   {
+    "name": "name",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The field's name in the values; without it the item only lays out a label and a control."
+   },
+   {
+    "name": "label",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "rules",
+    "type": "readonly FormRule[]",
+    "required": false,
+    "default": "[]",
+    "doc": ""
+   },
+   {
+    "name": "extra",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Help under the control (replaced by the error while there is one)."
+   },
+   {
+    "name": "required",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Marks the label as required (implied by a `required` rule)."
+   },
+   {
+    "name": "valuePropName",
+    "type": "string",
+    "required": false,
+    "default": "'value'",
+    "doc": "The control's prop that holds the value: `checked` for a check box or switch."
+   },
+   {
+    "name": "trigger",
+    "type": "string",
+    "required": false,
+    "default": "'onChange'",
+    "doc": "The control's prop that reports a change: `onCheckedChange` for a switch."
+   },
+   {
+    "name": "getValueFromEvent",
+    "type": "(...args: any[]) => unknown",
+    "required": false,
+    "default": "fromEvent",
+    "doc": "The value from what the control reports (an event's `target.value` or `checked`, or the value itself, by default)."
+   },
+   {
+    "name": "dependencies",
+    "type": "readonly string[]",
+    "required": false,
+    "default": "[]",
+    "doc": "Fields whose changes re-check this one (a confirmation of a password)."
+   },
+   {
+    "name": "hidden",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Kept in the values but not drawn."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": "One control element."
    }
   ],
   "domProps": false
@@ -1216,6 +1627,82 @@
   ],
   "domProps": false
  },
+ "LineChart": {
+  "description": "Lines of one or more series over ordered categories, with a legend and a hover readout.",
+  "props": [
+   {
+    "name": "data",
+    "type": "readonly T[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "xField",
+    "type": "keyof T & string",
+    "required": true,
+    "default": null,
+    "doc": "The field of each datum on the horizontal axis (categories in order of first appearance)."
+   },
+   {
+    "name": "yField",
+    "type": "keyof T & string",
+    "required": true,
+    "default": null,
+    "doc": "The field holding the number."
+   },
+   {
+    "name": "seriesField",
+    "type": "keyof T & string",
+    "required": false,
+    "default": null,
+    "doc": "The field naming the series a datum belongs to; one series without it."
+   },
+   {
+    "name": "height",
+    "type": "number",
+    "required": false,
+    "default": "280",
+    "doc": ""
+   },
+   {
+    "name": "formatX",
+    "type": "(value: string) => string",
+    "required": false,
+    "default": "(value) => value",
+    "doc": ""
+   },
+   {
+    "name": "formatY",
+    "type": "(value: number) => string",
+    "required": false,
+    "default": "(value) => value.toLocaleString()",
+    "doc": ""
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "The chart's accessible name."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "MenuButton": {
   "description": "A button that opens a menu below it; the menu takes the focus, and gives it back to the button\nwhen it closes. With `placement` `auto` (a button along a panel's bottom), the menu opens above\nthe button when it does not fit below and there is more room above.",
   "props": [
@@ -1392,6 +1879,54 @@
   "props": [],
   "domProps": true
  },
+ "NavMenu": {
+  "description": "An app's sidebar: its pages as links, grouped under headings, the current one marked.",
+  "props": [
+   {
+    "name": "items",
+    "type": "readonly (NavItem | NavGroup)[]",
+    "required": true,
+    "default": null,
+    "doc": "Pages, or groups of pages under a heading."
+   },
+   {
+    "name": "selectedKey",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The current page's key."
+   },
+   {
+    "name": "collapsed",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Icons only, each page's label in its tooltip (a collapsed sidebar)."
+   },
+   {
+    "name": "renderLink",
+    "type": "(href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Draws a link; a router passes its own (`<Link to={href} … />`). A plain `<a>` by default."
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "NumberField": {
   "description": "",
   "props": [
@@ -1510,6 +2045,68 @@
   ],
   "domProps": false
  },
+ "NumberInput": {
+  "description": "A field for a number, empty as `null`; arrows step it, and it rounds to `precision` when left.",
+  "props": [
+   {
+    "name": "value",
+    "type": "number | null | ''",
+    "required": false,
+    "default": null,
+    "doc": "Optional inside a `FormItem`, which supplies it."
+   },
+   {
+    "name": "onChange",
+    "type": "(value: number | null) => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "min",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "max",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "step",
+    "type": "number",
+    "required": false,
+    "default": "1",
+    "doc": ""
+   },
+   {
+    "name": "precision",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": "Decimals kept when the field is left."
+   },
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "invalid",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": true
+ },
  "OverflowStrip": {
   "description": "A row that scrolls sideways when its content does not fit (the ribbon's groups, a tool's options\nbar): the cut edge fades, and a button there scrolls by most of a width. `className` and\n`panelClassName` add to the outer box and the scrolled row; `resetKey` (the shown tab, the active\ntool) re-measures; the buttons' test ids are `${testId}-start` and `${testId}-end`.",
   "props": [
@@ -1566,6 +2163,54 @@
     "name": "children",
     "type": "ReactNode",
     "required": true,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Pagination": {
+  "description": "The pages of a long list: the range shown, page buttons, and an optional page size.",
+  "props": [
+   {
+    "name": "page",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "pageSize",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "total",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(page: number, pageSize: number) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "pageSizeOptions",
+    "type": "readonly number[]",
+    "required": false,
+    "default": null,
+    "doc": "Offers these page sizes; without it the size is fixed."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
     "default": null,
     "doc": ""
    }
@@ -1659,6 +2304,68 @@
    }
   ],
   "domProps": true
+ },
+ "Popconfirm": {
+  "description": "Asks \"are you sure?\" next to the button that does something, before it does.",
+  "props": [
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "description",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onConfirm",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "okText",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "cancelText",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "danger",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Draws OK as a destructive button."
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Lets the trigger act without asking."
+   },
+   {
+    "name": "children",
+    "type": "ReactElement",
+    "required": true,
+    "default": null,
+    "doc": "The button that asks."
+   }
+  ],
+  "domProps": false
  },
  "Popover": {
   "description": "Floating content anchored to a trigger: filters, pickers, small forms.",
@@ -1836,6 +2543,47 @@
   ],
   "domProps": false
  },
+ "Result": {
+  "description": "The outcome of a whole page or flow (paid, access denied, page not found), with what to do next.",
+  "props": [
+   {
+    "name": "status",
+    "type": "ResultStatus",
+    "required": false,
+    "default": "'info'",
+    "doc": ""
+   },
+   {
+    "name": "title",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "description",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "extra",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "RibbonButton": {
   "description": "",
   "props": [
@@ -1972,7 +2720,7 @@
   "domProps": false
  },
  "Segmented": {
-  "description": "Icon buttons of which one is pressed (selection modes, alignment, styles).",
+  "description": "Buttons of which one is pressed: icons (selection modes, alignment) or words (24h, 7d, 30d).",
   "props": [
    {
     "name": "label",
@@ -2108,6 +2856,40 @@
   ],
   "domProps": false
  },
+ "Skeleton": {
+  "description": "A placeholder in the shape of content that is loading; `lines` draws a paragraph.",
+  "props": [
+   {
+    "name": "width",
+    "type": "number | string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "height",
+    "type": "number | string",
+    "required": false,
+    "default": "16",
+    "doc": ""
+   },
+   {
+    "name": "lines",
+    "type": "number",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Spinner": {
   "description": "A spinning circle for work in progress; `label` names it for screen readers (otherwise it is decorative).",
   "props": [
@@ -2184,6 +2966,103 @@
   "props": [],
   "domProps": true
  },
+ "Table": {
+  "description": "Records in rows and columns: `columns` say what each shows (`dataIndex`, `render`), `dataSource`\nholds the records. Pages through long lists, shows a spinner while loading and `emptyText` when\nempty, and can pin columns and the header.",
+  "props": [
+   {
+    "name": "columns",
+    "type": "readonly TableColumn<T>[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "dataSource",
+    "type": "readonly T[] | undefined",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "rowKey",
+    "type": "string | ((record: T) => Key)",
+    "required": true,
+    "default": null,
+    "doc": "The field that identifies a record, or a function of it."
+   },
+   {
+    "name": "loading",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "pagination",
+    "type": "TablePagination | false",
+    "required": false,
+    "default": null,
+    "doc": "Pages of `defaultPageSize` rows (10 by default); `false` shows every row."
+   },
+   {
+    "name": "size",
+    "type": "'small' | 'middle'",
+    "required": false,
+    "default": "'middle'",
+    "doc": "`small`: 36px rows for dense screens; `middle` (default): 44px."
+   },
+   {
+    "name": "emptyText",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Shown when there are no rows (an `Empty`)."
+   },
+   {
+    "name": "sticky",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Keeps the header in view while the page scrolls."
+   },
+   {
+    "name": "scrollX",
+    "type": "number | string",
+    "required": false,
+    "default": null,
+    "doc": "The table's least width; it scrolls sideways in a narrower container."
+   },
+   {
+    "name": "onRow",
+    "type": "(record: T, index: number) => HTMLAttributes<HTMLTableRowElement>",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "caption",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Caption above the table, for its accessible name."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "TableSizePicker": {
   "description": "Choosing a table's size by pointing at a grid of cells (Insert > Table).",
   "props": [
@@ -2217,6 +3096,74 @@
    }
   ],
   "domProps": false
+ },
+ "Tabs": {
+  "description": "Sections of one page under a row of tabs; arrow keys move between tabs.",
+  "props": [
+   {
+    "name": "items",
+    "type": "readonly TabItem[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "activeKey",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The open tab, when the screen holds it (with `onChange`); otherwise `defaultActiveKey` or the first."
+   },
+   {
+    "name": "defaultActiveKey",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(key: string) => void",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "extra",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Content at the end of the tab row (a filter, an action)."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
+ "Tag": {
+  "description": "A short status or category label on a soft tint of its tone.",
+  "props": [
+   {
+    "name": "tone",
+    "type": "Tone",
+    "required": false,
+    "default": "'neutral'",
+    "doc": ""
+   }
+  ],
+  "domProps": true
  },
  "Textarea": {
   "description": "Multi-line text.",

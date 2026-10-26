@@ -28,6 +28,24 @@
 - [Field](https://tessera.kition.ai/docs/field/): A label, a control, and its hint or error, wired for screen readers.
 - [NumberField](https://tessera.kition.ai/docs/number-field/): A number with a label you drag to scrub, arrows to step, and units.
 - [Bar controls](https://tessera.kition.ai/docs/bar-controls/): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
+- [Form](https://tessera.kition.ai/docs/form/): A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.
+- [NumberInput, DateTimeInput, Popconfirm](https://tessera.kition.ai/docs/form-inputs/): A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.
+
+## Data display
+
+- [Table](https://tessera.kition.ai/docs/table/): Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.
+- [Tag](https://tessera.kition.ai/docs/tag/): A short status or category label on a soft tint of its tone.
+- [Alert](https://tessera.kition.ai/docs/alert/): A message in the page, in its tone, with an optional action or close.
+- [Descriptions](https://tessera.kition.ai/docs/descriptions/): Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.
+- [Empty and Result](https://tessera.kition.ai/docs/empty-result/): Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.
+- [Skeleton](https://tessera.kition.ai/docs/skeleton/): A placeholder in the shape of content that is loading.
+- [LineChart](https://tessera.kition.ai/docs/line-chart/): Lines of one or more series over ordered categories, with a legend and a readout under the pointer, in the chart palette tokens.
+
+## Navigation
+
+- [Tabs](https://tessera.kition.ai/docs/tabs/): Sections of one page under a row of tabs; arrow keys move between them.
+- [NavMenu](https://tessera.kition.ai/docs/nav-menu/): An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.
+- [Pagination](https://tessera.kition.ai/docs/pagination/): The pages of a long list on the server: the range shown, page buttons, and a page size.
 
 ## Menus and overlays
 

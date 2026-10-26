@@ -159,6 +159,54 @@
           "dark": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a9a7a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")"
         }
       }
+    },
+    "success": {
+      "$type": "color",
+      "$value": "#18794e",
+      "$description": "Success: done, active, paid (tags, alerts, results); text on its own soft tint",
+      "$extensions": { "ai.kition.tessera": { "dark": "#3dd68c" } }
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "#ad5700",
+      "$description": "Warning: pending, needs attention (tags, alerts, results); text on its own soft tint",
+      "$extensions": { "ai.kition.tessera": { "dark": "#ffca16" } }
+    },
+    "chart-1": {
+      "$type": "color",
+      "$value": "#5645d4",
+      "$description": "Chart series 1: lines and their legend swatches, in order",
+      "$extensions": { "ai.kition.tessera": { "dark": "#8b7ff0" } }
+    },
+    "chart-2": {
+      "$type": "color",
+      "$value": "#0d74ce",
+      "$description": "Chart series 2: lines and their legend swatches, in order",
+      "$extensions": { "ai.kition.tessera": { "dark": "#70b8ff" } }
+    },
+    "chart-3": {
+      "$type": "color",
+      "$value": "#18794e",
+      "$description": "Chart series 3: lines and their legend swatches, in order",
+      "$extensions": { "ai.kition.tessera": { "dark": "#3dd68c" } }
+    },
+    "chart-4": {
+      "$type": "color",
+      "$value": "#ad5700",
+      "$description": "Chart series 4: lines and their legend swatches, in order",
+      "$extensions": { "ai.kition.tessera": { "dark": "#ffca16" } }
+    },
+    "chart-5": {
+      "$type": "color",
+      "$value": "#ce2c31",
+      "$description": "Chart series 5: lines and their legend swatches, in order",
+      "$extensions": { "ai.kition.tessera": { "dark": "#ff9592" } }
+    },
+    "chart-6": {
+      "$type": "color",
+      "$value": "#8145b5",
+      "$description": "Chart series 6: lines and their legend swatches, in order",
+      "$extensions": { "ai.kition.tessera": { "dark": "#d19dff" } }
     }
   }
 }

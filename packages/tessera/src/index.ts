@@ -89,6 +89,52 @@ export { useDialogFocus, useDismissableLayer, useMediaQuery, useOnClickOutside }
 export { NumberField, type NumberFieldProps } from './NumberField'
 export { BarSeparator, Checkbox, Choice, Hint, Segmented, type CheckboxProps, type ChoiceProps, type Segment, type SegmentedProps } from './BarControls'
 export { DropPanel } from './DropPanel'
+export {
+  Alert,
+  Avatar,
+  Breadcrumb,
+  Descriptions,
+  Divider,
+  Empty,
+  Pagination,
+  Result,
+  Skeleton,
+  Table,
+  Tag,
+  pageList,
+  valueAt,
+  type AlertProps,
+  type BreadcrumbItem,
+  type DescriptionItem,
+  type EmptyProps,
+  type PaginationProps,
+  type ResultStatus,
+  type TableColumn,
+  type TablePagination,
+  type TableProps,
+  type Tone,
+} from './data'
+export { NavMenu, Tabs, type NavGroup, type NavItem, type NavMenuProps, type TabItem, type TabsProps } from './navigation'
+export {
+  checkRules,
+  DateTimeInput,
+  Form,
+  FormItem,
+  FormValidationError,
+  NumberInput,
+  Popconfirm,
+  useForm,
+  useWatch,
+  type DateTimeInputProps,
+  type FormInstance,
+  type FormItemProps,
+  type FormLayout,
+  type FormProps,
+  type FormRule,
+  type NumberInputProps,
+  type PopconfirmProps,
+} from './formModel'
+export { LineChart, niceTicks, type LineChartProps } from './charts'
 export { PreviewDialog, type PreviewDialogPreview, type PreviewDialogProps, type PreviewStatus } from './PreviewDialog'
 /** The workspace frame tree's functions (`workspaceTree.closePanel`, `workspaceTree.validateTree`, …). */
 export * as workspaceTree from './workspaceTree'

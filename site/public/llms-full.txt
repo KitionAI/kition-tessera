@@ -773,7 +773,7 @@ export default function Demo() {
 
 ### Segmented props
 
-Icon buttons of which one is pressed (selection modes, alignment, styles).
+Buttons of which one is pressed: icons (selection modes, alignment) or words (24h, 7d, 30d).
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -804,11 +804,12 @@ A check box with its label.
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
-| `label` (required) | `string` |  |  |
-| `checked` (required) | `boolean` |  |  |
+| `label` (required) | `ReactNode` |  |  |
+| `checked` | `boolean` | `false` |  |
 | `disabled` | `boolean` |  |  |
-| `onChange` (required) | `(checked: boolean) => void` |  |  |
+| `onChange` | `(checked: boolean) => void` |  |  |
 | `testId` | `string` |  |  |
+| `id` | `string` |  |  |
 
 ### Hint props
 
@@ -822,6 +823,724 @@ A muted usage hint in a row.
 ### BarSeparator props
 
 A hairline between groups of controls in a row.
+
+## Form
+
+Forms. A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.
+
+```ts
+import { Form, FormItem } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A settings page, a create or edit dialog, any form with validation.
+
+When not to:
+
+- One setting that applies at once: use a Switch on its own.
+
+### Example: Rules, help, reset
+
+Submit with the email empty to see the errors; they re-check as you type.
+
+```tsx
+import { Button, Checkbox, Form, FormItem, NumberInput, Select, TextInput, toast, useForm, useWatch } from '@kition/tessera'
+
+type Values = { email: string; credits: number | null; reason: string; plan: string; notify: boolean }
+
+export default function Demo() {
+  const form = useForm<Values>()
+  const credits = useWatch<number>('credits', form)
+  return (
+    <div style={{ maxWidth: 420 }}>
+      <Form<Values> form={form} initialValues={{ email: '', credits: 100, reason: '', plan: 'pro', notify: true }} onFinish={(values) => toast('success', 'Credits added', `${values.credits} credits for ${values.email}`)}>
+        <FormItem name="email" label="Email" rules={[{ required: true }, { type: 'email' }]}>
+          <TextInput size="md" placeholder="ada@example.com" />
+        </FormItem>
+        <FormItem name="credits" label="Credits" rules={[{ required: true }, { min: 1, max: 100000 }]} extra={credits ? `About $${(credits / 100).toFixed(2)} of usage.` : undefined}>
+          <NumberInput size="md" min={1} step={10} />
+        </FormItem>
+        <FormItem name="plan" label="Plan">
+          <Select size="md">
+            <option value="free">Free</option>
+            <option value="pro">Pro</option>
+            <option value="team">Team</option>
+          </Select>
+        </FormItem>
+        <FormItem name="reason" label="Reason" rules={[{ required: true, whitespace: true }, { max: 120 }]} extra="Recorded in the credit ledger.">
+          <TextInput size="md" />
+        </FormItem>
+        <FormItem name="notify" valuePropName="checked">
+          <Checkbox label="Email the person" />
+        </FormItem>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <Button type="submit" variant="primary" size="md">Add credits</Button>
+          <Button size="md" onClick={() => form.resetFields()}>Reset</Button>
+        </div>
+      </Form>
+    </div>
+  )
+}
+```
+
+### Form props
+
+A form that keeps its fields' values and checks them before `onFinish`.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `form` | `FormInstance<T>` |  |  |
+| `initialValues` | `Partial<T>` |  | The values it starts with (read once). |
+| `onFinish` | `(values: T) => void` |  | Called with the values when the person submits and every field passes. |
+| `onValuesChange` | `(changed: Partial<T>, values: T) => void` |  |  |
+| `layout` | `FormLayout` | `'vertical'` | `vertical` (default): labels above controls; `inline`: fields in a row (filters). |
+| `disabled` | `boolean` | `false` |  |
+| `className` | `string` |  |  |
+| `id` | `string` |  |  |
+| `children` (required) | `ReactNode` |  |  |
+
+### FormItem props
+
+A labelled control bound to one field of the form around it, with its rules and error.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `name` | `string` |  | The field's name in the values; without it the item only lays out a label and a control. |
+| `label` | `ReactNode` |  |  |
+| `rules` | `readonly FormRule[]` | `[]` |  |
+| `extra` | `ReactNode` |  | Help under the control (replaced by the error while there is one). |
+| `required` | `boolean` |  | Marks the label as required (implied by a `required` rule). |
+| `valuePropName` | `string` | `'value'` | The control's prop that holds the value: `checked` for a check box or switch. |
+| `trigger` | `string` | `'onChange'` | The control's prop that reports a change: `onCheckedChange` for a switch. |
+| `getValueFromEvent` | `(...args: any[]) => unknown` | `fromEvent` | The value from what the control reports (an event's `target.value` or `checked`, or the value itself, by default). |
+| `dependencies` | `readonly string[]` | `[]` | Fields whose changes re-check this one (a confirmation of a password). |
+| `hidden` | `boolean` |  | Kept in the values but not drawn. |
+| `className` | `string` |  |  |
+| `children` (required) | `ReactNode` |  | One control element. |
+
+## NumberInput, DateTimeInput, Popconfirm
+
+Forms. A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.
+
+```ts
+import { NumberInput, DateTimeInput, Popconfirm } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Price, start time, delete
+
+```tsx
+import { useState } from 'react'
+import { Button, DateTimeInput, NumberInput, Popconfirm, toast } from '@kition/tessera'
+
+export default function Demo() {
+  const [price, setPrice] = useState<number | null>(0.25)
+  const [start, setStart] = useState<string | null>('2026-10-25T09:00')
+  return (
+    <div className="demo-row" style={{ alignItems: 'flex-end' }}>
+      <label style={{ display: 'grid', gap: 6 }}>
+        Price per call
+        <NumberInput value={price} onChange={setPrice} min={0} step={0.05} precision={2} style={{ width: 140 }} />
+      </label>
+      <label style={{ display: 'grid', gap: 6 }}>
+        From
+        <DateTimeInput withTime value={start} onChange={setStart} />
+      </label>
+      <Popconfirm title="Delete this pricing rule?" description="Calls are charged by the default rule afterwards." danger okText="Delete" onConfirm={() => toast('success', 'Rule deleted')}>
+        <Button variant="danger">Delete rule</Button>
+      </Popconfirm>
+    </div>
+  )
+}
+```
+
+### NumberInput props
+
+A field for a number, empty as `null`; arrows step it, and it rounds to `precision` when left.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `number \| null \| ''` |  | Optional inside a `FormItem`, which supplies it. |
+| `onChange` | `(value: number \| null) => void` |  |  |
+| `min` | `number` |  |  |
+| `max` | `number` |  |  |
+| `step` | `number` | `1` |  |
+| `precision` | `number` |  | Decimals kept when the field is left. |
+| `size` | `ControlSize` | `'sm'` |  |
+| `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+### DateTimeInput props
+
+A date, or a date and time, from the platform's picker; cleared to `null`.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `string \| null` |  | Optional inside a `FormItem`, which supplies it. |
+| `onChange` | `(value: string \| null) => void` |  |  |
+| `withTime` | `boolean` |  | Asks for a time too. |
+| `size` | `ControlSize` | `'sm'` |  |
+| `invalid` | `boolean` |  |  |
+
+Also takes the attributes of its HTML element.
+
+### Popconfirm props
+
+Asks "are you sure?" next to the button that does something, before it does.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` (required) | `ReactNode` |  |  |
+| `description` | `ReactNode` |  |  |
+| `onConfirm` (required) | `() => void` |  |  |
+| `okText` | `string` |  |  |
+| `cancelText` | `string` |  |  |
+| `danger` | `boolean` |  | Draws OK as a destructive button. |
+| `disabled` | `boolean` |  | Lets the trigger act without asking. |
+| `children` (required) | `ReactElement` |  | The button that asks. |
+
+## Table
+
+Data display. Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.
+
+```ts
+import { Table, Pagination } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Lists of orders, users, events: anything scanned and compared row by row.
+
+When not to:
+
+- A spreadsheet the person edits: that is a kit.
+
+### Example: Pages, pinned column, tags
+
+```tsx
+import { Table, Tag, type TableColumn } from '@kition/tessera'
+
+type Order = { id: string; customer: string; plan: string; amount: number; status: 'paid' | 'pending' | 'refunded' }
+
+const ORDERS: Order[] = Array.from({ length: 23 }, (_, index) => ({
+  id: `ord_${1040 + index}`,
+  customer: ['Ada Lovelace', 'Grace Hopper', 'Alan Turing', 'Katherine Johnson'][index % 4],
+  plan: index % 3 ? 'Pro' : 'Team',
+  amount: 19 + (index % 5) * 10,
+  status: (['paid', 'pending', 'refunded'] as const)[index % 3],
+}))
+
+const TONES = { paid: 'success', pending: 'warning', refunded: 'neutral' } as const
+
+const columns: TableColumn<Order>[] = [
+  { key: 'id', title: 'Order', dataIndex: 'id', width: 120, fixed: 'left' },
+  { key: 'customer', title: 'Customer', dataIndex: 'customer', ellipsis: true },
+  { key: 'plan', title: 'Plan', dataIndex: 'plan', width: 90 },
+  { key: 'amount', title: 'Amount', dataIndex: 'amount', align: 'right', width: 100, render: (amount: number) => `$${amount}.00` },
+  { key: 'status', title: 'Status', dataIndex: 'status', width: 110, render: (status: Order['status']) => <Tag tone={TONES[status]}>{status}</Tag> },
+]
+
+export default function Demo() {
+  return <Table columns={columns} dataSource={ORDERS} rowKey="id" size="small" pagination={{ defaultPageSize: 8, showSizeChanger: true, pageSizeOptions: [8, 16, 32] }} />
+}
+```
+
+### Example: Empty and loading
+
+```tsx
+import { useState } from 'react'
+import { Button, Empty, Table, type TableColumn } from '@kition/tessera'
+
+type Key = { id: string; name: string }
+const columns: TableColumn<Key>[] = [
+  { key: 'name', title: 'Name', dataIndex: 'name' },
+  { key: 'id', title: 'ID', dataIndex: 'id', width: 160 },
+]
+
+export default function Demo() {
+  const [loading, setLoading] = useState(false)
+  return (
+    <div style={{ display: 'grid', gap: 16 }}>
+      <Table columns={columns} dataSource={[]} rowKey="id" emptyText={<Empty title="No API keys" description="Create a key to call the API from your own code."><Button size="sm" variant="primary">Create key</Button></Empty>} />
+      <Button size="sm" onClick={() => { setLoading(true); setTimeout(() => setLoading(false), 1500) }}>Load for 1.5s</Button>
+      <Table columns={columns} dataSource={[{ id: 'key_1', name: 'Build server' }]} rowKey="id" loading={loading} />
+    </div>
+  )
+}
+```
+
+### Table props
+
+Records in rows and columns: `columns` say what each shows (`dataIndex`, `render`), `dataSource`
+holds the records. Pages through long lists, shows a spinner while loading and `emptyText` when
+empty, and can pin columns and the header.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `columns` (required) | `readonly TableColumn<T>[]` |  |  |
+| `dataSource` (required) | `readonly T[] \| undefined` |  |  |
+| `rowKey` (required) | `string \| ((record: T) => Key)` |  | The field that identifies a record, or a function of it. |
+| `loading` | `boolean` |  |  |
+| `pagination` | `TablePagination \| false` |  | Pages of `defaultPageSize` rows (10 by default); `false` shows every row. |
+| `size` | `'small' \| 'middle'` | `'middle'` | `small`: 36px rows for dense screens; `middle` (default): 44px. |
+| `emptyText` | `ReactNode` |  | Shown when there are no rows (an `Empty`). |
+| `sticky` | `boolean` |  | Keeps the header in view while the page scrolls. |
+| `scrollX` | `number \| string` |  | The table's least width; it scrolls sideways in a narrower container. |
+| `onRow` | `(record: T, index: number) => HTMLAttributes<HTMLTableRowElement>` |  |  |
+| `caption` | `ReactNode` |  | Caption above the table, for its accessible name. |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+### Pagination props
+
+The pages of a long list: the range shown, page buttons, and an optional page size.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `page` (required) | `number` |  |  |
+| `pageSize` (required) | `number` |  |  |
+| `total` (required) | `number` |  |  |
+| `onChange` (required) | `(page: number, pageSize: number) => void` |  |  |
+| `pageSizeOptions` | `readonly number[]` |  | Offers these page sizes; without it the size is fixed. |
+| `className` | `string` |  |  |
+
+## Tag
+
+Data display. A short status or category label on a soft tint of its tone.
+
+```ts
+import { Tag } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A record’s status in a table or header.
+
+When not to:
+
+- A count beside a label: use Badge.
+
+### Example: Tones
+
+```tsx
+import { Tag } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <Tag>Draft</Tag>
+      <Tag tone="info">Processing</Tag>
+      <Tag tone="success">Paid</Tag>
+      <Tag tone="warning">Pending</Tag>
+      <Tag tone="danger">Failed</Tag>
+    </div>
+  )
+}
+```
+
+### Tag props
+
+A short status or category label on a soft tint of its tone.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `tone` | `Tone` | `'neutral'` |  |
+
+Also takes the attributes of its HTML element.
+
+## Alert
+
+Data display. A message in the page, in its tone, with an optional action or close.
+
+```ts
+import { Alert } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A state of the account or page the person should know about.
+
+When not to:
+
+- A short confirmation after an action: use a toast.
+
+### Example: Tones, action, close
+
+```tsx
+import { useState } from 'react'
+import { Alert, Button } from '@kition/tessera'
+
+export default function Demo() {
+  const [shown, setShown] = useState(true)
+  return (
+    <div style={{ display: 'grid', gap: 8 }}>
+      <Alert title="Password sign-in is turned off" description="People sign in with GitHub or Google until you turn it back on." />
+      <Alert tone="success" title="Credits added" />
+      <Alert tone="warning" title="Your plan renews in 3 days" action={<Button size="sm">Manage</Button>} />
+      {shown ? <Alert tone="danger" title="The last payment failed" description="Update the card to keep syncing." onClose={() => setShown(false)} /> : null}
+    </div>
+  )
+}
+```
+
+### Alert props
+
+A message in the page: what happened or what to know, in its tone, with an optional action.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `tone` | `Exclude<Tone, 'neutral'>` | `'info'` |  |
+| `title` (required) | `ReactNode` |  |  |
+| `description` | `ReactNode` |  |  |
+| `action` | `ReactNode` |  | A button or link at the end (Retry, Upgrade). |
+| `onClose` | `() => void` |  | Shows a close button that calls it. |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+## Descriptions
+
+Data display. Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.
+
+```ts
+import { Descriptions, Breadcrumb, Avatar, Divider } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: A user’s detail page
+
+```tsx
+import { Avatar, Breadcrumb, Descriptions, Divider, Tag } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div>
+      <Breadcrumb items={[{ title: <a href="#users">Users</a> }, { title: 'Ada Lovelace' }]} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '12px 0' }}>
+        <Avatar name="Ada Lovelace" size={36} />
+        <strong>Ada Lovelace</strong>
+        <Tag tone="success">active</Tag>
+      </div>
+      <Divider>Account</Divider>
+      <Descriptions
+        columns={3}
+        items={[
+          { label: 'Email', children: 'ada@example.com' },
+          { label: 'Plan', children: 'Pro (yearly)' },
+          { label: 'Credits', children: '12,400' },
+          { label: 'Signed up', children: '2026-03-14 09:21' },
+          { label: 'Last active', children: '2 hours ago' },
+          { label: 'Notes', children: 'Moved from the Team plan after the trial.', span: 3 },
+        ]}
+      />
+    </div>
+  )
+}
+```
+
+### Descriptions props
+
+Labelled values of one record (an order, a user), laid out in `columns` columns.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` (required) | `readonly DescriptionItem[]` |  |  |
+| `columns` | `number` | `3` |  |
+| `title` | `ReactNode` |  |  |
+| `className` | `string` |  |  |
+
+### Breadcrumb props
+
+Where the page sits: its parents (links in `title`) and then itself.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` (required) | `readonly BreadcrumbItem[]` |  |  |
+| `className` | `string` |  |  |
+
+### Avatar props
+
+A person's picture, or their initial on a tint when there is none.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `src` | `string` |  |  |
+| `name` (required) | `string` |  |  |
+| `size` | `number` | `28` |  |
+| `className` | `string` |  |  |
+
+### Divider props
+
+A hairline between sections, with an optional label in it.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` |  |  |
+| `className` | `string` |  |  |
+
+## Empty and Result
+
+Data display. Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.
+
+```ts
+import { Empty, Result } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: No feedback, access denied
+
+```tsx
+import { Button, Empty, Result } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <Empty title="No feedback yet" description="Messages people send from the app arrive here.">
+        <Button size="sm">Refresh</Button>
+      </Empty>
+      <Result status="forbidden" title="Access denied" description="Your account cannot open the admin console." extra={<Button size="sm" variant="primary">Sign in again</Button>} />
+    </div>
+  )
+}
+```
+
+### Empty props
+
+Nothing to show yet: a quiet drawing, what is missing, and what to do about it.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `title` | `ReactNode` |  |  |
+| `description` | `ReactNode` |  |  |
+| `image` | `ReactNode` |  | Replaces the inbox drawing (an icon of the situation). |
+| `children` | `ReactNode` |  | Actions under the text (Create, Retry). |
+| `className` | `string` |  |  |
+
+### Result props
+
+The outcome of a whole page or flow (paid, access denied, page not found), with what to do next.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `status` | `ResultStatus` | `'info'` |  |
+| `title` (required) | `ReactNode` |  |  |
+| `description` | `ReactNode` |  |  |
+| `extra` | `ReactNode` |  |  |
+| `className` | `string` |  |  |
+
+## Skeleton
+
+Data display. A placeholder in the shape of content that is loading.
+
+```ts
+import { Skeleton } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Title and paragraph
+
+```tsx
+import { Skeleton } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div style={{ display: 'grid', gap: 12, maxWidth: 360 }}>
+      <Skeleton width={180} height={20} />
+      <Skeleton lines={3} />
+    </div>
+  )
+}
+```
+
+### Skeleton props
+
+A placeholder in the shape of content that is loading; `lines` draws a paragraph.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `width` | `number \| string` |  |  |
+| `height` | `number \| string` | `16` |  |
+| `lines` | `number` |  |  |
+| `className` | `string` |  |  |
+
+## LineChart
+
+Data display. Lines of one or more series over ordered categories, with a legend and a readout under the pointer, in the chart palette tokens.
+
+```ts
+import { LineChart } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Growth by day
+
+```tsx
+import { LineChart } from '@kition/tessera'
+
+const days = Array.from({ length: 14 }, (_, index) => `10-${String(index + 10).padStart(2, '0')}`)
+const DATA = days.flatMap((date, index) => [
+  { date, metric: 'Visitors', value: Math.round(420 + Math.sin(index / 2) * 90 + index * 12) },
+  { date, metric: 'Downloads', value: Math.round(120 + Math.cos(index / 3) * 30 + index * 6) },
+  { date, metric: 'Sign-ups', value: Math.round(40 + Math.sin(index) * 8 + index * 2) },
+])
+
+export default function Demo() {
+  return <LineChart label="Growth by day" data={DATA} xField="date" yField="value" seriesField="metric" height={260} />
+}
+```
+
+### LineChart props
+
+Lines of one or more series over ordered categories, with a legend and a hover readout.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `data` (required) | `readonly T[]` |  |  |
+| `xField` (required) | `keyof T & string` |  | The field of each datum on the horizontal axis (categories in order of first appearance). |
+| `yField` (required) | `keyof T & string` |  | The field holding the number. |
+| `seriesField` | `keyof T & string` |  | The field naming the series a datum belongs to; one series without it. |
+| `height` | `number` | `280` |  |
+| `formatX` | `(value: string) => string` | `(value) => value` |  |
+| `formatY` | `(value: number) => string` | `(value) => value.toLocaleString()` |  |
+| `label` (required) | `string` |  | The chart's accessible name. |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+## Tabs
+
+Navigation. Sections of one page under a row of tabs; arrow keys move between them.
+
+```ts
+import { Tabs } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When not to:
+
+- Two or three views of the same data: use Segmented.
+
+### Example: With a range control
+
+```tsx
+import { Segmented, Tabs } from '@kition/tessera'
+import { useState } from 'react'
+
+export default function Demo() {
+  const [range, setRange] = useState<'24h' | '7d' | '30d'>('7d')
+  return (
+    <Tabs
+      extra={<Segmented label="Range" value={range} onChange={setRange} segments={[{ value: '24h', label: '24h' }, { value: '7d', label: '7d' }, { value: '30d', label: '30d' }]} />}
+      items={[
+        { key: 'usage', label: 'Usage', children: `Generations in the last ${range}.` },
+        { key: 'ledger', label: 'Credit ledger', children: 'Every credit added and spent.' },
+        { key: 'keys', label: 'API keys', children: 'Keys this account created.' },
+        { key: 'audit', label: 'Audit log', disabled: true },
+      ]}
+    />
+  )
+}
+```
+
+### Tabs props
+
+Sections of one page under a row of tabs; arrow keys move between tabs.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` (required) | `readonly TabItem[]` |  |  |
+| `activeKey` | `string` |  | The open tab, when the screen holds it (with `onChange`); otherwise `defaultActiveKey` or the first. |
+| `defaultActiveKey` | `string` |  |  |
+| `onChange` | `(key: string) => void` |  |  |
+| `extra` | `ReactNode` |  | Content at the end of the tab row (a filter, an action). |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+## NavMenu
+
+Navigation. An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.
+
+```ts
+import { NavMenu } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+### Example: Admin sidebar
+
+```tsx
+import { useState } from 'react'
+import { NavMenu, Switch } from '@kition/tessera'
+import { CreditCardIcon, KeyRoundIcon, LayoutDashboardIcon, MessageSquareIcon, UsersIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [selected, setSelected] = useState('users')
+  const [collapsed, setCollapsed] = useState(false)
+  return (
+    <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+      <div style={{ width: collapsed ? 52 : 220, padding: 8, borderRight: '1px solid var(--kit-border)' }}>
+        <NavMenu
+          label="Admin"
+          selectedKey={selected}
+          collapsed={collapsed}
+          renderLink={(href, props) => <a href={href} {...props} onClick={(event) => { event.preventDefault(); setSelected(href.slice(1)) }} />}
+          items={[
+            { key: 'overview', label: 'Overview', icon: LayoutDashboardIcon, href: '#overview' },
+            { key: 'people', label: 'People', items: [{ key: 'users', label: 'Users', icon: UsersIcon, href: '#users', badge: 1284 }, { key: 'feedback', label: 'Feedback', icon: MessageSquareIcon, href: '#feedback' }] },
+            { key: 'billing', label: 'Billing', items: [{ key: 'orders', label: 'Orders', icon: CreditCardIcon, href: '#orders' }, { key: 'keys', label: 'API keys', icon: KeyRoundIcon, href: '#keys' }] },
+          ]}
+        />
+      </div>
+      <label style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>
+        <Switch checked={collapsed} onCheckedChange={setCollapsed} /> Collapsed
+      </label>
+    </div>
+  )
+}
+```
+
+### NavMenu props
+
+An app's sidebar: its pages as links, grouped under headings, the current one marked.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` (required) | `readonly (NavItem \| NavGroup)[]` |  | Pages, or groups of pages under a heading. |
+| `selectedKey` | `string` |  | The current page's key. |
+| `collapsed` | `boolean` |  | Icons only, each page's label in its tooltip (a collapsed sidebar). |
+| `renderLink` | `(href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode` |  | Draws a link; a router passes its own (`<Link to={href} … />`). A plain `<a>` by default. |
+| `label` (required) | `string` |  |  |
+| `className` | `string` |  |  |
+
+## Pagination
+
+Navigation. The pages of a long list on the server: the range shown, page buttons, and a page size.
+
+```ts
+import { Pagination } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- A list the server pages; Table pages its own rows.
+
+### Example: Page 6 of 57
+
+```tsx
+import { useState } from 'react'
+import { Pagination } from '@kition/tessera'
+
+export default function Demo() {
+  const [page, setPage] = useState(6)
+  const [size, setSize] = useState(20)
+  return <Pagination page={page} pageSize={size} total={1137} pageSizeOptions={[20, 50, 100]} onChange={(next, pageSize) => { setPage(next); setSize(pageSize) }} />
+}
+```
+
+### Pagination props
+
+The pages of a long list: the range shown, page buttons, and an optional page size.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `page` (required) | `number` |  |  |
+| `pageSize` (required) | `number` |  |  |
+| `total` (required) | `number` |  |  |
+| `onChange` (required) | `(page: number, pageSize: number) => void` |  |  |
+| `pageSizeOptions` | `readonly number[]` |  | Offers these page sizes; without it the size is fixed. |
+| `className` | `string` |  |  |
 
 ## MenuButton
 

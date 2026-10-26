@@ -19,7 +19,7 @@ export type DocEntry = {
   sections?: { heading: string; body: string[]; code?: string }[]
 }
 
-export const CATEGORIES = ['Getting started', 'General', 'Forms', 'Menus and overlays', 'Editor chrome', 'Workspace', 'Color', 'Media and time', 'Integration'] as const
+export const CATEGORIES = ['Getting started', 'General', 'Forms', 'Data display', 'Navigation', 'Menus and overlays', 'Editor chrome', 'Workspace', 'Color', 'Media and time', 'Integration'] as const
 
 export const DOCS: DocEntry[] = [
   // Getting started
@@ -142,6 +142,22 @@ export const DOCS: DocEntry[] = [
   { id: 'field', title: 'Field', category: 'Forms', summary: 'A label, a control, and its hint or error, wired for screen readers.', when: ['Every form control with a visible label.'], demos: [{ id: 'field', title: 'Validation' }], api: ['Field'] },
   { id: 'number-field', title: 'NumberField', category: 'Forms', summary: 'A number with a label you drag to scrub, arrows to step, and units.', when: ['Opacity, size, angle, any bounded number in a panel.'], demos: [{ id: 'number-field', title: 'Scrub, type, or arrow' }], api: ['NumberField'] },
   { id: 'bar-controls', title: 'Bar controls', category: 'Forms', summary: 'Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.', when: ['A tool’s options above the canvas.'], demos: [{ id: 'bar-controls', title: 'An options bar' }], api: ['Segmented', 'Choice', 'Checkbox', 'Hint', 'BarSeparator'] },
+  { id: 'form', title: 'Form', category: 'Forms', summary: 'A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.', when: ['A settings page, a create or edit dialog, any form with validation.'], whenNot: ['One setting that applies at once: use a Switch on its own.'], demos: [{ id: 'form', title: 'Rules, help, reset', note: 'Submit with the email empty to see the errors; they re-check as you type.' }], api: ['Form', 'FormItem'] },
+  { id: 'form-inputs', title: 'NumberInput, DateTimeInput, Popconfirm', category: 'Forms', summary: 'A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.', demos: [{ id: 'form-inputs', title: 'Price, start time, delete' }], api: ['NumberInput', 'DateTimeInput', 'Popconfirm'] },
+
+  // Data display
+  { id: 'table', title: 'Table', category: 'Data display', summary: 'Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.', when: ['Lists of orders, users, events: anything scanned and compared row by row.'], whenNot: ['A spreadsheet the person edits: that is a kit.'], demos: [{ id: 'table', title: 'Pages, pinned column, tags' }, { id: 'table-states', title: 'Empty and loading' }], api: ['Table', 'Pagination'] },
+  { id: 'tag', title: 'Tag', category: 'Data display', summary: 'A short status or category label on a soft tint of its tone.', when: ['A record’s status in a table or header.'], whenNot: ['A count beside a label: use Badge.'], demos: [{ id: 'tag', title: 'Tones' }], api: ['Tag'] },
+  { id: 'alert', title: 'Alert', category: 'Data display', summary: 'A message in the page, in its tone, with an optional action or close.', when: ['A state of the account or page the person should know about.'], whenNot: ['A short confirmation after an action: use a toast.'], demos: [{ id: 'alert', title: 'Tones, action, close' }], api: ['Alert'] },
+  { id: 'descriptions', title: 'Descriptions', category: 'Data display', summary: 'Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.', demos: [{ id: 'descriptions', title: 'A user’s detail page' }], api: ['Descriptions', 'Breadcrumb', 'Avatar', 'Divider'] },
+  { id: 'empty-result', title: 'Empty and Result', category: 'Data display', summary: 'Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.', demos: [{ id: 'empty-result', title: 'No feedback, access denied' }], api: ['Empty', 'Result'] },
+  { id: 'skeleton', title: 'Skeleton', category: 'Data display', summary: 'A placeholder in the shape of content that is loading.', demos: [{ id: 'skeleton', title: 'Title and paragraph' }], api: ['Skeleton'] },
+  { id: 'line-chart', title: 'LineChart', category: 'Data display', summary: 'Lines of one or more series over ordered categories, with a legend and a readout under the pointer, in the chart palette tokens.', demos: [{ id: 'line-chart', title: 'Growth by day' }], api: ['LineChart'] },
+
+  // Navigation
+  { id: 'tabs', title: 'Tabs', category: 'Navigation', summary: 'Sections of one page under a row of tabs; arrow keys move between them.', whenNot: ['Two or three views of the same data: use Segmented.'], demos: [{ id: 'tabs', title: 'With a range control' }], api: ['Tabs'] },
+  { id: 'nav-menu', title: 'NavMenu', category: 'Navigation', summary: 'An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.', demos: [{ id: 'nav-menu', title: 'Admin sidebar' }], api: ['NavMenu'] },
+  { id: 'pagination', title: 'Pagination', category: 'Navigation', summary: 'The pages of a long list on the server: the range shown, page buttons, and a page size.', when: ['A list the server pages; Table pages its own rows.'], demos: [{ id: 'pagination', title: 'Page 6 of 57' }], api: ['Pagination'] },
 
   // Menus and overlays
   { id: 'menu-button', title: 'MenuButton', category: 'Menus and overlays', summary: 'A button that opens a menu of MenuItems, with shortcuts and check marks.', demos: [{ id: 'menu-button', title: 'Edit menu' }], api: ['MenuButton', 'MenuItem', 'MenuSeparator'] },

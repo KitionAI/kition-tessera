@@ -8,13 +8,14 @@ import type { ReactNode } from 'react'
 import type { IconComponent } from './icon'
 import { IconButton } from './ui'
 
-export type CheckboxProps = { label: string; checked: boolean; disabled?: boolean; onChange: (checked: boolean) => void; testId?: string }
+/** `checked` and `onChange` are optional inside a `FormItem` (`valuePropName="checked"`), which supplies them. */
+export type CheckboxProps = { label: ReactNode; checked?: boolean; disabled?: boolean; onChange?: (checked: boolean) => void; testId?: string; id?: string }
 
 /** A check box with its label. */
-export function Checkbox({ label, checked, disabled, onChange, testId }: CheckboxProps) {
+export function Checkbox({ label, checked = false, disabled, onChange, testId, id }: CheckboxProps) {
   return (
     <label className="kui-checkbox" data-disabled={disabled || undefined}>
-      <input type="checkbox" checked={checked} disabled={disabled} onChange={(event) => onChange(event.target.checked)} data-testid={testId} />
+      <input id={id} type="checkbox" checked={checked} disabled={disabled} onChange={(event) => onChange?.(event.target.checked)} data-testid={testId} />
       {label}
     </label>
   )
@@ -47,7 +48,8 @@ export function Choice<V extends string>({ label, quiet, value, choices, disable
   )
 }
 
-export type Segment<V extends string> = { value: V; icon: IconComponent; label: string }
+/** A segment: an icon button named by `label`, or, without `icon`, a button showing `label`. */
+export type Segment<V extends string> = { value: V; icon?: IconComponent; label: string }
 
 export type SegmentedProps<V extends string> = {
   /** The group's accessible name (for example "Selection mode"). */
@@ -60,13 +62,19 @@ export type SegmentedProps<V extends string> = {
   testId?: string
 }
 
-/** Icon buttons of which one is pressed (selection modes, alignment, styles). */
+/** Buttons of which one is pressed: icons (selection modes, alignment) or words (24h, 7d, 30d). */
 export function Segmented<V extends string>({ label, value, segments, disabled, onChange, testId }: SegmentedProps<V>) {
   return (
     <span className="kui-segmented" role="group" aria-label={label}>
-      {segments.map((segment) => (
-        <IconButton key={segment.value} icon={segment.icon} label={segment.label} pressed={value === segment.value} disabled={disabled} onClick={() => onChange(segment.value)} data-testid={testId ? `${testId}-${segment.value}` : undefined} />
-      ))}
+      {segments.map((segment) =>
+        segment.icon ? (
+          <IconButton key={segment.value} icon={segment.icon} label={segment.label} pressed={value === segment.value} disabled={disabled} onClick={() => onChange(segment.value)} data-testid={testId ? `${testId}-${segment.value}` : undefined} />
+        ) : (
+          <button key={segment.value} type="button" className="kui-segment-text" aria-pressed={value === segment.value} disabled={disabled} onClick={() => onChange(segment.value)} data-testid={testId ? `${testId}-${segment.value}` : undefined}>
+            {segment.label}
+          </button>
+        ),
+      )}
     </span>
   )
 }

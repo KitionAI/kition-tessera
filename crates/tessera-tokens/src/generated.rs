@@ -55,6 +55,22 @@ pub const KUI_TAB_SELECTED_WEIGHT: &str = "600";
 pub const KUI_HOVER: &str = "color-mix(in srgb, var(--kit-text) 7%, transparent)";
 /// Chevron-down for drop-downs, in --kit-text-muted (a data URI cannot read a variable)
 pub const KUI_SELECT_CHEVRON: &str = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d5b54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")";
+/// Success: done, active, paid (tags, alerts, results); text on its own soft tint
+pub const KUI_SUCCESS: &str = "#18794e";
+/// Warning: pending, needs attention (tags, alerts, results); text on its own soft tint
+pub const KUI_WARNING: &str = "#ad5700";
+/// Chart series 1: lines and their legend swatches, in order
+pub const KUI_CHART_1: &str = "#5645d4";
+/// Chart series 2: lines and their legend swatches, in order
+pub const KUI_CHART_2: &str = "#0d74ce";
+/// Chart series 3: lines and their legend swatches, in order
+pub const KUI_CHART_3: &str = "#18794e";
+/// Chart series 4: lines and their legend swatches, in order
+pub const KUI_CHART_4: &str = "#ad5700";
+/// Chart series 5: lines and their legend swatches, in order
+pub const KUI_CHART_5: &str = "#ce2c31";
+/// Chart series 6: lines and their legend swatches, in order
+pub const KUI_CHART_6: &str = "#8145b5";
 
 /// Every token: CSS variable, Paper value, dark value when it differs, and whether hosts send it.
 pub const TOKENS: &[Token] = &[
@@ -84,6 +100,14 @@ pub const TOKENS: &[Token] = &[
     Token { name: "--kui-tab-selected-weight", value: "600", dark: None, khp: false },
     Token { name: "--kui-hover", value: "color-mix(in srgb, var(--kit-text) 7%, transparent)", dark: None, khp: false },
     Token { name: "--kui-select-chevron", value: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d5b54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")", dark: Some("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a9a7a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")"), khp: false },
+    Token { name: "--kui-success", value: "#18794e", dark: Some("#3dd68c"), khp: false },
+    Token { name: "--kui-warning", value: "#ad5700", dark: Some("#ffca16"), khp: false },
+    Token { name: "--kui-chart-1", value: "#5645d4", dark: Some("#8b7ff0"), khp: false },
+    Token { name: "--kui-chart-2", value: "#0d74ce", dark: Some("#70b8ff"), khp: false },
+    Token { name: "--kui-chart-3", value: "#18794e", dark: Some("#3dd68c"), khp: false },
+    Token { name: "--kui-chart-4", value: "#ad5700", dark: Some("#ffca16"), khp: false },
+    Token { name: "--kui-chart-5", value: "#ce2c31", dark: Some("#ff9592"), khp: false },
+    Token { name: "--kui-chart-6", value: "#8145b5", dark: Some("#d19dff"), khp: false },
 ];
 
 /// Every skin's Kit UI protocol theme tokens.
