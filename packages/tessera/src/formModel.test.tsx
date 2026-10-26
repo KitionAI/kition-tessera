@@ -156,6 +156,18 @@ describe('Form', () => {
   })
 })
 
+describe('FormItem without a name', () => {
+  it('still labels its control', () => {
+    const out = render(
+      <FormItem label="Reason code">
+        <TextInput />
+      </FormItem>,
+    )
+    const label = out.querySelector('label')!
+    expect(out.querySelector('input')?.id).toBe(label.htmlFor)
+  })
+})
+
 describe('inputs', () => {
   it('NumberInput reports numbers, null when empty, and clamps and rounds when left', () => {
     const changes: (number | null)[] = []

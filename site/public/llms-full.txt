@@ -482,6 +482,8 @@ A section that opens and closes under its title.
 | --- | --- | --- | --- |
 | `title` (required) | `ReactNode` |  |  |
 | `defaultOpen` | `boolean` | `false` |  |
+| `open` | `boolean` |  | Open, when the screen holds the state (with `onOpenChange`). |
+| `onOpenChange` | `(open: boolean) => void` |  |  |
 | `onClose` | `() => void` |  | Called when the person closes it. |
 | `children` | `ReactNode` |  |  |
 | `className` | `string` |  |  |

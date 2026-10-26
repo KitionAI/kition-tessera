@@ -185,3 +185,18 @@ describe('ButtonLink and TextInput prefix', () => {
     expect(render(<PasswordInput prefix={<span>k</span>} aria-label="Key" />).querySelector('.kui-password .kui-input-affix input')).not.toBeNull()
   })
 })
+
+describe('Disclosure held open from outside', () => {
+  it('follows open and reports the person’s toggles', () => {
+    const seen: boolean[] = []
+    const out = render(
+      <Disclosure title="Advanced filters" open onOpenChange={(open) => seen.push(open)}>
+        Filters
+      </Disclosure>,
+    )
+    expect(out.textContent).toContain('Filters')
+    act(() => (out.querySelector('.kui-disclosure-trigger') as HTMLButtonElement).click())
+    expect(seen).toEqual([false])
+    expect(out.textContent).toContain('Filters')
+  })
+})

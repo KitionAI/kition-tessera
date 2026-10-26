@@ -327,7 +327,9 @@ export function FormItem({ name, label, rules = [], extra, required, valuePropNa
           'aria-invalid': error ? true : undefined,
           'aria-describedby': note ? noteId : undefined,
         })
-      : control
+      : isValidElement(control) && control.props.id === undefined
+        ? cloneElement(control, { id })
+        : control
   const mark = required ?? rules.some((rule) => rule.required)
   return (
     <div className={join('kui-form-field', className)} data-invalid={error ? true : undefined}>

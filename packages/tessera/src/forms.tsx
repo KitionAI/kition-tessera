@@ -128,6 +128,9 @@ export function CardContent({ className, ...props }: HTMLAttributes<HTMLDivEleme
 export type DisclosureProps = {
   title: ReactNode
   defaultOpen?: boolean
+  /** Open, when the screen holds the state (with `onOpenChange`). */
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
   /** Called when the person closes it. */
   onClose?: () => void
   children?: ReactNode
@@ -135,8 +138,13 @@ export type DisclosureProps = {
 }
 
 /** A section that opens and closes under its title. */
-export function Disclosure({ title, defaultOpen = false, onClose, children, className }: DisclosureProps) {
-  const [open, setOpen] = useState(defaultOpen)
+export function Disclosure({ title, defaultOpen = false, open: held, onOpenChange, onClose, children, className }: DisclosureProps) {
+  const [own, setOwn] = useState(defaultOpen)
+  const open = held ?? own
+  const setOpen = (next: boolean) => {
+    if (held === undefined) setOwn(next)
+    onOpenChange?.(next)
+  }
   const bodyId = useId()
   return (
     <div className={join('kui-disclosure', className)} data-open={open || undefined}>
