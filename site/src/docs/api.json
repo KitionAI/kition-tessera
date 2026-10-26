@@ -440,6 +440,96 @@
   ],
   "domProps": false
  },
+ "Combobox": {
+  "description": "One choice from a long list, searched as the person types; the choice can be cleared.",
+  "props": [
+   {
+    "name": "value",
+    "type": "V | undefined",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(value: V | undefined) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "options",
+    "type": "readonly ComboboxOption<V>[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onSearch",
+    "type": "(query: string) => void",
+    "required": false,
+    "default": null,
+    "doc": "Search on the server: called with each query, and the options shown are the caller's. Without it, the options are filtered here."
+   },
+   {
+    "name": "loading",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "placeholder",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "emptyText",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Shown when nothing matches."
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "The control's accessible name."
+   },
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Command": {
   "description": "A searchable list of commands or choices (cmdk): type to filter, arrows and Enter to pick.",
   "props": [],
@@ -1905,6 +1995,75 @@
   "description": "",
   "props": [],
   "domProps": true
+ },
+ "MultiSelect": {
+  "description": "Several choices from a list: the chosen ones in the field, toggled in a list (searchable once it is long).",
+  "props": [
+   {
+    "name": "values",
+    "type": "readonly V[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "onChange",
+    "type": "(values: V[]) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "options",
+    "type": "readonly ComboboxOption<V>[]",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "placeholder",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "Shown when nothing is chosen."
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "The control's accessible name."
+   },
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": "'sm'",
+    "doc": ""
+   },
+   {
+    "name": "disabled",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
  },
  "NavMenu": {
   "description": "An app's sidebar: its pages as links, grouped under headings, the current one marked.",

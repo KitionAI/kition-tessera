@@ -61,6 +61,26 @@ describe('checkRules', () => {
   })
 })
 
+describe('Form types', () => {
+  it('takes an interface for its values, without an index signature', () => {
+    interface Credits {
+      amount: number
+      reason: string
+    }
+    function CreditsForm() {
+      const form = useForm<Credits>()
+      return (
+        <Form<Credits> form={form} initialValues={{ amount: 1 }} onFinish={(values) => values.amount + values.reason.length}>
+          <FormItem name="reason" label="Reason">
+            <TextInput />
+          </FormItem>
+        </Form>
+      )
+    }
+    expect(render(<CreditsForm />).querySelector('form')).not.toBeNull()
+  })
+})
+
 describe('Form', () => {
   function Signup({ onFinish, watch }: { onFinish: (values: Record<string, unknown>) => void; watch?: (value: unknown) => void }) {
     const form = useForm()

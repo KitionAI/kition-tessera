@@ -51,5 +51,8 @@
   "formMinLength": "{label} needs at least {min} characters",
   "formMaxLength": "{label} takes at most {max} characters",
   "formMinValue": "{label} must be at least {min}",
-  "formMaxValue": "{label} must be at most {max}"
+  "formMaxValue": "{label} must be at most {max}",
+  "noMatches": "No matches",
+  "clear": "Clear",
+  "allChosen": "All"
 }

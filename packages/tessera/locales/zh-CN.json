@@ -51,5 +51,8 @@
   "formMinLength": "{label}至少需要 {min} 个字符",
   "formMaxLength": "{label}最多 {max} 个字符",
   "formMinValue": "{label}不能小于 {min}",
-  "formMaxValue": "{label}不能大于 {max}"
+  "formMaxValue": "{label}不能大于 {max}",
+  "noMatches": "没有匹配项",
+  "clear": "清除",
+  "allChosen": "全部"
 }

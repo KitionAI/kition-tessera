@@ -67,6 +67,28 @@ describe('Table', () => {
     expect(host!.querySelector('.kui-table-scroll')?.getAttribute('aria-busy')).toBe('true')
   })
 
+  it('merges a column’s cells down its rows through onCell', () => {
+    type Metric = { id: string; section: string; metric: string }
+    const metrics: Metric[] = [
+      { id: 'a', section: 'Acquisition', metric: 'Visitors' },
+      { id: 'b', section: 'Acquisition', metric: 'Sign-ups' },
+      { id: 'c', section: 'Revenue', metric: 'Orders' },
+    ]
+    const out = render(
+      <Table
+        rowKey="id"
+        pagination={false}
+        dataSource={metrics}
+        columns={[
+          { key: 'section', dataIndex: 'section', onCell: (record, index) => (index > 0 && metrics[index - 1].section === record.section ? { rowSpan: 0 } : { rowSpan: metrics.filter((item) => item.section === record.section).length }) },
+          { key: 'metric', dataIndex: 'metric' },
+        ]}
+      />,
+    )
+    expect(bodyRows(out)).toEqual([['Acquisition', 'Visitors'], ['Sign-ups'], ['Revenue', 'Orders']])
+    expect(out.querySelector('td')?.getAttribute('rowspan')).toBe('2')
+  })
+
   it('reads nested values by path', () => {
     expect(valueAt({ a: { b: [1, 2] } }, ['a', 'b', 1])).toBe(2)
     expect(valueAt({ a: 1 }, 'a')).toBe(1)

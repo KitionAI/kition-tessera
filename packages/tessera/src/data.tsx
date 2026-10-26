@@ -5,7 +5,7 @@
  * `dataSource`, `items`), so screens move over without being rewritten; they draw only through the
  * theme tokens (styles.css, "Data display").
  */
-import { useEffect, useMemo, useState, type CSSProperties, type HTMLAttributes, type Key, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties, type HTMLAttributes, type Key, type ReactNode, type TdHTMLAttributes } from 'react'
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -280,6 +280,8 @@ export type TableColumn<T> = {
   ellipsis?: boolean
   /** Stays in view while the table scrolls sideways. Give pinned columns a numeric `width`. */
   fixed?: 'left' | 'right'
+  /** Attributes of a body cell: `rowSpan` merges it with the cells below (a section name over its rows); 0 leaves the cell out. */
+  onCell?: (record: T, index: number) => TdHTMLAttributes<HTMLTableCellElement>
   className?: string
 }
 
@@ -391,13 +393,16 @@ export function Table<T>({ columns, dataSource, rowKey, loading, pagination, siz
                 return (
                   <tr key={keyOf(record, index)} {...onRow?.(record, index)}>
                     {columns.map((column, columnIndex) => {
+                      const cell = column.onCell?.(record, index)
+                      if (cell && (cell.rowSpan === 0 || cell.colSpan === 0)) return null
                       const value = valueAt(record, column.dataIndex)
                       const content = column.render ? column.render(value, record, index) : (value as ReactNode)
                       return (
                         <td
+                          {...cell}
                           key={column.key ?? columnIndex}
-                          className={cellClass(column)}
-                          style={{ textAlign: column.align, ...offsets[columnIndex] }}
+                          className={join(cellClass(column), cell?.className)}
+                          style={{ textAlign: column.align, ...offsets[columnIndex], ...cell?.style }}
                           data-fixed={column.fixed}
                           title={column.ellipsis && (typeof content === 'string' || typeof content === 'number') ? String(content) : undefined}
                         >

@@ -135,6 +135,7 @@ export {
   type PopconfirmProps,
 } from './formModel'
 export { LineChart, niceTicks, type LineChartProps } from './charts'
+export { Combobox, MultiSelect, type ComboboxOption, type ComboboxProps, type MultiSelectProps } from './Combobox'
 export { PreviewDialog, type PreviewDialogPreview, type PreviewDialogProps, type PreviewStatus } from './PreviewDialog'
 /** The workspace frame tree's functions (`workspaceTree.closePanel`, `workspaceTree.validateTree`, …). */
 export * as workspaceTree from './workspaceTree'

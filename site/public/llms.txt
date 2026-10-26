@@ -29,6 +29,7 @@
 - [NumberField](https://tessera.kition.ai/docs/number-field/): A number with a label you drag to scrub, arrows to step, and units.
 - [Bar controls](https://tessera.kition.ai/docs/bar-controls/): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
 - [Form](https://tessera.kition.ai/docs/form/): A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.
+- [Combobox and MultiSelect](https://tessera.kition.ai/docs/combobox/): One choice from a long list, searched as the person types or on the server with onSearch, and several choices toggled in a list.
 - [NumberInput, DateTimeInput, Popconfirm](https://tessera.kition.ai/docs/form-inputs/): A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.
 
 ## Data display

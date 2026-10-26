@@ -90,7 +90,7 @@ export class FormValidationError extends Error {
 type Registration = { rules: () => readonly FormRule[]; label: () => string; dependencies: readonly string[] }
 
 /** A form's values and errors, reachable from outside it (`useForm`). */
-export type FormInstance<T extends Values = Values> = {
+export type FormInstance<T extends object = Values> = {
   getFieldValue: (name: string) => unknown
   getFieldsValue: () => T
   setFieldValue: (name: string, value: unknown) => void
@@ -201,7 +201,7 @@ class FormStore {
 const stores = new WeakMap<FormInstance, FormStore>()
 
 /** A form instance to pass to `Form` and use outside it (`form.submit()`, `form.resetFields()`). */
-export function useForm<T extends Values = Values>(): FormInstance<T> {
+export function useForm<T extends object = Values>(): FormInstance<T> {
   const [store] = useState(() => new FormStore())
   stores.set(store.instance, store)
   return store.instance as unknown as FormInstance<T>
@@ -221,7 +221,7 @@ const FormContext = createContext<{ store: FormStore; layout: FormLayout; disabl
 
 export type FormLayout = 'vertical' | 'inline'
 
-export type FormProps<T extends Values> = {
+export type FormProps<T extends object> = {
   form?: FormInstance<T>
   /** The values it starts with (read once). */
   initialValues?: Partial<T>
@@ -237,7 +237,7 @@ export type FormProps<T extends Values> = {
 }
 
 /** A form that keeps its fields' values and checks them before `onFinish`. */
-export function Form<T extends Values = Values>({ form, initialValues, onFinish, onValuesChange, layout = 'vertical', disabled = false, className, id, children }: FormProps<T>) {
+export function Form<T extends object = Values>({ form, initialValues, onFinish, onValuesChange, layout = 'vertical', disabled = false, className, id, children }: FormProps<T>) {
   const t = useStrings()
   const own = useForm<T>()
   const store = stores.get((form ?? own) as FormInstance)!

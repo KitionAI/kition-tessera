@@ -3551,6 +3551,115 @@ div.kui-divider::after {
   color: var(--kit-text-muted);
 }
 
+/* Combobox: a drop-down to search in. */
+.kui-combobox {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+}
+
+.kui-combobox-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--kui-input-border, var(--kit-border));
+  border-radius: var(--kit-radius-control);
+  background: var(--kit-surface);
+  color: var(--kit-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.kui-combobox[data-size='md'] .kui-combobox-trigger {
+  height: 36px;
+}
+
+.kui-combobox[data-size='lg'] .kui-combobox-trigger {
+  height: 40px;
+  padding: 0 12px;
+}
+
+.kui-combobox-trigger:focus-visible,
+.kui-combobox-trigger[aria-expanded='true'] {
+  border-color: var(--kit-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--kit-primary-soft);
+}
+
+.kui-combobox-trigger:disabled {
+  background: var(--kit-surface-muted);
+  color: var(--kit-text-muted);
+  cursor: not-allowed;
+}
+
+.kui-combobox-trigger > svg {
+  flex: none;
+  color: var(--kit-text-muted);
+}
+
+.kui-combobox-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kui-combobox-placeholder {
+  color: var(--kit-text-muted);
+}
+
+/* The clear button sits over the chevron's left. */
+.kui-combobox-clear {
+  position: absolute;
+  top: 50%;
+  right: 28px;
+  display: inline-flex;
+  padding: 3px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--kui-hover);
+  color: var(--kit-text-muted);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.kui-combobox-panel.kui-popover-panel {
+  width: var(--radix-popover-trigger-width);
+  min-width: 240px;
+}
+
+.kui-combobox-panel .kui-command-input-wrap {
+  margin-top: 0;
+  padding: 8px;
+  border-bottom: 1px solid var(--kit-border);
+}
+
+.kui-combobox-panel .kui-command-list {
+  max-height: 280px;
+}
+
+.kui-combobox-check {
+  flex: none;
+  visibility: hidden;
+  color: var(--kit-primary);
+}
+
+.kui-combobox-check[data-shown] {
+  visibility: visible;
+}
+
+.kui-combobox-loading {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
 @keyframes kui-shimmer {
   from {
     background-position: 100% 0;
