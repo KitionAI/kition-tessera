@@ -2101,7 +2101,7 @@ Also takes the attributes of its HTML element.
 Menus and overlays. A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
 
 ```ts
-import { TooltipProvider, TooltipContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Tooltip, TooltipProvider, TooltipContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
 ```
 
 When to use:
@@ -2143,9 +2143,15 @@ export default function Demo() {
 }
 ```
 
+### Tooltip props
+
+A short label shown on hover or keyboard focus. Works on its own; a TooltipProvider above it shares one delay among several.
+
+Also takes the attributes of its HTML element.
+
 ### TooltipProvider props
 
-Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default).
+Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default), so moving between them skips the wait.
 
 Also takes the attributes of its HTML element.
 
