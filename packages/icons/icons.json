@@ -1196,6 +1196,22 @@
       "family": "ui",
       "source": "lucide:keyboard"
     },
+    "keyframe": {
+      "family": "tool",
+      "source": "svg:keyframe.svg"
+    },
+    "keyframe-next": {
+      "family": "tool",
+      "source": "svg:keyframe-next.svg"
+    },
+    "keyframe-on": {
+      "family": "tool",
+      "source": "svg:keyframe-on.svg"
+    },
+    "keyframe-previous": {
+      "family": "tool",
+      "source": "svg:keyframe-previous.svg"
+    },
     "lamp": {
       "family": "ui",
       "source": "lucide:lamp"
@@ -2195,7 +2211,8 @@
     },
     "text-align-justify": {
       "family": "ui",
-      "source": "lucide:text-align-justify"
+      "source": "svg:text-align-justify.svg",
+      "replaces": "lucide:text-align-justify"
     },
     "text-align-start": {
       "family": "ui",
@@ -2210,6 +2227,18 @@
       "family": "ui",
       "source": "svg:text-cursor-input.svg",
       "replaces": "lucide:text-cursor-input"
+    },
+    "text-justify-center": {
+      "family": "ui",
+      "source": "svg:text-justify-center.svg"
+    },
+    "text-justify-end": {
+      "family": "ui",
+      "source": "svg:text-justify-end.svg"
+    },
+    "text-justify-start": {
+      "family": "ui",
+      "source": "svg:text-justify-start.svg"
     },
     "text-wrap": {
       "family": "ui",

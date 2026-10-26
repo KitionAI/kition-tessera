@@ -283,6 +283,10 @@ pub const INFO: Icon = Icon { name: "info", paths: &["M2 12a10 10 0 1 0 20 0a10 
 pub const ITALIC: Icon = Icon { name: "italic", paths: &["M19 4L10 4", "M14 20L5 20", "M15 4L9 20"], fills: &[], accents: &[] };
 pub const KEY_ROUND: Icon = Icon { name: "key-round", paths: &["M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"], fills: &["M16 7.5a0.5 0.5 0 1 0 1 0a0.5 0.5 0 1 0 -1 0z"], accents: &[] };
 pub const KEYBOARD: Icon = Icon { name: "keyboard", paths: &["M10 8h.01", "M12 12h.01", "M14 8h.01", "M16 12h.01", "M18 8h.01", "M6 8h.01", "M7 16h10", "M8 12h.01", "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"], fills: &[], accents: &[] };
+pub const KEYFRAME: Icon = Icon { name: "keyframe", paths: &["M12 4l8 8-8 8-8-8z"], fills: &[], accents: &[] };
+pub const KEYFRAME_NEXT: Icon = Icon { name: "keyframe-next", paths: &[], fills: &["M8 6v12l9-6z"], accents: &[] };
+pub const KEYFRAME_ON: Icon = Icon { name: "keyframe-on", paths: &[], fills: &["M12 4l8 8-8 8-8-8z"], accents: &[] };
+pub const KEYFRAME_PREVIOUS: Icon = Icon { name: "keyframe-previous", paths: &[], fills: &["M16 6v12l-9-6z"], accents: &[] };
 pub const LAMP: Icon = Icon { name: "lamp", paths: &["M12 12v6", "M4.077 10.615A1 1 0 0 0 5 12h14a1 1 0 0 0 .923-1.385l-3.077-7.384A2 2 0 0 0 15 2H9a2 2 0 0 0-1.846 1.23Z", "M8 20a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1z"], fills: &[], accents: &[] };
 pub const LANGUAGES: Icon = Icon { name: "languages", paths: &["m5 8 6 6", "m4 14 6-6 2-3", "M2 5h12", "M7 2h1", "m22 22-5-10-5 10", "M14 18h6"], fills: &[], accents: &[] };
 pub const LAPTOP: Icon = Icon { name: "laptop", paths: &["M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z", "M20.054 15.987H3.946"], fills: &[], accents: &[] };
@@ -510,10 +514,13 @@ pub const TARGET: Icon = Icon { name: "target", paths: &["M2 12a10 10 0 1 0 20 0
 pub const TERMINAL: Icon = Icon { name: "terminal", paths: &["M12 19h8", "m4 17 6-6-6-6"], fills: &[], accents: &[] };
 pub const TEXT_ALIGN_CENTER: Icon = Icon { name: "text-align-center", paths: &["M3.5 6h17", "M6.5 10h11", "M3.5 14h17", "M6.5 18h11"], fills: &[], accents: &[] };
 pub const TEXT_ALIGN_END: Icon = Icon { name: "text-align-end", paths: &["M3.5 6h17", "M9.5 10h11", "M3.5 14h17", "M9.5 18h11"], fills: &[], accents: &[] };
-pub const TEXT_ALIGN_JUSTIFY: Icon = Icon { name: "text-align-justify", paths: &["M3 5h18", "M3 12h18", "M3 19h18"], fills: &[], accents: &[] };
+pub const TEXT_ALIGN_JUSTIFY: Icon = Icon { name: "text-align-justify", paths: &["M3.5 6h17", "M3.5 10h17", "M3.5 14h17", "M3.5 18h17"], fills: &[], accents: &[] };
 pub const TEXT_ALIGN_START: Icon = Icon { name: "text-align-start", paths: &["M3.5 6h17", "M3.5 10h11", "M3.5 14h17", "M3.5 18h11"], fills: &[], accents: &[] };
 pub const TEXT_CURSOR: Icon = Icon { name: "text-cursor", paths: &["M17 22h-1a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h1", "M7 22h1a4 4 0 0 0 4-4", "M7 2h1a4 4 0 0 1 4 4"], fills: &[], accents: &[] };
 pub const TEXT_CURSOR_INPUT: Icon = Icon { name: "text-cursor-input", paths: &["M14 7h5a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-5", "M8 17H5a2 2 0 0 1 -2 -2V9a2 2 0 0 1 2 -2h3", "M11 4v16", "M9 4h4", "M9 20h4"], fills: &[], accents: &[] };
+pub const TEXT_JUSTIFY_CENTER: Icon = Icon { name: "text-justify-center", paths: &["M3.5 6h17", "M3.5 10h17", "M3.5 14h17", "M7.5 18h9"], fills: &[], accents: &[] };
+pub const TEXT_JUSTIFY_END: Icon = Icon { name: "text-justify-end", paths: &["M3.5 6h17", "M3.5 10h17", "M3.5 14h17", "M11.5 18h9"], fills: &[], accents: &[] };
+pub const TEXT_JUSTIFY_START: Icon = Icon { name: "text-justify-start", paths: &["M3.5 6h17", "M3.5 10h17", "M3.5 14h17", "M3.5 18h9"], fills: &[], accents: &[] };
 pub const TEXT_WRAP: Icon = Icon { name: "text-wrap", paths: &["m16 16-3 3 3 3", "M3 12h14.5a1 1 0 0 1 0 7H13", "M3 19h6", "M3 5h18"], fills: &[], accents: &[] };
 pub const THERMOMETER: Icon = Icon { name: "thermometer", paths: &["M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"], fills: &[], accents: &[] };
 pub const THUMBS_UP: Icon = Icon { name: "thumbs-up", paths: &["M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z", "M7 10v12"], fills: &[], accents: &[] };
@@ -859,6 +866,10 @@ pub static ICONS: &[&Icon] = &[
     &ITALIC,
     &KEY_ROUND,
     &KEYBOARD,
+    &KEYFRAME,
+    &KEYFRAME_NEXT,
+    &KEYFRAME_ON,
+    &KEYFRAME_PREVIOUS,
     &LAMP,
     &LANGUAGES,
     &LAPTOP,
@@ -1090,6 +1101,9 @@ pub static ICONS: &[&Icon] = &[
     &TEXT_ALIGN_START,
     &TEXT_CURSOR,
     &TEXT_CURSOR_INPUT,
+    &TEXT_JUSTIFY_CENTER,
+    &TEXT_JUSTIFY_END,
+    &TEXT_JUSTIFY_START,
     &TEXT_WRAP,
     &THERMOMETER,
     &THUMBS_UP,
