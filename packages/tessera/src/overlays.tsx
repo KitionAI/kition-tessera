@@ -6,7 +6,7 @@
  */
 import { Command as CommandPrimitive } from 'cmdk'
 import { createContext, forwardRef, useCallback, useContext, useEffect, useRef, useState, type ComponentProps, type HTMLAttributes, type ReactNode } from 'react'
-import { Dialog as DialogPrimitive, Popover as PopoverPrimitive, Switch as SwitchPrimitive } from 'radix-ui'
+import { Dialog as DialogPrimitive, Popover as PopoverPrimitive, Switch as SwitchPrimitive, Tooltip as TooltipPrimitive } from 'radix-ui'
 import { XIcon } from '@kition/tessera-icons/react'
 import { useStrings } from './context'
 import { useDialogFocus } from './hooks'
@@ -39,17 +39,19 @@ export type ModalContentProps = ComponentProps<typeof DialogPrimitive.Content> &
   dismissible?: boolean
   /** Keeps focus where it was instead of moving it into the dialog when it opens. */
   disableAutoFocus?: boolean
+  /** A long dialog: the header and footer stay put with hairlines, and `ModalBody` scrolls between them. */
+  fixed?: boolean
 }
 
 /** The dialog's panel, over a dimmed page: 12px radius, a hairline, the modal shadow. */
-export function ModalContent({ size = 'lg', hideClose, dismissible = true, disableAutoFocus, className, children, onOpenAutoFocus, onPointerDownOutside, ...props }: ModalContentProps) {
-  const t = useStrings()
+export function ModalContent({ size = 'lg', hideClose, dismissible = true, disableAutoFocus, fixed, className, children, onOpenAutoFocus, onPointerDownOutside, ...props }: ModalContentProps) {
   return (
     <DialogPrimitive.Portal>
       <DialogPrimitive.Overlay className="kui-modal-overlay" />
       <DialogPrimitive.Content
         className={join('kui-modal', className)}
         data-size={size}
+        data-fixed={fixed || undefined}
         onOpenAutoFocus={(event) => {
           if (disableAutoFocus) event.preventDefault()
           onOpenAutoFocus?.(event)
@@ -61,14 +63,28 @@ export function ModalContent({ size = 'lg', hideClose, dismissible = true, disab
         {...props}
       >
         {children}
-        {hideClose ? null : (
-          <DialogPrimitive.Close className="kui-modal-close" aria-label={t('close')}>
-            <XIcon size={14} strokeWidth={ICON_STROKE} aria-hidden="true" />
-          </DialogPrimitive.Close>
-        )}
+        {hideClose ? null : <ModalCloseButton />}
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>
   )
+}
+
+/**
+ * The close button in a modal's corner. ModalContent draws one; with `hideClose`, place your own,
+ * for one you can disable (`disabled` while an import runs).
+ */
+export function ModalCloseButton({ className, ...props }: ComponentProps<typeof DialogPrimitive.Close>) {
+  const t = useStrings()
+  return (
+    <DialogPrimitive.Close className={join('kui-modal-close', className)} aria-label={t('close')} {...props}>
+      <XIcon size={14} strokeWidth={ICON_STROKE} aria-hidden="true" />
+    </DialogPrimitive.Close>
+  )
+}
+
+/** The content between a modal's header and footer; it scrolls in a `fixed` modal. */
+export function ModalBody({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return <div className={join('kui-modal-body', className)} {...props} />
 }
 
 /** The title and description at the top of a modal. */
@@ -107,6 +123,33 @@ export function PopoverContent({ align = 'center', sideOffset = 4, className, ..
       <PopoverPrimitive.Content align={align} sideOffset={sideOffset} className={join('kui-popover-panel', className)} {...props} />
     </PopoverPrimitive.Portal>
   )
+}
+
+/* Tooltip */
+
+/** Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default). */
+export function TooltipProvider({ delayDuration = 200, ...props }: ComponentProps<typeof TooltipPrimitive.Provider>) {
+  return <TooltipPrimitive.Provider delayDuration={delayDuration} {...props} />
+}
+
+/** A short label shown on hover or keyboard focus. A TooltipProvider must be above it. */
+export const Tooltip = TooltipPrimitive.Root
+export const TooltipTrigger = TooltipPrimitive.Trigger
+
+/** The tooltip's bubble: dark, small, above the page. */
+export function TooltipContent({ className, sideOffset = 4, ...props }: ComponentProps<typeof TooltipPrimitive.Content>) {
+  return (
+    <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Content sideOffset={sideOffset} className={join('kui-tooltip', className)} {...props} />
+    </TooltipPrimitive.Portal>
+  )
+}
+
+/* Badge */
+
+/** A small count or status beside a label (records in a view, a beta mark). */
+export function Badge({ className, ...props }: HTMLAttributes<HTMLSpanElement>) {
+  return <span className={join('kui-badge', className)} {...props} />
 }
 
 /* Switch */

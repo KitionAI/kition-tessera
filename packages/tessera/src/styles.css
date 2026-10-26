@@ -2427,6 +2427,66 @@ select.kui-ribbon-field:disabled {
   line-height: 1.5;
 }
 
+/* A fixed modal: header and footer stay, the body scrolls between hairlines. */
+.kui-modal[data-fixed] {
+  gap: 0;
+  padding: 0;
+  max-height: min(640px, 80vh);
+  overflow: hidden;
+}
+
+.kui-modal[data-fixed] > .kui-modal-header {
+  padding: 16px;
+  border-bottom: 1px solid var(--kit-border);
+}
+
+.kui-modal[data-fixed] > .kui-modal-footer {
+  padding: 16px;
+  border-top: 1px solid var(--kit-border);
+}
+
+.kui-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.kui-modal[data-fixed] > .kui-modal-body {
+  flex: 1;
+  min-height: 0;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.kui-tooltip {
+  z-index: var(--kui-z-tooltip, 9999);
+  max-width: 280px;
+  padding: 6px 8px;
+  border-radius: calc(var(--kit-radius-control) - 2px);
+  background: var(--kit-text);
+  color: var(--kit-surface);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  box-shadow: var(--kui-shadow-floating, 0 16px 48px rgba(15, 15, 15, 0.14));
+  animation: kui-fade-in 0.12s ease-out;
+}
+
+.kui-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--kit-border);
+  border-radius: 999px;
+  background: var(--kit-surface-muted);
+  color: var(--kit-text);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .kui-modal-footer {
   display: flex;
   flex-wrap: wrap;

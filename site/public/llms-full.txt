@@ -320,6 +320,48 @@ export default function Demo() {
 
 Also takes the attributes of its HTML element.
 
+## Badge
+
+General. A small count or status beside a label.
+
+```ts
+import { Badge } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- The number of records in a view.
+- A Beta or New mark.
+
+When not to:
+
+- An action: use a Button.
+
+### Example: Count and status
+
+```tsx
+import { Badge } from '@kition/tessera'
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 14 }}>
+        Grid view <Badge>128</Badge>
+      </span>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 14 }}>
+        AI fields <Badge>Beta</Badge>
+      </span>
+    </div>
+  )
+}
+```
+
+### Badge props
+
+A small count or status beside a label (records in a view, a beta mark).
+
+Also takes the attributes of its HTML element.
+
 ## Card
 
 General. A product card: 12px radius, a hairline, a light shadow.
@@ -1052,7 +1094,7 @@ export default function Demo() {
 Menus and overlays. A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
 
 ```ts
-import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalFooter } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalCloseButton } from '@kition/tessera' // in a kit: '@kition/kit-ui'
 ```
 
 When to use:
@@ -1094,6 +1136,55 @@ export default function Demo() {
 }
 ```
 
+### Example: A long dialog
+
+With `fixed` the header and footer stay put and ModalBody scrolls; a ModalCloseButton of your own can be disabled while work runs.
+
+```tsx
+import { useState } from 'react'
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalTitle } from '@kition/tessera'
+
+export default function Demo() {
+  const [open, setOpen] = useState(false)
+  const [running, setRunning] = useState(false)
+  return (
+    <>
+      <Button variant="secondary" size="md" onClick={() => setOpen(true)}>Import file…</Button>
+      <Modal open={open} onOpenChange={(next) => (running ? undefined : setOpen(next))}>
+        <ModalContent size="xl" fixed hideClose>
+          <ModalHeader>
+            <ModalTitle>Import a file</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
+            {Array.from({ length: 24 }, (_, i) => (
+              <p key={i} style={{ margin: 0, fontSize: 14 }}>Column {i + 1}: text</p>
+            ))}
+          </ModalBody>
+          <ModalFooter>
+            <Button variant="ghost" size="md" disabled={running} onClick={() => setOpen(false)}>Cancel</Button>
+            <Button
+              variant="primary"
+              size="md"
+              loading={running}
+              onClick={() => {
+                setRunning(true)
+                setTimeout(() => {
+                  setRunning(false)
+                  setOpen(false)
+                }, 1200)
+              }}
+            >
+              Import
+            </Button>
+          </ModalFooter>
+          <ModalCloseButton disabled={running} />
+        </ModalContent>
+      </Modal>
+    </>
+  )
+}
+```
+
 ### Modal props
 
 A modal dialog. Controlled with `open` and `onOpenChange`; Escape and an outside press close it.
@@ -1110,6 +1201,7 @@ The dialog's panel, over a dimmed page: 12px radius, a hairline, the modal shado
 | `hideClose` | `boolean` |  | No close button in the corner (the footer has its own way out). |
 | `dismissible` | `boolean` | `true` | When false, an outside press does not close it (Escape still does). |
 | `disableAutoFocus` | `boolean` |  | Keeps focus where it was instead of moving it into the dialog when it opens. |
+| `fixed` | `boolean` |  | A long dialog: the header and footer stay put with hairlines, and `ModalBody` scrolls between them. |
 
 Also takes the attributes of its HTML element.
 
@@ -1127,9 +1219,81 @@ Also takes the attributes of its HTML element.
 
 Also takes the attributes of its HTML element.
 
+### ModalBody props
+
+The content between a modal's header and footer; it scrolls in a `fixed` modal.
+
+Also takes the attributes of its HTML element.
+
 ### ModalFooter props
 
 The actions at the bottom of a modal, right-aligned; full width on a narrow window.
+
+Also takes the attributes of its HTML element.
+
+### ModalCloseButton props
+
+The close button in a modal's corner. ModalContent draws one; with `hideClose`, place your own,
+for one you can disable (`disabled` while an import runs).
+
+Also takes the attributes of its HTML element.
+
+## Tooltip
+
+Menus and overlays. A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
+
+```ts
+import { TooltipProvider, TooltipContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+```
+
+When to use:
+
+- Naming an icon-only control.
+- Explaining a status mark (an error in a cell).
+
+When not to:
+
+- Anything the person must read to act: put it on the page.
+
+### Example: Icon and button
+
+```tsx
+import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@kition/tessera'
+import { CircleAlertIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  return (
+    <TooltipProvider>
+      <div className="demo-row">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="ghost" size="sm" iconOnly aria-label="Invalid value">
+              <CircleAlertIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>The value is not a date</TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="secondary" size="sm">Hover or focus me</Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">Tooltips name a control; they never hold the only copy of something.</TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
+  )
+}
+```
+
+### TooltipProvider props
+
+Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default).
+
+Also takes the attributes of its HTML element.
+
+### TooltipContent props
+
+The tooltip's bubble: dark, small, above the page.
 
 Also takes the attributes of its HTML element.
 

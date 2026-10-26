@@ -14,6 +14,7 @@
 - [Button](https://tessera.kition.ai/docs/button/): Starts an action. One primary button per view; the rest secondary or ghost.
 - [Spinner](https://tessera.kition.ai/docs/spinner/): A spinning circle for work in progress.
 - [IconButton](https://tessera.kition.ai/docs/icon-button/): An icon-only button with an accessible label; `pressed` makes it a toggle.
+- [Badge](https://tessera.kition.ai/docs/badge/): A small count or status beside a label.
 - [Card](https://tessera.kition.ai/docs/card/): A product card: 12px radius, a hairline, a light shadow.
 - [Disclosure](https://tessera.kition.ai/docs/disclosure/): A section that opens and closes under its title.
 
@@ -36,6 +37,7 @@
 - [PreviewDialog](https://tessera.kition.ai/docs/preview-dialog/): A dialog whose values preview live in the document: the kit supplies begin, update and end.
 - [Toast](https://tessera.kition.ai/docs/toast/): A short notice in the corner. Render Toaster once; call toast() anywhere.
 - [Modal](https://tessera.kition.ai/docs/modal/): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
+- [Tooltip](https://tessera.kition.ai/docs/tooltip/): A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
 - [Popover](https://tessera.kition.ai/docs/popover/): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
 - [Sheet](https://tessera.kition.ai/docs/sheet/): A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes.
 - [Confirm](https://tessera.kition.ai/docs/confirm/): `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.

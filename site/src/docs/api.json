@@ -1,4 +1,9 @@
 {
+ "Badge": {
+  "description": "A small count or status beside a label (records in a view, a beta mark).",
+  "props": [],
+  "domProps": true
+ },
  "BarSeparator": {
   "description": "A hairline between groups of controls in a row.",
   "props": []
@@ -1316,6 +1321,16 @@
   "props": [],
   "domProps": true
  },
+ "ModalBody": {
+  "description": "The content between a modal's header and footer; it scrolls in a `fixed` modal.",
+  "props": [],
+  "domProps": true
+ },
+ "ModalCloseButton": {
+  "description": "The close button in a modal's corner. ModalContent draws one; with `hideClose`, place your own,\nfor one you can disable (`disabled` while an import runs).",
+  "props": [],
+  "domProps": true
+ },
  "ModalContent": {
   "description": "The dialog's panel, over a dimmed page: 12px radius, a hairline, the modal shadow.",
   "props": [
@@ -1346,6 +1361,13 @@
     "required": false,
     "default": null,
     "doc": "Keeps focus where it was instead of moving it into the dialog when it opens."
+   },
+   {
+    "name": "fixed",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "A long dialog: the header and footer stay put with hairlines, and `ModalBody` scrolls between them."
    }
   ],
   "domProps": true
@@ -2321,6 +2343,16 @@
  "Toaster": {
   "description": "",
   "props": []
+ },
+ "TooltipContent": {
+  "description": "The tooltip's bubble: dark, small, above the page.",
+  "props": [],
+  "domProps": true
+ },
+ "TooltipProvider": {
+  "description": "Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default).",
+  "props": [],
+  "domProps": true
  },
  "TransportBar": {
   "description": "The buttons in `buttons`' order, centred. A button's `testId` is `<testId>-<id>`; one whose\nKit UI id the configuration hides is left out, and one it disables is disabled.",

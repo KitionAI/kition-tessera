@@ -3,7 +3,7 @@ import { act, useState, type ReactNode } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { StringsProvider } from './context'
-import { Command, CommandEmpty, CommandInput, CommandItem, CommandList, Modal, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, Popover, PopoverContent, PopoverTrigger, Switch } from './overlays'
+import { Badge, Command, CommandEmpty, CommandInput, CommandItem, CommandList, Modal, ModalBody, ModalCloseButton, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, Popover, PopoverContent, PopoverTrigger, Switch, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './overlays'
 import { Button } from './ui'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
@@ -164,5 +164,49 @@ describe('Command', () => {
     })
     const items = [...document.querySelectorAll('.kui-command-item')].map((item) => item.textContent)
     expect(items).toEqual(['Close tab'])
+  })
+})
+
+describe('Modal, long and with its own close button', () => {
+  it('marks a fixed modal, draws its body, and lets a close button be disabled', () => {
+    render(
+      <Modal open>
+        <ModalContent fixed hideClose>
+          <ModalHeader>
+            <ModalTitle>Import</ModalTitle>
+          </ModalHeader>
+          <ModalBody data-testid="body">Rows</ModalBody>
+          <ModalCloseButton disabled data-testid="close" />
+        </ModalContent>
+      </Modal>,
+    )
+    const dialog = document.querySelector('[role="dialog"]') as HTMLElement
+    expect(dialog.hasAttribute('data-fixed')).toBe(true)
+    expect(document.querySelector('[data-testid="body"]')!.classList.contains('kui-modal-body')).toBe(true)
+    const closes = document.querySelectorAll('.kui-modal-close')
+    expect(closes).toHaveLength(1)
+    expect((closes[0] as HTMLButtonElement).disabled).toBe(true)
+  })
+})
+
+describe('Tooltip and Badge', () => {
+  it('shows a tooltip when its trigger takes focus', () => {
+    render(
+      <TooltipProvider delayDuration={0}>
+        <Tooltip>
+          <TooltipTrigger>Error</TooltipTrigger>
+          <TooltipContent>The value is not a date</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>,
+    )
+    expect(document.querySelector('.kui-tooltip')).toBeNull()
+    act(() => document.querySelector('button')!.focus())
+    expect(document.querySelector('.kui-tooltip')!.textContent).toContain('The value is not a date')
+  })
+
+  it('draws a badge', () => {
+    render(<Badge>12</Badge>)
+    const badge = document.querySelector('.kui-badge')!
+    expect(badge.textContent).toBe('12')
   })
 })
