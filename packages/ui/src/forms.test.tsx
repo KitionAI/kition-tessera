@@ -207,3 +207,15 @@ describe('danger-outline', () => {
     expect(out.querySelector('button')?.getAttribute('data-variant')).toBe('danger-outline')
   })
 })
+
+describe('Textarea autoSize', () => {
+  it('grows with its text between its rows, and scrolls past the most', () => {
+    const out = render(<Textarea aria-label="Notes" autoSize={{ minRows: 2, maxRows: 4 }} value="one" onChange={() => undefined} />)
+    const area = out.querySelector('textarea') as HTMLTextAreaElement
+    expect(area.getAttribute('data-auto-size')).toBe('true')
+    // jsdom lays nothing out: scrollHeight is 0, so the least rows hold.
+    expect(area.style.height).not.toBe('')
+    expect(area.style.overflowY).toBe('hidden')
+    expect(render(<Textarea aria-label="Plain" />).querySelector('textarea')?.style.height).toBe('')
+  })
+})

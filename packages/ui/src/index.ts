@@ -37,6 +37,8 @@ export {
   Select,
   TextInput,
   Textarea,
+  useAutoSize,
+  type AutoSize,
   type DisclosureProps,
   type FieldProps,
   type PasswordInputProps,

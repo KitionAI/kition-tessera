@@ -5,7 +5,7 @@
  * the default), `md` (36px, settings panels), `lg` (40px, forms).
  * Styled only through the theme tokens (styles.css, "Forms").
  */
-import { forwardRef, useId, useState, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
+import { forwardRef, useId, useLayoutEffect, useRef, useState, type HTMLAttributes, type RefObject, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from 'react'
 import { ChevronDownIcon, EyeIcon, EyeOffIcon } from '@kition/tessera-icons/react'
 import { useStrings } from './context'
 import { ICON_STROKE, type ControlSize } from './ui'
@@ -58,11 +58,55 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(fu
   )
 })
 
-export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & { invalid?: boolean }
+export type AutoSize = { minRows?: number; maxRows?: number }
+
+/**
+ * Grows a text area with its text, between `minRows` and `maxRows` lines (it scrolls past
+ * `maxRows`); measured again whenever `value` changes; `null` options leave it alone. For a text
+ * area of your own; Textarea takes `autoSize` instead.
+ */
+export function useAutoSize(ref: RefObject<HTMLTextAreaElement | null>, value: unknown, options: AutoSize | null = {}) {
+  const off = options === null
+  const minRows = options?.minRows ?? 1
+  const maxRows = options?.maxRows
+  useLayoutEffect(() => {
+    const element = ref.current
+    if (!element || off) return
+    const style = getComputedStyle(element)
+    const line = parseFloat(style.lineHeight) || (parseFloat(style.fontSize) || 14) * 1.4
+    const padding = (parseFloat(style.paddingTop) || 0) + (parseFloat(style.paddingBottom) || 0)
+    const border = (parseFloat(style.borderTopWidth) || 0) + (parseFloat(style.borderBottomWidth) || 0)
+    element.style.height = 'auto'
+    const lines = Math.ceil((element.scrollHeight - padding) / line)
+    const rows = Math.max(minRows, Math.min(maxRows ?? Number.POSITIVE_INFINITY, lines))
+    element.style.height = `${rows * line + padding + border}px`
+    element.style.overflowY = maxRows !== undefined && lines > maxRows ? 'auto' : 'hidden'
+  }, [ref, value, off, minRows, maxRows])
+}
+
+export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  invalid?: boolean
+  /** Grows with its text (between `minRows` and `maxRows` lines, when given). */
+  autoSize?: boolean | AutoSize
+}
 
 /** Multi-line text. */
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea({ invalid, className, ...props }, ref) {
-  return <textarea ref={ref} className={join('kui-textarea', className)} aria-invalid={invalid || undefined} {...props} />
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea({ invalid, autoSize, className, ...props }, ref) {
+  const own = useRef<HTMLTextAreaElement | null>(null)
+  useAutoSize(own, props.value, autoSize ? (typeof autoSize === 'object' ? autoSize : {}) : null)
+  return (
+    <textarea
+      ref={(element) => {
+        own.current = element
+        if (typeof ref === 'function') ref(element)
+        else if (ref) ref.current = element
+      }}
+      className={join('kui-textarea', className)}
+      data-auto-size={autoSize ? true : undefined}
+      aria-invalid={invalid || undefined}
+      {...props}
+    />
+  )
 })
 
 export type SelectProps = Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> & Sized

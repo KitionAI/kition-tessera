@@ -21,7 +21,7 @@
 
 - [TextInput](https://tessera.kition.ai/docs/text-input/): A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
 - [PasswordInput](https://tessera.kition.ai/docs/password-input/): A password field with a show and hide button outside the tab order.
-- [Textarea](https://tessera.kition.ai/docs/textarea/): Multi-line text.
+- [Textarea](https://tessera.kition.ai/docs/textarea/): Multi-line text; with autoSize it grows with its text (useAutoSize does the same for a text area of your own).
 - [Select](https://tessera.kition.ai/docs/select/): A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
 - [Switch](https://tessera.kition.ai/docs/switch/): An on/off switch for a setting that applies at once.
 - [Field](https://tessera.kition.ai/docs/field/): A label, a control, and its hint or error, wired for screen readers.

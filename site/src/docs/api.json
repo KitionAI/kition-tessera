@@ -3589,6 +3589,13 @@
     "required": false,
     "default": null,
     "doc": ""
+   },
+   {
+    "name": "autoSize",
+    "type": "boolean | AutoSize",
+    "required": false,
+    "default": null,
+    "doc": "Grows with its text (between `minRows` and `maxRows` lines, when given)."
    }
   ],
   "domProps": true

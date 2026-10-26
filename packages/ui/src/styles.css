@@ -2246,6 +2246,11 @@ select.kui-ribbon-field:disabled {
   font-size: 14px;
 }
 
+.kui-textarea[data-auto-size] {
+  min-height: 0;
+  resize: none;
+}
+
 .kui-textarea {
   min-height: 96px;
   padding: 8px 10px;
