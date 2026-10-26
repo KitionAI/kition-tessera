@@ -117,8 +117,8 @@ export function Result({ status = 'info', title, description, extra, className }
 
 /* Skeleton */
 
-/** A placeholder in the shape of content that is loading; `lines` draws a paragraph. */
-export function Skeleton({ width, height = 16, lines, className }: { width?: number | string; height?: number | string; lines?: number; className?: string }) {
+/** A placeholder in the shape of content that is loading; `lines` draws a paragraph. Size it with `width` and `height`, or with classes (16px tall by default). */
+export function Skeleton({ width, height, lines, className }: { width?: number | string; height?: number | string; lines?: number; className?: string }) {
   if (lines && lines > 1) {
     return (
       <div className={join('kui-skeleton-lines', className)} aria-hidden="true">

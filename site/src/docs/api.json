@@ -3078,7 +3078,7 @@
   "domProps": false
  },
  "Skeleton": {
-  "description": "A placeholder in the shape of content that is loading; `lines` draws a paragraph.",
+  "description": "A placeholder in the shape of content that is loading; `lines` draws a paragraph. Size it with `width` and `height`, or with classes (16px tall by default).",
   "props": [
    {
     "name": "width",
@@ -3091,7 +3091,7 @@
     "name": "height",
     "type": "number | string",
     "required": false,
-    "default": "16",
+    "default": null,
     "doc": ""
    },
    {

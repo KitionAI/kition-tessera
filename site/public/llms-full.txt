@@ -1490,12 +1490,12 @@ export default function Demo() {
 
 ### Skeleton props
 
-A placeholder in the shape of content that is loading; `lines` draws a paragraph.
+A placeholder in the shape of content that is loading; `lines` draws a paragraph. Size it with `width` and `height`, or with classes (16px tall by default).
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `width` | `number \| string` |  |  |
-| `height` | `number \| string` | `16` |  |
+| `height` | `number \| string` |  |  |
 | `lines` | `number` |  |  |
 | `className` | `string` |  |  |
 

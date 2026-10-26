@@ -2966,6 +2966,7 @@ select.kui-ribbon-field:disabled {
 .kui-skeleton {
   display: block;
   max-width: 100%;
+  height: 16px;
   border-radius: var(--kit-radius-control);
   background: linear-gradient(90deg, var(--kit-surface-muted) 25%, color-mix(in srgb, var(--kit-text) 6%, var(--kit-surface-muted)) 50%, var(--kit-surface-muted) 75%);
   background-size: 200% 100%;
