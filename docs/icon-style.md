@@ -59,3 +59,9 @@ ribbon and a timeline's transport read as one suite. The site's icon style lab
    before it merges.
 3. A redrawn icon moves from `lucide:` to `svg:` in `icons.json`; its name does not change, so no
    kit code changes.
+   It records the icon it replaces (`"replaces": "lucide:layers"`), so lucide-react names still map
+   to it.
+
+Done so far (site `#review`): batch 1, Slide's animations and transitions; batch 2, CAD drafting;
+batch 3, tool accents on the tools of every tool rail; batch 4, the 51 icons five or more kits
+share, redrawn on the half-unit grid.

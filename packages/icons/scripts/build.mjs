@@ -38,6 +38,13 @@ for (const [name, entry] of Object.entries(manifest.icons)) {
     lucideNames = lucide.exportsOf.get(ref) ?? []
   } else if (kind === 'svg') {
     shapes = svgPaths(readFileSync(join(pkg, 'svg', ref), 'utf8'), name)
+    // A redraw of a Lucide icon (`"replaces": "lucide:layers"`) keeps its lucide-react names, so
+    // code moving from lucide-react still finds it.
+    if (entry.replaces) {
+      const replaced = String(entry.replaces).replace(/^lucide:/, '')
+      if (!lucide.nodes.get(replaced)) throw new Error(`${name}: lucide ${lucide.version} has no ${replaced}`)
+      lucideNames = lucide.exportsOf.get(replaced) ?? []
+    }
   } else {
     throw new Error(`${name}: source must be lucide:<name> or svg:<file>`)
   }

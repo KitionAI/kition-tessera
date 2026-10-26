@@ -148,7 +148,8 @@
     },
     "arrow-down": {
       "family": "ui",
-      "source": "lucide:arrow-down"
+      "source": "svg:arrow-down.svg",
+      "replaces": "lucide:arrow-down"
     },
     "arrow-down-a-z": {
       "family": "ui",
@@ -172,7 +173,8 @@
     },
     "arrow-left-right": {
       "family": "ui",
-      "source": "lucide:arrow-left-right"
+      "source": "svg:arrow-left-right.svg",
+      "replaces": "lucide:arrow-left-right"
     },
     "arrow-left-to-line": {
       "family": "ui",
@@ -196,7 +198,8 @@
     },
     "arrow-up": {
       "family": "ui",
-      "source": "lucide:arrow-up"
+      "source": "svg:arrow-up.svg",
+      "replaces": "lucide:arrow-up"
     },
     "arrow-up-down": {
       "family": "ui",
@@ -419,11 +422,13 @@
     },
     "check": {
       "family": "ui",
-      "source": "lucide:check"
+      "source": "svg:check.svg",
+      "replaces": "lucide:check"
     },
     "chevron-down": {
       "family": "ui",
-      "source": "lucide:chevron-down"
+      "source": "svg:chevron-down.svg",
+      "replaces": "lucide:chevron-down"
     },
     "chevron-first": {
       "family": "ui",
@@ -467,10 +472,8 @@
     },
     "circle": {
       "family": "ui",
-      "source": "lucide:circle",
-      "accents": [
-        "M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z"
-      ]
+      "source": "svg:circle.svg",
+      "replaces": "lucide:circle"
     },
     "circle-alert": {
       "family": "ui",
@@ -544,7 +547,8 @@
     },
     "clipboard-paste": {
       "family": "ui",
-      "source": "lucide:clipboard-paste"
+      "source": "svg:clipboard-paste.svg",
+      "replaces": "lucide:clipboard-paste"
     },
     "clock": {
       "family": "ui",
@@ -674,10 +678,8 @@
     },
     "copy": {
       "family": "ui",
-      "source": "lucide:copy",
-      "accents": [
-        "M10 8h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"
-      ]
+      "source": "svg:copy.svg",
+      "replaces": "lucide:copy"
     },
     "copy-check": {
       "family": "ui",
@@ -806,7 +808,8 @@
     },
     "download": {
       "family": "ui",
-      "source": "lucide:download"
+      "source": "svg:download.svg",
+      "replaces": "lucide:download"
     },
     "droplet": {
       "family": "ui",
@@ -833,10 +836,8 @@
     },
     "eraser": {
       "family": "ui",
-      "source": "lucide:eraser",
-      "accents": [
-        "M5.08 11.09l8.83 8.83L12.83 21H8a2 2 0 0 1-1.42-.59l-4-4a2 2 0 0 1 0-2.82z"
-      ]
+      "source": "svg:eraser.svg",
+      "replaces": "lucide:eraser"
     },
     "expand": {
       "family": "ui",
@@ -856,11 +857,13 @@
     },
     "eye": {
       "family": "ui",
-      "source": "lucide:eye"
+      "source": "svg:eye.svg",
+      "replaces": "lucide:eye"
     },
     "eye-off": {
       "family": "ui",
-      "source": "lucide:eye-off"
+      "source": "svg:eye-off.svg",
+      "replaces": "lucide:eye-off"
     },
     "face-slightly-smiling": {
       "family": "ui",
@@ -1105,7 +1108,8 @@
     },
     "group": {
       "family": "ui",
-      "source": "lucide:group"
+      "source": "svg:group.svg",
+      "replaces": "lucide:group"
     },
     "hand": {
       "family": "ui",
@@ -1113,7 +1117,8 @@
     },
     "hash": {
       "family": "ui",
-      "source": "lucide:hash"
+      "source": "svg:hash.svg",
+      "replaces": "lucide:hash"
     },
     "hatch": {
       "family": "tool",
@@ -1143,10 +1148,8 @@
     },
     "highlighter": {
       "family": "ui",
-      "source": "lucide:highlighter",
-      "accents": [
-        "M9 11l-6 6v3h9l3-3z"
-      ]
+      "source": "svg:highlighter.svg",
+      "replaces": "lucide:highlighter"
     },
     "hourglass": {
       "family": "ui",
@@ -1154,7 +1157,8 @@
     },
     "image": {
       "family": "ui",
-      "source": "lucide:image"
+      "source": "svg:image.svg",
+      "replaces": "lucide:image"
     },
     "image-down": {
       "family": "ui",
@@ -1220,7 +1224,8 @@
     },
     "layers": {
       "family": "ui",
-      "source": "lucide:layers"
+      "source": "svg:layers.svg",
+      "replaces": "lucide:layers"
     },
     "layers-2": {
       "family": "ui",
@@ -1244,7 +1249,8 @@
     },
     "layout-template": {
       "family": "ui",
-      "source": "lucide:layout-template"
+      "source": "svg:layout-template.svg",
+      "replaces": "lucide:layout-template"
     },
     "leader": {
       "family": "tool",
@@ -1284,7 +1290,8 @@
     },
     "link": {
       "family": "ui",
-      "source": "lucide:link"
+      "source": "svg:link.svg",
+      "replaces": "lucide:link"
     },
     "link-2": {
       "family": "ui",
@@ -1336,7 +1343,8 @@
     },
     "lock": {
       "family": "ui",
-      "source": "lucide:lock"
+      "source": "svg:lock.svg",
+      "replaces": "lucide:lock"
     },
     "lock-keyhole": {
       "family": "ui",
@@ -1344,7 +1352,8 @@
     },
     "lock-open": {
       "family": "ui",
-      "source": "lucide:lock-open"
+      "source": "svg:lock-open.svg",
+      "replaces": "lucide:lock-open"
     },
     "log-out": {
       "family": "ui",
@@ -1399,10 +1408,8 @@
     },
     "message-square": {
       "family": "ui",
-      "source": "lucide:message-square",
-      "accents": [
-        "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"
-      ]
+      "source": "svg:message-square.svg",
+      "replaces": "lucide:message-square"
     },
     "message-square-dashed": {
       "family": "ui",
@@ -1422,7 +1429,8 @@
     },
     "minus": {
       "family": "ui",
-      "source": "lucide:minus"
+      "source": "svg:minus.svg",
+      "replaces": "lucide:minus"
     },
     "monitor": {
       "family": "ui",
@@ -1457,10 +1465,8 @@
     },
     "mouse-pointer-2": {
       "family": "ui",
-      "source": "lucide:mouse-pointer-2",
-      "accents": [
-        "M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"
-      ]
+      "source": "svg:mouse-pointer-2.svg",
+      "replaces": "lucide:mouse-pointer-2"
     },
     "mouse-pointer-click": {
       "family": "ui",
@@ -1546,22 +1552,18 @@
     },
     "paint-bucket": {
       "family": "ui",
-      "source": "lucide:paint-bucket",
-      "accents": [
-        "M2.5 12H19l-6.94 6.94a3.6 3.6 0 0 1-5.12 0l-3.88-3.88A3.6 3.6 0 0 1 2.5 12z",
-        "M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595z"
-      ]
+      "source": "svg:paint-bucket.svg",
+      "replaces": "lucide:paint-bucket"
     },
     "paintbrush": {
       "family": "ui",
-      "source": "lucide:paintbrush"
+      "source": "svg:paintbrush.svg",
+      "replaces": "lucide:paintbrush"
     },
     "palette": {
       "family": "ui",
-      "source": "lucide:palette",
-      "accents": [
-        "M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"
-      ]
+      "source": "svg:palette.svg",
+      "replaces": "lucide:palette"
     },
     "panel-bottom": {
       "family": "ui",
@@ -1620,10 +1622,8 @@
     },
     "pencil": {
       "family": "ui",
-      "source": "lucide:pencil",
-      "accents": [
-        "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
-      ]
+      "source": "svg:pencil.svg",
+      "replaces": "lucide:pencil"
     },
     "pencil-line": {
       "family": "ui",
@@ -1668,11 +1668,13 @@
     },
     "play": {
       "family": "ui",
-      "source": "lucide:play"
+      "source": "svg:play.svg",
+      "replaces": "lucide:play"
     },
     "plus": {
       "family": "ui",
-      "source": "lucide:plus"
+      "source": "svg:plus.svg",
+      "replaces": "lucide:plus"
     },
     "pointer": {
       "family": "ui",
@@ -1751,7 +1753,8 @@
     },
     "refresh-cw": {
       "family": "ui",
-      "source": "lucide:refresh-cw"
+      "source": "svg:refresh-cw.svg",
+      "replaces": "lucide:refresh-cw"
     },
     "region": {
       "family": "tool",
@@ -1783,7 +1786,8 @@
     },
     "rotate-ccw": {
       "family": "ui",
-      "source": "lucide:rotate-ccw"
+      "source": "svg:rotate-ccw.svg",
+      "replaces": "lucide:rotate-ccw"
     },
     "rotate-ccw-clock": {
       "family": "ui",
@@ -1791,7 +1795,8 @@
     },
     "rotate-cw": {
       "family": "ui",
-      "source": "lucide:rotate-cw"
+      "source": "svg:rotate-cw.svg",
+      "replaces": "lucide:rotate-cw"
     },
     "rows-2": {
       "family": "ui",
@@ -1819,10 +1824,8 @@
     },
     "scaling": {
       "family": "ui",
-      "source": "lucide:scaling",
-      "accents": [
-        "M9 10h5v5H9z"
-      ]
+      "source": "svg:scaling.svg",
+      "replaces": "lucide:scaling"
     },
     "scan": {
       "family": "ui",
@@ -1846,11 +1849,13 @@
     },
     "scissors": {
       "family": "ui",
-      "source": "lucide:scissors"
+      "source": "svg:scissors.svg",
+      "replaces": "lucide:scissors"
     },
     "search": {
       "family": "ui",
-      "source": "lucide:search"
+      "source": "svg:search.svg",
+      "replaces": "lucide:search"
     },
     "send": {
       "family": "ui",
@@ -1925,7 +1930,8 @@
     },
     "sliders-horizontal": {
       "family": "ui",
-      "source": "lucide:sliders-horizontal"
+      "source": "svg:sliders-horizontal.svg",
+      "replaces": "lucide:sliders-horizontal"
     },
     "sliders-vertical": {
       "family": "ui",
@@ -1944,10 +1950,8 @@
     },
     "sparkles": {
       "family": "ui",
-      "source": "lucide:sparkles",
-      "accents": [
-        "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-      ]
+      "source": "svg:sparkles.svg",
+      "replaces": "lucide:sparkles"
     },
     "spell-check": {
       "family": "ui",
@@ -1955,7 +1959,8 @@
     },
     "spline": {
       "family": "ui",
-      "source": "lucide:spline"
+      "source": "svg:spline.svg",
+      "replaces": "lucide:spline"
     },
     "spline-pointer": {
       "family": "ui",
@@ -1967,10 +1972,8 @@
     },
     "square": {
       "family": "ui",
-      "source": "lucide:square",
-      "accents": [
-        "M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"
-      ]
+      "source": "svg:square.svg",
+      "replaces": "lucide:square"
     },
     "square-check": {
       "family": "ui",
@@ -1985,10 +1988,8 @@
     },
     "square-dashed": {
       "family": "ui",
-      "source": "lucide:square-dashed",
-      "accents": [
-        "M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"
-      ]
+      "source": "svg:square-dashed.svg",
+      "replaces": "lucide:square-dashed"
     },
     "square-dashed-mouse-pointer": {
       "family": "ui",
@@ -2080,10 +2081,8 @@
     },
     "star": {
       "family": "ui",
-      "source": "lucide:star",
-      "accents": [
-        "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
-      ]
+      "source": "svg:star.svg",
+      "replaces": "lucide:star"
     },
     "step-back": {
       "family": "ui",
@@ -2186,11 +2185,13 @@
     },
     "text-align-center": {
       "family": "ui",
-      "source": "lucide:text-align-center"
+      "source": "svg:text-align-center.svg",
+      "replaces": "lucide:text-align-center"
     },
     "text-align-end": {
       "family": "ui",
-      "source": "lucide:text-align-end"
+      "source": "svg:text-align-end.svg",
+      "replaces": "lucide:text-align-end"
     },
     "text-align-justify": {
       "family": "ui",
@@ -2198,7 +2199,8 @@
     },
     "text-align-start": {
       "family": "ui",
-      "source": "lucide:text-align-start"
+      "source": "svg:text-align-start.svg",
+      "replaces": "lucide:text-align-start"
     },
     "text-cursor": {
       "family": "ui",
@@ -2206,7 +2208,8 @@
     },
     "text-cursor-input": {
       "family": "ui",
-      "source": "lucide:text-cursor-input"
+      "source": "svg:text-cursor-input.svg",
+      "replaces": "lucide:text-cursor-input"
     },
     "text-wrap": {
       "family": "ui",
@@ -2306,7 +2309,8 @@
     },
     "trash": {
       "family": "ui",
-      "source": "lucide:trash"
+      "source": "svg:trash.svg",
+      "replaces": "lucide:trash"
     },
     "trending-up": {
       "family": "ui",
@@ -2329,7 +2333,8 @@
     },
     "type": {
       "family": "ui",
-      "source": "lucide:type"
+      "source": "svg:type.svg",
+      "replaces": "lucide:type"
     },
     "type-outline": {
       "family": "ui",
@@ -2353,7 +2358,8 @@
     },
     "ungroup": {
       "family": "ui",
-      "source": "lucide:ungroup"
+      "source": "svg:ungroup.svg",
+      "replaces": "lucide:ungroup"
     },
     "unlink": {
       "family": "ui",
@@ -2411,10 +2417,8 @@
     },
     "wand-sparkles": {
       "family": "ui",
-      "source": "lucide:wand-sparkles",
-      "accents": [
-        "M17 10l4.64-4.64a1.2 1.2 0 0 0 0-1.72l-1.28-1.28a1.21 1.21 0 0 0-1.72 0L14 7z"
-      ]
+      "source": "svg:wand-sparkles.svg",
+      "replaces": "lucide:wand-sparkles"
     },
     "waves-horizontal": {
       "family": "ui",
@@ -2452,7 +2456,8 @@
     },
     "x": {
       "family": "ui",
-      "source": "lucide:x"
+      "source": "svg:x.svg",
+      "replaces": "lucide:x"
     },
     "zap": {
       "family": "ui",

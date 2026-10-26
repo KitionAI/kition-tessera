@@ -3,6 +3,7 @@ import { RibbonButton, RibbonGroup } from '@kition/tessera'
 import { CommandGenericIcon, SparkleIcon, SparklesIcon, createIcon } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES } from '@kition/tessera-icons/registry'
 import type { IconData } from '@kition/tessera-icons'
+import lucideShared from './review/lucide-shared.json'
 
 /**
  * Redraw batches under review (docs/icon-style.md, "Process"): each batch shown where it lives
@@ -34,12 +35,24 @@ const BATCHES = [
       { label: 'Tools', prefix: '', before: 'plain', labels: {"bandage": "Bandage", "baseline": "Baseline", "blend": "Blend", "brush": "Brush", "brush-cleaning": "Brush cleaning", "circle": "Circle", "circle-dashed": "Circle dashed", "circle-dot": "Circle dot", "cloud": "Cloud", "columns-2": "Columns 2", "copy": "Copy", "copy-plus": "Copy plus", "crop": "Crop", "diamond": "Diamond", "droplet": "Droplet", "eraser": "Eraser", "file": "File", "flame": "Flame", "frame": "Frame", "heart": "Heart", "hexagon": "Hexagon", "highlighter": "Highlighter", "lasso": "Lasso", "lasso-select": "Lasso select", "lollipop": "Lollipop", "message-square": "Message square", "mouse-pointer": "Mouse pointer", "mouse-pointer-2": "Mouse pointer 2", "music": "Music", "network": "Network", "package": "Package", "paint-bucket": "Paint bucket", "palette": "Palette", "pen-tool": "Pen tool", "pencil": "Pencil", "pentagon": "Pentagon", "pill": "Pill", "pipette": "Pipette", "rectangle-horizontal": "Rectangle horizontal", "scaling": "Scaling", "shapes": "Shapes", "sparkle": "Sparkle", "sparkles": "Sparkles", "square": "Square", "square-check": "Square check", "square-x": "Square x", "square-dashed": "Square dashed", "square-dashed-mouse-pointer": "Square dashed mouse pointer", "square-mouse-pointer": "Square mouse pointer", "stamp": "Stamp", "star": "Star", "sticky-note": "Sticky note", "triangle": "Triangle", "vector-polygon": "Vector polygon", "vector-square": "Vector square", "wand-sparkles": "Wand sparkles", "waypoints": "Waypoints", "zoom-in": "Zoom in"} },
     ],
   },
+  {
+    id: 'shared',
+    title: 'Batch 4 · Icons most kits share',
+    note: 'The 51 icons five or more kits use were Lucide shapes at Tessera\u2019s stroke. They are now Tessera\u2019s own: every point on the half-unit grid (crisp at 16, 24 and 48 px), rectangles at radius 2, one arrowhead and one chevron for every arrow, and the tool accent where the icon is also a tool. Names are unchanged, so no kit code changes.',
+    groups: [
+      { label: 'Shared', prefix: '', before: 'lucide', labels: {"plus": "Plus", "check": "Check", "copy": "Copy", "eye-off": "Eye off", "layout-template": "Layout template", "square": "Square", "type": "Type", "download": "Download", "image": "Image", "pencil": "Pencil", "search": "Search", "sliders-horizontal": "Sliders horizontal", "x": "X", "link": "Link", "scissors": "Scissors", "square-dashed": "Square dashed", "eye": "Eye", "lock": "Lock", "message-square": "Message square", "mouse-pointer-2": "Mouse pointer 2", "paintbrush": "Paintbrush", "rotate-ccw": "Rotate ccw", "sparkles": "Sparkles", "wand-sparkles": "Wand sparkles", "highlighter": "Highlighter", "rotate-cw": "Rotate cw", "arrow-left-right": "Arrow left right", "arrow-down": "Arrow down", "arrow-up": "Arrow up", "chevron-down": "Chevron down", "circle": "Circle", "layers": "Layers", "lock-open": "Lock open", "minus": "Minus", "palette": "Palette", "play": "Play", "refresh-cw": "Refresh cw", "text-cursor-input": "Text cursor input", "trash": "Trash", "clipboard-paste": "Clipboard paste", "eraser": "Eraser", "group": "Group", "hash": "Hash", "paint-bucket": "Paint bucket", "scaling": "Scaling", "spline": "Spline", "star": "Star", "ungroup": "Ungroup", "text-align-center": "Text align center", "text-align-end": "Text align end", "text-align-start": "Text align start"} },
+    ],
+  },
 ] as const
 
-const components = new Map<string, ReturnType<typeof createIcon>>()
+/** The shared icons as Lucide drew them, before batch 4. */
+const LUCIDE_BEFORE = lucideShared as unknown as Record<string, IconData>
+
+// Keyed by the drawing, not the name: a batch's before and after share names.
+const components = new WeakMap<IconData, ReturnType<typeof createIcon>>()
 const componentOf = (icon: IconData) => {
-  let component = components.get(icon.name)
-  if (!component) components.set(icon.name, (component = createIcon(icon)))
+  let component = components.get(icon)
+  if (!component) components.set(icon, (component = createIcon(icon)))
   return component
 }
 
@@ -64,7 +77,7 @@ export function ReviewPage() {
               <div key={group.label} className="review-group">
                 <h3>{group.label}</h3>
                 <div style={{ '--tessera-icon-accent-opacity': 0 } as CSSProperties}>
-                  <Gallery title="Before" entries={entries} icon={group.before === 'plain' ? (key) => componentOf(ICONS[`${group.prefix}${key}`]) : () => group.before} />
+                  <Gallery title="Before" entries={entries} icon={group.before === 'plain' ? (key) => componentOf(ICONS[`${group.prefix}${key}`]) : group.before === 'lucide' ? (key) => componentOf(LUCIDE_BEFORE[key]) : () => group.before} />
                 </div>
                 <Gallery title="After" entries={entries} icon={(key) => componentOf(ICONS[`${group.prefix}${key}`])} />
                 <div className="review-grid">
