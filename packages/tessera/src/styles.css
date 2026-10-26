@@ -2473,6 +2473,15 @@ select.kui-ribbon-field:disabled {
   animation: kui-fade-in 0.12s ease-out;
 }
 
+/* A ghost button inside a tooltip (Retry, Dismiss) takes the tooltip's inverted colors. */
+.kui-tooltip .kui-button[data-variant='ghost'] {
+  color: inherit;
+}
+
+.kui-tooltip .kui-button[data-variant='ghost']:hover:not(:disabled) {
+  background: color-mix(in srgb, currentColor 16%, transparent);
+}
+
 .kui-badge {
   display: inline-flex;
   align-items: center;
