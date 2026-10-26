@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A dialog that previews its command while a person edits it (the Photo and Film designs'
  * `PreviewDialog`): a Preview check box, a strip under the fields, OK, and Cancel (Reset while Alt

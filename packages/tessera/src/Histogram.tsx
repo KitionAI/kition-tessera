@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A normalized bar histogram (Levels/Curves-style), drawn on a canvas. The canvas's backing
  * store is sized to the element's own CSS box (`clientWidth`/`clientHeight`) times the device

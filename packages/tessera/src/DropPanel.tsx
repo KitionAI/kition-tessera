@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A panel under a button: a Single line group's popover, a Menus tab's ribbon. It opens below its
  * anchor, kept inside the window as it grows, and closes on a press outside the anchor, on Escape (unless a

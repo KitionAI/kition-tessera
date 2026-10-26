@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * An HSB color picker (Photoshop's Color panel, simplified): a saturation/brightness square for
  * the current hue, a vertical hue strip, a hex field, and R, G, B `NumberField`s (upstream

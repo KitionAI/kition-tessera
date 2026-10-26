@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A Premiere-style workspace: the frames of a `WorkspaceNode` tree laid out in the area, split by
  * 4 px gutters that drag (or arrow keys) resize, each frame a tab group with a strip, a panel menu

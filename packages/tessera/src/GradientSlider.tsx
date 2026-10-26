@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A slider on a thin (or gradient) track with a ring knob and scrubbable hot text at the right:
  * the generic form of upstream Film's Lumetri `slider` (`panels/lumetri.rs`). A click on the

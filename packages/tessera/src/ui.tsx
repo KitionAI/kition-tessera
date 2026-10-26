@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Shared kit editor components: buttons and fields, the ribbon, menus, panels, the status bar,
  * dialogs, and notices. Styled only through the Kit UI protocol's theme tokens (styles.css).

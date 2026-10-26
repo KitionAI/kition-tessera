@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A dock of panel groups (Layers, Properties, History, …), stacked vertically: each group has a
  * tab strip (click, or Left/Right arrows, switch the active tab, remembered), a chevron that

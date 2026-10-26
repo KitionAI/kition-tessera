@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Navigation for product screens: tabs over the sections of one page, and the sidebar menu of an
  * app's pages. Styled through the theme tokens (styles.css, "Navigation").

@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Peak level meters on a canvas (upstream Film `panels/meters.rs` and `widgets.rs` `meter_bar`):
  * one bar per channel over a dark track, a green gradient up to −12 dB, yellow up to −3 dB, and

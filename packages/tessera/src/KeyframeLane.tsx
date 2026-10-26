@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A parameter's keyframe lane (upstream Film `panels/effect_controls.rs` `param_row`): its
  * keyframes along a time range, a diamond for linear, a square for hold, and a circle for the

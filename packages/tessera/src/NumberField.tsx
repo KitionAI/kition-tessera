@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A scrubbable number field (Photoshop-style drag value): a label that scrubs the value
  * horizontally and a text input that accepts a typed number; with `track`, a slider row instead

@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Overlays for hosts and kit editors: modal dialogs, popovers, a switch, a side sheet, a confirm
  * dialog, and a command list. Modal, popover, and switch draw Radix's accessible primitives

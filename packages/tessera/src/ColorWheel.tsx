@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A colour wheel with a lightness slider at its left: the generic form of upstream Film's Lumetri
  * `color_wheel` (`panels/lumetri.rs`). The hue ring shows the direction, and the puck's offset

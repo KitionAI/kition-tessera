@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Form controls and containers for hosts and kit panels: text fields, password, multi-line text,
  * select, a labelled field, cards, and disclosures. Sizes: `sm` (32px, toolbars and dense rows,

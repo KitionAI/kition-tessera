@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Charts for product screens: a line chart of one or more series over ordered categories (days,
  * hours). Drawn as SVG in the chart palette tokens (`--kui-chart-1` … `--kui-chart-6`), with a

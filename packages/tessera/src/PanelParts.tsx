@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Pieces a kit's list panels share (a Layers, Channels, or Paths panel): a thumbnail, the eye
  * column's toggle with Photoshop's sweep, a row name that renames in place, and the footer of

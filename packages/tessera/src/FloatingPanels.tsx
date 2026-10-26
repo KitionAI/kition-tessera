@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Movable, resizable windows over a kit's workspace, as upstream Film draws its floating bin
  * panels (`panels/project.rs` `floating`: an `egui::Window` with a title and a close button, not

@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * What Tessera's components ask of the editor around them, through two small contexts. Both work
  * without a provider (tests, a page of their own): English strings, every element shown.

@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A timecode readout that edits in place (upstream Film `widgets.rs` `timecode_label` and
  * `hot_number`, the time crate's `format_timecode_frames` and `parse_timecode`): it shows

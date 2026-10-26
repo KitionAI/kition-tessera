@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Data display for product screens (consoles, settings, admin): a table with pagination, a
  * description list, tags, alerts, empty and result states, skeletons, avatars, breadcrumbs, and a

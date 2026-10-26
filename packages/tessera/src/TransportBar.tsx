@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A monitor's row of transport buttons (upstream Film `panels/monitor.rs` `transport`): icon
  * buttons in 30 px slots, centred in the row, each with its tooltip, the play button drawn a

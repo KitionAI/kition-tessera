@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Small controls for a tool's options bar (or any toolbar row): a check box, a drop-down choice,
  * segmented icon buttons of which one is pressed, a hairline separator, and a muted hint. Styled

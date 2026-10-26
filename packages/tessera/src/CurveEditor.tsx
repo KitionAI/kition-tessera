@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A tone or hue curve: the generic form of upstream Film's Lumetri `curve_editor`
  * (`panels/lumetri.rs`). Points are `[x, y]` in 0..1, kept in x order. A drag that starts within

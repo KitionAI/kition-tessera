@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * A drop-down to search in: one choice from a long list, filtered as the person types, or searched
  * on the server (`onSearch`) for lists too long to send (users, records). Built on Popover and the

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import ts from 'typescript'
@@ -46,5 +46,15 @@ describe('licenses', () => {
     }
     // Icons drawn from Lucide carry Lucide's licenses.
     expect(JSON.parse(readFileSync(join(root, 'packages', 'icons', 'package.json'), 'utf8')).files).toContain('LICENSE-lucide')
+  })
+})
+
+describe('JSX', () => {
+  // A host's bundler pre-bundles these sources with esbuild, which reads no tsconfig inside
+  // node_modules: without the pragma it compiles JSX to React.createElement, and React is undefined.
+  it('asks for the automatic JSX runtime in every component file', () => {
+    const files = readdirSync(here).filter((file) => file.endsWith('.tsx') && !file.endsWith('.test.tsx'))
+    const missing = files.filter((file) => !readFileSync(join(here, file), 'utf8').startsWith('/** @jsxRuntime automatic */'))
+    expect(missing).toEqual([])
   })
 })

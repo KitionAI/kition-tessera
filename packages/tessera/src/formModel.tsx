@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic */
 /**
  * Forms with state and validation for product screens: `Form` and `FormItem` keep the values and
  * check them against rules, `useForm` reaches them from outside (a modal's OK button submits), and
