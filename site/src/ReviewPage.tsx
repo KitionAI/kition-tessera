@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from 'react'
+import { useMemo, type CSSProperties, type ReactNode } from 'react'
 import { RibbonButton, RibbonGroup } from '@kition/tessera'
 import { CommandGenericIcon, SparkleIcon, SparklesIcon, createIcon } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES } from '@kition/tessera-icons/registry'
@@ -26,6 +26,14 @@ const BATCHES = [
       { label: 'CAD', prefix: '', before: CommandGenericIcon, labels: {"polyline": "Polyline", "arc": "Arc", "circle-center-radius": "Circle center radius", "ray": "Ray", "donut": "Donut", "revision-cloud": "Revision cloud", "multiline": "Multiline", "helix": "Helix", "center-mark": "Center mark", "region": "Region", "hatch": "Hatch", "dimension-linear": "Linear", "dimension-aligned": "Aligned", "dimension-radius": "Radius", "dimension-diameter": "Diameter", "dimension-angular": "Angular", "dimension-arc-length": "Arc length", "dimension-ordinate": "Ordinate", "dimension-baseline": "Baseline", "dimension-continue": "Continue", "leader": "Leader", "stretch": "Stretch", "extend": "Extend", "fillet": "Fillet", "chamfer": "Chamfer", "explode": "Explode", "array-rectangular": "Array rectangular", "array-polar": "Array polar", "lengthen": "Lengthen", "constraint-coincident": "Coincident", "constraint-perpendicular": "Perpendicular", "constraint-parallel": "Parallel", "constraint-tangent": "Tangent", "constraint-horizontal": "Horizontal", "constraint-vertical": "Vertical", "constraint-collinear": "Collinear", "constraint-concentric": "Concentric", "constraint-symmetric": "Symmetric", "constraint-equal": "Equal", "constraint-fix": "Fix", "lineweight": "Lineweight", "linetype": "Linetype", "polar-tracking": "Polar tracking", "ortho-mode": "Ortho mode"} },
     ],
   },
+  {
+    id: 'tool-accents',
+    title: 'Batch 3 · Tool accents',
+    note: 'The tools in tool rails (Photo, Film, Board, and the engine tools of Vector, Design, CAD) were plain line. Each now marks what it acts on with the skin accent: the brush tip, the bucket paint, the lasso selection, the area a crop keeps; a shape tool fills the shape it draws. The accents show in tool rails and duotone skins; the same icons stay plain line in menus.',
+    groups: [
+      { label: 'Tools', prefix: '', before: 'plain', labels: {"bandage": "Bandage", "baseline": "Baseline", "blend": "Blend", "brush": "Brush", "brush-cleaning": "Brush cleaning", "circle": "Circle", "circle-dashed": "Circle dashed", "circle-dot": "Circle dot", "cloud": "Cloud", "columns-2": "Columns 2", "copy": "Copy", "copy-plus": "Copy plus", "crop": "Crop", "diamond": "Diamond", "droplet": "Droplet", "eraser": "Eraser", "file": "File", "flame": "Flame", "frame": "Frame", "heart": "Heart", "hexagon": "Hexagon", "highlighter": "Highlighter", "lasso": "Lasso", "lasso-select": "Lasso select", "lollipop": "Lollipop", "message-square": "Message square", "mouse-pointer": "Mouse pointer", "mouse-pointer-2": "Mouse pointer 2", "music": "Music", "network": "Network", "package": "Package", "paint-bucket": "Paint bucket", "palette": "Palette", "pen-tool": "Pen tool", "pencil": "Pencil", "pentagon": "Pentagon", "pill": "Pill", "pipette": "Pipette", "rectangle-horizontal": "Rectangle horizontal", "scaling": "Scaling", "shapes": "Shapes", "sparkle": "Sparkle", "sparkles": "Sparkles", "square": "Square", "square-check": "Square check", "square-x": "Square x", "square-dashed": "Square dashed", "square-dashed-mouse-pointer": "Square dashed mouse pointer", "square-mouse-pointer": "Square mouse pointer", "stamp": "Stamp", "star": "Star", "sticky-note": "Sticky note", "triangle": "Triangle", "vector-polygon": "Vector polygon", "vector-square": "Vector square", "wand-sparkles": "Wand sparkles", "waypoints": "Waypoints", "zoom-in": "Zoom in"} },
+    ],
+  },
 ] as const
 
 const components = new Map<string, ReturnType<typeof createIcon>>()
@@ -46,7 +54,8 @@ export function ReviewPage() {
         </p>
       </section>
       {BATCHES.map((batch) => (
-        <section key={batch.id} className="review-batch">
+        // Accents show here as in a tool rail; every "before" draws plain line.
+        <section key={batch.id} className="review-batch" style={{ '--tessera-icon-accent-opacity': 0.25 } as CSSProperties}>
           <h2>{batch.title}</h2>
           <p className="review-note">{batch.note}</p>
           {batch.groups.map((group) => {
@@ -54,7 +63,9 @@ export function ReviewPage() {
             return (
               <div key={group.label} className="review-group">
                 <h3>{group.label}</h3>
-                <Gallery title="Before" entries={entries} icon={() => group.before} />
+                <div style={{ '--tessera-icon-accent-opacity': 0 } as CSSProperties}>
+                  <Gallery title="Before" entries={entries} icon={group.before === 'plain' ? (key) => componentOf(ICONS[`${group.prefix}${key}`]) : () => group.before} />
+                </div>
                 <Gallery title="After" entries={entries} icon={(key) => componentOf(ICONS[`${group.prefix}${key}`])} />
                 <div className="review-grid">
                   {entries.map(([key, label]) => (
