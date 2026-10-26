@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pagination } from '@kition/tessera'
+import { Pagination } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [page, setPage] = useState(6)

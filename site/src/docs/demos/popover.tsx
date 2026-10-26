@@ -1,4 +1,4 @@
-import { Button, Popover, PopoverContent, PopoverTrigger, Select, Switch } from '@kition/tessera'
+import { Button, Popover, PopoverContent, PopoverTrigger, Select, Switch } from '@kition/tessera-ui'
 import { FunnelIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

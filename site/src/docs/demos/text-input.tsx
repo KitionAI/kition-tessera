@@ -1,4 +1,4 @@
-import { TextInput } from '@kition/tessera'
+import { TextInput } from '@kition/tessera-ui'
 import { SearchIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

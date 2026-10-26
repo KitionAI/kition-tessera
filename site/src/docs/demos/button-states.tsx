@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '@kition/tessera'
+import { Button } from '@kition/tessera-ui'
 import { PlusIcon, SettingsIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

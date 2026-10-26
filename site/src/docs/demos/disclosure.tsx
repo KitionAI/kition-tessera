@@ -1,4 +1,4 @@
-import { Disclosure, TextInput } from '@kition/tessera'
+import { Disclosure, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

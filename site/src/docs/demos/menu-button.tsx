@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, MenuButton, MenuItem, MenuSeparator, toast } from '@kition/tessera'
+import { Button, MenuButton, MenuItem, MenuSeparator, toast } from '@kition/tessera-ui'
 import { ClipboardPasteIcon, CopyIcon, ScissorsIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Writes `src/docs/api.json`: every component @kition/tessera exports, with its JSDoc and its
+ * Writes `src/docs/api.json`: every component @kition/tessera-ui exports, with its JSDoc and its
  * props (name, type, required, default, doc), read with the TypeScript compiler from the package's
  * source, so the docs' API tables never drift from the code. `--check` fails when it is stale.
  */
@@ -11,7 +11,7 @@ import ts from 'typescript'
 
 const site = join(dirname(fileURLToPath(import.meta.url)), '..')
 const root = join(site, '..')
-const entry = join(root, 'packages', 'tessera', 'src', 'index.ts')
+const entry = join(root, 'packages', 'ui', 'src', 'index.ts')
 const out = join(site, 'src', 'docs', 'api.json')
 
 const program = ts.createProgram([entry], {

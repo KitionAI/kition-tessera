@@ -1,6 +1,6 @@
 # Kition Tessera
 
-> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera`). A kit editor imports all of it through `@kition/kit-ui`.
+> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera-ui`).
 
 ## Overview
 
@@ -12,11 +12,11 @@ Getting started. Kition Tessera is the design system for professional editors: d
 
 `@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `tessera-icons` for engines.
 
-`@kition/tessera`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.
+`@kition/tessera-ui`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.
 
 ```tsx
-import '@kition/tessera/styles.css'
-import { Button, ColorPicker } from '@kition/tessera'
+import '@kition/tessera-ui/styles.css'
+import { Button, ColorPicker } from '@kition/tessera-ui'
 import { LayersIcon } from '@kition/tessera-icons/react'
 ```
 
@@ -30,63 +30,13 @@ One icon family: a 24 grid, a 1.5 stroke, round caps; tool icons carry accents i
 
 Accessible by default: labels, keyboard use, focus rings, and every skin held to WCAG AA contrast.
 
-## Using Tessera in a kit
-
-Getting started. How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.
-
-### Import from kit-ui
-
-A kit editor depends on `@kition/kit-ui` only. kit-ui re-exports every Tessera component under its usual name, wires them to the Kit UI protocol (the host’s theme, locale, hidden and disabled elements, host buttons), and loads Tessera’s stylesheet from its own.
-
-Icons come from `@kition/tessera-icons/react` when the kit lists it in package.json, or from kit-ui’s `TesseraIcons` namespace otherwise. Bundlers keep only the icons a kit uses.
-
-```tsx
-import '@kition/kit-ui/styles.css'
-import { Button, RibbonGroup, RibbonButton, NumberField, TesseraIcons } from '@kition/kit-ui'
-import { LayersIcon } from '@kition/tessera-icons/react' // or TesseraIcons.LayersIcon
-```
-
-### Icons for engine commands
-
-Ribbons and menus built from engine commands get their icons from kit-ui’s rules: a command’s verb first (`edit.undo`, `layer.mergeDown`), then what it acts on, then the neutral command mark.
-
-A kit names icons for the commands the rules cannot read in `web/src/commandIcons.ts`, imported once from `main.tsx`.
-
-```tsx
-import { registerCommandIcons } from '@kition/kit-ui'
-import { DimensionAlignedIcon, FilletIcon } from '@kition/tessera-icons/react'
-
-registerCommandIcons({
-  dimaligned: DimensionAlignedIcon,
-  fillet: FilletIcon,
-})
-```
-
-### Rules for kits
-
-Draw every colour, radius and shadow from the theme tokens (`var(--kit-*)`), never literal values, so skins reach your editor.
-
-Pass icon sizes and `strokeWidth={ICON_STROKE}` from kit-ui; never a number of your own.
-
-New icons go into Tessera (`packages/icons/svg/`, docs/icon-style.md), not into the kit.
-
-Give elements a Kit UI id (`uiId`, `RibbonGroup id`) so hosts can hide or disable them.
-
-### A new kit
-
-kition-sdk’s `tools/new-kit-ui.mjs` scaffolds a kit editor on kit-ui and Tessera Icons, with its dev server allowed to read kition-tessera.
-
-```tsx
-node tools/new-kit-ui.mjs --repo ../kition-mykit --id kit.mykit --name MyKit --crate mykit --module kition_mykit_sdk --class MyKitDocument --sample sample.mykit --accept .mykit --port 5300
-```
-
 ## Theming and skins
 
 Getting started. A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
 
 ### The theme
 
-Hosts send `theme` in `ui/initialize` and `ui/theme`: a colour scheme and the 15 `--kit-*` theme tokens. kit-ui applies them to the document root; components read them through CSS variables.
+Hosts send `theme` in `ui/initialize` and `ui/theme`: a colour scheme and the 15 `--kit-*` theme tokens, applied to the document root; components read them through CSS variables. An app that is not a kit sets the same variables in its own stylesheet.
 
 `@kition/tessera-tokens` gives every skin’s theme ready to send (`SKINS.paper`, `SKINS.graphite`), and its tests hold each skin to WCAG AA.
 
@@ -125,7 +75,7 @@ drawIcon(ctx, Layers, 8, 8, { size: 16, color: '#5645d4' })
 General. Starts an action. One primary button per view; the rest secondary or ghost.
 
 ```ts
-import { Button, ButtonLink } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Button, ButtonLink } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -144,7 +94,7 @@ When not to:
 Secondary is outlined; subtle is a quiet filled button; a disabled filled button turns muted, not faint.
 
 ```tsx
-import { Button } from '@kition/tessera'
+import { Button } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -166,7 +116,7 @@ export default function Demo() {
 Without a size the button keeps the 30px of editor chrome.
 
 ```tsx
-import { Button } from '@kition/tessera'
+import { Button } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -186,7 +136,7 @@ Icons inside a button draw at 16px; an icon-only button is square and needs an a
 
 ```tsx
 import { useState } from 'react'
-import { Button } from '@kition/tessera'
+import { Button } from '@kition/tessera-ui'
 import { PlusIcon, SettingsIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -221,7 +171,7 @@ export default function Demo() {
 ### Example: Links drawn as buttons
 
 ```tsx
-import { ButtonLink } from '@kition/tessera'
+import { ButtonLink } from '@kition/tessera-ui'
 import { ArrowLeftIcon, MailIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -273,7 +223,7 @@ Also takes the attributes of its HTML element.
 General. A spinning circle for work in progress.
 
 ```ts
-import { Spinner } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Spinner } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -288,7 +238,7 @@ When not to:
 ### Example: Sizes and a label
 
 ```tsx
-import { Spinner } from '@kition/tessera'
+import { Spinner } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -318,7 +268,7 @@ A spinning circle for work in progress; `label` names it for screen readers (oth
 General. An icon-only button with an accessible label; `pressed` makes it a toggle.
 
 ```ts
-import { IconButton } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { IconButton } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -333,7 +283,7 @@ When not to:
 
 ```tsx
 import { useState } from 'react'
-import { IconButton } from '@kition/tessera'
+import { IconButton } from '@kition/tessera-ui'
 import { BoldIcon, ItalicIcon, UnderlineIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -363,7 +313,7 @@ Also takes the attributes of its HTML element.
 General. A small count or status beside a label.
 
 ```ts
-import { Badge } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Badge } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -378,7 +328,7 @@ When not to:
 ### Example: Count and status
 
 ```tsx
-import { Badge } from '@kition/tessera'
+import { Badge } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -405,7 +355,7 @@ Also takes the attributes of its HTML element.
 General. A product card: 12px radius, a hairline, a light shadow.
 
 ```ts
-import { Card, CardHeader, CardContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Card, CardHeader, CardContent } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -415,7 +365,7 @@ When to use:
 ### Example: Header and content
 
 ```tsx
-import { Button, Card, CardContent, CardHeader } from '@kition/tessera'
+import { Button, Card, CardContent, CardHeader } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -449,7 +399,7 @@ Also takes the attributes of its HTML element.
 General. A section that opens and closes under its title.
 
 ```ts
-import { Disclosure } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Disclosure } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -459,7 +409,7 @@ When to use:
 ### Example: Closed and open
 
 ```tsx
-import { Disclosure, TextInput } from '@kition/tessera'
+import { Disclosure, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -494,13 +444,13 @@ A section that opens and closes under its title.
 Forms. A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
 
 ```ts
-import { TextInput } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { TextInput } from '@kition/tessera-ui'
 ```
 
 ### Example: Sizes and invalid
 
 ```tsx
-import { TextInput } from '@kition/tessera'
+import { TextInput } from '@kition/tessera-ui'
 import { SearchIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -534,13 +484,13 @@ Also takes the attributes of its HTML element.
 Forms. A password field with a show and hide button outside the tab order.
 
 ```ts
-import { PasswordInput } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { PasswordInput } from '@kition/tessera-ui'
 ```
 
 ### Example: Show and hide
 
 ```tsx
-import { PasswordInput } from '@kition/tessera'
+import { PasswordInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   return <PasswordInput size="md" defaultValue="sk-test-not-a-real-key" aria-label="API key" />
@@ -566,13 +516,13 @@ Also takes the attributes of its HTML element.
 Forms. Multi-line text.
 
 ```ts
-import { Textarea } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Textarea } from '@kition/tessera-ui'
 ```
 
 ### Example: Prompt
 
 ```tsx
-import { Textarea } from '@kition/tessera'
+import { Textarea } from '@kition/tessera-ui'
 
 export default function Demo() {
   return <Textarea rows={3} placeholder="Describe the change for the agent…" />
@@ -594,7 +544,7 @@ Also takes the attributes of its HTML element.
 Forms. A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
 
 ```ts
-import { Select } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Select } from '@kition/tessera-ui'
 ```
 
 When not to:
@@ -604,7 +554,7 @@ When not to:
 ### Example: Sizes
 
 ```tsx
-import { Select } from '@kition/tessera'
+import { Select } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -640,7 +590,7 @@ Also takes the attributes of its HTML element.
 Forms. An on/off switch for a setting that applies at once.
 
 ```ts
-import { Switch } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Switch } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -655,7 +605,7 @@ When not to:
 
 ```tsx
 import { useState } from 'react'
-import { Switch } from '@kition/tessera'
+import { Switch } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [sync, setSync] = useState(true)
@@ -683,7 +633,7 @@ Also takes the attributes of its HTML element.
 Forms. A label, a control, and its hint or error, wired for screen readers.
 
 ```ts
-import { Field } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Field } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -694,7 +644,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { Field, TextInput } from '@kition/tessera'
+import { Field, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [email, setEmail] = useState('not-an-email')
@@ -726,7 +676,7 @@ A label, a control, and its help or error, wired together for screen readers.
 Forms. A number with a label you drag to scrub, arrows to step, and units.
 
 ```ts
-import { NumberField } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { NumberField } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -737,7 +687,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { NumberField } from '@kition/tessera'
+import { NumberField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [opacity, setOpacity] = useState(80)
@@ -777,7 +727,7 @@ export default function Demo() {
 Forms. Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
 
 ```ts
-import { Segmented, Choice, Checkbox, Hint, BarSeparator } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Segmented, Choice, Checkbox, Hint, BarSeparator } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -788,7 +738,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { BarSeparator, Checkbox, Choice, Hint, Segmented } from '@kition/tessera'
+import { BarSeparator, Checkbox, Choice, Hint, Segmented } from '@kition/tessera-ui'
 import { TextAlignCenterIcon, TextAlignEndIcon, TextAlignStartIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -874,7 +824,7 @@ A hairline between groups of controls in a row.
 Forms. A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.
 
 ```ts
-import { Form, FormItem } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Form, FormItem } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -890,7 +840,7 @@ When not to:
 Submit with the email empty to see the errors; they re-check as you type.
 
 ```tsx
-import { Button, Checkbox, Form, FormItem, NumberInput, Select, TextInput, toast, useForm, useWatch } from '@kition/tessera'
+import { Button, Checkbox, Form, FormItem, NumberInput, Select, TextInput, toast, useForm, useWatch } from '@kition/tessera-ui'
 
 type Values = { email: string; credits: number | null; reason: string; plan: string; notify: boolean }
 
@@ -969,7 +919,7 @@ A labelled control bound to one field of the form around it, with its rules and 
 Forms. One choice from a long list, searched as the person types or on the server with onSearch, and several choices toggled in a list.
 
 ```ts
-import { Combobox, MultiSelect } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Combobox, MultiSelect } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -984,7 +934,7 @@ When not to:
 
 ```tsx
 import { useState } from 'react'
-import { Combobox } from '@kition/tessera'
+import { Combobox } from '@kition/tessera-ui'
 
 const PEOPLE = ['Ada Lovelace', 'Grace Hopper', 'Alan Turing', 'Katherine Johnson', 'Margaret Hamilton', 'Edsger Dijkstra', 'Barbara Liskov', 'Donald Knuth']
 
@@ -1009,7 +959,7 @@ export default function Demo() {
 
 ```tsx
 import { useState } from 'react'
-import { MultiSelect } from '@kition/tessera'
+import { MultiSelect } from '@kition/tessera-ui'
 
 const MODES = ['free', 'reward', 'paid', 'hosted'].map((value) => ({ value, label: value }))
 
@@ -1063,14 +1013,14 @@ Several choices from a list: the chosen ones in the field, toggled in a list (se
 Forms. A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.
 
 ```ts
-import { NumberInput, DateTimeInput, Popconfirm } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { NumberInput, DateTimeInput, Popconfirm } from '@kition/tessera-ui'
 ```
 
 ### Example: Price, start time, delete
 
 ```tsx
 import { useState } from 'react'
-import { Button, DateTimeInput, NumberInput, Popconfirm, toast } from '@kition/tessera'
+import { Button, DateTimeInput, NumberInput, Popconfirm, toast } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [price, setPrice] = useState<number | null>(0.25)
@@ -1144,7 +1094,7 @@ Asks "are you sure?" next to the button that does something, before it does.
 Data display. Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.
 
 ```ts
-import { Table, Pagination } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Table, Pagination } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1158,7 +1108,7 @@ When not to:
 ### Example: Pages, pinned column, tags
 
 ```tsx
-import { Table, Tag, type TableColumn } from '@kition/tessera'
+import { Table, Tag, type TableColumn } from '@kition/tessera-ui'
 
 type Order = { id: string; customer: string; plan: string; amount: number; status: 'paid' | 'pending' | 'refunded' }
 
@@ -1189,7 +1139,7 @@ export default function Demo() {
 
 ```tsx
 import { useState } from 'react'
-import { Button, Empty, Table, type TableColumn } from '@kition/tessera'
+import { Button, Empty, Table, type TableColumn } from '@kition/tessera-ui'
 
 type Key = { id: string; name: string }
 const columns: TableColumn<Key>[] = [
@@ -1249,7 +1199,7 @@ The pages of a long list: the range shown, page buttons, and an optional page si
 Data display. A short status or category label on a soft tint of its tone.
 
 ```ts
-import { Tag } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Tag } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1263,7 +1213,7 @@ When not to:
 ### Example: Tones
 
 ```tsx
-import { Tag } from '@kition/tessera'
+import { Tag } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -1293,7 +1243,7 @@ Also takes the attributes of its HTML element.
 Data display. A message in the page, in its tone, with an optional action or close.
 
 ```ts
-import { Alert } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Alert } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1308,7 +1258,7 @@ When not to:
 
 ```tsx
 import { useState } from 'react'
-import { Alert, Button } from '@kition/tessera'
+import { Alert, Button } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [shown, setShown] = useState(true)
@@ -1342,13 +1292,13 @@ A message in the page: what happened or what to know, in its tone, with an optio
 Data display. Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.
 
 ```ts
-import { Descriptions, Breadcrumb, Avatar, Divider } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Descriptions, Breadcrumb, Avatar, Divider } from '@kition/tessera-ui'
 ```
 
 ### Example: A user’s detail page
 
 ```tsx
-import { Avatar, Breadcrumb, Descriptions, Divider, Tag } from '@kition/tessera'
+import { Avatar, Breadcrumb, Descriptions, Divider, Tag } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -1421,13 +1371,13 @@ A hairline between sections, with an optional label in it.
 Data display. Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.
 
 ```ts
-import { Empty, Result } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Empty, Result } from '@kition/tessera-ui'
 ```
 
 ### Example: No feedback, access denied
 
 ```tsx
-import { Button, Empty, Result } from '@kition/tessera'
+import { Button, Empty, Result } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -1470,13 +1420,13 @@ The outcome of a whole page or flow (paid, access denied, page not found), with 
 Data display. A placeholder in the shape of content that is loading.
 
 ```ts
-import { Skeleton } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Skeleton } from '@kition/tessera-ui'
 ```
 
 ### Example: Title and paragraph
 
 ```tsx
-import { Skeleton } from '@kition/tessera'
+import { Skeleton } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (
@@ -1504,13 +1454,13 @@ A placeholder in the shape of content that is loading; `lines` draws a paragraph
 Data display. Lines of one or more series over ordered categories, with a legend and a readout under the pointer, in the chart palette tokens.
 
 ```ts
-import { LineChart } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { LineChart } from '@kition/tessera-ui'
 ```
 
 ### Example: Growth by day
 
 ```tsx
-import { LineChart } from '@kition/tessera'
+import { LineChart } from '@kition/tessera-ui'
 
 const days = Array.from({ length: 14 }, (_, index) => `10-${String(index + 10).padStart(2, '0')}`)
 const DATA = days.flatMap((date, index) => [
@@ -1546,7 +1496,7 @@ Lines of one or more series over ordered categories, with a legend and a hover r
 Navigation. Sections of one page under a row of tabs; arrow keys move between them.
 
 ```ts
-import { Tabs } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Tabs } from '@kition/tessera-ui'
 ```
 
 When not to:
@@ -1556,7 +1506,7 @@ When not to:
 ### Example: With a range control
 
 ```tsx
-import { Segmented, Tabs } from '@kition/tessera'
+import { Segmented, Tabs } from '@kition/tessera-ui'
 import { useState } from 'react'
 
 export default function Demo() {
@@ -1594,14 +1544,14 @@ Sections of one page under a row of tabs; arrow keys move between tabs.
 Navigation. An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.
 
 ```ts
-import { NavMenu } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { NavMenu } from '@kition/tessera-ui'
 ```
 
 ### Example: Admin sidebar
 
 ```tsx
 import { useState } from 'react'
-import { NavMenu, Switch } from '@kition/tessera'
+import { NavMenu, Switch } from '@kition/tessera-ui'
 import { CreditCardIcon, KeyRoundIcon, LayoutDashboardIcon, MessageSquareIcon, UsersIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -1648,7 +1598,7 @@ An app's sidebar: its pages as links, grouped under headings, the current one ma
 Navigation. The pages of a long list on the server: the range shown, page buttons, and a page size.
 
 ```ts
-import { Pagination } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Pagination } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1659,7 +1609,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { Pagination } from '@kition/tessera'
+import { Pagination } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [page, setPage] = useState(6)
@@ -1686,14 +1636,14 @@ The pages of a long list: the range shown, page buttons, and an optional page si
 Menus and overlays. A button that opens a menu of MenuItems, with shortcuts and check marks.
 
 ```ts
-import { MenuButton, MenuItem, MenuSeparator } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { MenuButton, MenuItem, MenuSeparator } from '@kition/tessera-ui'
 ```
 
 ### Example: Edit menu
 
 ```tsx
 import { useState } from 'react'
-import { Button, MenuButton, MenuItem, MenuSeparator, toast } from '@kition/tessera'
+import { Button, MenuButton, MenuItem, MenuSeparator, toast } from '@kition/tessera-ui'
 import { ClipboardPasteIcon, CopyIcon, ScissorsIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -1747,14 +1697,14 @@ checkbox item.
 Menus and overlays. A menu at a point, for right-clicks.
 
 ```ts
-import { ContextMenu } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { ContextMenu } from '@kition/tessera-ui'
 ```
 
 ### Example: Right-click
 
 ```tsx
 import { useState } from 'react'
-import { ContextMenu, MenuItem, type ContextMenuPoint } from '@kition/tessera'
+import { ContextMenu, MenuItem, type ContextMenuPoint } from '@kition/tessera-ui'
 import { CopyIcon, TrashIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -1800,7 +1750,7 @@ are `MenuItem`s and `MenuSeparator`s, as in `MenuButton`.
 Menus and overlays. A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
 
 ```ts
-import { Dialog } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Dialog } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1815,7 +1765,7 @@ When not to:
 
 ```tsx
 import { useState } from 'react'
-import { Button, Dialog, NumberField } from '@kition/tessera'
+import { Button, Dialog, NumberField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)
@@ -1862,7 +1812,7 @@ export default function Demo() {
 Menus and overlays. A dialog whose values preview live in the document: the kit supplies begin, update and end.
 
 ```ts
-import { PreviewDialog } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { PreviewDialog } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1873,7 +1823,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { Button, GradientSlider, PreviewDialog } from '@kition/tessera'
+import { Button, GradientSlider, PreviewDialog } from '@kition/tessera-ui'
 
 // A dialog whose changes preview live in the document; the kit supplies begin, update and end.
 export default function Demo() {
@@ -1925,13 +1875,13 @@ export default function Demo() {
 Menus and overlays. A short notice in the corner. Render Toaster once; call toast() anywhere.
 
 ```ts
-import { Toaster } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Toaster } from '@kition/tessera-ui'
 ```
 
 ### Example: Levels
 
 ```tsx
-import { Button, toast } from '@kition/tessera'
+import { Button, toast } from '@kition/tessera-ui'
 
 // Render <Toaster /> once near the root of the editor; toast() can then be called from anywhere.
 export default function Demo() {
@@ -1952,7 +1902,7 @@ export default function Demo() {
 Menus and overlays. A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
 
 ```ts
-import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalCloseButton } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalCloseButton } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1968,7 +1918,7 @@ When not to:
 
 ```tsx
 import { useState } from 'react'
-import { Button, Field, Modal, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, TextInput } from '@kition/tessera'
+import { Button, Field, Modal, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)
@@ -2000,7 +1950,7 @@ With `fixed` the header and footer stay put and ModalBody scrolls; a ModalCloseB
 
 ```tsx
 import { useState } from 'react'
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalTitle } from '@kition/tessera'
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalTitle } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)
@@ -2101,7 +2051,7 @@ Also takes the attributes of its HTML element.
 Menus and overlays. A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
 
 ```ts
-import { Tooltip, TooltipProvider, TooltipContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Tooltip, TooltipProvider, TooltipContent } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2116,7 +2066,7 @@ When not to:
 ### Example: Icon and button
 
 ```tsx
-import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@kition/tessera'
+import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@kition/tessera-ui'
 import { CircleAlertIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -2166,7 +2116,7 @@ Also takes the attributes of its HTML element.
 Menus and overlays. Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
 
 ```ts
-import { Popover, PopoverContent } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Popover, PopoverContent } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2181,7 +2131,7 @@ When not to:
 ### Example: A filter
 
 ```tsx
-import { Button, Popover, PopoverContent, PopoverTrigger, Select, Switch } from '@kition/tessera'
+import { Button, Popover, PopoverContent, PopoverTrigger, Select, Switch } from '@kition/tessera-ui'
 import { FunnelIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -2226,7 +2176,7 @@ Also takes the attributes of its HTML element.
 Menus and overlays. A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes; from the left, it holds an app’s navigation on a phone.
 
 ```ts
-import { Sheet } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Sheet } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2243,7 +2193,7 @@ With unsaved changes, Escape, the backdrop, and the close button ask first.
 
 ```tsx
 import { useState } from 'react'
-import { Button, Field, Sheet, TextInput } from '@kition/tessera'
+import { Button, Field, Sheet, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)
@@ -2301,7 +2251,7 @@ A panel that slides in from the right over a dimmed page, for editing one thing 
 Menus and overlays. `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
 
 ```ts
-import { ConfirmProvider } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { ConfirmProvider } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2318,7 +2268,7 @@ A danger confirm puts focus on Cancel.
 
 ```tsx
 import { useState } from 'react'
-import { Button, ConfirmProvider, useConfirm } from '@kition/tessera'
+import { Button, ConfirmProvider, useConfirm } from '@kition/tessera-ui'
 
 function DeleteButton() {
   const confirm = useConfirm()
@@ -2362,7 +2312,7 @@ Lets `useConfirm` ask from anywhere inside it; asks queue and show one at a time
 Menus and overlays. A searchable list of commands or choices: type to filter, arrows and Enter to pick.
 
 ```ts
-import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2372,7 +2322,7 @@ When to use:
 ### Example: A command palette
 
 ```tsx
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, toast } from '@kition/tessera'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, toast } from '@kition/tessera-ui'
 import { FileTextIcon, SettingsIcon, TableIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -2449,14 +2399,14 @@ Also takes the attributes of its HTML element.
 Menus and overlays. A popover anchored to an element, closing on a press outside or Escape.
 
 ```ts
-import { DropPanel } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { DropPanel } from '@kition/tessera-ui'
 ```
 
 ### Example: A setting under a button
 
 ```tsx
 import { useRef, useState } from 'react'
-import { Button, DropPanel, NumberField } from '@kition/tessera'
+import { Button, DropPanel, NumberField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const anchor = useRef<HTMLSpanElement>(null)
@@ -2492,7 +2442,7 @@ export default function Demo() {
 Editor chrome. Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
 
 ```ts
-import { RibbonGroup, RibbonButton, RibbonStack, RibbonRow, RibbonItem, ColorGrid } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { RibbonGroup, RibbonButton, RibbonStack, RibbonRow, RibbonItem, ColorGrid } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2503,7 +2453,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { ColorGrid, MenuButton, RibbonButton, RibbonGroup, RibbonStack } from '@kition/tessera'
+import { ColorGrid, MenuButton, RibbonButton, RibbonGroup, RibbonStack } from '@kition/tessera-ui'
 import { BoldIcon, ClipboardPasteIcon, CopyIcon, ItalicIcon, LayersIcon, ScissorsIcon, SquareIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -2604,7 +2554,7 @@ A grid of color swatches; `onPick` gets `#RRGGBB`.
 Editor chrome. A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
 
 ```ts
-import { OverflowStrip } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { OverflowStrip } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2620,7 +2570,7 @@ When not to:
 The row is wider than its box; use the arrows at the faded edges.
 
 ```tsx
-import { Button, OverflowStrip } from '@kition/tessera'
+import { Button, OverflowStrip } from '@kition/tessera-ui'
 
 const TOOLS = ['Brush', 'Eraser', 'Clone', 'Heal', 'Dodge', 'Burn', 'Sponge', 'Smudge', 'Blur', 'Sharpen', 'Gradient', 'Fill', 'Text', 'Shape', 'Crop', 'Slice']
 
@@ -2660,14 +2610,14 @@ tool) re-measures; the buttons' test ids are `${testId}-start` and `${testId}-en
 Editor chrome. The bottom bar: document facts on the left, zoom on the right.
 
 ```ts
-import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera-ui'
 ```
 
 ### Example: Zoom
 
 ```tsx
 import { useState } from 'react'
-import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera'
+import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [zoom, setZoom] = useState(1)
@@ -2710,14 +2660,14 @@ Zoom out, a slider from `min` to `max`, zoom in, the value, and fit.
 Editor chrome. Pick a table size by hovering a grid.
 
 ```ts
-import { TableSizePicker } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { TableSizePicker } from '@kition/tessera-ui'
 ```
 
 ### Example: Insert a table
 
 ```tsx
 import { useState } from 'react'
-import { TableSizePicker } from '@kition/tessera'
+import { TableSizePicker } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [picked, setPicked] = useState('')
@@ -2746,7 +2696,7 @@ Choosing a table's size by pointing at a grid of cells (Insert > Table).
 Editor chrome. Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.
 
 ```ts
-import { EyeButton, RenameField, PanelFooter, Thumbnail, Panel } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { EyeButton, RenameField, PanelFooter, Thumbnail, Panel } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -2757,7 +2707,7 @@ When to use:
 
 ```tsx
 import { useState } from 'react'
-import { EyeButton, PanelFooter, RenameField } from '@kition/tessera'
+import { EyeButton, PanelFooter, RenameField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [visible, setVisible] = useState(true)
@@ -2847,7 +2797,7 @@ yet, or its source could not draw one).
 Workspace. Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.
 
 ```ts
-import { WorkspaceLayout } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { WorkspaceLayout } from '@kition/tessera-ui'
 ```
 
 ### Example: Editing workspace
@@ -2856,7 +2806,7 @@ Drag the gutters; drag tabs between groups.
 
 ```tsx
 import { useState } from 'react'
-import { WorkspaceLayout, type WorkspaceNode } from '@kition/tessera'
+import { WorkspaceLayout, type WorkspaceNode } from '@kition/tessera-ui'
 
 const START: WorkspaceNode = {
   split: 'row',
@@ -2906,14 +2856,14 @@ export default function Demo() {
 Workspace. A column of collapsible, resizable panel groups, remembered per kit.
 
 ```ts
-import { DockArea } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { DockArea } from '@kition/tessera-ui'
 ```
 
 ### Example: Right dock
 
 ```tsx
 import { useState } from 'react'
-import { DockArea } from '@kition/tessera'
+import { DockArea } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [shown, setShown] = useState<ReadonlySet<string>>(new Set(['color', 'layers']))
@@ -2951,14 +2901,14 @@ export default function Demo() {
 Workspace. Movable, resizable windows over the workspace, remembered per kit.
 
 ```ts
-import { FloatingPanels } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { FloatingPanels } from '@kition/tessera-ui'
 ```
 
 ### Example: A floating bin
 
 ```tsx
 import { useState } from 'react'
-import { Button, FloatingPanels } from '@kition/tessera'
+import { Button, FloatingPanels } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState<string[]>(['bin'])
@@ -3003,14 +2953,14 @@ that element and keeps every window inside it.
 Color. Saturation and brightness square, hue strip, hex and RGB fields.
 
 ```ts
-import { ColorPicker } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { ColorPicker } from '@kition/tessera-ui'
 ```
 
 ### Example: Pick a colour
 
 ```tsx
 import { useState } from 'react'
-import { ColorPicker, rgbToHex, type RGB } from '@kition/tessera'
+import { ColorPicker, rgbToHex, type RGB } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [rgb, setRgb] = useState<RGB>([86, 69, 212])
@@ -3040,14 +2990,14 @@ export default function Demo() {
 Color. A grading wheel with a lightness slider, as colour correction panels use.
 
 ```ts
-import { ColorWheel } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { ColorWheel } from '@kition/tessera-ui'
 ```
 
 ### Example: Shadows wheel
 
 ```tsx
 import { useState } from 'react'
-import { ColorWheel } from '@kition/tessera'
+import { ColorWheel } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [shadows, setShadows] = useState<[number, number]>([0.2, -0.1])
@@ -3076,14 +3026,14 @@ export default function Demo() {
 Color. A slider drawn over its own gradient: temperature, tint, hue.
 
 ```ts
-import { GradientSlider } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { GradientSlider } from '@kition/tessera-ui'
 ```
 
 ### Example: White balance
 
 ```tsx
 import { useState } from 'react'
-import { GradientSlider, SLIDER_GRADIENTS } from '@kition/tessera'
+import { GradientSlider, SLIDER_GRADIENTS } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [temperature, setTemperature] = useState(10)
@@ -3120,14 +3070,14 @@ export default function Demo() {
 Color. Tone curves: drag points, double-click to add, with a histogram under them.
 
 ```ts
-import { CurveEditor } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { CurveEditor } from '@kition/tessera-ui'
 ```
 
 ### Example: An RGB curve
 
 ```tsx
 import { useState } from 'react'
-import { CurveEditor, RGB_IDENTITY, type CurvePoint } from '@kition/tessera'
+import { CurveEditor, RGB_IDENTITY, type CurvePoint } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [points, setPoints] = useState<CurvePoint[]>([RGB_IDENTITY[0], [0.3, 0.22], [0.7, 0.8], RGB_IDENTITY[1]])
@@ -3158,13 +3108,13 @@ export default function Demo() {
 Color. A smoothed histogram of an image’s tones.
 
 ```ts
-import { Histogram } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Histogram } from '@kition/tessera-ui'
 ```
 
 ### Example: Luminance
 
 ```tsx
-import { Histogram } from '@kition/tessera'
+import { Histogram } from '@kition/tessera-ui'
 
 const bins = Array.from({ length: 256 }, (_, i) => Math.exp(-((i - 110) ** 2) / 1800) * 900 + Math.exp(-((i - 200) ** 2) / 600) * 500 + 40)
 
@@ -3193,14 +3143,14 @@ export default function Demo() {
 Media and time. A timecode field you can type or scrub, and the transport buttons of a player.
 
 ```ts
-import { TimecodeField, TransportBar } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { TimecodeField, TransportBar } from '@kition/tessera-ui'
 ```
 
 ### Example: A player
 
 ```tsx
 import { useEffect, useState } from 'react'
-import { TimecodeField, TransportBar } from '@kition/tessera'
+import { TimecodeField, TransportBar } from '@kition/tessera-ui'
 import { PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
@@ -3259,14 +3209,14 @@ Kit UI id the configuration hides is left out, and one it disables is disabled.
 Media and time. Audio levels with peak hold, drawn on a canvas.
 
 ```ts
-import { LevelMeter } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { LevelMeter } from '@kition/tessera-ui'
 ```
 
 ### Example: Stereo
 
 ```tsx
 import { useEffect, useState } from 'react'
-import { LevelMeter } from '@kition/tessera'
+import { LevelMeter } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [peaks, setPeaks] = useState([-12, -9])
@@ -3299,14 +3249,14 @@ export default function Demo() {
 Media and time. Keyframes on a time lane: select, drag, and their interpolation shapes.
 
 ```ts
-import { KeyframeLane } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { KeyframeLane } from '@kition/tessera-ui'
 ```
 
 ### Example: Three keyframes
 
 ```tsx
 import { useState } from 'react'
-import { KeyframeLane, type Keyframe } from '@kition/tessera'
+import { KeyframeLane, type Keyframe } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [keyframes, setKeyframes] = useState<Keyframe[]>([
@@ -3345,22 +3295,21 @@ export default function Demo() {
 
 ## Strings and elements
 
-Integration. What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.
+Integration. What components ask of the app around them: strings (StringsProvider) and element states (ElementsProvider). Without them, components draw in English with every element shown.
 
 ```ts
-import { StringsProvider, ElementsProvider, Element } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { StringsProvider, ElementsProvider, Element } from '@kition/tessera-ui'
 ```
 
-### Example: A host without kit-ui
+### Example: Strings and element states of your own
 
 zh-CN strings; one group disabled, one hidden by the host.
 
 ```tsx
-import { ElementsProvider, StringsProvider, createStrings, TESSERA_CATALOGS, PasswordInput, RibbonButton, RibbonGroup, type Elements } from '@kition/tessera'
+import { ElementsProvider, StringsProvider, createStrings, TESSERA_CATALOGS, PasswordInput, RibbonButton, RibbonGroup, type Elements } from '@kition/tessera-ui'
 import { ClipboardPasteIcon } from '@kition/tessera-icons/react'
 
-// A host outside kit-ui gives Tessera its strings and element states itself.
-// (Inside a kit, kit-ui's KitEditorProvider does this from the Kit UI protocol.)
+// An app gives Tessera its strings and element states.
 const elements: Elements = {
   state: (id) => ({ hidden: id === 'group:home/hidden', disabled: id === 'group:home/clipboard' }),
   renderExtras: () => null,

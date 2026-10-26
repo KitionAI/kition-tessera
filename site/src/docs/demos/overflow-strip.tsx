@@ -1,4 +1,4 @@
-import { Button, OverflowStrip } from '@kition/tessera'
+import { Button, OverflowStrip } from '@kition/tessera-ui'
 
 const TOOLS = ['Brush', 'Eraser', 'Clone', 'Heal', 'Dodge', 'Burn', 'Sponge', 'Smudge', 'Blur', 'Sharpen', 'Gradient', 'Fill', 'Text', 'Shape', 'Crop', 'Slice']
 

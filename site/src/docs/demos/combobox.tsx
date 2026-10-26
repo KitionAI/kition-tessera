@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Combobox } from '@kition/tessera'
+import { Combobox } from '@kition/tessera-ui'
 
 const PEOPLE = ['Ada Lovelace', 'Grace Hopper', 'Alan Turing', 'Katherine Johnson', 'Margaret Hamilton', 'Edsger Dijkstra', 'Barbara Liskov', 'Donald Knuth']
 

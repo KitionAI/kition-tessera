@@ -7,7 +7,7 @@ API is public and changes deliberately.
 ## Language and privacy
 
 - English for everything in this repository: code, comments, docs, token descriptions, icon
-  names. The only exception is component strings in `packages/tessera/locales/<locale>.json`;
+  names. The only exception is component strings in `packages/ui/locales/<locale>.json`;
   every locale has every key of `en-US.json`.
 - Never write a real local username, home directory, or absolute host path into a tracked file.
   Scripts find sibling repositories relative to this one or through environment variables.
@@ -23,7 +23,7 @@ API is public and changes deliberately.
 - Paper is the default skin and follows kition `docs/design.md`: primary purple `#5645d4`, white
   and light-neutral surfaces, 8px control radius, 12px card radius.
 - Brand purple belongs to Kition; no kit brand color uses it.
-- Until kit-ui and Kition import the generated tokens, `pnpm check:consumers` must pass: change
+- Until kit-editor and Kition import the generated tokens, `pnpm check:consumers` must pass: change
   a value here and in those copies together.
 
 ## Icons

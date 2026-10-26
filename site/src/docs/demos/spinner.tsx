@@ -1,4 +1,4 @@
-import { Spinner } from '@kition/tessera'
+import { Spinner } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

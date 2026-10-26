@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavMenu, Switch } from '@kition/tessera'
+import { NavMenu, Switch } from '@kition/tessera-ui'
 import { CreditCardIcon, KeyRoundIcon, LayoutDashboardIcon, MessageSquareIcon, UsersIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

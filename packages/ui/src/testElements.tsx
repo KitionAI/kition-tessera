@@ -1,7 +1,7 @@
 /** @jsxRuntime automatic */
 /**
  * For tests: element states a test can change, as an editor's host configuration would (hide or
- * disable element ids), provided through `ElementsProvider` the way kit-ui's `UiProvider` does.
+ * disable element ids), provided through `ElementsProvider` the way kit-editor's `UiProvider` does.
  */
 import { useMemo, useSyncExternalStore, type ReactNode } from 'react'
 import { ElementsProvider, type Elements } from './context'

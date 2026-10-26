@@ -249,7 +249,7 @@ describe('GradientSlider', () => {
   })
 })
 
-/** The declarations of the first rule for `selector` in kit-ui's styles. */
+/** The declarations of the first rule for `selector` in kit-editor's styles. */
 function cssRule(selector: string): string {
   const css = readFileSync(join(__dirname, 'styles.css'), 'utf8')
   const at = css.indexOf(`${selector} {`)

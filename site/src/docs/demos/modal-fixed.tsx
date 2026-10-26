@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalTitle } from '@kition/tessera'
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalTitle } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)

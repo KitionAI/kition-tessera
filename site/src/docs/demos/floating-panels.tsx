@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, FloatingPanels } from '@kition/tessera'
+import { Button, FloatingPanels } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState<string[]>(['bin'])

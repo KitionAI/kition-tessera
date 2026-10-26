@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardHeader } from '@kition/tessera'
+import { Button, Card, CardContent, CardHeader } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

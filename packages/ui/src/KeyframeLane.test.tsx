@@ -148,7 +148,7 @@ describe('KeyframeLane', () => {
   })
 
   it("keeps a stepping arrow key from the editor's own shortcuts", () => {
-    // The editor's keys are a React handler on an ancestor (kit-ui's shell).
+    // The editor's keys are a React handler on an ancestor (kit-editor's shell).
     const outer = vi.fn()
     const lanes = (keyframes: Keyframe[]) => (
       <div onKeyDown={outer}>

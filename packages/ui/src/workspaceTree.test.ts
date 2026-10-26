@@ -261,7 +261,7 @@ describe('activate with a panel listed twice', () => {
 
 describe('the workspaceTree entry point', () => {
   it('serves the same functions as the package root, so plain Node can load the tree alone', async () => {
-    const entry = await import('@kition/tessera/workspaceTree')
+    const entry = await import('@kition/tessera-ui/workspaceTree')
     const root = await import('./index')
     expect(entry.openNear).toBe(root.workspaceTree.openNear)
     expect(entry.visiblePanels).toBe(root.workspaceTree.visiblePanels)

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Field, TextInput } from '@kition/tessera'
+import { Field, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [email, setEmail] = useState('not-an-email')

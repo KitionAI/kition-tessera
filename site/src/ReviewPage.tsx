@@ -1,5 +1,5 @@
 import { useMemo, type CSSProperties, type ReactNode } from 'react'
-import { RibbonButton, RibbonGroup } from '@kition/tessera'
+import { RibbonButton, RibbonGroup } from '@kition/tessera-ui'
 import { createIcon } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES } from '@kition/tessera-icons/registry'
 import type { IconData } from '@kition/tessera-icons'

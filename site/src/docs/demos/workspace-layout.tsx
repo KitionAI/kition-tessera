@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { WorkspaceLayout, type WorkspaceNode } from '@kition/tessera'
+import { WorkspaceLayout, type WorkspaceNode } from '@kition/tessera-ui'
 
 const START: WorkspaceNode = {
   split: 'row',

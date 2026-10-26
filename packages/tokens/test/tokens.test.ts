@@ -36,11 +36,11 @@ describe('tokens', () => {
   })
 
   // Tokens added since (status tones, the chart palette) come on top of these.
-  it('keeps every :root variable kit-ui declared, with its value', () => {
+  it('keeps every :root variable kit-editor declared, with its value', () => {
     expect(declarations(css, ':root')).toMatchObject(declarations(fixture, ':root'))
   })
 
-  it('keeps every dark override kit-ui declared, with its value', () => {
+  it('keeps every dark override kit-editor declared, with its value', () => {
     expect(declarations(css, ":root[data-color-scheme='dark']")).toMatchObject(declarations(fixture, ":root[data-color-scheme='dark']"))
   })
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * One-off migration helper: splits kition-sdk's kit-ui `styles.css` into the rules Tessera's
- * components need and the rules kit-ui keeps, by which source files use each rule's classes.
+ * One-off migration helper: splits kition-sdk's kit-editor `styles.css` into the rules Tessera's
+ * components need and the rules kit-editor keeps, by which source files use each rule's classes.
  *
  *   node scripts/split-kit-ui-css.mjs <kit-ui src dir> <tessera src dir> [--write <tessera css> <kit-ui css>]
  *
  * A rule moves to Tessera when every `kui-` class it names is used by Tessera's sources and none
- * is used only by kit-ui's; everything else (page base rules, tokens, kit-ui-only classes, classes
+ * is used only by kit-editor's; everything else (page base rules, tokens, kit-ui-only classes, classes
  * no source names) stays. Prints the split and every pair whose order the split reverses while
  * the two rules share a class and a property, which must be reviewed by hand.
  */
@@ -107,25 +107,25 @@ for (const block of list) {
     continue
   }
   if (classes.length === 0) {
-    block.to = 'kit-ui'
+    block.to = 'kit-editor'
     block.why = 'no kui class'
     continue
   }
   const inTessera = classes.filter((cls) => uses(tesseraSources, cls))
   const onlyKitUi = classes.filter((cls) => !uses(tesseraSources, cls) && uses(kitUiSources, cls))
   const unused = classes.filter((cls) => !uses(tesseraSources, cls) && !uses(kitUiSources, cls))
-  if (onlyKitUi.length > 0) [block.to, block.why] = ['kit-ui', `kit-ui only: ${onlyKitUi.join(' ')}`]
-  else if (inTessera.length === 0) [block.to, block.why] = ['kit-ui', `unused: ${unused.join(' ')}`]
+  if (onlyKitUi.length > 0) [block.to, block.why] = ['kit-editor', `kit-editor only: ${onlyKitUi.join(' ')}`]
+  else if (inTessera.length === 0) [block.to, block.why] = ['kit-editor', `unused: ${unused.join(' ')}`]
   else [block.to, block.why] = ['tessera', unused.length ? `unused too: ${unused.join(' ')}` : '']
 }
 
 const moved = list.filter((block) => block.to === 'tessera')
-console.log(`${list.length} blocks: ${moved.length} to Tessera, ${list.filter((block) => block.to === 'kit-ui').length} stay in kit-ui, ${list.filter((block) => block.to === 'tokens').length} are tokens`)
+console.log(`${list.length} blocks: ${moved.length} to Tessera, ${list.filter((block) => block.to === 'kit-editor').length} stay in kit-editor, ${list.filter((block) => block.to === 'tokens').length} are tokens`)
 
 // Kit-ui rules that came before a Tessera rule now come after it.
 const reversed = []
 list.forEach((kept, i) => {
-  if (kept.to !== 'kit-ui' || kept.classes.length === 0) return
+  if (kept.to !== 'kit-editor' || kept.classes.length === 0) return
   for (const later of list.slice(i + 1)) {
     if (later.to !== 'tessera') continue
     const shared = kept.classes.filter((cls) => later.classes.includes(cls))
@@ -148,7 +148,7 @@ if (at > 0) {
   const join_ = (items) => items.map((block) => block.lead + block.text).join('').replace(/^\s+/, '') + '\n'
   const tesseraHead = [
     '/*',
-    ' * @kition/tessera: the components\' styles. Every color, radius, font, and shadow comes from the theme',
+    ' * @kition/tessera-ui: the components\' styles. Every color, radius, font, and shadow comes from the theme',
     " * tokens (@kition/tessera-tokens, the Kit Harness Protocol's Kit UI protocol section 4); a host's",
     ' * theme overrides them. Class names keep the `kui-` prefix kits already style against.',
     ' */',
@@ -156,10 +156,10 @@ if (at > 0) {
     '',
     '',
   ].join('\n')
-  const kitUi = list.filter((block) => block.to === 'kit-ui')
+  const kitUi = list.filter((block) => block.to === 'kit-editor')
   const header = kitUi[0].lead.match(/^\s*\/\*[\s\S]*?\*\//)?.[0]?.trim() ?? ''
   kitUi[0] = { ...kitUi[0], lead: kitUi[0].lead.replace(/^\s*\/\*[\s\S]*?\*\//, '') }
   writeFileSync(tesseraCss, tesseraHead + join_(moved))
-  writeFileSync(kitUiCss, `${header}\n@import '@kition/tessera/styles.css';\n\n` + join_(kitUi) + (tail.trim() ? `${tail.trim()}\n` : ''))
+  writeFileSync(kitUiCss, `${header}\n@import '@kition/tessera-ui/styles.css';\n\n` + join_(kitUi) + (tail.trim() ? `${tail.trim()}\n` : ''))
   console.log(`\nwrote ${tesseraCss} and ${kitUiCss}`)
 }

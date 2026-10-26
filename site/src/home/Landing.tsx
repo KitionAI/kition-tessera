@@ -15,7 +15,7 @@ import {
   TransportBar,
   type CurvePoint,
   type RGB,
-} from '@kition/tessera'
+} from '@kition/tessera-ui'
 import {
   BoldIcon,
   BrushIcon,
@@ -308,7 +308,7 @@ function MosaicIntro() {
             <a className="lx-cta lx-cta-light" href="/docs/button/">
               Explore components
             </a>
-            <CopyCommand text="pnpm add @kition/tessera" />
+            <CopyCommand text="pnpm add @kition/tessera-ui" />
           </div>
           <dl className="lx-counters">
             <Counter value={ICON_NAMES.length} label="icons" />
@@ -651,7 +651,7 @@ function Closing() {
           <a className="lx-cta lx-cta-light" href="/docs/button/">
             Start with components
           </a>
-          <CopyCommand text="pnpm add @kition/tessera @kition/tessera-icons" />
+          <CopyCommand text="pnpm add @kition/tessera-ui @kition/tessera-icons" />
         </div>
       </div>
     </section>

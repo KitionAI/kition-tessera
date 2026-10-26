@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Field, Sheet, TextInput } from '@kition/tessera'
+import { Button, Field, Sheet, TextInput } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)

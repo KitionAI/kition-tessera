@@ -1,4 +1,4 @@
-import { Segmented, Tabs } from '@kition/tessera'
+import { Segmented, Tabs } from '@kition/tessera-ui'
 import { useState } from 'react'
 
 export default function Demo() {

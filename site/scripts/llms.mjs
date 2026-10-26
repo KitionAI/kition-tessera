@@ -29,7 +29,7 @@ if (undocumented.length || unknown.length) {
 const intro = [
   '# Kition Tessera',
   '',
-  '> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera`). A kit editor imports all of it through `@kition/kit-ui`.',
+  '> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera-ui`).',
   '',
 ]
 
@@ -44,7 +44,7 @@ const cell = (text) => String(text).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 const full = [...intro]
 for (const doc of DOCS) {
   full.push(`## ${doc.title}`, '', `${doc.category}. ${doc.summary}`, '')
-  if (doc.api?.length) full.push('```ts', `import { ${doc.api.join(', ')} } from '@kition/tessera' // in a kit: '@kition/kit-ui'`, '```', '')
+  if (doc.api?.length) full.push('```ts', `import { ${doc.api.join(', ')} } from '@kition/tessera-ui'`, '```', '')
   if (doc.when?.length) full.push('When to use:', '', ...doc.when.map((item) => `- ${item}`), '')
   if (doc.whenNot?.length) full.push('When not to:', '', ...doc.whenNot.map((item) => `- ${item}`), '')
   for (const section of doc.sections ?? []) {

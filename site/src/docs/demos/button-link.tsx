@@ -1,4 +1,4 @@
-import { ButtonLink } from '@kition/tessera'
+import { ButtonLink } from '@kition/tessera-ui'
 import { ArrowLeftIcon, MailIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

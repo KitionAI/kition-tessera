@@ -34,9 +34,9 @@ export const DOCS: DocEntry[] = [
         body: [
           '`@kition/tessera-tokens`: the Kit Harness Protocol theme tokens (`--kit-*`), component tokens, and skins (Paper, Graphite) as CSS variables, TypeScript, and Rust.',
           '`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `tessera-icons` for engines.',
-          '`@kition/tessera`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.',
+          '`@kition/tessera-ui`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.',
         ],
-        code: "import '@kition/tessera/styles.css'\nimport { Button, ColorPicker } from '@kition/tessera'\nimport { LayersIcon } from '@kition/tessera-icons/react'",
+        code: "import '@kition/tessera-ui/styles.css'\nimport { Button, ColorPicker } from '@kition/tessera-ui'\nimport { LayersIcon } from '@kition/tessera-icons/react'",
       },
       {
         heading: 'Principles',
@@ -50,44 +50,6 @@ export const DOCS: DocEntry[] = [
     ],
   },
   {
-    id: 'kits',
-    title: 'Using Tessera in a kit',
-    category: 'Getting started',
-    summary: 'How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.',
-    sections: [
-      {
-        heading: 'Import from kit-ui',
-        body: [
-          'A kit editor depends on `@kition/kit-ui` only. kit-ui re-exports every Tessera component under its usual name, wires them to the Kit UI protocol (the host’s theme, locale, hidden and disabled elements, host buttons), and loads Tessera’s stylesheet from its own.',
-          'Icons come from `@kition/tessera-icons/react` when the kit lists it in package.json, or from kit-ui’s `TesseraIcons` namespace otherwise. Bundlers keep only the icons a kit uses.',
-        ],
-        code: "import '@kition/kit-ui/styles.css'\nimport { Button, RibbonGroup, RibbonButton, NumberField, TesseraIcons } from '@kition/kit-ui'\nimport { LayersIcon } from '@kition/tessera-icons/react' // or TesseraIcons.LayersIcon",
-      },
-      {
-        heading: 'Icons for engine commands',
-        body: [
-          'Ribbons and menus built from engine commands get their icons from kit-ui’s rules: a command’s verb first (`edit.undo`, `layer.mergeDown`), then what it acts on, then the neutral command mark.',
-          'A kit names icons for the commands the rules cannot read in `web/src/commandIcons.ts`, imported once from `main.tsx`.',
-        ],
-        code: "import { registerCommandIcons } from '@kition/kit-ui'\nimport { DimensionAlignedIcon, FilletIcon } from '@kition/tessera-icons/react'\n\nregisterCommandIcons({\n  dimaligned: DimensionAlignedIcon,\n  fillet: FilletIcon,\n})",
-      },
-      {
-        heading: 'Rules for kits',
-        body: [
-          'Draw every colour, radius and shadow from the theme tokens (`var(--kit-*)`), never literal values, so skins reach your editor.',
-          'Pass icon sizes and `strokeWidth={ICON_STROKE}` from kit-ui; never a number of your own.',
-          'New icons go into Tessera (`packages/icons/svg/`, docs/icon-style.md), not into the kit.',
-          'Give elements a Kit UI id (`uiId`, `RibbonGroup id`) so hosts can hide or disable them.',
-        ],
-      },
-      {
-        heading: 'A new kit',
-        body: ['kition-sdk’s `tools/new-kit-ui.mjs` scaffolds a kit editor on kit-ui and Tessera Icons, with its dev server allowed to read kition-tessera.'],
-        code: 'node tools/new-kit-ui.mjs --repo ../kition-mykit --id kit.mykit --name MyKit --crate mykit --module kition_mykit_sdk --class MyKitDocument --sample sample.mykit --accept .mykit --port 5300',
-      },
-    ],
-  },
-  {
     id: 'theming',
     title: 'Theming and skins',
     category: 'Getting started',
@@ -96,7 +58,7 @@ export const DOCS: DocEntry[] = [
       {
         heading: 'The theme',
         body: [
-          'Hosts send `theme` in `ui/initialize` and `ui/theme`: a colour scheme and the 15 `--kit-*` theme tokens. kit-ui applies them to the document root; components read them through CSS variables.',
+          'Hosts send `theme` in `ui/initialize` and `ui/theme`: a colour scheme and the 15 `--kit-*` theme tokens, applied to the document root; components read them through CSS variables. An app that is not a kit sets the same variables in its own stylesheet.',
           '`@kition/tessera-tokens` gives every skin’s theme ready to send (`SKINS.paper`, `SKINS.graphite`), and its tests hold each skin to WCAG AA.',
         ],
         code: "import { skinTheme } from '@kition/tessera-tokens'\n\nkit.notify('ui/theme', { theme: skinTheme('graphite') })",
@@ -199,5 +161,5 @@ export const DOCS: DocEntry[] = [
   { id: 'keyframe-lane', title: 'KeyframeLane', category: 'Media and time', summary: 'Keyframes on a time lane: select, drag, and their interpolation shapes.', demos: [{ id: 'keyframe-lane', title: 'Three keyframes' }], api: ['KeyframeLane'] },
 
   // Integration
-  { id: 'providers', title: 'Strings and elements', category: 'Integration', summary: 'What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.', demos: [{ id: 'providers', title: 'A host without kit-ui', note: 'zh-CN strings; one group disabled, one hidden by the host.' }], api: ['StringsProvider', 'ElementsProvider', 'Element'] },
+  { id: 'providers', title: 'Strings and elements', category: 'Integration', summary: 'What components ask of the app around them: strings (StringsProvider) and element states (ElementsProvider). Without them, components draw in English with every element shown.', demos: [{ id: 'providers', title: 'Strings and element states of your own', note: 'zh-CN strings; one group disabled, one hidden by the host.' }], api: ['StringsProvider', 'ElementsProvider', 'Element'] },
 ]

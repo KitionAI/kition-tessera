@@ -1,4 +1,4 @@
-import { Table, Tag, type TableColumn } from '@kition/tessera'
+import { Table, Tag, type TableColumn } from '@kition/tessera-ui'
 
 type Order = { id: string; customer: string; plan: string; amount: number; status: 'paid' | 'pending' | 'refunded' }
 

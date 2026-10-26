@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Switch } from '@kition/tessera'
+import { Switch } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [sync, setSync] = useState(true)

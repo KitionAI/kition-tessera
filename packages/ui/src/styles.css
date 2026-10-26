@@ -1,5 +1,5 @@
 /*
- * @kition/tessera: the components' styles. Every color, radius, font, and shadow comes from the theme
+ * @kition/tessera-ui: the components' styles. Every color, radius, font, and shadow comes from the theme
  * tokens (@kition/tessera-tokens, the Kit Harness Protocol's Kit UI protocol section 4); a host's
  * theme overrides them. Class names keep the `kui-` prefix kits already style against.
  */

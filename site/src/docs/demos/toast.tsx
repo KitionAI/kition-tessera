@@ -1,4 +1,4 @@
-import { Button, toast } from '@kition/tessera'
+import { Button, toast } from '@kition/tessera-ui'
 
 // Render <Toaster /> once near the root of the editor; toast() can then be called from anywhere.
 export default function Demo() {

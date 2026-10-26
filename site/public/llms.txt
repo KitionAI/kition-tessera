@@ -1,11 +1,10 @@
 # Kition Tessera
 
-> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera`). A kit editor imports all of it through `@kition/kit-ui`.
+> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera-ui`).
 
 ## Getting started
 
 - [Overview](https://tessera.kition.ai/docs/overview/): Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.
-- [Using Tessera in a kit](https://tessera.kition.ai/docs/kits/): How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.
 - [Theming and skins](https://tessera.kition.ai/docs/theming/): A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
 - [Icons](https://tessera.kition.ai/docs/icons-guide/): Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.
 
@@ -93,4 +92,4 @@
 
 ## Integration
 
-- [Strings and elements](https://tessera.kition.ai/docs/providers/): What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.
+- [Strings and elements](https://tessera.kition.ai/docs/providers/): What components ask of the app around them: strings (StringsProvider) and element states (ElementsProvider). Without them, components draw in English with every element shown.

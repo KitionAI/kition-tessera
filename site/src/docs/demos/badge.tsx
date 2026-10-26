@@ -1,4 +1,4 @@
-import { Badge } from '@kition/tessera'
+import { Badge } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

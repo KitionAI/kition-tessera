@@ -1,4 +1,4 @@
-import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@kition/tessera'
+import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@kition/tessera-ui'
 import { CircleAlertIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

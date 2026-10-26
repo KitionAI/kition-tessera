@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ColorWheel } from '@kition/tessera'
+import { ColorWheel } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [shadows, setShadows] = useState<[number, number]>([0.2, -0.1])

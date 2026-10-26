@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TableSizePicker } from '@kition/tessera'
+import { TableSizePicker } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [picked, setPicked] = useState('')

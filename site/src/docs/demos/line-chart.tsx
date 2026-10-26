@@ -1,4 +1,4 @@
-import { LineChart } from '@kition/tessera'
+import { LineChart } from '@kition/tessera-ui'
 
 const days = Array.from({ length: 14 }, (_, index) => `10-${String(index + 10).padStart(2, '0')}`)
 const DATA = days.flatMap((date, index) => [

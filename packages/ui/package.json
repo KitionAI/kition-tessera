@@ -1,5 +1,5 @@
 {
-  "name": "@kition/tessera",
+  "name": "@kition/tessera-ui",
   "version": "0.1.0",
   "description": "Kition Tessera's components for professional editors: base controls, ribbon, dock and floating panels, color controls, curves, histogram, level meter, timecode, transport, keyframes, and workspace layout. Styled only through theme tokens.",
   "license": "Apache-2.0",

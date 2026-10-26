@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { KeyframeLane, type Keyframe } from '@kition/tessera'
+import { KeyframeLane, type Keyframe } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [keyframes, setKeyframes] = useState<Keyframe[]>([

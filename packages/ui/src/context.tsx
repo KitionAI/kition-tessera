@@ -7,7 +7,7 @@
  *   own lookup, which may override any of Tessera's keys and add locales.
  * - Elements: whether an element with an id is hidden or disabled, and extra items to draw at a
  *   place. A Kit Harness Protocol editor backs it with the host's UI configuration (Kit UI
- *   protocol, section 9); `@kition/kit-ui` does.
+ *   protocol, section 9); `@kition/kit-editor` does.
  */
 import { createContext, useContext, type ReactNode } from 'react'
 import enUS from '../locales/en-US.json'

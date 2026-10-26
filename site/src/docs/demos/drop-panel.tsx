@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Button, DropPanel, NumberField } from '@kition/tessera'
+import { Button, DropPanel, NumberField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const anchor = useRef<HTMLSpanElement>(null)

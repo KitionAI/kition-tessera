@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, ConfirmProvider, useConfirm } from '@kition/tessera'
+import { Button, ConfirmProvider, useConfirm } from '@kition/tessera-ui'
 
 function DeleteButton() {
   const confirm = useConfirm()

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { TimecodeField, TransportBar } from '@kition/tessera'
+import { TimecodeField, TransportBar } from '@kition/tessera-ui'
 import { PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

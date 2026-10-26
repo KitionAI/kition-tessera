@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DockArea } from '@kition/tessera'
+import { DockArea } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [shown, setShown] = useState<ReadonlySet<string>>(new Set(['color', 'layers']))

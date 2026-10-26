@@ -39,7 +39,7 @@ describe('licenses', () => {
   const root = join(here, '..', '..', '..')
   it('ships the license in every package, as the repository has it, so hosts list it in their notices', () => {
     const license = readFileSync(join(root, 'LICENSE'), 'utf8')
-    for (const name of ['icons', 'tessera', 'tokens']) {
+    for (const name of ['icons', 'tokens', 'ui']) {
       const dir = join(root, 'packages', name)
       expect(readFileSync(join(dir, 'LICENSE'), 'utf8')).toBe(license)
       expect(JSON.parse(readFileSync(join(dir, 'package.json'), 'utf8')).files).toContain('LICENSE')

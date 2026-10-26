@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { EyeButton, PanelFooter, RenameField } from '@kition/tessera'
+import { EyeButton, PanelFooter, RenameField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [visible, setVisible] = useState(true)

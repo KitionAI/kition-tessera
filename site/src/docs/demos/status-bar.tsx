@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera'
+import { StatusBar, StatusSpacer, ZoomControl } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [zoom, setZoom] = useState(1)

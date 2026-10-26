@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ColorPicker, rgbToHex, type RGB } from '@kition/tessera'
+import { ColorPicker, rgbToHex, type RGB } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [rgb, setRgb] = useState<RGB>([86, 69, 212])

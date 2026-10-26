@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MultiSelect } from '@kition/tessera'
+import { MultiSelect } from '@kition/tessera-ui'
 
 const MODES = ['free', 'reward', 'paid', 'hosted'].map((value) => ({ value, label: value }))
 

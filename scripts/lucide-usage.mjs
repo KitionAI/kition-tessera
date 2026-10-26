@@ -3,7 +3,7 @@
  * Finds every icon the Kition repositories import (from lucide-react, or from Tessera Icons after
  * they moved), so Tessera Icons covers them and the site knows which kits use each.
  *
- * Scans kition (`src`, `packages`), kition-sdk `packages/kit-ui/src`, and each kit's `web/src`,
+ * Scans kition (`src`, `packages`), kition-sdk `packages/kit-editor/src`, and each kit's `web/src`,
  * found as siblings of this repository (or under `KITION_WORKSPACE`). Test files are skipped.
  * Prints a summary; `--write` adds the icons `packages/icons/icons.json` does not have yet, and
  * `--json` prints the per-repository lists.
@@ -47,7 +47,7 @@ function scan(dirs) {
 
 const scopes = {
   kition: [join(workspace, 'kition', 'src'), join(workspace, 'kition', 'packages')],
-  'kit-ui': [join(workspace, 'kition-sdk', 'packages', 'kit-ui', 'src')],
+  'kit-editor': [join(workspace, 'kition-sdk', 'packages', 'kit-editor', 'src')],
   ...Object.fromEntries(KITS.map((kit) => [kit, [join(workspace, `kition-${kit}`, 'web', 'src')]])),
 }
 const missingRepos = Object.entries(scopes).filter(([, dirs]) => !dirs.some(existsSync)).map(([scope]) => scope)

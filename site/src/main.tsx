@@ -1,4 +1,4 @@
-import '@kition/tessera/styles.css'
+import '@kition/tessera-ui/styles.css'
 import './site.css'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import { App } from './App'

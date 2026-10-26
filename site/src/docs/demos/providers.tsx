@@ -1,8 +1,7 @@
-import { ElementsProvider, StringsProvider, createStrings, TESSERA_CATALOGS, PasswordInput, RibbonButton, RibbonGroup, type Elements } from '@kition/tessera'
+import { ElementsProvider, StringsProvider, createStrings, TESSERA_CATALOGS, PasswordInput, RibbonButton, RibbonGroup, type Elements } from '@kition/tessera-ui'
 import { ClipboardPasteIcon } from '@kition/tessera-icons/react'
 
-// A host outside kit-ui gives Tessera its strings and element states itself.
-// (Inside a kit, kit-ui's KitEditorProvider does this from the Kit UI protocol.)
+// An app gives Tessera its strings and element states.
 const elements: Elements = {
   state: (id) => ({ hidden: id === 'group:home/hidden', disabled: id === 'group:home/clipboard' }),
   renderExtras: () => null,

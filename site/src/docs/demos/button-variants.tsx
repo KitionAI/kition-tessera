@@ -1,4 +1,4 @@
-import { Button } from '@kition/tessera'
+import { Button } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

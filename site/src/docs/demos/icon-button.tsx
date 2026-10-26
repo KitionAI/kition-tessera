@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IconButton } from '@kition/tessera'
+import { IconButton } from '@kition/tessera-ui'
 import { BoldIcon, ItalicIcon, UnderlineIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

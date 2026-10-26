@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Empty, Table, type TableColumn } from '@kition/tessera'
+import { Button, Empty, Table, type TableColumn } from '@kition/tessera-ui'
 
 type Key = { id: string; name: string }
 const columns: TableColumn<Key>[] = [

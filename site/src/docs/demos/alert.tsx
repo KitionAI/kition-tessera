@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Alert, Button } from '@kition/tessera'
+import { Alert, Button } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [shown, setShown] = useState(true)

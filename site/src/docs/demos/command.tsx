@@ -1,4 +1,4 @@
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, toast } from '@kition/tessera'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, toast } from '@kition/tessera-ui'
 import { FileTextIcon, SettingsIcon, TableIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

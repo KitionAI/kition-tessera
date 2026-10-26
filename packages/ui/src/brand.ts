@@ -45,6 +45,6 @@ export function validBrand(value: unknown): KitBrand | null {
   if (value === undefined || value === null) return null
   const brand = value as Partial<KitBrand>
   if (typeof brand.light === 'string' && typeof brand.dark === 'string' && HEX.test(brand.light) && HEX.test(brand.dark)) return { light: brand.light, dark: brand.dark }
-  console.warn('[kit-ui] ui.brand must be { light, dark } as #rrggbb colors; the host primary is used')
+  console.warn('[kit-editor] ui.brand must be { light, dark } as #rrggbb colors; the host primary is used')
   return null
 }

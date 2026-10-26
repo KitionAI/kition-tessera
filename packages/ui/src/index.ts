@@ -1,9 +1,9 @@
 /**
- * @kition/tessera: Kition Tessera's components for professional editors. Base controls (buttons,
+ * @kition/tessera-ui: Kition Tessera's components for professional editors. Base controls (buttons,
  * menus, dialogs, number fields), professional controls (ribbon, dock and floating panels, color
  * picker and wheel, curves, histogram, level meter, timecode, transport, keyframes), and the
  * workspace layout. Styled only through theme tokens (`@kition/tessera-tokens`); import
- * `@kition/tessera/styles.css` once.
+ * `@kition/tessera-ui/styles.css` once.
  *
  * Components ask the editor around them for strings and element states through `StringsProvider`
  * and `ElementsProvider` (see `context.tsx`); without them they draw in English with every element

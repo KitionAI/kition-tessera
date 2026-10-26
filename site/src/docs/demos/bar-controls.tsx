@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BarSeparator, Checkbox, Choice, Hint, Segmented } from '@kition/tessera'
+import { BarSeparator, Checkbox, Choice, Hint, Segmented } from '@kition/tessera-ui'
 import { TextAlignCenterIcon, TextAlignEndIcon, TextAlignStartIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

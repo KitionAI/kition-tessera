@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type ComponentType, type ReactNode } from 'react'
-import { Toaster } from '@kition/tessera'
+import { Toaster } from '@kition/tessera-ui'
 import api from './api.json'
 import { CATEGORIES, DOCS, type DocEntry } from './registry'
 
@@ -65,7 +65,7 @@ export function DocsPage({ id }: { id: string }) {
         </p>
         {entry.api?.length ? (
           <pre className="docs-import">
-            <code>{`import { ${entry.api.join(', ')} } from '@kition/tessera'   // in a kit: '@kition/kit-ui'`}</code>
+            <code>{`import { ${entry.api.join(', ')} } from '@kition/tessera-ui'`}</code>
           </pre>
         ) : null}
         {entry.when || entry.whenNot ? <WhenToUse entry={entry} /> : null}

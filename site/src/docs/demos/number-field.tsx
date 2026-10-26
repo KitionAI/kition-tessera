@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NumberField } from '@kition/tessera'
+import { NumberField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [opacity, setOpacity] = useState(80)

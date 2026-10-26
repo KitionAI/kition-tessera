@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ColorGrid, MenuButton, RibbonButton, RibbonGroup, RibbonStack } from '@kition/tessera'
+import { ColorGrid, MenuButton, RibbonButton, RibbonGroup, RibbonStack } from '@kition/tessera-ui'
 import { BoldIcon, ClipboardPasteIcon, CopyIcon, ItalicIcon, LayersIcon, ScissorsIcon, SquareIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

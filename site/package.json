@@ -8,7 +8,7 @@
     "preview": "vite preview --port 4341 --host 127.0.0.1"
   },
   "dependencies": {
-    "@kition/tessera": "workspace:*",
+    "@kition/tessera-ui": "workspace:*",
     "@kition/tessera-icons": "workspace:*",
     "@kition/tessera-tokens": "workspace:*"
   }

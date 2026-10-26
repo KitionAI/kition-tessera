@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, Dialog, NumberField } from '@kition/tessera'
+import { Button, Dialog, NumberField } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [open, setOpen] = useState(false)

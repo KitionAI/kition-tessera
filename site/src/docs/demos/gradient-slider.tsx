@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { GradientSlider, SLIDER_GRADIENTS } from '@kition/tessera'
+import { GradientSlider, SLIDER_GRADIENTS } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [temperature, setTemperature] = useState(10)

@@ -19,7 +19,7 @@ ribbon and a timeline's transport read as one suite. The site's icon style lab
 
 - **Canvas** 24 × 24. **Live area** 20 × 20 (2 units of padding). Optical exceptions (circles,
   diagonals) may reach 21 × 21.
-- **Stroke** 1.5 units (`DEFAULT_STROKE`, kit-ui `ICON_STROKE`), round caps and joins. Never pass
+- **Stroke** 1.5 units (`DEFAULT_STROKE`, kit-editor `ICON_STROKE`), round caps and joins. Never pass
   another number in kit code: use `ICON_STROKE`, so the whole suite moves together.
 - **Corners** of rectangles: radius 2 (radius 1 for shapes smaller than 8 units).
 - **Coordinates** on whole or half units, so 1.5 strokes stay sharp at 16, 24 and 48 px.
@@ -38,7 +38,7 @@ ribbon and a timeline's transport read as one suite. The site's icon style lab
 - Tools that act on no area (move, rotate, hand, arrows, measuring lines) have no accent.
 - A tool icon (`family: "tool"`) draws its accents everywhere. An interface icon that is also a
   tool (brush, lasso, crop) draws them only where `--tessera-icon-accent-opacity` is set: tool
-  rails set it to 0.25 (kit-ui `.kui-tool-rail`, `.kui-tool-flyout`), and a host theme that asks
+  rails set it to 0.25 (kit-editor `.kui-tool-rail`, `.kui-tool-flyout`), and a host theme that asks
   for `iconStyle: "duotone"` sets it everywhere; elsewhere the same icon draws as plain line.
 - A Lucide shape keeps Lucide's strokes and gains accents in `icons.json` (`"accents": [...]`),
   without a redraw; a redrawn icon carries them in its SVG (`data-accent="true"`).

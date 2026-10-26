@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, FormItem, NumberInput, Select, TextInput, toast, useForm, useWatch } from '@kition/tessera'
+import { Button, Checkbox, Form, FormItem, NumberInput, Select, TextInput, toast, useForm, useWatch } from '@kition/tessera-ui'
 
 type Values = { email: string; credits: number | null; reason: string; plan: string; notify: boolean }
 

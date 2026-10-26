@@ -1,4 +1,4 @@
-import { Tag } from '@kition/tessera'
+import { Tag } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

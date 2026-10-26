@@ -3,7 +3,7 @@
  * Checks that the copies of Tessera's tokens that still live in other repositories match the token
  * files, until those repositories import @kition/tessera-tokens:
  *
- * - kition-sdk `packages/kit-ui/src/styles.css`: imports `@kition/tessera/styles.css` and declares no
+ * - kition-sdk `packages/kit-editor/src/styles.css`: imports `@kition/tessera-ui/styles.css` and declares no
  *   tokens of its own (or, before it did, the same `:root` and dark blocks);
  * - kition `src/features/kits/kition/kitionTheme.ts` (the Paper theme Kition sends to kits).
  *
@@ -39,15 +39,15 @@ function compare(label, actual, expected) {
 }
 
 const sdk = repo('KITION_SDK_DIR', 'kition-sdk')
-const styles = join(sdk, 'packages', 'kit-ui', 'src', 'styles.css')
+const styles = join(sdk, 'packages', 'kit-editor', 'src', 'styles.css')
 if (existsSync(styles)) {
   const text = readFileSync(styles, 'utf8')
   if (/@import\s+['"]@kition\/tessera\/styles\.css['"]/.test(text)) {
-    // kit-ui takes the tokens through Tessera's stylesheet; it must not declare its own.
-    if (/(^|\n)\s*:root\s*(\[[^\]]*\])?\s*\{/.test(text.replace(/\/\*[\s\S]*?\*\//g, ''))) fail('kit-ui styles.css imports Tessera but still declares :root tokens')
+    // kit-editor takes the tokens through Tessera's stylesheet; it must not declare its own.
+    if (/(^|\n)\s*:root\s*(\[[^\]]*\])?\s*\{/.test(text.replace(/\/\*[\s\S]*?\*\//g, ''))) fail('kit-editor styles.css imports Tessera but still declares :root tokens')
   } else {
     for (const selector of [':root', ":root[data-color-scheme='dark']"]) {
-      compare(`kit-ui styles.css ${selector}`, declarations(text, selector), declarations(css, selector))
+      compare(`kit-editor styles.css ${selector}`, declarations(text, selector), declarations(css, selector))
     }
   }
 } else if (existsSync(sdk)) fail(`${styles} not found`)
@@ -69,4 +69,4 @@ if (failures.length > 0) {
   for (const message of failures) console.error(message)
   process.exit(1)
 }
-console.log('kit-ui and Kition match Tessera tokens')
+console.log('kit-editor and Kition match Tessera tokens')

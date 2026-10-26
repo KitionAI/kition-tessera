@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, GradientSlider, PreviewDialog } from '@kition/tessera'
+import { Button, GradientSlider, PreviewDialog } from '@kition/tessera-ui'
 
 // A dialog whose changes preview live in the document; the kit supplies begin, update and end.
 export default function Demo() {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, DateTimeInput, NumberInput, Popconfirm, toast } from '@kition/tessera'
+import { Button, DateTimeInput, NumberInput, Popconfirm, toast } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [price, setPrice] = useState<number | null>(0.25)

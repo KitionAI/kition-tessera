@@ -1,4 +1,4 @@
-import { Select } from '@kition/tessera'
+import { Select } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

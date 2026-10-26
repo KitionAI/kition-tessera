@@ -66,7 +66,9 @@ importers:
         specifier: ^19.3.1
         version: 19.3.1(react@19.3.1)
 
-  packages/tessera:
+  packages/tokens: {}
+
+  packages/ui:
     dependencies:
       '@kition/tessera-icons':
         specifier: workspace:*
@@ -87,19 +89,17 @@ importers:
         specifier: '>=19'
         version: 19.3.1(react@19.3.1)
 
-  packages/tokens: {}
-
   site:
     dependencies:
-      '@kition/tessera':
-        specifier: workspace:*
-        version: link:../packages/tessera
       '@kition/tessera-icons':
         specifier: workspace:*
         version: link:../packages/icons
       '@kition/tessera-tokens':
         specifier: workspace:*
         version: link:../packages/tokens
+      '@kition/tessera-ui':
+        specifier: workspace:*
+        version: link:../packages/ui
 
 packages:
 

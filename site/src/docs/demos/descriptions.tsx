@@ -1,4 +1,4 @@
-import { Avatar, Breadcrumb, Descriptions, Divider, Tag } from '@kition/tessera'
+import { Avatar, Breadcrumb, Descriptions, Divider, Tag } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

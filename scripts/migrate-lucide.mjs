@@ -28,7 +28,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
 const write = args.includes('--write')
 const skipDirty = args.includes('--skip-dirty')
-/** Take icons from kit-ui's TesseraIcons, for a kit whose package.json cannot gain @kition/tessera-icons yet. */
+/** Take icons from kit-editor's TesseraIcons, for a kit whose package.json cannot gain @kition/tessera-icons yet. */
 const viaKitUi = args.includes('--via-kit-ui')
 const dirs = args.filter((arg) => !arg.startsWith('--'))
 
@@ -102,9 +102,9 @@ for (const dir of dirs) {
       if (moved.length && viaKitUi) {
         const types = moved.filter((spec) => spec.startsWith('type '))
         const values = moved.filter((spec) => !spec.startsWith('type '))
-        if (types.length) out.push(`import { ${types.join(', ')} } from ${quote}@kition/kit-ui${quote}${semi}`)
+        if (types.length) out.push(`import { ${types.join(', ')} } from ${quote}@kition/kit-editor${quote}${semi}`)
         if (values.length) {
-          out.push(`import { TesseraIcons } from ${quote}@kition/kit-ui${quote}${semi}`)
+          out.push(`import { TesseraIcons } from ${quote}@kition/kit-editor${quote}${semi}`)
           deferred.push(...values.map((spec) => {
             const [component, local = component] = spec.split(/\s+as\s+/)
             return `const ${local} = TesseraIcons.${component}`
@@ -116,7 +116,7 @@ for (const dir of dirs) {
     })
     for (const [from, to] of renamedTypes) text = text.replace(new RegExp(`\\b${from}\\b`, 'g'), to)
     if (deferred.length) {
-      // After the last import statement: the icons, read from kit-ui's TesseraIcons.
+      // After the last import statement: the icons, read from kit-editor's TesseraIcons.
       const imports = [...text.matchAll(/^import[\s\S]*?from\s+['"][^'"]+['"];?\s*$|^import\s+['"][^'"]+['"];?\s*$/gm)]
       const end = imports.length ? imports[imports.length - 1].index + imports[imports.length - 1][0].length : 0
       text = `${text.slice(0, end)}\n\n${deferred.join('\n')}\n${text.slice(end).replace(/^\n+/, '\n')}`

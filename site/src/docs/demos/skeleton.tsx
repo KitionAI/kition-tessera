@@ -1,4 +1,4 @@
-import { Skeleton } from '@kition/tessera'
+import { Skeleton } from '@kition/tessera-ui'
 
 export default function Demo() {
   return (

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ContextMenu, MenuItem, type ContextMenuPoint } from '@kition/tessera'
+import { ContextMenu, MenuItem, type ContextMenuPoint } from '@kition/tessera-ui'
 import { CopyIcon, TrashIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {

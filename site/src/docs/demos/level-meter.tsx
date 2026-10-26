@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LevelMeter } from '@kition/tessera'
+import { LevelMeter } from '@kition/tessera-ui'
 
 export default function Demo() {
   const [peaks, setPeaks] = useState([-12, -9])
