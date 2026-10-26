@@ -25,7 +25,10 @@ function Prose({ text }: { text: string }) {
 export function DocsPage({ id }: { id: string }) {
   const entry = DOCS.find((doc) => doc.id === id) ?? DOCS[0]
   const [query, setQuery] = useState('')
-  useEffect(() => window.scrollTo(0, 0), [entry.id])
+  // Braces: Chrome's scrollTo returns a promise, which React would take for a clean-up function.
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [entry.id])
   const groups = useMemo(() => {
     const words = query.trim().toLowerCase()
     return CATEGORIES.map((category) => ({
