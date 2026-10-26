@@ -132,6 +132,11 @@ describe('BarChart and PieChart', () => {
     expect(out.querySelectorAll('.kui-chart-dot')).toHaveLength(3)
   })
 
+  it('steps the axis by whole numbers for counts', () => {
+    const out = render(<BarChart label="Few" data={[{ stage: 'A', count: 1 }]} xField="stage" yField="count" integers />)
+    expect([...out.querySelectorAll('.kui-chart-grid text')].map((tick) => tick.textContent)).toEqual(['0', '1'])
+  })
+
   it('draws a slice per part with a legend, leaving out empty parts', () => {
     const out = render(<PieChart label="Share" data={[...stages, { stage: 'Dropped', count: 0 }]} labelField="stage" valueField="count" innerRadius={0.6} />)
     expect(out.querySelectorAll('.kui-chart-slice')).toHaveLength(3)

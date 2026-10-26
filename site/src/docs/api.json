@@ -139,6 +139,13 @@
     "doc": "The colour of a single series (the palette's first by default)."
    },
    {
+    "name": "integers",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Counts: the axis steps only by whole numbers."
+   },
+   {
     "name": "formatX",
     "type": "(value: string) => string",
     "required": false,
@@ -1892,6 +1899,13 @@
     "required": false,
     "default": null,
     "doc": "The colour of a single series (the palette's first by default)."
+   },
+   {
+    "name": "integers",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Counts: the axis steps only by whole numbers."
    },
    {
     "name": "formatX",

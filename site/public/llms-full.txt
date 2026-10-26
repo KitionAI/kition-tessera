@@ -1509,6 +1509,7 @@ Lines of one or more series over ordered categories, with a legend and a hover r
 | `seriesField` | `keyof T & string` |  | The field naming the series a datum belongs to; one series without it. |
 | `height` | `ChartHeight` |  |  |
 | `color` | `string` |  | The colour of a single series (the palette's first by default). |
+| `integers` | `boolean` |  | Counts: the axis steps only by whole numbers. |
 | `formatX` | `(value: string) => string` |  |  |
 | `formatY` | `(value: number) => string` |  |  |
 | `label` (required) | `string` |  | The chart's accessible name. |
@@ -1528,6 +1529,7 @@ Bars of one or more series per category, side by side, with rounded tops.
 | `seriesField` | `keyof T & string` |  | The field naming the series a datum belongs to; one series without it. |
 | `height` | `ChartHeight` |  |  |
 | `color` | `string` |  | The colour of a single series (the palette's first by default). |
+| `integers` | `boolean` |  | Counts: the axis steps only by whole numbers. |
 | `formatX` | `(value: string) => string` |  |  |
 | `formatY` | `(value: number) => string` |  |  |
 | `label` (required) | `string` |  | The chart's accessible name. |

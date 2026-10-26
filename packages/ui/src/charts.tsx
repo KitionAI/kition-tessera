@@ -80,6 +80,8 @@ type CartesianProps<T> = {
   height?: ChartHeight
   /** The colour of a single series (the palette's first by default). */
   color?: string
+  /** Counts: the axis steps only by whole numbers. */
+  integers?: boolean
   formatX?: (value: string) => string
   formatY?: (value: number) => string
   /** The chart's accessible name. */
@@ -107,7 +109,8 @@ function Cartesian<T>({ props, kind, children }: { props: CartesianProps<T>; kin
   const t = useStrings()
   const [box, size] = useSize({ width: 640, height: typeof height === 'number' ? height : 240 })
   const [hover, setHover] = useState<number | null>(null)
-  const { categories, series, ticks } = useMemo(() => seriesOf(data, xField, yField, seriesField), [data, xField, yField, seriesField])
+  const { categories, series, ticks: all } = useMemo(() => seriesOf(data, xField, yField, seriesField), [data, xField, yField, seriesField])
+  const ticks = props.integers ? all.filter(Number.isInteger) : all
   const width = size.width
   const total = height === 'fill' ? size.height : height
   const plotWidth = width - MARGIN.left - MARGIN.right
