@@ -204,6 +204,17 @@ describe('Tooltip and Badge', () => {
     expect(document.querySelector('.kui-tooltip')!.textContent).toContain('The value is not a date')
   })
 
+  it('works without a TooltipProvider above it', () => {
+    render(
+      <Tooltip>
+        <TooltipTrigger>Help</TooltipTrigger>
+        <TooltipContent>Opens the guide</TooltipContent>
+      </Tooltip>,
+    )
+    act(() => document.querySelector('button')!.focus())
+    expect(document.querySelector('.kui-tooltip')!.textContent).toContain('Opens the guide')
+  })
+
   it('draws a badge', () => {
     render(<Badge>12</Badge>)
     const badge = document.querySelector('.kui-badge')!

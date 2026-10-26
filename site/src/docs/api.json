@@ -3526,13 +3526,18 @@
   "description": "",
   "props": []
  },
+ "Tooltip": {
+  "description": "A short label shown on hover or keyboard focus. Works on its own; a TooltipProvider above it shares one delay among several.",
+  "props": [],
+  "domProps": true
+ },
  "TooltipContent": {
   "description": "The tooltip's bubble: dark, small, above the page.",
   "props": [],
   "domProps": true
  },
  "TooltipProvider": {
-  "description": "Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default).",
+  "description": "Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default), so moving between them skips the wait.",
   "props": [],
   "domProps": true
  },

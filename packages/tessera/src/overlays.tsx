@@ -127,13 +127,24 @@ export function PopoverContent({ align = 'center', sideOffset = 4, className, ..
 
 /* Tooltip */
 
-/** Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default). */
+const InsideTooltipProvider = createContext(false)
+
+/** Shares one hover delay among the tooltips inside it (`delayDuration`, 200 ms by default), so moving between them skips the wait. */
 export function TooltipProvider({ delayDuration = 200, ...props }: ComponentProps<typeof TooltipPrimitive.Provider>) {
-  return <TooltipPrimitive.Provider delayDuration={delayDuration} {...props} />
+  return (
+    <InsideTooltipProvider.Provider value={true}>
+      <TooltipPrimitive.Provider delayDuration={delayDuration} {...props} />
+    </InsideTooltipProvider.Provider>
+  )
 }
 
-/** A short label shown on hover or keyboard focus. A TooltipProvider must be above it. */
-export const Tooltip = TooltipPrimitive.Root
+/** A short label shown on hover or keyboard focus. Works on its own; a TooltipProvider above it shares one delay among several. */
+export function Tooltip(props: ComponentProps<typeof TooltipPrimitive.Root>) {
+  const provided = useContext(InsideTooltipProvider)
+  const root = <TooltipPrimitive.Root {...props} />
+  return provided ? root : <TooltipProvider>{root}</TooltipProvider>
+}
+
 export const TooltipTrigger = TooltipPrimitive.Trigger
 
 /** The tooltip's bubble: dark, small, above the page. */
