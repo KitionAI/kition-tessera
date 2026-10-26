@@ -755,7 +755,8 @@ select.kui-ribbon-field:disabled {
   position: fixed;
   top: 12px;
   left: 50%;
-  z-index: 70;
+  /* Above modals and sheets: a notice from inside a dialog must show. */
+  z-index: var(--kui-z-toast, 1000);
   display: flex;
   flex-direction: column;
   gap: 8px;
