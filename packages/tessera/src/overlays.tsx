@@ -179,12 +179,14 @@ export type SheetProps = {
   onRequestClose?: () => void
   /** Its width in pixels. */
   width?: number
+  /** The edge it slides in from: `right` (default, editing beside the work) or `left` (an app's navigation on a phone). */
+  side?: 'left' | 'right'
   /** Test id of the sheet; its parts take `${testId}-backdrop`, `-header`, `-close`, `-footer`. */
   testId?: string
 }
 
 /** A panel that slides in from the right over a dimmed page, for editing one thing beside the work. */
-export function Sheet({ open, onClose, title, children, footer, dirty = false, onRequestClose, width = 400, testId = 'sheet' }: SheetProps) {
+export function Sheet({ open, onClose, title, children, footer, dirty = false, onRequestClose, width = 400, side = 'right', testId = 'sheet' }: SheetProps) {
   const t = useStrings()
   const [visible, setVisible] = useState(false)
   const close = useRef(() => {})
@@ -208,15 +210,15 @@ export function Sheet({ open, onClose, title, children, footer, dirty = false, o
   }, [open])
 
   if (!open) return null
-  return <SheetPanel title={title} footer={footer} width={width} visible={visible} testId={testId} label={typeof title === 'string' ? title : t('sheet')} closeLabel={t('close')} onClose={() => close.current()}>{children}</SheetPanel>
+  return <SheetPanel title={title} footer={footer} width={width} side={side} visible={visible} testId={testId} label={typeof title === 'string' ? title : t('sheet')} closeLabel={t('close')} onClose={() => close.current()}>{children}</SheetPanel>
 }
 
-function SheetPanel({ title, footer, width, visible, testId, label, closeLabel, onClose, children }: { title: ReactNode; footer?: ReactNode; width: number; visible: boolean; testId: string; label: string; closeLabel: string; onClose: () => void; children: ReactNode }) {
+function SheetPanel({ title, footer, width, side, visible, testId, label, closeLabel, onClose, children }: { title: ReactNode; footer?: ReactNode; width: number; side: 'left' | 'right'; visible: boolean; testId: string; label: string; closeLabel: string; onClose: () => void; children: ReactNode }) {
   const ref = useDialogFocus<HTMLElement>()
   return (
     <>
       <div data-testid={`${testId}-backdrop`} className="kui-sheet-backdrop" data-visible={visible || undefined} onClick={onClose} aria-hidden="true" />
-      <aside data-testid={testId} ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={label} className="kui-sheet" data-visible={visible || undefined} style={{ width }}>
+      <aside data-testid={testId} ref={ref} tabIndex={-1} role="dialog" aria-modal="true" aria-label={label} className="kui-sheet" data-side={side} data-visible={visible || undefined} style={{ width }}>
         <header data-testid={`${testId}-header`} className="kui-sheet-header">
           <div className="kui-sheet-title">{title}</div>
           <button type="button" data-testid={`${testId}-close`} className="kui-sheet-close" onClick={onClose} aria-label={closeLabel}>

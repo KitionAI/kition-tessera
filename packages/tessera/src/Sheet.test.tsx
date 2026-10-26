@@ -152,4 +152,9 @@ describe('Sheet', () => {
     })
     expect(onRequestClose).toHaveBeenCalledTimes(1)
   })
+
+  it('slides in from the left when told, for an app’s navigation', async () => {
+    await mount(createElement(Sheet, { open: true, onClose: () => undefined, side: 'left', title: 'Menu', children: createElement('span', null, 'x') }))
+    expect(container.querySelector('.kui-sheet')?.getAttribute('data-side')).toBe('left')
+  })
 })

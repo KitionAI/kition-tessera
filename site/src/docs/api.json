@@ -151,6 +151,33 @@
   ],
   "domProps": true
  },
+ "ButtonLink": {
+  "description": "A link that looks like a button: for navigation (another page, a sign-in URL, a mail link) drawn as an action.",
+  "props": [
+   {
+    "name": "variant",
+    "type": "ButtonVariant",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "size",
+    "type": "ControlSize",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "render",
+    "type": "(props: AnchorHTMLAttributes<HTMLAnchorElement> & { className: string; children?: ReactNode }) => ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Draws the link another way: a router passes its own (`(props) => <Link to=\"/\" {...props} />`)."
+   }
+  ],
+  "domProps": true
+ },
  "Card": {
   "description": "A product card: 12px radius, a hairline, a light shadow.",
   "props": [],
@@ -2289,6 +2316,13 @@
     "doc": ""
    },
    {
+    "name": "prefix",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "An icon (or short text) inside the field before the text: a search glass, a person."
+   },
+   {
     "name": "invalid",
     "type": "boolean",
     "required": false,
@@ -2847,6 +2881,13 @@
     "doc": "Its width in pixels."
    },
    {
+    "name": "side",
+    "type": "'left' | 'right'",
+    "required": false,
+    "default": "'right'",
+    "doc": "The edge it slides in from: `right` (default, editing beside the work) or `left` (an app's navigation on a phone)."
+   },
+   {
     "name": "testId",
     "type": "string",
     "required": false,
@@ -3194,6 +3235,20 @@
     "required": false,
     "default": null,
     "doc": ""
+   },
+   {
+    "name": "prefix",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "An icon (or short text) inside the field before the text: a search glass, a person."
+   },
+   {
+    "name": "wrapperClassName",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "Classes for the box around the field and its prefix (layout: width, margins)."
    }
   ],
   "domProps": true

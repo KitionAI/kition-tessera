@@ -4,7 +4,7 @@ import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createStrings, StringsProvider, TESSERA_CATALOGS } from './context'
 import { Card, CardContent, CardHeader, Disclosure, Field, PasswordInput, Select, TextInput, Textarea } from './forms'
-import { Button } from './ui'
+import { Button, ButtonLink } from './ui'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
@@ -154,5 +154,34 @@ describe('Card and Disclosure', () => {
     act(() => trigger.click())
     expect(onClose).toHaveBeenCalledTimes(1)
     expect(out.textContent).not.toContain('Body')
+  })
+})
+
+describe('ButtonLink and TextInput prefix', () => {
+  it('draws a link as a button, or through a router’s own link', () => {
+    const out = render(
+      <>
+        <ButtonLink variant="primary" size="md" href="/sign-in">
+          Sign in
+        </ButtonLink>
+        <ButtonLink render={(props) => <a data-router="yes" href="/home" {...props} />}>Home</ButtonLink>
+      </>,
+    )
+    const [plain, routed] = out.querySelectorAll('a')
+    expect(plain.className).toBe('kui-button')
+    expect(plain.getAttribute('data-variant')).toBe('primary')
+    expect(plain.getAttribute('href')).toBe('/sign-in')
+    expect(routed.dataset.router).toBe('yes')
+    expect(routed.className).toBe('kui-button')
+  })
+
+  it('puts a prefix inside the field, keeping the field itself the input', () => {
+    const ref = createRef<HTMLInputElement>()
+    const out = render(<TextInput ref={ref} prefix={<span>@</span>} wrapperClassName="w-60" aria-label="Handle" />)
+    const box = out.querySelector('.kui-input-affix')!
+    expect(box.className).toBe('kui-input-affix w-60')
+    expect(box.querySelector('.kui-input-prefix')?.getAttribute('aria-hidden')).toBe('true')
+    expect(ref.current).toBe(out.querySelector('input.kui-input'))
+    expect(render(<PasswordInput prefix={<span>k</span>} aria-label="Key" />).querySelector('.kui-password .kui-input-affix input')).not.toBeNull()
   })
 })

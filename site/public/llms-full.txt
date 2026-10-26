@@ -125,7 +125,7 @@ drawIcon(ctx, Layers, 8, 8, { size: 16, color: '#5645d4' })
 General. Starts an action. One primary button per view; the rest secondary or ghost.
 
 ```ts
-import { Button } from '@kition/tessera' // in a kit: '@kition/kit-ui'
+import { Button, ButtonLink } from '@kition/tessera' // in a kit: '@kition/kit-ui'
 ```
 
 When to use:
@@ -217,6 +217,31 @@ export default function Demo() {
 }
 ```
 
+### Example: Links drawn as buttons
+
+```tsx
+import { ButtonLink } from '@kition/tessera'
+import { ArrowLeftIcon, MailIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  return (
+    <div className="demo-row">
+      <ButtonLink variant="primary" size="md" href="#sign-in">
+        Sign in again
+      </ButtonLink>
+      <ButtonLink size="md" href="#home">
+        <ArrowLeftIcon size={16} />
+        Back to the console
+      </ButtonLink>
+      <ButtonLink variant="ghost" size="md" href="mailto:hello@example.com">
+        <MailIcon size={16} />
+        Contact support
+      </ButtonLink>
+    </div>
+  )
+}
+```
+
 ### Button props
 
 A button. Its `className` adds to Tessera's, so a host can adjust one button's layout.
@@ -227,6 +252,18 @@ A button. Its `className` adds to Tessera's, so a host can adjust one button's l
 | `size` | `ControlSize` |  | Without `size` a button keeps the editor chrome's 30px. |
 | `iconOnly` | `boolean` |  | A square button holding only an icon; give it an `aria-label`. |
 | `loading` | `boolean` |  | Shows a spinner before the label and marks the button busy, while its action runs. |
+
+Also takes the attributes of its HTML element.
+
+### ButtonLink props
+
+A link that looks like a button: for navigation (another page, a sign-in URL, a mail link) drawn as an action.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `ButtonVariant` |  |  |
+| `size` | `ControlSize` |  |  |
+| `render` | `(props: AnchorHTMLAttributes<HTMLAnchorElement> & { className: string; children?: ReactNode }) => ReactNode` |  | Draws the link another way: a router passes its own (`(props) => <Link to="/" {...props} />`). |
 
 Also takes the attributes of its HTML element.
 
@@ -461,6 +498,7 @@ import { TextInput } from '@kition/tessera' // in a kit: '@kition/kit-ui'
 
 ```tsx
 import { TextInput } from '@kition/tessera'
+import { SearchIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
   return (
@@ -469,6 +507,7 @@ export default function Demo() {
       <TextInput size="md" placeholder="md: panels and settings (36)" />
       <TextInput size="lg" placeholder="lg: forms and dialogs (44)" />
       <TextInput size="md" defaultValue="not-an-email" invalid />
+      <TextInput size="md" type="search" aria-label="Search users" placeholder="Search users" prefix={<SearchIcon size={16} />} />
     </div>
   )
 }
@@ -482,6 +521,8 @@ A single-line text field. `invalid` marks it (and `aria-invalid`) after a failed
 | --- | --- | --- | --- |
 | `size` | `ControlSize` | `'sm'` |  |
 | `invalid` | `boolean` |  |  |
+| `prefix` | `ReactNode` |  | An icon (or short text) inside the field before the text: a search glass, a person. |
+| `wrapperClassName` | `string` |  | Classes for the box around the field and its prefix (layout: width, margins). |
 
 Also takes the attributes of its HTML element.
 
@@ -511,6 +552,7 @@ goes on the field itself, as on TextInput.
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |
 | `size` | `ControlSize` | `'sm'` |  |
+| `prefix` | `ReactNode` |  | An icon (or short text) inside the field before the text: a search glass, a person. |
 | `invalid` | `boolean` |  |  |
 | `wrapperClassName` | `string` |  | Classes for the box around the field and its show/hide button (layout: width, margins). |
 
@@ -2078,7 +2120,7 @@ Also takes the attributes of its HTML element.
 
 ## Sheet
 
-Menus and overlays. A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes.
+Menus and overlays. A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes; from the left, it holds an app’s navigation on a phone.
 
 ```ts
 import { Sheet } from '@kition/tessera' // in a kit: '@kition/kit-ui'
@@ -2147,6 +2189,7 @@ A panel that slides in from the right over a dimmed page, for editing one thing 
 | `dirty` | `boolean` | `false` | With unsaved changes, closing (Escape, the backdrop, the close button) calls `onRequestClose` instead. |
 | `onRequestClose` | `() => void` |  |  |
 | `width` | `number` | `400` | Its width in pixels. |
+| `side` | `'left' \| 'right'` | `'right'` | The edge it slides in from: `right` (default, editing beside the work) or `left` (an app's navigation on a phone). |
 | `testId` | `string` | `'sheet'` | Test id of the sheet; its parts take `${testId}-backdrop`, `-header`, `-close`, `-footer`. |
 
 ## Confirm

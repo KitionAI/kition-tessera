@@ -11,14 +11,29 @@ import { ICON_STROKE, type ControlSize } from './ui'
 
 type Sized = { size?: ControlSize; invalid?: boolean }
 
-export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> & Sized
+export type TextInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> &
+  Sized & {
+    /** An icon (or short text) inside the field before the text: a search glass, a person. */
+    prefix?: ReactNode
+    /** Classes for the box around the field and its prefix (layout: width, margins). */
+    wrapperClassName?: string
+  }
 
 /** A single-line text field. `invalid` marks it (and `aria-invalid`) after a failed check. */
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function TextInput({ size = 'sm', invalid, className, ...props }, ref) {
-  return <input ref={ref} className={join('kui-input', className)} data-size={size} aria-invalid={invalid || undefined} {...props} />
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(function TextInput({ size = 'sm', invalid, className, prefix, wrapperClassName, ...props }, ref) {
+  const input = <input ref={ref} className={join('kui-input', className)} data-size={size} aria-invalid={invalid || undefined} {...props} />
+  if (prefix === undefined || prefix === null) return input
+  return (
+    <span className={join('kui-input-affix', wrapperClassName)} data-size={size}>
+      <span className="kui-input-prefix" aria-hidden="true">
+        {prefix}
+      </span>
+      {input}
+    </span>
+  )
 })
 
-export type PasswordInputProps = Omit<TextInputProps, 'type'> & {
+export type PasswordInputProps = Omit<TextInputProps, 'type' | 'wrapperClassName'> & {
   /** Classes for the box around the field and its show/hide button (layout: width, margins). */
   wrapperClassName?: string
 }

@@ -2,7 +2,7 @@
  * Shared kit editor components: buttons and fields, the ribbon, menus, panels, the status bar,
  * dialogs, and notices. Styled only through the Kit UI protocol's theme tokens (styles.css).
  */
-import { Children, cloneElement, forwardRef, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
+import { Children, cloneElement, forwardRef, createContext, Fragment, isValidElement, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type AnchorHTMLAttributes, type ButtonHTMLAttributes, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react'
 import { CheckIcon as Check, ChevronDownIcon as ChevronDown, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight, LoaderCircleIcon as LoaderCircle } from '@kition/tessera-icons/react'
 import type { IconComponent } from './icon'
 import { useElements } from './context'
@@ -52,6 +52,19 @@ export const Button = forwardRef<HTMLButtonElement, TesseraButtonProps>(function
     </button>
   )
 })
+
+export type ButtonLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  variant?: ButtonVariant
+  size?: ControlSize
+  /** Draws the link another way: a router passes its own (`(props) => <Link to="/" {...props} />`). */
+  render?: (props: AnchorHTMLAttributes<HTMLAnchorElement> & { className: string; children?: ReactNode }) => ReactNode
+}
+
+/** A link that looks like a button: for navigation (another page, a sign-in URL, a mail link) drawn as an action. */
+export function ButtonLink({ variant, size, render, className, children, ...props }: ButtonLinkProps) {
+  const shared = { ...props, className: joinClass('kui-button', className), 'data-variant': variant, 'data-size': size, children } as AnchorHTMLAttributes<HTMLAnchorElement> & { className: string; children?: ReactNode }
+  return render ? render(shared) : <a {...shared} />
+}
 
 /** A spinning circle for work in progress; `label` names it for screen readers (otherwise it is decorative). */
 export function Spinner({ size = 16, label, className }: { size?: number; label?: string; className?: string }) {
