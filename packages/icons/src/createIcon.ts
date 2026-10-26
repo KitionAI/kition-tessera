@@ -49,7 +49,20 @@ export function createIcon(icon: IconData) {
         'aria-hidden': rest['aria-label'] || rest['aria-labelledby'] ? undefined : true,
         ...rest,
       },
-      accent === false ? null : icon.accents.map((d, i) => createElement('path', { key: `accent-${i}`, d, fill: accent ?? ACCENT, fillOpacity: ACCENT_OPACITY, stroke: 'none' })),
+      accent === false
+        ? null
+        : icon.accents.map((d, i) =>
+            createElement('path', {
+              key: `accent-${i}`,
+              d,
+              className: 'tessera-icon-accent',
+              fill: typeof accent === 'string' ? accent : ACCENT,
+              stroke: 'none',
+              // Left to the context (a tool rail, a duotone theme) unless the caller asks: a tool
+              // icon shows its accents by default, an interface icon does not.
+              style: { fillOpacity: accent === undefined ? `var(--tessera-icon-accent-opacity, ${icon.family === 'tool' ? ACCENT_OPACITY : 0})` : ACCENT_OPACITY },
+            }),
+          ),
       icon.paths.map((d, i) => createElement('path', { key: i, d })),
       icon.fills.map((d, i) => createElement('path', { key: `fill-${i}`, d, fill: color })),
       children,

@@ -33,9 +33,15 @@ ribbon and a timeline's transport read as one suite. The site's icon style lab
 
 - A tool icon names one or two closed areas as its **accent** (the brush's bristles, the bucket's
   paint, the lasso's selection): filled with `--kit-icon-accent` at 25%, under the strokes.
-- Accents mark the thing the tool acts on, never decoration; at most a third of the live area.
-- Drawn when the host's theme asks for `iconStyle: "duotone"` and always in tool rails; elsewhere
-  the same icon draws as plain line.
+- Accents mark the thing the tool acts on, never decoration; at most a third of the live area,
+  except a shape tool's, which fills the shape it draws (square, ellipse, star).
+- Tools that act on no area (move, rotate, hand, arrows, measuring lines) have no accent.
+- A tool icon (`family: "tool"`) draws its accents everywhere. An interface icon that is also a
+  tool (brush, lasso, crop) draws them only where `--tessera-icon-accent-opacity` is set: tool
+  rails set it to 0.25 (kit-ui `.kui-tool-rail`, `.kui-tool-flyout`), and a host theme that asks
+  for `iconStyle: "duotone"` sets it everywhere; elsewhere the same icon draws as plain line.
+- A Lucide shape keeps Lucide's strokes and gains accents in `icons.json` (`"accents": [...]`),
+  without a redraw; a redrawn icon carries them in its SVG (`data-accent="true"`).
 
 ## Metaphors
 

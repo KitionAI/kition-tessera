@@ -33,7 +33,8 @@ for (const [name, entry] of Object.entries(manifest.icons)) {
   if (kind === 'lucide') {
     const nodes = lucide.nodes.get(ref)
     if (!nodes) throw new Error(`${name}: lucide ${lucide.version} has no ${ref}`)
-    shapes = { ...toPaths(nodes), accents: [] }
+    // A Lucide shape keeps Lucide's strokes; Tessera may add accent areas (docs/icon-style.md).
+    shapes = { ...toPaths(nodes), accents: entry.accents ?? [] }
     lucideNames = lucide.exportsOf.get(ref) ?? []
   } else if (kind === 'svg') {
     shapes = svgPaths(readFileSync(join(pkg, 'svg', ref), 'utf8'), name)

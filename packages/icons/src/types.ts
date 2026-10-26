@@ -14,14 +14,24 @@ export type IconData = {
 /** How strongly accent areas are filled. */
 export const ACCENT_OPACITY = 0.25
 
+/** Whether `icon`'s accents draw under `accent` (IconStyle.accent): by default only a tool icon's. */
+export function drawsAccents(icon: IconData, accent: string | boolean | undefined) {
+  return accent === undefined ? icon.family === 'tool' : accent !== false
+}
+
 /** How an icon is drawn. Defaults follow Tessera's icon style (docs/icon-style.md): 24 px, `currentColor`, 1.5 px strokes. */
 export type IconStyle = {
   size?: number
   color?: string
   strokeWidth?: number
   absoluteStrokeWidth?: boolean
-  /** Accent fill colour; defaults to the icon colour (SVG, canvas) or `--kit-icon-accent` (React). `false` draws plain line. */
-  accent?: string | false
+  /**
+   * The accent areas (docs/icon-style.md): a colour draws them in it; `true` draws them in the icon
+   * colour (SVG, canvas) or `--kit-icon-accent` (React); `false` draws plain line. Left out, a tool
+   * icon (`family: "tool"`) draws them and an interface icon does not; in React the CSS variable
+   * `--tessera-icon-accent-opacity` decides instead, which a tool rail or a duotone theme sets.
+   */
+  accent?: string | boolean
 }
 
 export const ICON_GRID = 24

@@ -142,13 +142,26 @@ describe('react', () => {
     expect(html).toContain('fill="#5645d4"')
     // The accent sits first (under the strokes), in the skin's accent at 25%.
     expect(html.indexOf('M5 5h4v4h-4z')).toBeLessThan(html.indexOf('M1 1L2 2'))
-    expect(html).toContain('fill="var(--kit-icon-accent, var(--kit-primary, currentColor))" fill-opacity="0.25" stroke="none"')
+    expect(html).toContain('class="tessera-icon-accent" fill="var(--kit-icon-accent, var(--kit-primary, currentColor))" stroke="none" style="fill-opacity:var(--tessera-icon-accent-opacity, 0.25)"')
     expect(renderToStaticMarkup(<Custom accent={false} />)).not.toContain('M5 5h4v4h-4z')
+  })
+
+  it('shows an interface icon’s accents only where the context or the caller asks', () => {
+    const Ui = createIcon({ name: 'ui-custom', family: 'ui', paths: ['M1 1L2 2'], fills: [], accents: ['M5 5h4v4h-4z'] })
+    // A tool rail sets --tessera-icon-accent-opacity; elsewhere the accent stays transparent.
+    expect(renderToStaticMarkup(<Ui />)).toContain('style="fill-opacity:var(--tessera-icon-accent-opacity, 0)"')
+    expect(renderToStaticMarkup(<Ui accent />)).toContain('style="fill-opacity:0.25"')
+    expect(renderToStaticMarkup(<Ui accent="#00ff00" />)).toContain('fill="#00ff00"')
   })
 
   it('writes accents into SVG markup, or leaves them out', () => {
     const icon = { name: 'custom', family: 'tool' as const, paths: ['M1 1L2 2'], fills: [], accents: ['M5 5h4v4h-4z'] }
     expect(toSvg(icon, { accent: '#00ff00' })).toContain('<path d="M5 5h4v4h-4z" fill="#00ff00" fill-opacity="0.25" stroke="none"/>')
     expect(toSvg(icon, { accent: false })).not.toContain('M5 5h4v4h-4z')
+    expect(toSvg(icon)).toContain('M5 5h4v4h-4z')
+    // An interface icon draws plain line unless asked.
+    const ui = { ...icon, family: 'ui' as const }
+    expect(toSvg(ui)).not.toContain('M5 5h4v4h-4z')
+    expect(toSvg(ui, { accent: true })).toContain('<path d="M5 5h4v4h-4z" fill="currentColor" fill-opacity="0.25" stroke="none"/>')
   })
 })

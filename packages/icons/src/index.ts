@@ -3,10 +3,10 @@
  * so the same list draws in React (`@kition/tessera-icons/react`), on a canvas (`drawIcon`, which
  * works in workers with OffscreenCanvas), as SVG markup (`toSvg`), and in Rust (`tessera-icons`).
  */
-import { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types.ts'
+import { ACCENT_OPACITY, DEFAULT_STROKE, drawsAccents, ICON_GRID, type IconData, type IconStyle } from './types.ts'
 
 export * from './generated/icons.ts'
-export { ACCENT_OPACITY, DEFAULT_STROKE, ICON_GRID, type IconData, type IconStyle } from './types.ts'
+export { ACCENT_OPACITY, DEFAULT_STROKE, drawsAccents, ICON_GRID, type IconData, type IconStyle } from './types.ts'
 
 /** The stroke width in grid units: `absoluteStrokeWidth` keeps the stroke `strokeWidth` px wide at any size. */
 export function gridStroke({ size = ICON_GRID, strokeWidth = DEFAULT_STROKE, absoluteStrokeWidth = false }: IconStyle = {}) {
@@ -19,7 +19,7 @@ const escapeAttr = (value: string) => value.replace(/&/g, '&amp;').replace(/"/g,
 export function toSvg(icon: IconData, style: IconStyle = {}) {
   const size = style.size ?? ICON_GRID
   const color = escapeAttr(style.color ?? 'currentColor')
-  const accent = style.accent === false ? null : escapeAttr(style.accent ?? style.color ?? 'currentColor')
+  const accent = drawsAccents(icon, style.accent) ? escapeAttr(typeof style.accent === 'string' ? style.accent : (style.color ?? 'currentColor')) : null
   const accents = accent ? icon.accents.map((d) => `<path d="${escapeAttr(d)}" fill="${accent}" fill-opacity="${ACCENT_OPACITY}" stroke="none"/>`).join('') : ''
   const paths =
     accents +
@@ -49,8 +49,8 @@ export function drawIcon(ctx: Canvas2D, icon: IconData, x: number, y: number, st
   ctx.lineCap = 'round'
   ctx.lineJoin = 'round'
   ctx.strokeStyle = style.color ?? '#000000'
-  if (style.accent !== false && shapes.accents.length > 0) {
-    ctx.fillStyle = style.accent ?? style.color ?? '#000000'
+  if (drawsAccents(icon, style.accent) && shapes.accents.length > 0) {
+    ctx.fillStyle = typeof style.accent === 'string' ? style.accent : (style.color ?? '#000000')
     ctx.globalAlpha *= ACCENT_OPACITY
     for (const path of shapes.accents) ctx.fill(path)
     ctx.globalAlpha /= ACCENT_OPACITY
