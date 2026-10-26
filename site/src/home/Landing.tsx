@@ -290,7 +290,7 @@ function MosaicIntro() {
       <div className="lx-intro-glow" aria-hidden="true" />
       <div className="lx-intro-inner">
         <div className="lx-intro-copy">
-          <a className="lx-pill lx-pill-dark" href="#review">
+          <a className="lx-pill lx-pill-dark" href="/review/">
             <span className="lx-pill-dot" /> New · CAD drafting icons and every slide transition redrawn
           </a>
           <h1 className="lx-title lx-title-dark">
@@ -305,7 +305,7 @@ function MosaicIntro() {
             photo editor, a spreadsheet and a timeline read as one suite, and any host can reskin them all at once.
           </p>
           <div className="lx-actions lx-actions-left">
-            <a className="lx-cta lx-cta-light" href="#components">
+            <a className="lx-cta lx-cta-light" href="/docs/button/">
               Explore components
             </a>
             <CopyCommand text="pnpm add @kition/tessera" />
@@ -460,7 +460,7 @@ function IconMarquee() {
             {[...row, ...row].map((name, j) => {
               const Icon = iconOf(name)
               return (
-                <a key={`${name}-${j}`} className="lx-marquee-tile" href={`#icons/${name}`} title={name} tabIndex={j < row.length ? 0 : -1}>
+                <a key={`${name}-${j}`} className="lx-marquee-tile" href={`/icons/${name}/`} title={name} tabIndex={j < row.length ? 0 : -1}>
                   <Icon size={22} />
                 </a>
               )
@@ -648,7 +648,7 @@ function Closing() {
         <h2>Build your kit on Tessera.</h2>
         <p>Tokens, icons and components in three packages, for React, the canvas, and Rust engines.</p>
         <div className="lx-actions lx-center-row">
-          <a className="lx-cta lx-cta-light" href="#components">
+          <a className="lx-cta lx-cta-light" href="/docs/button/">
             Start with components
           </a>
           <CopyCommand text="pnpm add @kition/tessera @kition/tessera-icons" />

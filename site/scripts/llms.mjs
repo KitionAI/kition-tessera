@@ -13,7 +13,8 @@ import { fileURLToPath } from 'node:url'
 const site = join(dirname(fileURLToPath(import.meta.url)), '..')
 const { CATEGORIES, DOCS } = await import(join(site, 'src', 'docs', 'registry.ts'))
 const api = JSON.parse(readFileSync(join(site, 'src', 'docs', 'api.json'), 'utf8'))
-const URL = ''
+// The site's address (site/src/routes.ts SITE_URL): links in llms.txt are absolute.
+const URL = 'https://tessera.kition.ai'
 
 // Every exported component has a page, and every page lists real components.
 const listed = new Set(DOCS.flatMap((doc) => doc.api ?? []))
@@ -35,7 +36,7 @@ const intro = [
 const index = [...intro]
 for (const category of CATEGORIES) {
   index.push(`## ${category}`, '')
-  for (const doc of DOCS.filter((entry) => entry.category === category)) index.push(`- [${doc.title}](${URL}/#docs/${doc.id}): ${doc.summary}`)
+  for (const doc of DOCS.filter((entry) => entry.category === category)) index.push(`- [${doc.title}](${URL}/docs/${doc.id}/): ${doc.summary}`)
   index.push('')
 }
 

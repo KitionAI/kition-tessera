@@ -2,7 +2,7 @@
 
 Every icon in every Kition kit follows these rules, so a photo editor's tool rail, a spreadsheet's
 ribbon and a timeline's transport read as one suite. The site's icon style lab
-(`pnpm --filter @kition/tessera-site dev`, `#styles`) shows the directions that were compared.
+(`pnpm --filter @kition/tessera-site dev`, `/styles/`) shows the directions that were compared.
 
 ## Decision (2026-10-25)
 
@@ -62,6 +62,6 @@ ribbon and a timeline's transport read as one suite. The site's icon style lab
    It records the icon it replaces (`"replaces": "lucide:layers"`), so lucide-react names still map
    to it.
 
-Done so far (site `#review`): batch 1, Slide's animations and transitions; batch 2, CAD drafting;
+Done so far (site `/review/`): batch 1, Slide's animations and transitions; batch 2, CAD drafting;
 batch 3, tool accents on the tools of every tool rail; batch 4, the 51 icons five or more kits
 share, redrawn on the half-unit grid.

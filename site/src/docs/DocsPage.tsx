@@ -46,7 +46,7 @@ export function DocsPage({ id }: { id: string }) {
             <div key={group.category} className="docs-group">
               <p className="docs-group-title">{group.category}</p>
               {group.docs.map((doc) => (
-                <a key={doc.id} href={`#docs/${doc.id}`} aria-current={doc.id === entry.id ? 'page' : undefined}>
+                <a key={doc.id} href={`/docs/${doc.id}/`} aria-current={doc.id === entry.id ? 'page' : undefined}>
                   {doc.title}
                 </a>
               ))}
@@ -95,7 +95,7 @@ export function DocsPage({ id }: { id: string }) {
         ) : null}
         <nav className="docs-pager">
           {previous ? (
-            <a href={`#docs/${previous.id}`}>
+            <a href={`/docs/${previous.id}/`}>
               <small>Previous</small>
               {previous.title}
             </a>
@@ -103,7 +103,7 @@ export function DocsPage({ id }: { id: string }) {
             <span />
           )}
           {next ? (
-            <a href={`#docs/${next.id}`} className="docs-next">
+            <a href={`/docs/${next.id}/`} className="docs-next">
               <small>Next</small>
               {next.title}
             </a>

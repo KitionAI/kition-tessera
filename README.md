@@ -70,8 +70,17 @@ against.
 ## Preview site
 
 ```bash
-pnpm --filter @kition/tessera-site dev   # http://127.0.0.1:4340
+pnpm --filter @kition/tessera-site dev       # http://127.0.0.1:4340
+pnpm --filter @kition/tessera-site build     # static site in site/dist
+pnpm --filter @kition/tessera-site preview   # http://127.0.0.1:4341, the built site
 ```
+
+Every page has its own path (`/docs/button/`, `/icons/layers/`, `/review/`), never `#`. The build
+prerenders all of them to static HTML (`site/src/entry-server.tsx`, `site/scripts/prerender.mjs`),
+each with its title, description, canonical link, and Open Graph tags, plus `sitemap.xml`,
+`robots.txt`, and `404.html`; the browser then takes the page over, and links within the site
+change pages without a reload. Pages, paths, and their titles are in `site/src/routes.ts`
+(`SITE_URL` is the address the canonical links and the sitemap use).
 
 Icons (search, sizes, strokes, usage snippets), tokens and skins, and the docs: a sidebar of
 guides (using Tessera in a kit, theming, icons) and one page per component, with when to use it,

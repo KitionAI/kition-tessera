@@ -4,72 +4,72 @@
 
 ## Getting started
 
-- [Overview](/#docs/overview): Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.
-- [Using Tessera in a kit](/#docs/kits): How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.
-- [Theming and skins](/#docs/theming): A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
-- [Icons](/#docs/icons-guide): Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.
+- [Overview](https://tessera.kition.ai/docs/overview/): Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.
+- [Using Tessera in a kit](https://tessera.kition.ai/docs/kits/): How a Kition kit editor uses Tessera: everything arrives through @kition/kit-ui, under the names kits already use.
+- [Theming and skins](https://tessera.kition.ai/docs/theming/): A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
+- [Icons](https://tessera.kition.ai/docs/icons-guide/): Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.
 
 ## General
 
-- [Button](/#docs/button): Starts an action. One primary button per view; the rest secondary or ghost.
-- [Spinner](/#docs/spinner): A spinning circle for work in progress.
-- [IconButton](/#docs/icon-button): An icon-only button with an accessible label; `pressed` makes it a toggle.
-- [Card](/#docs/card): A product card: 12px radius, a hairline, a light shadow.
-- [Disclosure](/#docs/disclosure): A section that opens and closes under its title.
+- [Button](https://tessera.kition.ai/docs/button/): Starts an action. One primary button per view; the rest secondary or ghost.
+- [Spinner](https://tessera.kition.ai/docs/spinner/): A spinning circle for work in progress.
+- [IconButton](https://tessera.kition.ai/docs/icon-button/): An icon-only button with an accessible label; `pressed` makes it a toggle.
+- [Card](https://tessera.kition.ai/docs/card/): A product card: 12px radius, a hairline, a light shadow.
+- [Disclosure](https://tessera.kition.ai/docs/disclosure/): A section that opens and closes under its title.
 
 ## Forms
 
-- [TextInput](/#docs/text-input): A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
-- [PasswordInput](/#docs/password-input): A password field with a show and hide button outside the tab order.
-- [Textarea](/#docs/textarea): Multi-line text.
-- [Select](/#docs/select): A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
-- [Switch](/#docs/switch): An on/off switch for a setting that applies at once.
-- [Field](/#docs/field): A label, a control, and its hint or error, wired for screen readers.
-- [NumberField](/#docs/number-field): A number with a label you drag to scrub, arrows to step, and units.
-- [Bar controls](/#docs/bar-controls): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
+- [TextInput](https://tessera.kition.ai/docs/text-input/): A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
+- [PasswordInput](https://tessera.kition.ai/docs/password-input/): A password field with a show and hide button outside the tab order.
+- [Textarea](https://tessera.kition.ai/docs/textarea/): Multi-line text.
+- [Select](https://tessera.kition.ai/docs/select/): A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
+- [Switch](https://tessera.kition.ai/docs/switch/): An on/off switch for a setting that applies at once.
+- [Field](https://tessera.kition.ai/docs/field/): A label, a control, and its hint or error, wired for screen readers.
+- [NumberField](https://tessera.kition.ai/docs/number-field/): A number with a label you drag to scrub, arrows to step, and units.
+- [Bar controls](https://tessera.kition.ai/docs/bar-controls/): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
 
 ## Menus and overlays
 
-- [MenuButton](/#docs/menu-button): A button that opens a menu of MenuItems, with shortcuts and check marks.
-- [ContextMenu](/#docs/context-menu): A menu at a point, for right-clicks.
-- [Dialog](/#docs/dialog): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
-- [PreviewDialog](/#docs/preview-dialog): A dialog whose values preview live in the document: the kit supplies begin, update and end.
-- [Toast](/#docs/toast): A short notice in the corner. Render Toaster once; call toast() anywhere.
-- [Modal](/#docs/modal): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
-- [Popover](/#docs/popover): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
-- [Sheet](/#docs/sheet): A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes.
-- [Confirm](/#docs/confirm): `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
-- [Command](/#docs/command): A searchable list of commands or choices: type to filter, arrows and Enter to pick.
-- [DropPanel](/#docs/drop-panel): A popover anchored to an element, closing on a press outside or Escape.
+- [MenuButton](https://tessera.kition.ai/docs/menu-button/): A button that opens a menu of MenuItems, with shortcuts and check marks.
+- [ContextMenu](https://tessera.kition.ai/docs/context-menu/): A menu at a point, for right-clicks.
+- [Dialog](https://tessera.kition.ai/docs/dialog/): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
+- [PreviewDialog](https://tessera.kition.ai/docs/preview-dialog/): A dialog whose values preview live in the document: the kit supplies begin, update and end.
+- [Toast](https://tessera.kition.ai/docs/toast/): A short notice in the corner. Render Toaster once; call toast() anywhere.
+- [Modal](https://tessera.kition.ai/docs/modal/): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
+- [Popover](https://tessera.kition.ai/docs/popover/): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
+- [Sheet](https://tessera.kition.ai/docs/sheet/): A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes.
+- [Confirm](https://tessera.kition.ai/docs/confirm/): `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
+- [Command](https://tessera.kition.ai/docs/command/): A searchable list of commands or choices: type to filter, arrows and Enter to pick.
+- [DropPanel](https://tessera.kition.ai/docs/drop-panel/): A popover anchored to an element, closing on a press outside or Escape.
 
 ## Editor chrome
 
-- [Ribbon](/#docs/ribbon): Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
-- [OverflowStrip](/#docs/overflow-strip): A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
-- [StatusBar](/#docs/status-bar): The bottom bar: document facts on the left, zoom on the right.
-- [TableSizePicker](/#docs/table-size-picker): Pick a table size by hovering a grid.
-- [Panel parts](/#docs/panel-parts): Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.
+- [Ribbon](https://tessera.kition.ai/docs/ribbon/): Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
+- [OverflowStrip](https://tessera.kition.ai/docs/overflow-strip/): A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
+- [StatusBar](https://tessera.kition.ai/docs/status-bar/): The bottom bar: document facts on the left, zoom on the right.
+- [TableSizePicker](https://tessera.kition.ai/docs/table-size-picker/): Pick a table size by hovering a grid.
+- [Panel parts](https://tessera.kition.ai/docs/panel-parts/): Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.
 
 ## Workspace
 
-- [WorkspaceLayout](/#docs/workspace-layout): Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.
-- [DockArea](/#docs/dock-area): A column of collapsible, resizable panel groups, remembered per kit.
-- [FloatingPanels](/#docs/floating-panels): Movable, resizable windows over the workspace, remembered per kit.
+- [WorkspaceLayout](https://tessera.kition.ai/docs/workspace-layout/): Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.
+- [DockArea](https://tessera.kition.ai/docs/dock-area/): A column of collapsible, resizable panel groups, remembered per kit.
+- [FloatingPanels](https://tessera.kition.ai/docs/floating-panels/): Movable, resizable windows over the workspace, remembered per kit.
 
 ## Color
 
-- [ColorPicker](/#docs/color-picker): Saturation and brightness square, hue strip, hex and RGB fields.
-- [ColorWheel](/#docs/color-wheel): A grading wheel with a lightness slider, as colour correction panels use.
-- [GradientSlider](/#docs/gradient-slider): A slider drawn over its own gradient: temperature, tint, hue.
-- [CurveEditor](/#docs/curve-editor): Tone curves: drag points, double-click to add, with a histogram under them.
-- [Histogram](/#docs/histogram): A smoothed histogram of an image’s tones.
+- [ColorPicker](https://tessera.kition.ai/docs/color-picker/): Saturation and brightness square, hue strip, hex and RGB fields.
+- [ColorWheel](https://tessera.kition.ai/docs/color-wheel/): A grading wheel with a lightness slider, as colour correction panels use.
+- [GradientSlider](https://tessera.kition.ai/docs/gradient-slider/): A slider drawn over its own gradient: temperature, tint, hue.
+- [CurveEditor](https://tessera.kition.ai/docs/curve-editor/): Tone curves: drag points, double-click to add, with a histogram under them.
+- [Histogram](https://tessera.kition.ai/docs/histogram/): A smoothed histogram of an image’s tones.
 
 ## Media and time
 
-- [Timecode and transport](/#docs/timecode-transport): A timecode field you can type or scrub, and the transport buttons of a player.
-- [LevelMeter](/#docs/level-meter): Audio levels with peak hold, drawn on a canvas.
-- [KeyframeLane](/#docs/keyframe-lane): Keyframes on a time lane: select, drag, and their interpolation shapes.
+- [Timecode and transport](https://tessera.kition.ai/docs/timecode-transport/): A timecode field you can type or scrub, and the transport buttons of a player.
+- [LevelMeter](https://tessera.kition.ai/docs/level-meter/): Audio levels with peak hold, drawn on a canvas.
+- [KeyframeLane](https://tessera.kition.ai/docs/keyframe-lane/): Keyframes on a time lane: select, drag, and their interpolation shapes.
 
 ## Integration
 
-- [Strings and elements](/#docs/providers): What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.
+- [Strings and elements](https://tessera.kition.ai/docs/providers/): What components ask of the editor around them: strings (StringsProvider) and element states (ElementsProvider). kit-ui provides both; other hosts provide their own.

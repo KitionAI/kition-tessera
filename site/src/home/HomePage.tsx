@@ -1,3 +1,4 @@
+import { navigate } from '../routes'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createIcon } from '@kition/tessera-icons/react'
 import { ICONS, ICON_NAMES, KIT_ICONS } from '@kition/tessera-icons/registry'
@@ -49,7 +50,9 @@ export function HomePage({ dark }: { dark: boolean }) {
   const handle = useRef<MosaicHandle | null>(null)
   const [assembled, setAssembled] = useState(false)
   const [hover, setHover] = useState<{ tile: MosaicTile; x: number; y: number } | null>(null)
-  const [webgl] = useState(hasWebGL)
+  // Known only in the browser: the prerendered page (and a browser without WebGL) shows the static mosaic.
+  const [webgl, setWebgl] = useState(false)
+  useEffect(() => setWebgl(hasWebGL()), [])
   const tiles = useMemo(buildTiles, [])
   const theme: Theme = dark ? 'dark' : 'light'
   const themeRef = useRef(theme)
@@ -64,7 +67,7 @@ export function HomePage({ dark }: { dark: boolean }) {
       reducedMotion: reduced,
       onHover: (tile, x, y) => setHover(tile ? { tile, x, y } : null),
       onPick: (tile) => {
-        location.hash = tile.kind === 'kit' ? '#icons' : `#icons/${tile.id}`
+        navigate(tile.kind === 'kit' ? '/icons/' : `/icons/${tile.id}/`)
       },
     }).then((mounted) => {
       if (disposed) mounted.dispose()
@@ -102,10 +105,10 @@ export function HomePage({ dark }: { dark: boolean }) {
           <button type="button" className="home-primary" onClick={() => setAssembled(!assembled)} disabled={!webgl}>
             {assembled ? 'Scatter into the galaxy' : 'Assemble the mosaic'}
           </button>
-          <a className="home-secondary" href="#icons">
+          <a className="home-secondary" href="/icons/">
             Browse icons
           </a>
-          <a className="home-secondary" href="#components">
+          <a className="home-secondary" href="/docs/button/">
             Components
           </a>
         </div>
@@ -152,7 +155,7 @@ function StaticMosaic({ tiles }: { tiles: MosaicTile[] }) {
         .map((tile) => {
           const Icon = createIcon(ICONS[tile.id])
           return (
-            <a key={tile.id} href={`#icons/${tile.id}`} style={{ background: tile.color }} title={tile.label}>
+            <a key={tile.id} href={`/icons/${tile.id}/`} style={{ background: tile.color }} title={tile.label}>
               <Icon size={18} color="#fff" />
             </a>
           )
