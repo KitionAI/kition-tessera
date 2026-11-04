@@ -3120,6 +3120,61 @@
   ],
   "domProps": false
  },
+ "Scrollbar": {
+  "description": "A persistent scrollbar for virtual viewports, with proportional thumb, pointer capture and keyboard navigation.",
+  "props": [
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": "Accessible name supplied by the editor's locale."
+   },
+   {
+    "name": "orientation",
+    "type": "'vertical' | 'horizontal'",
+    "required": false,
+    "default": "'vertical'",
+    "doc": ""
+   },
+   {
+    "name": "value",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "Distance from the start of the content, in the caller's coordinates."
+   },
+   {
+    "name": "max",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "Maximum scroll distance (content length minus visible length)."
+   },
+   {
+    "name": "page",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "Visible content length, in the same coordinates as value."
+   },
+   {
+    "name": "onChange",
+    "type": "(value: number) => void",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "controls",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Segmented": {
   "description": "Buttons of which one is pressed: icons (selection modes, alignment) or words (24h, 7d, 30d).",
   "props": [

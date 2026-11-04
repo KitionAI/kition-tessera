@@ -27,6 +27,7 @@ export {
 } from './context'
 export type { IconComponent } from './icon'
 export * from './ui'
+export { Scrollbar, type ScrollbarProps } from './Scrollbar'
 export {
   Card,
   CardContent,

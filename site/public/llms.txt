@@ -64,6 +64,7 @@
 
 ## Editor chrome
 
+- [Scrollbar](https://tessera.kition.ai/docs/scrollbar/): A persistent scrollbar for a virtual document viewport, with a proportional thumb, dragging, track clicks and keyboard navigation.
 - [Ribbon](https://tessera.kition.ai/docs/ribbon/): Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
 - [OverflowStrip](https://tessera.kition.ai/docs/overflow-strip/): A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
 - [StatusBar](https://tessera.kition.ai/docs/status-bar/): The bottom bar: document facts on the left, zoom on the right.

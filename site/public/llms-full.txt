@@ -2534,6 +2534,57 @@ export default function Demo() {
 | `testId` | `string` |  |  |
 | `children` (required) | `ReactNode` |  |  |
 
+## Scrollbar
+
+Editor chrome. A persistent scrollbar for a virtual document viewport, with a proportional thumb, dragging, track clicks and keyboard navigation.
+
+```ts
+import { Scrollbar } from '@kition/tessera-ui'
+```
+
+When to use:
+
+- A canvas pans through a bounded document instead of scrolling DOM content.
+
+When not to:
+
+- An ordinary DOM list: use native overflow scrolling.
+
+### Example: Page sections
+
+```tsx
+import { useState } from 'react'
+import { Scrollbar } from '@kition/tessera-ui'
+
+export default function Demo() {
+  const [offset, setOffset] = useState(0)
+  return (
+    <div style={{ display: 'flex', height: 200, width: 300, border: '1px solid var(--kit-border)' }}>
+      <div style={{ flex: 1, overflow: 'hidden' }}>
+        <div style={{ transform: `translateY(${-offset}px)` }}>
+          {Array.from({ length: 20 }, (_, index) => <div key={index} style={{ height: 40, paddingLeft: 12 }}>Page section {index + 1}</div>)}
+        </div>
+      </div>
+      <Scrollbar label="Page sections" value={offset} max={600} page={200} onChange={setOffset} />
+    </div>
+  )
+}
+```
+
+### Scrollbar props
+
+A persistent scrollbar for virtual viewports, with proportional thumb, pointer capture and keyboard navigation.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `label` (required) | `string` |  | Accessible name supplied by the editor's locale. |
+| `orientation` | `'vertical' \| 'horizontal'` | `'vertical'` |  |
+| `value` (required) | `number` |  | Distance from the start of the content, in the caller's coordinates. |
+| `max` (required) | `number` |  | Maximum scroll distance (content length minus visible length). |
+| `page` (required) | `number` |  | Visible content length, in the same coordinates as value. |
+| `onChange` (required) | `(value: number) => void` |  |  |
+| `controls` | `string` |  |  |
+
 ## Ribbon
 
 Editor chrome. Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
