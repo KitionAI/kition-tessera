@@ -89,6 +89,26 @@ live examples and their source, and props tables generated from the package's ty
 models the same docs in Markdown. `pnpm docs` regenerates both; `pnpm check` fails when they are
 stale or an exported component has no page.
 
+### Deploy to Cloudflare
+
+The site is served at `tessera.kition.ai` as **Cloudflare Workers Static Assets**, the same way
+Kition Universe is: `site/wrangler.jsonc` uploads `site/dist` with no Worker script, binds the
+custom domain `tessera.kition.ai`, keeps the prerendered pages' trailing slash
+(`html_handling: force-trailing-slash`), and answers unknown paths with `404.html` and status 404
+(`not_found_handling: 404-page`). The `kition.ai` zone must belong to the deploying Cloudflare
+account.
+
+```bash
+pnpm --filter @kition/tessera-site exec wrangler login   # once, or set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID
+pnpm --filter @kition/tessera-site run deploy           # build, then wrangler deploy
+pnpm --filter @kition/tessera-site run deploy:check     # build, then wrangler deploy --dry-run (no login)
+pnpm --filter @kition/tessera-site run preview:cloudflare   # build, then wrangler dev on :8787
+```
+
+Use `run deploy`, not `pnpm deploy` (a pnpm command of its own). For Cloudflare Workers Builds,
+connect this repository to the `kition-tessera` Worker with root directory `site`, build command
+`pnpm build`, and deploy command `pnpm exec wrangler deploy`.
+
 ## Development
 
 ```bash

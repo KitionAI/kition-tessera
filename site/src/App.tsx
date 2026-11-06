@@ -93,7 +93,59 @@ export function App({ path }: { path?: string }) {
           </main>
         )}
       </PageBoundary>
+      <SiteFooter />
     </div>
+  )
+}
+
+/**
+ * The same "Kition" column as the main sites' footers: the three front doors and the ecosystem
+ * (D31; labels and links from kition-console web/portal app/data/site-nav.ts FRONT_DOORS).
+ */
+const KITION_LINKS = [
+  { label: 'Kition — desktop', href: 'https://kition.ai/' },
+  { label: 'Kition One — teams', href: 'https://kition.one/' },
+  { label: 'Kition for Developers', href: 'https://dev.kition.ai/' },
+  { label: 'Kition Universe', href: 'https://universe.kition.ai/' },
+  { label: 'Kition Tessera', href: 'https://tessera.kition.ai/' },
+  { label: 'Kit Harness Protocol', href: 'https://kitharness.org' },
+]
+
+const TESSERA_LINKS = [
+  ...PAGES.filter((item) => item.id === 'docs' || item.id === 'components' || item.id === 'icons' || item.id === 'tokens').map((item) => ({ label: item.label, href: pathOf(item.id) })),
+  { label: 'GitHub', href: 'https://github.com/KitionAI/kition-tessera' },
+]
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer">
+      <div className="site-footer-inner">
+        <div>
+          <p className="site-footer-brand">Kition Tessera</p>
+          <p className="site-footer-muted">The design system for AI-native professional software. Apache-2.0.</p>
+        </div>
+        <nav aria-label="Kition Tessera">
+          <p className="site-footer-title">Kition Tessera</p>
+          <ul>
+            {TESSERA_LINKS.map((link) => (
+              <li key={link.href}>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Kition">
+          <p className="site-footer-title">Kition</p>
+          <ul>
+            {KITION_LINKS.map((link) => (
+              <li key={link.href}>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </footer>
   )
 }
 

@@ -5,11 +5,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir .ssr && node scripts/prerender.mjs",
-    "preview": "vite preview --port 4341 --host 127.0.0.1"
+    "preview": "vite preview --port 4341 --host 127.0.0.1",
+    "deploy": "pnpm build && wrangler deploy",
+    "deploy:check": "pnpm build && wrangler deploy --dry-run",
+    "preview:cloudflare": "pnpm build && wrangler dev --port 8787"
   },
   "dependencies": {
-    "@kition/tessera-ui": "workspace:*",
     "@kition/tessera-icons": "workspace:*",
-    "@kition/tessera-tokens": "workspace:*"
+    "@kition/tessera-tokens": "workspace:*",
+    "@kition/tessera-ui": "workspace:*"
+  },
+  "devDependencies": {
+    "wrangler": "^4.158.0"
   }
 }
