@@ -3376,21 +3376,23 @@ div.kui-divider::after {
   white-space: nowrap;
 }
 
+/* Transparent, not hidden: the actions stay in the tab order, and focus in the row shows them. */
 .kui-table-row-actions {
   display: flex;
   justify-content: flex-end;
   gap: 2px;
-  visibility: hidden;
+  opacity: 0;
 }
 
 .kui-table tbody tr:hover .kui-table-row-actions,
-.kui-table tbody tr:focus-within .kui-table-row-actions {
-  visibility: visible;
+.kui-table tbody tr:focus-within .kui-table-row-actions,
+.kui-table tbody tr[data-selected] .kui-table-row-actions {
+  opacity: 1;
 }
 
 @media (hover: none) {
   .kui-table-row-actions {
-    visibility: visible;
+    opacity: 1;
   }
 }
 
