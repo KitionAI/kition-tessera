@@ -43,7 +43,7 @@ import { ICONS, ICON_NAMES, KIT_ICONS } from '@kition/tessera-icons/registry'
 import { KHP_TOKENS, SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
 import { MosaicHero } from './MosaicHero'
 
-const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'design', 'effect', 'cad']
+const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'design', 'effect', 'cad', 'cube', 'fig']
 const KIT_NAMES: Record<string, string> = {
   note: 'Note',
   table: 'Table',
@@ -59,6 +59,8 @@ const KIT_NAMES: Record<string, string> = {
   effect: 'Effect',
   cad: 'CAD',
   html: 'HTML',
+  cube: 'Cube',
+  fig: 'Fig',
 }
 
 const kitFiles = import.meta.glob('../../../packages/icons/kit/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
@@ -617,7 +619,7 @@ function Bento() {
 
 /* ---------------------------------------------------------------- kits */
 
-const KIT_COUNT_WORDS: Record<number, string> = { 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen' }
+const KIT_COUNT_WORDS: Record<number, string> = { 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen' }
 
 function Kits() {
   const kits = KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit))

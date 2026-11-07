@@ -1,24 +1,23 @@
 #!/usr/bin/env node
 /**
- * Checks that the copies of Tessera's tokens that still live in other repositories match the token
- * files, until those repositories import @kition/tessera-tokens:
+ * Checks that the copies of Tessera's tokens, kit icons and kit colors that still live in other
+ * repositories match Tessera's, until those repositories import its packages:
  *
  * - kition-sdk `packages/kit-editor/src/styles.css`: imports `@kition/tessera-ui/styles.css` and declares no
  *   tokens of its own (or, before it did, the same `:root` and dark blocks);
- * - kition `src/features/kits/kition/kitionTheme.ts` (the Paper theme Kition sends to kits).
+ * - kition `public/kit-icons/` and `kits/kit-colors.json` (the kit icons and kit brand colors).
  *
  * The repositories are found as siblings of this one, or through `KITION_SDK_DIR` and
  * `KITION_DIR`. A missing repository is a failure, not a skip.
  */
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { declarations, load, skinTheme, toCss } from '../packages/tokens/scripts/tokens.mjs'
+import { declarations, load, toCss } from '../packages/tokens/scripts/tokens.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const { base, skins } = load(join(root, 'packages', 'tokens', 'tokens'))
+const { base } = load(join(root, 'packages', 'tokens', 'tokens'))
 const css = toCss(base)
-const paper = skinTheme(skins[0], base)
 
 const failures = []
 const fail = (message) => failures.push(message)
@@ -53,20 +52,29 @@ if (existsSync(styles)) {
 } else if (existsSync(sdk)) fail(`${styles} not found`)
 
 const kition = repo('KITION_DIR', 'kition')
-const theme = join(kition, 'src', 'features', 'kits', 'kition', 'kitionTheme.ts')
-if (existsSync(theme)) {
-  const text = readFileSync(theme, 'utf8')
-  /** @type {Record<string, string>} */
-  const actual = {}
-  for (const match of text.matchAll(/'(--kit-[\w-]+)':\s*'([^']*)'/g)) actual[match[1]] = match[2]
-  // Kition sends the font stack its page computed, so the sans stack is not a literal there.
-  const expected = { ...paper.tokens }
-  delete expected['--kit-font-sans']
-  compare('kition kitionTheme.ts', actual, expected)
-} else if (existsSync(kition)) fail(`${theme} not found`)
+
+// Kition's kit icons and kit colors (until Kition takes them from @kition/tessera-icons).
+const kitDir = join(root, 'packages', 'icons', 'kit')
+const kitionIcons = join(kition, 'public', 'kit-icons')
+if (existsSync(kitionIcons)) {
+  const ours = readdirSync(kitDir).filter((file) => file.endsWith('.svg')).sort()
+  const theirs = readdirSync(kitionIcons).filter((file) => file.endsWith('.svg')).sort()
+  for (const file of ours) {
+    if (!theirs.includes(file)) fail(`kition public/kit-icons: ${file} missing`)
+    else if (readFileSync(join(kitionIcons, file), 'utf8') !== readFileSync(join(kitDir, file), 'utf8')) fail(`kition public/kit-icons/${file} differs from Tessera's`)
+  }
+  for (const file of theirs) if (!ours.includes(file)) fail(`kition public/kit-icons/${file} is not a Tessera kit icon`)
+} else if (existsSync(kition)) fail(`${kitionIcons} not found`)
+const kitionColors = join(kition, 'kits', 'kit-colors.json')
+if (existsSync(kitionColors)) {
+  const ours = JSON.parse(readFileSync(join(kitDir, 'colors.json'), 'utf8'))
+  const theirs = JSON.parse(readFileSync(kitionColors, 'utf8'))
+  const brands = (colors) => Object.fromEntries(Object.entries(colors).filter(([key]) => !key.startsWith('$')).flatMap(([kit, color]) => [[`${kit}.light`, color.light], [`${kit}.dark`, color.dark]]))
+  compare('kition kits/kit-colors.json', brands(theirs), brands(ours))
+} else if (existsSync(kition)) fail(`${kitionColors} not found`)
 
 if (failures.length > 0) {
   for (const message of failures) console.error(message)
   process.exit(1)
 }
-console.log('kit-editor and Kition match Tessera tokens')
+console.log('kit-editor matches Tessera tokens; Kition matches its kit icons and colors')

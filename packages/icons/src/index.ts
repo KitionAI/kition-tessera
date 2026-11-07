@@ -6,7 +6,7 @@
 import { ACCENT_OPACITY, DEFAULT_STROKE, drawsAccents, ICON_GRID, type IconData, type IconStyle } from './types.ts'
 
 export * from './generated/icons.ts'
-export { ACCENT_OPACITY, DEFAULT_STROKE, drawsAccents, ICON_GRID, type IconData, type IconStyle } from './types.ts'
+export { ACCENT_OPACITY, DEFAULT_STROKE, drawsAccents, ICON_GRID, type IconData, type IconStyle, type KitColor } from './types.ts'
 
 /** The stroke width in grid units: `absoluteStrokeWidth` keeps the stroke `strokeWidth` px wide at any size. */
 export function gridStroke({ size = ICON_GRID, strokeWidth = DEFAULT_STROKE, absoluteStrokeWidth = false }: IconStyle = {}) {

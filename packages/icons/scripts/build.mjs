@@ -84,6 +84,13 @@ const kits = kitFiles
   .map((file) => file.slice(0, -4))
   .sort()
 for (const kit of kits) if (!kitFiles.includes(`${kit}-small.svg`)) throw new Error(`kit/${kit}-small.svg is missing`)
+const kitColors = Object.fromEntries(Object.entries(JSON.parse(readFileSync(join(pkg, 'kit', 'colors.json'), 'utf8'))).filter(([key]) => !key.startsWith('$')))
+for (const kit of kits) if (!kitColors[kit]) throw new Error(`kit/colors.json has no entry for ${kit}`)
+for (const kit of Object.keys(kitColors)) if (!kits.includes(kit)) throw new Error(`kit/colors.json lists ${kit}, which has no icon`)
+for (const [kit, color] of Object.entries(kitColors)) {
+  for (const key of ['hue', 'light', 'dark']) if (!/^#[0-9a-f]{6}$/.test(color[key] ?? '')) throw new Error(`kit/colors.json ${kit}.${key} is not a #rrggbb color`)
+  if (typeof color.name !== 'string' || color.name === '') throw new Error(`kit/colors.json ${kit}.name is missing`)
+}
 
 const js = (value) => JSON.stringify(value)
 
@@ -100,7 +107,7 @@ const lucideMap = icons.flatMap((icon) => icon.lucide.map((alias) => [alias, ico
 const registryTs = [
   `// ${BANNER}`,
   '',
-  "import type { IconData } from '../types.ts'",
+  "import type { IconData, KitColor } from '../types.ts'",
   "import * as all from './icons.ts'",
   '',
   '/** Every icon, by name. Importing this pulls in the whole set; import single icons from the package root instead. */',
@@ -115,6 +122,9 @@ const registryTs = [
   '',
   '/** Kit app icons: full-color tiles in `@kition/tessera-icons/kit/<kit>.svg` and `<kit>-small.svg`. */',
   `export const KIT_ICONS: readonly string[] = ${js(kits)}`,
+  '',
+  '/** Each kit\'s name and colors (`kit/colors.json`): `hue` for its icon, `light` and `dark` for its brand in each scheme. */',
+  `export const KIT_COLORS: Readonly<Record<string, KitColor>> = ${js(Object.fromEntries(kits.map((kit) => [kit, kitColors[kit]])))}`,
   '',
 ].join('\n')
 

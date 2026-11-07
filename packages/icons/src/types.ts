@@ -11,6 +11,17 @@ export type IconData = {
   readonly accents: readonly string[]
 }
 
+/** A kit's name and colors (`kit/colors.json`, kition docs/design.md, Kit colors). */
+export type KitColor = {
+  readonly name: string
+  /** The app icon's color. */
+  readonly hue: string
+  /** The kit's brand on light surfaces; carries white text at 4.5:1. */
+  readonly light: string
+  /** The kit's brand on dark surfaces. */
+  readonly dark: string
+}
+
 /** How strongly accent areas are filled. */
 export const ACCENT_OPACITY = 0.25
 

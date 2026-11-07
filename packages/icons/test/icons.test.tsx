@@ -10,7 +10,7 @@ import { toPath, toPaths } from '../scripts/geometry.mjs'
 import { lucideIndex } from '../scripts/lucide.mjs'
 import { ChartScatter, Layers, gridStroke, toSvg } from '../src/index'
 import { LayersIcon, createIcon } from '../src/react'
-import { FROM_LUCIDE, ICONS, ICON_NAMES, KIT_ICONS } from '../src/registry'
+import { FROM_LUCIDE, ICONS, ICON_NAMES, KIT_COLORS, KIT_ICONS } from '../src/registry'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const manifest = JSON.parse(readFileSync(join(here, '..', 'icons.json'), 'utf8')) as { icons: Record<string, { source: string }> }
@@ -113,9 +113,25 @@ describe('icons', () => {
   })
 
   it('lists the kit icons with both sizes', () => {
-    for (const kit of ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad']) {
+    for (const kit of ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad', 'html', 'cube', 'fig']) {
       expect(KIT_ICONS).toContain(kit)
     }
+  })
+
+  it('gives every kit icon a name and colors, with white text readable on the light brand', () => {
+    const luminance = (hex: string) => {
+      const [r, g, b] = [1, 3, 5].map((at) => {
+        const c = Number.parseInt(hex.slice(at, at + 2), 16) / 255
+        return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4
+      })
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b
+    }
+    expect(Object.keys(KIT_COLORS).sort()).toEqual([...KIT_ICONS].sort())
+    for (const [kit, color] of Object.entries(KIT_COLORS)) {
+      expect(color.name, kit).not.toBe('')
+      expect(1.05 / (luminance(color.light) + 0.05), kit).toBeGreaterThanOrEqual(4.5)
+    }
+    expect(KIT_COLORS.fig).toEqual({ name: 'Fig', hue: '#00a676', light: '#00875f', dark: '#02da96' })
   })
 })
 

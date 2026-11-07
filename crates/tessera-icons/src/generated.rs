@@ -53,6 +53,7 @@ pub const ARROW_RIGHT_TO_LINE: Icon = Icon { name: "arrow-right-to-line", paths:
 pub const ARROW_UP: Icon = Icon { name: "arrow-up", paths: &["M12 19.5V4.5", "M6.5 10L12 4.5 17.5 10"], fills: &[], accents: &[] };
 pub const ARROW_UP_DOWN: Icon = Icon { name: "arrow-up-down", paths: &["m21 16-4 4-4-4", "M17 20V4", "m3 8 4-4 4 4", "M7 4v16"], fills: &[], accents: &[] };
 pub const ARROW_UP_RIGHT: Icon = Icon { name: "arrow-up-right", paths: &["M7 7h10v10", "M7 17 17 7"], fills: &[], accents: &[] };
+pub const AT_SIGN: Icon = Icon { name: "at-sign", paths: &["M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0z", "M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"], fills: &[], accents: &[] };
 pub const AUDIO_LINES: Icon = Icon { name: "audio-lines", paths: &["M2 10v3", "M6 6v11", "M10 3v18", "M14 8v7", "M18 5v13", "M22 10v3"], fills: &[], accents: &[] };
 pub const AUDIO_WAVEFORM: Icon = Icon { name: "audio-waveform", paths: &["M2 13a2 2 0 0 0 2-2V7a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0v-4a2 2 0 0 1 2-2"], fills: &[], accents: &[] };
 pub const BAN: Icon = Icon { name: "ban", paths: &["M2 12a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z", "M4.929 4.929 19.07 19.071"], fills: &[], accents: &[] };
@@ -244,6 +245,7 @@ pub const FOCUS: Icon = Icon { name: "focus", paths: &["M9 12a3 3 0 1 0 6 0a3 3 
 pub const FOLD_HORIZONTAL: Icon = Icon { name: "fold-horizontal", paths: &["M2 12h6", "M22 12h-6", "M12 2v2", "M12 8v2", "M12 14v2", "M12 20v2", "m19 9-3 3 3 3", "m5 15 3-3-3-3"], fills: &[], accents: &[] };
 pub const FOLDER: Icon = Icon { name: "folder", paths: &["M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"], fills: &[], accents: &[] };
 pub const FOLDER_CHECK: Icon = Icon { name: "folder-check", paths: &["M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z", "m9 13 2 2 4-4"], fills: &[], accents: &[] };
+pub const FOLDER_INPUT: Icon = Icon { name: "folder-input", paths: &["M2 9V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-1", "M2 13h10", "m9 16 3-3-3-3"], fills: &[], accents: &[] };
 pub const FOLDER_LOCK: Icon = Icon { name: "folder-lock", paths: &["M15 17h6a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z", "M10 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v2.5", "M20 17v-2a2 2 0 1 0-4 0v2"], fills: &[], accents: &[] };
 pub const FOLDER_OPEN: Icon = Icon { name: "folder-open", paths: &["m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"], fills: &[], accents: &[] };
 pub const FOLDER_PLUS: Icon = Icon { name: "folder-plus", paths: &["M12 10v6", "M9 13h6", "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"], fills: &[], accents: &[] };
@@ -271,6 +273,7 @@ pub const GRIP_HORIZONTAL: Icon = Icon { name: "grip-horizontal", paths: &["M11 
 pub const GRIP_VERTICAL: Icon = Icon { name: "grip-vertical", paths: &["M8 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M8 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M8 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M14 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M14 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z", "M14 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0z"], fills: &[], accents: &[] };
 pub const GROUP: Icon = Icon { name: "group", paths: &["M3 7V5a2 2 0 0 1 2 -2h2", "M17 3h2a2 2 0 0 1 2 2v2", "M21 17v2a2 2 0 0 1 -2 2h-2", "M7 21H5a2 2 0 0 1 -2 -2v-2", "M7 6h3a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z", "M14 13h3a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z"], fills: &[], accents: &[] };
 pub const HAND: Icon = Icon { name: "hand", paths: &["M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2", "M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2", "M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8", "M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"], fills: &[], accents: &[] };
+pub const HARD_DRIVE: Icon = Icon { name: "hard-drive", paths: &["M10 16h.01", "M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z", "M21.946 12.013H2.054", "M6 16h.01"], fills: &[], accents: &[] };
 pub const HASH: Icon = Icon { name: "hash", paths: &["M4.5 9h15", "M4.5 15h15", "M10 4L8 20", "M16 4L14 20"], fills: &[], accents: &[] };
 pub const HATCH: Icon = Icon { name: "hatch", paths: &["M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z", "M4.5 10.5 10.5 4.5", "M4.5 16 16 4.5", "M8 19.5 19.5 8", "M13.5 19.5l6-6"], fills: &[], accents: &["M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2z"] };
 pub const HEADING: Icon = Icon { name: "heading", paths: &["M6 12h12", "M6 20V4", "M18 20V4"], fills: &[], accents: &[] };
@@ -318,6 +321,7 @@ pub const LINK: Icon = Icon { name: "link", paths: &["M10 7.5H7.5a4.5 4.5 0 0 0 
 pub const LINK_2: Icon = Icon { name: "link-2", paths: &["M9 17H7A5 5 0 0 1 7 7h2", "M15 7h2a5 5 0 1 1 0 10h-2", "M8 12L16 12"], fills: &[], accents: &[] };
 pub const LIST: Icon = Icon { name: "list", paths: &["M3 5h.01", "M3 12h.01", "M3 19h.01", "M8 5h13", "M8 12h13", "M8 19h13"], fills: &[], accents: &[] };
 pub const LIST_CHECKS: Icon = Icon { name: "list-checks", paths: &["M13 5h8", "M13 12h8", "M13 19h8", "m3 17 2 2 4-4", "m3 7 2 2 4-4"], fills: &[], accents: &[] };
+pub const LIST_FILTER: Icon = Icon { name: "list-filter", paths: &["M2 5h20", "M6 12h12", "M9 19h6"], fills: &[], accents: &[] };
 pub const LIST_INDENT_DECREASE: Icon = Icon { name: "list-indent-decrease", paths: &["M21 5H11", "M21 12H11", "M21 19H11", "m7 8-4 4 4 4"], fills: &[], accents: &[] };
 pub const LIST_INDENT_INCREASE: Icon = Icon { name: "list-indent-increase", paths: &["M21 5H11", "M21 12H11", "M21 19H11", "m3 8 4 4-4 4"], fills: &[], accents: &[] };
 pub const LIST_ORDERED: Icon = Icon { name: "list-ordered", paths: &["M11 5h10", "M11 12h10", "M11 19h10", "M4 4h1v5", "M4 9h2", "M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"], fills: &[], accents: &[] };
@@ -651,6 +655,7 @@ pub static ICONS: &[&Icon] = &[
     &ARROW_UP,
     &ARROW_UP_DOWN,
     &ARROW_UP_RIGHT,
+    &AT_SIGN,
     &AUDIO_LINES,
     &AUDIO_WAVEFORM,
     &BAN,
@@ -842,6 +847,7 @@ pub static ICONS: &[&Icon] = &[
     &FOLD_HORIZONTAL,
     &FOLDER,
     &FOLDER_CHECK,
+    &FOLDER_INPUT,
     &FOLDER_LOCK,
     &FOLDER_OPEN,
     &FOLDER_PLUS,
@@ -869,6 +875,7 @@ pub static ICONS: &[&Icon] = &[
     &GRIP_VERTICAL,
     &GROUP,
     &HAND,
+    &HARD_DRIVE,
     &HASH,
     &HATCH,
     &HEADING,
@@ -916,6 +923,7 @@ pub static ICONS: &[&Icon] = &[
     &LINK_2,
     &LIST,
     &LIST_CHECKS,
+    &LIST_FILTER,
     &LIST_INDENT_DECREASE,
     &LIST_INDENT_INCREASE,
     &LIST_ORDERED,

@@ -209,6 +209,10 @@
       "family": "ui",
       "source": "lucide:arrow-up-right"
     },
+    "at-sign": {
+      "family": "ui",
+      "source": "lucide:at-sign"
+    },
     "audio-lines": {
       "family": "ui",
       "source": "lucide:audio-lines"
@@ -1027,6 +1031,10 @@
       "family": "ui",
       "source": "lucide:folder-check"
     },
+    "folder-input": {
+      "family": "ui",
+      "source": "lucide:folder-input"
+    },
     "folder-lock": {
       "family": "ui",
       "source": "lucide:folder-lock"
@@ -1138,6 +1146,10 @@
     "hand": {
       "family": "ui",
       "source": "lucide:hand"
+    },
+    "hard-drive": {
+      "family": "ui",
+      "source": "lucide:hard-drive"
     },
     "hash": {
       "family": "ui",
@@ -1344,6 +1356,10 @@
     "list-checks": {
       "family": "ui",
       "source": "lucide:list-checks"
+    },
+    "list-filter": {
+      "family": "ui",
+      "source": "lucide:list-filter"
     },
     "list-indent-decrease": {
       "family": "ui",
