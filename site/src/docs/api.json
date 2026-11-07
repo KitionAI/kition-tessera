@@ -54,6 +54,61 @@
   ],
   "domProps": false
  },
+ "AppRail": {
+  "description": "A suite's app switcher: a narrow rail on the left edge with each app's icon over its name, the\nopen one marked, a badge on an icon, the product mark above and the account below. Each app has\nits own sidebar (NavMenu) beside the rail.",
+  "props": [
+   {
+    "name": "items",
+    "type": "readonly AppRailItem[]",
+    "required": true,
+    "default": null,
+    "doc": "The suite's apps, top to bottom."
+   },
+   {
+    "name": "selectedKey",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": "The open app's key."
+   },
+   {
+    "name": "header",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Above the apps: the product mark."
+   },
+   {
+    "name": "footer",
+    "type": "ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "At the bottom: settings, the account."
+   },
+   {
+    "name": "renderLink",
+    "type": "(href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "Draws a link; a router passes its own (`<Link to={href} … />`). A plain `<a>` by default."
+   },
+   {
+    "name": "label",
+    "type": "string",
+    "required": true,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Avatar": {
   "description": "A person's picture, or their initial on a tint when there is none.",
   "props": [
@@ -3243,6 +3298,47 @@
   ],
   "domProps": true
  },
+ "SelectionBar": {
+  "description": "Actions on the selected records, floating at the bottom of the nearest positioned box: the count,\nthe actions, and a button that clears the selection. With Table's `rowSelection`, it replaces a\nrow of links on every record.",
+  "props": [
+   {
+    "name": "count",
+    "type": "number",
+    "required": true,
+    "default": null,
+    "doc": "How many records are selected; with none the bar is not drawn."
+   },
+   {
+    "name": "children",
+    "type": "ReactNode",
+    "required": true,
+    "default": null,
+    "doc": "The actions on the selection: Buttons (`variant=\"ghost\"`) with an icon and a word."
+   },
+   {
+    "name": "onClear",
+    "type": "() => void",
+    "required": true,
+    "default": null,
+    "doc": "Clears the selection: the close button, and Escape while focus is in the bar."
+   },
+   {
+    "name": "className",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   },
+   {
+    "name": "testId",
+    "type": "string",
+    "required": false,
+    "default": null,
+    "doc": ""
+   }
+  ],
+  "domProps": false
+ },
  "Sheet": {
   "description": "A panel that slides in from the right over a dimmed page, for editing one thing beside the work.",
   "props": [
@@ -3508,6 +3604,20 @@
     "required": false,
     "default": null,
     "doc": ""
+   },
+   {
+    "name": "rowSelection",
+    "type": "TableSelection<T>",
+    "required": false,
+    "default": null,
+    "doc": "Selects records with check boxes; selected rows are marked. Pair it with SelectionBar for their actions."
+   },
+   {
+    "name": "rowActions",
+    "type": "(record: T, index: number) => ReactNode",
+    "required": false,
+    "default": null,
+    "doc": "A record's actions (icon buttons, a menu), at the row's end while the pointer is over the row or focus is in it."
    },
    {
     "name": "caption",

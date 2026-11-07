@@ -2,7 +2,8 @@
 import { act } from 'react'
 import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, describe, expect, it } from 'vitest'
-import { Alert, Breadcrumb, Descriptions, Empty, Pagination, Result, Table, Tag, pageList, valueAt, type TableColumn } from './data'
+import { Alert, Breadcrumb, Descriptions, Empty, Pagination, Result, SelectionBar, Table, Tag, pageList, valueAt, type TableColumn } from './data'
+import type { Key } from 'react'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
@@ -93,6 +94,80 @@ describe('Table', () => {
     expect(valueAt({ a: { b: [1, 2] } }, ['a', 'b', 1])).toBe(2)
     expect(valueAt({ a: 1 }, 'a')).toBe(1)
     expect(valueAt(null, 'a')).toBeUndefined()
+  })
+})
+
+describe('Table selection and row actions', () => {
+  const box = (out: HTMLElement, label: string) => out.querySelector(`input[aria-label="${label}"]`) as HTMLInputElement
+  const select = (input: HTMLInputElement) => act(() => input.click())
+
+  function Selectable({ initial = [] as Key[], seen }: { initial?: Key[]; seen: Key[][] }) {
+    return (
+      <Table
+        columns={columns}
+        dataSource={rows}
+        rowKey="id"
+        pagination={{ defaultPageSize: 10 }}
+        rowSelection={{ selectedKeys: initial, rowLabel: (row) => `Select ${row.name}`, onChange: (keys) => seen.push(keys) }}
+        rowActions={(row) => <button type="button">Open {row.name}</button>}
+      />
+    )
+  }
+
+  it('selects one row and every row of the page, keeping rows selected on other pages', () => {
+    const seen: Key[][] = []
+    const out = render(<Selectable initial={[25]} seen={seen} />)
+    expect([...out.querySelectorAll('th')].map((cell) => cell.textContent)).toEqual(['', 'Name', 'Tier', 'ID', 'Actions'])
+    select(box(out, 'Select User 2'))
+    expect(seen.at(-1)).toEqual([25, 2])
+    select(box(out, 'Select all rows on this page'))
+    expect(seen.at(-1)).toEqual([25, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+  })
+
+  it('marks selected rows, shows a mixed header box for part of a page, and clears the page', () => {
+    const seen: Key[][] = []
+    const out = render(<Selectable initial={[1, 2, 25]} seen={seen} />)
+    const all = box(out, 'Select all rows on this page')
+    expect(all.checked).toBe(false)
+    expect(all.indeterminate).toBe(true)
+    const marked = [...out.querySelectorAll('tbody tr[data-selected]')].map((row) => row.getAttribute('aria-selected'))
+    expect(marked).toEqual(['true', 'true'])
+    expect(out.querySelector('tbody tr:nth-child(3)')?.getAttribute('aria-selected')).toBe('false')
+    act(() => root!.render(<Selectable initial={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25]} seen={seen} />))
+    expect(all.checked).toBe(true)
+    expect(all.indeterminate).toBe(false)
+    select(all)
+    expect(seen.at(-1)).toEqual([25])
+  })
+
+  it('puts each record’s actions at the end of its row, and spans the empty row over the extra columns', () => {
+    const out = render(<Selectable seen={[]} />)
+    expect(out.querySelector('tbody tr:nth-child(4) .kui-table-row-actions')?.textContent).toBe('Open User 4')
+    act(() =>
+      root!.render(<Table columns={columns} dataSource={[]} rowKey="id" rowSelection={{ selectedKeys: [], onChange: () => {} }} rowActions={() => null} />),
+    )
+    expect(host!.querySelector('.kui-table-empty td')?.getAttribute('colspan')).toBe('5')
+    expect(box(host!, 'Select all rows on this page').disabled).toBe(true)
+  })
+})
+
+describe('SelectionBar', () => {
+  it('shows the count and actions, clears with its button and Escape, and is gone with nothing selected', () => {
+    let cleared = 0
+    const out = render(
+      <SelectionBar count={2} onClear={() => (cleared += 1)}>
+        <button type="button">Download</button>
+      </SelectionBar>,
+    )
+    const bar = out.querySelector('[role="toolbar"]') as HTMLElement
+    expect(bar.getAttribute('aria-label')).toBe('Selection actions')
+    expect(bar.querySelector('.kui-selection-bar-count')?.textContent).toBe('2 selected')
+    expect(bar.querySelector('.kui-selection-bar-actions')?.textContent).toBe('Download')
+    act(() => (bar.querySelector('[aria-label="Clear selection"]') as HTMLButtonElement).click())
+    act(() => bar.querySelector('button')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
+    expect(cleared).toBe(2)
+    act(() => root!.render(<SelectionBar count={0} onClear={() => {}}>x</SelectionBar>))
+    expect(host!.querySelector('[role="toolbar"]')).toBeNull()
   })
 })
 

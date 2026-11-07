@@ -286,6 +286,15 @@ export type TableColumn<T> = {
   className?: string
 }
 
+/** Check boxes that select records: a column of them, and one in the header for every row on the page. */
+export type TableSelection<T> = {
+  /** Keys of the selected records, on any page. */
+  selectedKeys: readonly Key[]
+  onChange: (keys: Key[]) => void
+  /** A row's check box name for screen readers, such as the record's name. "Select row" by default. */
+  rowLabel?: (record: T) => string
+}
+
 export type TablePagination = { defaultPageSize?: number; pageSizeOptions?: readonly number[]; /** Offers `pageSizeOptions` (10, 20, 50, 100 by default). */ showSizeChanger?: boolean }
 
 export type TableProps<T> = {
@@ -305,6 +314,10 @@ export type TableProps<T> = {
   /** The table's least width; it scrolls sideways in a narrower container. */
   scrollX?: number | string
   onRow?: (record: T, index: number) => HTMLAttributes<HTMLTableRowElement>
+  /** Selects records with check boxes; selected rows are marked. Pair it with SelectionBar for their actions. */
+  rowSelection?: TableSelection<T>
+  /** A record's actions (icon buttons, a menu), at the row's end while the pointer is over the row or focus is in it. */
+  rowActions?: (record: T, index: number) => ReactNode
   /** Caption above the table, for its accessible name. */
   caption?: ReactNode
   className?: string
@@ -349,7 +362,7 @@ function pinOffsets<T>(columns: readonly TableColumn<T>[]): (CSSProperties | und
  * holds the records. Pages through long lists, shows a spinner while loading and `emptyText` when
  * empty, and can pin columns and the header.
  */
-export function Table<T>({ columns, dataSource, rowKey, loading, pagination, size = 'middle', emptyText, sticky, scrollX, onRow, caption, className, testId }: TableProps<T>) {
+export function Table<T>({ columns, dataSource, rowKey, loading, pagination, size = 'middle', emptyText, sticky, scrollX, onRow, rowSelection, rowActions, caption, className, testId }: TableProps<T>) {
   const t = useStrings()
   const rows = dataSource ?? []
   const paged = pagination !== false
@@ -363,6 +376,20 @@ export function Table<T>({ columns, dataSource, rowKey, loading, pagination, siz
   const visible = paged ? rows.slice((Math.min(page, pages) - 1) * pageSize, Math.min(page, pages) * pageSize) : rows
   const offsets = useMemo(() => pinOffsets(columns), [columns])
   const keyOf = (record: T, index: number): Key => (typeof rowKey === 'function' ? rowKey(record) : ((record as Record<string, Key>)[rowKey] ?? index))
+  const selected = new Set(rowSelection?.selectedKeys ?? [])
+  const pageKeys = visible.map((record, rowIndex) => keyOf(record, paged ? (Math.min(page, pages) - 1) * pageSize + rowIndex : rowIndex))
+  const pageSelected = pageKeys.filter((key) => selected.has(key)).length
+  const selectPage = (on: boolean) => {
+    if (!rowSelection) return
+    const others = rowSelection.selectedKeys.filter((key) => !pageKeys.includes(key))
+    rowSelection.onChange(on ? [...others, ...pageKeys] : others)
+  }
+  const selectRow = (key: Key, on: boolean) => {
+    if (!rowSelection) return
+    const others = rowSelection.selectedKeys.filter((selectedKey) => selectedKey !== key)
+    rowSelection.onChange(on ? [...others, key] : others)
+  }
+  const span = columns.length + (rowSelection ? 1 : 0) + (rowActions ? 1 : 0)
   const cellClass = (column: TableColumn<T>) => join(column.className, column.ellipsis && 'kui-table-ellipsis', column.fixed && 'kui-table-pinned')
   return (
     <div className={join('kui-table', className)} data-size={size} data-sticky={sticky || undefined} data-testid={testId}>
@@ -370,29 +397,58 @@ export function Table<T>({ columns, dataSource, rowKey, loading, pagination, siz
         <table style={scrollX !== undefined ? { minWidth: scrollX } : undefined}>
           {caption ? <caption>{caption}</caption> : null}
           <colgroup>
+            {rowSelection ? <col className="kui-table-select-col" /> : null}
             {columns.map((column, index) => (
               <col key={column.key ?? index} style={column.width !== undefined ? { width: column.width } : undefined} />
             ))}
+            {rowActions ? <col /> : null}
           </colgroup>
           <thead>
             <tr>
+              {rowSelection ? (
+                <th scope="col" className="kui-table-select">
+                  <input
+                    type="checkbox"
+                    aria-label={t('selectAllRows')}
+                    checked={pageKeys.length > 0 && pageSelected === pageKeys.length}
+                    disabled={pageKeys.length === 0}
+                    ref={(input) => {
+                      if (input) input.indeterminate = pageSelected > 0 && pageSelected < pageKeys.length
+                    }}
+                    onChange={(event) => selectPage(event.target.checked)}
+                  />
+                </th>
+              ) : null}
               {columns.map((column, index) => (
                 <th key={column.key ?? index} scope="col" className={cellClass(column)} style={{ textAlign: column.align, ...offsets[index] }} data-fixed={column.fixed}>
                   {column.title}
                 </th>
               ))}
+              {rowActions ? (
+                <th scope="col" className="kui-table-actions">
+                  <span className="kui-visually-hidden">{t('rowActions')}</span>
+                </th>
+              ) : null}
             </tr>
           </thead>
           <tbody>
             {visible.length === 0 ? (
               <tr className="kui-table-empty">
-                <td colSpan={columns.length}>{loading ? <div className="kui-table-placeholder" /> : (emptyText ?? <Empty />)}</td>
+                <td colSpan={span}>{loading ? <div className="kui-table-placeholder" /> : (emptyText ?? <Empty />)}</td>
               </tr>
             ) : (
               visible.map((record, rowIndex) => {
                 const index = paged ? (Math.min(page, pages) - 1) * pageSize + rowIndex : rowIndex
+                const key = pageKeys[rowIndex]
+                const row = onRow?.(record, index)
+                const isSelected = rowSelection ? selected.has(key) : undefined
                 return (
-                  <tr key={keyOf(record, index)} {...onRow?.(record, index)}>
+                  <tr key={key} {...row} aria-selected={isSelected} data-selected={isSelected || undefined}>
+                    {rowSelection ? (
+                      <td className="kui-table-select">
+                        <input type="checkbox" aria-label={rowSelection.rowLabel?.(record) ?? t('selectRow')} checked={isSelected} onChange={(event) => selectRow(key, event.target.checked)} />
+                      </td>
+                    ) : null}
                     {columns.map((column, columnIndex) => {
                       const cell = column.onCell?.(record, index)
                       if (cell && (cell.rowSpan === 0 || cell.colSpan === 0)) return null
@@ -411,6 +467,11 @@ export function Table<T>({ columns, dataSource, rowKey, loading, pagination, siz
                         </td>
                       )
                     })}
+                    {rowActions ? (
+                      <td className="kui-table-actions">
+                        <div className="kui-table-row-actions">{rowActions(record, index)}</div>
+                      </td>
+                    ) : null}
                   </tr>
                 )
               })
@@ -435,6 +496,50 @@ export function Table<T>({ columns, dataSource, rowKey, loading, pagination, siz
           }}
         />
       ) : null}
+    </div>
+  )
+}
+
+/* SelectionBar */
+
+export type SelectionBarProps = {
+  /** How many records are selected; with none the bar is not drawn. */
+  count: number
+  /** The actions on the selection: Buttons (`variant="ghost"`) with an icon and a word. */
+  children: ReactNode
+  /** Clears the selection: the close button, and Escape while focus is in the bar. */
+  onClear: () => void
+  className?: string
+  testId?: string
+}
+
+/**
+ * Actions on the selected records, floating at the bottom of the nearest positioned box: the count,
+ * the actions, and a button that clears the selection. With Table's `rowSelection`, it replaces a
+ * row of links on every record.
+ */
+export function SelectionBar({ count, children, onClear, className, testId }: SelectionBarProps) {
+  const t = useStrings()
+  if (count <= 0) return null
+  return (
+    <div
+      role="toolbar"
+      aria-label={t('selectionActions')}
+      className={join('kui-selection-bar', className)}
+      data-testid={testId}
+      onKeyDown={(event) => {
+        if (event.key !== 'Escape') return
+        event.stopPropagation()
+        onClear()
+      }}
+    >
+      <span className="kui-selection-bar-count" aria-live="polite">
+        {t('selectedCount', { count })}
+      </span>
+      <div className="kui-selection-bar-actions">{children}</div>
+      <button type="button" className="kui-icon-button kui-selection-bar-clear" aria-label={t('clearSelection')} title={t('clearSelection')} onClick={onClear}>
+        <XIcon size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
+      </button>
     </div>
   )
 }

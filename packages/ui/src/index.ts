@@ -101,6 +101,7 @@ export {
   Empty,
   Pagination,
   Result,
+  SelectionBar,
   Skeleton,
   Table,
   Tag,
@@ -112,12 +113,14 @@ export {
   type EmptyProps,
   type PaginationProps,
   type ResultStatus,
+  type SelectionBarProps,
   type TableColumn,
   type TablePagination,
   type TableProps,
+  type TableSelection,
   type Tone,
 } from './data'
-export { NavMenu, Tabs, type NavGroup, type NavItem, type NavMenuProps, type TabItem, type TabsProps } from './navigation'
+export { AppRail, NavMenu, Tabs, type AppRailItem, type AppRailProps, type NavGroup, type NavItem, type NavMenuProps, type TabItem, type TabsProps } from './navigation'
 export {
   checkRules,
   DateTimeInput,

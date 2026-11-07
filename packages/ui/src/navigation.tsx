@@ -136,3 +136,55 @@ export function NavMenu({ items, selectedKey, collapsed, renderLink, label, clas
     </nav>
   )
 }
+
+/* AppRail */
+
+export type AppRailItem = { key: string; label: ReactNode; icon: IconComponent; href: string; /** A count or mark on the icon (unread items). */ badge?: ReactNode }
+
+export type AppRailProps = {
+  /** The suite's apps, top to bottom. */
+  items: readonly AppRailItem[]
+  /** The open app's key. */
+  selectedKey?: string
+  /** Above the apps: the product mark. */
+  header?: ReactNode
+  /** At the bottom: settings, the account. */
+  footer?: ReactNode
+  /** Draws a link; a router passes its own (`<Link to={href} … />`). A plain `<a>` by default. */
+  renderLink?: (href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode
+  label: string
+  className?: string
+}
+
+/**
+ * A suite's app switcher: a narrow rail on the left edge with each app's icon over its name, the
+ * open one marked, a badge on an icon, the product mark above and the account below. Each app has
+ * its own sidebar (NavMenu) beside the rail.
+ */
+export function AppRail({ items, selectedKey, header, footer, renderLink, label, className }: AppRailProps) {
+  return (
+    <nav className={join('kui-app-rail', className)} aria-label={label}>
+      {header ? <div className="kui-app-rail-header">{header}</div> : null}
+      <ul>
+        {items.map((item) => {
+          const Icon = item.icon
+          const props = {
+            className: 'kui-app-rail-item',
+            'aria-current': item.key === selectedKey ? ('page' as const) : undefined,
+            children: (
+              <>
+                <span className="kui-app-rail-icon">
+                  <Icon size={20} strokeWidth={ICON_STROKE} aria-hidden="true" />
+                  {item.badge !== undefined ? <span className="kui-app-rail-badge">{item.badge}</span> : null}
+                </span>
+                <span className="kui-app-rail-label">{item.label}</span>
+              </>
+            ),
+          }
+          return <li key={item.key}>{renderLink ? renderLink(item.href, props) : <a href={item.href} {...props} />}</li>
+        })}
+      </ul>
+      {footer ? <div className="kui-app-rail-footer">{footer}</div> : null}
+    </nav>
+  )
+}

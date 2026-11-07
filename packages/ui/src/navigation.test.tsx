@@ -4,8 +4,8 @@ import { createRoot, type Root } from 'react-dom/client'
 import { afterEach, describe, expect, it } from 'vitest'
 import { Segmented } from './BarControls'
 import { BarChart, LineChart, PieChart, niceTicks, slicePath } from './charts'
-import { NavMenu, Tabs } from './navigation'
-import { LayersIcon } from '@kition/tessera-icons/react'
+import { AppRail, NavMenu, Tabs } from './navigation'
+import { FolderIcon, InboxIcon, LayersIcon } from '@kition/tessera-icons/react'
 
 ;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
 
@@ -68,6 +68,32 @@ describe('NavMenu', () => {
     expect(current.getAttribute('href')).toBe('/users')
     expect(current.dataset.router).toBe('yes')
     expect(current.textContent).toBe('Users12')
+  })
+})
+
+describe('AppRail', () => {
+  it('lists the apps with icon and name, marks the open one, badges an icon, and holds a header and footer', () => {
+    const out = render(
+      <AppRail
+        label="Apps"
+        selectedKey="docs"
+        header={<img alt="Kition" />}
+        footer={<button type="button">Settings</button>}
+        renderLink={(href, props) => <a data-router="yes" href={href} {...props} />}
+        items={[
+          { key: 'docs', label: 'Docs', icon: FolderIcon, href: '/docs' },
+          { key: 'inbox', label: 'Inbox', icon: InboxIcon, href: '/inbox', badge: 3 },
+        ]}
+      />,
+    )
+    expect(out.querySelector('nav')?.getAttribute('aria-label')).toBe('Apps')
+    const items = [...out.querySelectorAll('.kui-app-rail-item')] as HTMLAnchorElement[]
+    expect(items.map((item) => item.textContent)).toEqual(['Docs', '3Inbox'])
+    expect(items.every((item) => item.dataset.router === 'yes' && item.querySelector('svg'))).toBe(true)
+    expect(out.querySelector('[aria-current="page"]')?.getAttribute('href')).toBe('/docs')
+    expect(out.querySelector('.kui-app-rail-badge')?.textContent).toBe('3')
+    expect(out.querySelector('.kui-app-rail-header img')?.getAttribute('alt')).toBe('Kition')
+    expect(out.querySelector('.kui-app-rail-footer button')?.textContent).toBe('Settings')
   })
 })
 

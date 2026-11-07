@@ -1102,7 +1102,7 @@ Asks "are you sure?" next to the button that does something, before it does.
 Data display. Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.
 
 ```ts
-import { Table, Pagination } from '@kition/tessera-ui'
+import { Table, SelectionBar, Pagination } from '@kition/tessera-ui'
 ```
 
 When to use:
@@ -1140,6 +1140,62 @@ const columns: TableColumn<Order>[] = [
 
 export default function Demo() {
   return <Table columns={columns} dataSource={ORDERS} rowKey="id" size="small" pagination={{ defaultPageSize: 8, showSizeChanger: true, pageSizeOptions: [8, 16, 32] }} />
+}
+```
+
+### Example: Selection, row actions, SelectionBar
+
+Row actions show while the pointer is over a row or focus is in it. SelectionBar floats at the bottom of the nearest positioned box; Escape in it clears the selection.
+
+```tsx
+import { useState, type Key } from 'react'
+import { Button, IconButton, SelectionBar, Table, type TableColumn } from '@kition/tessera-ui'
+import { CopyIcon, DownloadIcon, EllipsisIcon, FolderInputIcon, Share2Icon, StarIcon, TrashIcon } from '@kition/tessera-icons/react'
+
+type File = { id: string; name: string; owner: string; modified: string }
+
+const FILES: File[] = [
+  { id: 'f1', name: 'Q4 plan.docx', owner: 'Ada', modified: 'Today 10:12' },
+  { id: 'f2', name: 'Backlog.ktable', owner: 'Me', modified: 'Today 09:30' },
+  { id: 'f3', name: 'Roadmap review.pptx', owner: 'Grace', modified: 'Yesterday' },
+  { id: 'f4', name: 'Budget 2026.xlsx', owner: 'Me', modified: 'Yesterday' },
+  { id: 'f5', name: 'User research.pdf', owner: 'Alan', modified: 'Oct 28' },
+]
+
+const columns: TableColumn<File>[] = [
+  { key: 'name', title: 'Name', dataIndex: 'name', ellipsis: true },
+  { key: 'owner', title: 'Owner', dataIndex: 'owner', width: 110 },
+  { key: 'modified', title: 'Modified', dataIndex: 'modified', width: 140 },
+]
+
+export default function Demo() {
+  const [selected, setSelected] = useState<Key[]>(['f2'])
+  return (
+    <div style={{ position: 'relative', minHeight: 360 }}>
+      <Table
+        columns={columns}
+        dataSource={FILES}
+        rowKey="id"
+        pagination={false}
+        rowSelection={{ selectedKeys: selected, onChange: setSelected, rowLabel: (file) => `Select ${file.name}` }}
+        rowActions={(file) => (
+          <>
+            <IconButton icon={Share2Icon} label={`Share ${file.name}`} />
+            <IconButton icon={DownloadIcon} label={`Download ${file.name}`} />
+            <IconButton icon={StarIcon} label={`Star ${file.name}`} />
+            <IconButton icon={EllipsisIcon} label={`More for ${file.name}`} />
+          </>
+        )}
+      />
+      <SelectionBar count={selected.length} onClear={() => setSelected([])}>
+        <Button variant="ghost" size="sm"><Share2Icon size={16} />Share</Button>
+        <Button variant="ghost" size="sm"><DownloadIcon size={16} />Download</Button>
+        <Button variant="ghost" size="sm"><FolderInputIcon size={16} />Move</Button>
+        <Button variant="ghost" size="sm"><CopyIcon size={16} />Copy</Button>
+        <Button variant="ghost" size="sm"><TrashIcon size={16} />Delete</Button>
+      </SelectionBar>
+    </div>
+  )
 }
 ```
 
@@ -1185,7 +1241,23 @@ empty, and can pin columns and the header.
 | `sticky` | `boolean` |  | Keeps the header in view while the page scrolls. |
 | `scrollX` | `number \| string` |  | The table's least width; it scrolls sideways in a narrower container. |
 | `onRow` | `(record: T, index: number) => HTMLAttributes<HTMLTableRowElement>` |  |  |
+| `rowSelection` | `TableSelection<T>` |  | Selects records with check boxes; selected rows are marked. Pair it with SelectionBar for their actions. |
+| `rowActions` | `(record: T, index: number) => ReactNode` |  | A record's actions (icon buttons, a menu), at the row's end while the pointer is over the row or focus is in it. |
 | `caption` | `ReactNode` |  | Caption above the table, for its accessible name. |
+| `className` | `string` |  |  |
+| `testId` | `string` |  |  |
+
+### SelectionBar props
+
+Actions on the selected records, floating at the bottom of the nearest positioned box: the count,
+the actions, and a button that clears the selection. With Table's `rowSelection`, it replaces a
+row of links on every record.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `count` (required) | `number` |  | How many records are selected; with none the bar is not drawn. |
+| `children` (required) | `ReactNode` |  | The actions on the selection: Buttons (`variant="ghost"`) with an icon and a word. |
+| `onClear` (required) | `() => void` |  | Clears the selection: the close button, and Escape while focus is in the bar. |
 | `className` | `string` |  |  |
 | `testId` | `string` |  |  |
 
@@ -1609,6 +1681,90 @@ Sections of one page under a row of tabs; arrow keys move between tabs.
 | `extra` | `ReactNode` |  | Content at the end of the tab row (a filter, an action). |
 | `className` | `string` |  |  |
 | `testId` | `string` |  |  |
+
+## AppRail
+
+Navigation. A suite’s app switcher on the left edge: each app’s icon over its name, the open one marked, badges, the product mark above and the account below.
+
+```ts
+import { AppRail } from '@kition/tessera-ui'
+```
+
+When to use:
+
+- A product made of several apps (home, docs, wiki, inbox), each with its own sidebar.
+
+When not to:
+
+- The pages of one app: use NavMenu.
+- Kinds of file: filter a list by kind instead.
+
+### Example: Apps beside an app’s sidebar
+
+```tsx
+import { useState } from 'react'
+import { AppRail, Avatar, IconButton, NavMenu } from '@kition/tessera-ui'
+import { BookOpenIcon, ClockIcon, FolderIcon, InboxIcon, LayoutDashboardIcon, SettingsIcon, SparklesIcon, StarIcon, UsersIcon } from '@kition/tessera-icons/react'
+
+export default function Demo() {
+  const [app, setApp] = useState('docs')
+  const go = (set: (key: string) => void) => (href: string, props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { children: React.ReactNode }) => (
+    <a href={href} {...props} onClick={(event) => { event.preventDefault(); set(href.slice(1)) }} />
+  )
+  return (
+    <div style={{ display: 'flex', height: 460, border: '1px solid var(--kit-border)', borderRadius: 'var(--kit-radius-card)', overflow: 'hidden' }}>
+      <AppRail
+        label="Apps"
+        selectedKey={app}
+        renderLink={go(setApp)}
+        header={<div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--kit-primary)' }} />}
+        footer={
+          <>
+            <IconButton icon={SettingsIcon} label="Settings" />
+            <Avatar name="Ada Lovelace" size={28} />
+          </>
+        }
+        items={[
+          { key: 'home', label: 'Home', icon: LayoutDashboardIcon, href: '#home' },
+          { key: 'docs', label: 'Docs', icon: FolderIcon, href: '#docs' },
+          { key: 'wiki', label: 'Wiki', icon: BookOpenIcon, href: '#wiki' },
+          { key: 'inbox', label: 'Inbox', icon: InboxIcon, href: '#inbox', badge: 3 },
+          { key: 'ai', label: 'AI', icon: SparklesIcon, href: '#ai' },
+        ]}
+      />
+      <div style={{ width: 220, padding: 8, borderRight: '1px solid var(--kit-border)' }}>
+        <NavMenu
+          label="Docs"
+          selectedKey="mine"
+          items={[
+            { key: 'recent', label: 'Recent', icon: ClockIcon, href: '#recent' },
+            { key: 'mine', label: 'My files', icon: FolderIcon, href: '#mine' },
+            { key: 'shared', label: 'Shared with me', icon: UsersIcon, href: '#shared', badge: 2 },
+            { key: 'starred', label: 'Starred', icon: StarIcon, href: '#starred' },
+          ]}
+        />
+      </div>
+      <div style={{ flex: 1, padding: 16, color: 'var(--kit-text-muted)' }}>The {app} app</div>
+    </div>
+  )
+}
+```
+
+### AppRail props
+
+A suite's app switcher: a narrow rail on the left edge with each app's icon over its name, the
+open one marked, a badge on an icon, the product mark above and the account below. Each app has
+its own sidebar (NavMenu) beside the rail.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` (required) | `readonly AppRailItem[]` |  | The suite's apps, top to bottom. |
+| `selectedKey` | `string` |  | The open app's key. |
+| `header` | `ReactNode` |  | Above the apps: the product mark. |
+| `footer` | `ReactNode` |  | At the bottom: settings, the account. |
+| `renderLink` | `(href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode` |  | Draws a link; a router passes its own (`<Link to={href} … />`). A plain `<a>` by default. |
+| `label` (required) | `string` |  |  |
+| `className` | `string` |  |  |
 
 ## NavMenu
 

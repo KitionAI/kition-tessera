@@ -3352,6 +3352,87 @@ div.kui-divider::after {
   background: color-mix(in srgb, var(--kit-surface) 60%, transparent);
 }
 
+.kui-table .kui-table-select-col {
+  width: 40px;
+}
+
+.kui-table .kui-table-select {
+  width: 40px;
+  padding-right: 0;
+}
+
+.kui-table .kui-table-select input {
+  display: block;
+  margin: 0;
+  accent-color: var(--kit-primary);
+}
+
+.kui-table tbody tr[data-selected] > td {
+  background: color-mix(in srgb, var(--kit-primary) 7%, var(--kit-surface));
+}
+
+.kui-table .kui-table-actions {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.kui-table-row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  visibility: hidden;
+}
+
+.kui-table tbody tr:hover .kui-table-row-actions,
+.kui-table tbody tr:focus-within .kui-table-row-actions {
+  visibility: visible;
+}
+
+@media (hover: none) {
+  .kui-table-row-actions {
+    visibility: visible;
+  }
+}
+
+.kui-selection-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 6px 0 16px;
+  border-radius: var(--kit-radius-card);
+  background: var(--kit-text);
+  box-shadow: 0 16px 48px -8px rgba(15, 15, 15, 0.4);
+  color: var(--kit-surface);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.kui-selection-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.kui-selection-bar .kui-button,
+.kui-selection-bar .kui-icon-button {
+  border-color: transparent;
+  background: transparent;
+  color: inherit;
+}
+
+.kui-selection-bar .kui-button:hover:not(:disabled),
+.kui-selection-bar .kui-icon-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--kit-surface) 14%, transparent);
+  color: inherit;
+}
+
 /* Navigation: tabs and the sidebar menu. */
 .kui-tabs-bar {
   display: flex;
@@ -3482,6 +3563,93 @@ div.kui-divider::after {
 .kui-nav[data-collapsed] .kui-nav-label,
 .kui-nav[data-collapsed] .kui-nav-heading {
   display: none;
+}
+
+.kui-app-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 72px;
+  height: 100%;
+  padding: 14px 0 16px;
+  border-right: 1px solid var(--kit-border);
+  background: var(--kit-canvas);
+}
+
+.kui-app-rail ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kui-app-rail-header {
+  margin-bottom: 14px;
+}
+
+.kui-app-rail-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.kui-app-rail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 60px;
+  padding: 8px 2px 6px;
+  border-radius: var(--kit-radius-control);
+  color: var(--kit-text-muted);
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.kui-app-rail-item:hover {
+  background: var(--kui-hover);
+  color: var(--kit-text);
+}
+
+.kui-app-rail-item[aria-current='page'] {
+  background: var(--kit-surface);
+  box-shadow: 0 0 0 1px var(--kit-border);
+  color: var(--kit-primary);
+  font-weight: 600;
+}
+
+.kui-app-rail-icon {
+  position: relative;
+  display: inline-flex;
+}
+
+.kui-app-rail-badge {
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--kit-danger);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.kui-app-rail-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Form layouts, number and date inputs, and the confirmation popover. */

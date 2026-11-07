@@ -53,5 +53,11 @@
   "formMaxValue": "{label}不能大于 {max}",
   "noMatches": "没有匹配项",
   "clear": "清除",
-  "allChosen": "全部"
+  "allChosen": "全部",
+  "selectAllRows": "选择本页所有行",
+  "selectRow": "选择行",
+  "rowActions": "操作",
+  "selectionActions": "所选项的操作",
+  "selectedCount": "已选 {count} 项",
+  "clearSelection": "取消选择"
 }

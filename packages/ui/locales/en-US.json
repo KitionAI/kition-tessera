@@ -53,5 +53,11 @@
   "formMaxValue": "{label} must be at most {max}",
   "noMatches": "No matches",
   "clear": "Clear",
-  "allChosen": "All"
+  "allChosen": "All",
+  "selectAllRows": "Select all rows on this page",
+  "selectRow": "Select row",
+  "rowActions": "Actions",
+  "selectionActions": "Selection actions",
+  "selectedCount": "{count} selected",
+  "clearSelection": "Clear selection"
 }
