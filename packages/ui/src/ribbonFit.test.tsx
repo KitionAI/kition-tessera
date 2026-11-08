@@ -25,7 +25,7 @@ afterEach(() => {
   host = null
 })
 
-const fit = (size: RibbonFit['size'], collapsed: string[] = []): RibbonFit => ({ size, collapsed: new Set(collapsed) })
+const fit = (size: RibbonFit['size'], collapsed: string[] = [], icons: string[] = []): RibbonFit => ({ size, icons: new Set(icons), collapsed: new Set(collapsed) })
 
 function ribbon(value: RibbonFit) {
   return (
@@ -52,6 +52,10 @@ describe('RibbonFit', () => {
     // Single line's row keeps its own rule.
     expect(lineSize('primary', 'large', true, false, 'icon')).toBe('icon')
     expect(sizes(render(ribbon(fit('small'))))).toEqual(['Paste:small', 'Plain:small', 'Bold:small'])
+  })
+
+  it('draws the groups named in icons with icons alone while the others keep their size', () => {
+    expect(sizes(render(ribbon(fit('small', [], ['group:home/font']))))).toEqual(['Paste:small', 'Plain:small', 'Bold:icon'])
   })
 
   it('marks every group with its key and collapses the named ones to one button that opens the group whole', () => {

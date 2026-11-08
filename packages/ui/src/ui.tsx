@@ -210,12 +210,13 @@ export const LineMoreLabelContext = createContext<(group: string) => string>((gr
 /**
  * How a Classic ribbon that does not fit its width gives way, set by the editor frame, in steps as
  * Office's ribbon does: `size` `small` draws large buttons small, `icon` draws buttons with an icon
- * as the icon alone (the label stays their name and tooltip); `collapsed` names the groups (their
- * `id`, else their `label`) drawn as one button that opens the group whole in a panel. A panel
- * that shows a group whole draws it at full size again.
+ * as the icon alone (the label stays their name and tooltip); `icons` names the groups (their
+ * `id`, else their `label`) drawn with icons alone while the others keep `size`, and `collapsed`
+ * the groups drawn as one button that opens the group whole in a panel. A panel that shows a group
+ * whole draws it at full size again.
  */
-export type RibbonFit = { size: 'full' | 'small' | 'icon'; collapsed: ReadonlySet<string> }
-export const FULL_RIBBON_FIT: RibbonFit = Object.freeze({ size: 'full', collapsed: new Set<string>() })
+export type RibbonFit = { size: 'full' | 'small' | 'icon'; icons: ReadonlySet<string>; collapsed: ReadonlySet<string> }
+export const FULL_RIBBON_FIT: RibbonFit = Object.freeze({ size: 'full', icons: new Set<string>(), collapsed: new Set<string>() })
 export const RibbonFitContext = createContext<RibbonFit>(FULL_RIBBON_FIT)
 
 /** The key a ribbon group answers to in `RibbonFit.collapsed` and in its `data-ribbon-group` mark: its `id`, else its `label`. */
@@ -379,11 +380,20 @@ export function RibbonGroup({ id, label, icon, children }: { id?: string; label:
         {children}
       </LineGroup>
     )
-  if (fit.collapsed.has(ribbonGroupKey({ id, label })))
+  const key = ribbonGroupKey({ id, label })
+  if (fit.collapsed.has(key))
     return (
       <CollapsedGroup id={id} label={label} icon={icon} disabled={state?.disabled ?? false}>
         {children}
       </CollapsedGroup>
+    )
+  if (fit.icons.has(key) && fit.size !== 'icon')
+    return (
+      <RibbonFitContext.Provider value={{ ...fit, size: 'icon' }}>
+        <RibbonGroup id={id} label={label} icon={icon}>
+          {children}
+        </RibbonGroup>
+      </RibbonFitContext.Provider>
     )
   return (
     <div className="kui-ribbon-group" role="group" aria-label={label} data-kit-ui-id={id} data-ribbon-group={ribbonGroupKey({ id, label })}>
