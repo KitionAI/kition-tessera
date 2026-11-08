@@ -2749,7 +2749,7 @@ A persistent scrollbar for virtual viewports, with proportional thumb, pointer c
 
 ## Ribbon
 
-Editor chrome. Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line.
+Editor chrome. Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line, and a ribbon too wide for its window gives way in steps (RibbonFit): small buttons, icons alone, then groups collapsed to one button each.
 
 ```ts
 import { RibbonGroup, RibbonButton, RibbonStack, RibbonRow, RibbonItem, ColorGrid } from '@kition/tessera-ui'
@@ -2760,6 +2760,8 @@ When to use:
 - A kit’s Home, Insert, Format tabs.
 
 ### Example: Home tab
+
+Give each group an icon: it is the button the group collapses to when the ribbon has no room.
 
 ```tsx
 import { useState } from 'react'
@@ -2802,7 +2804,8 @@ export default function Demo() {
 A ribbon group. With an `id` (`group:<tab>/<group>`, or an engine menu path `menu:<Menu>/<Group>`
 for groups built from commands) it follows the UI configuration and ends with the host's
 buttons for it. In Single line it shows its primary items and a popover with the rest; `icon`
-marks the one button a group without primary items becomes there.
+marks the one button a group without primary items becomes there, and the button a Classic
+group collapses to when the ribbon has no room for it (`RibbonFit`).
 
 | Prop | Type | Default | Description |
 | --- | --- | --- | --- |

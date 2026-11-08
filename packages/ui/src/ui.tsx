@@ -208,6 +208,42 @@ export const RibbonPresentationContext = createContext<RibbonPresentation>('full
 export const LineMoreLabelContext = createContext<(group: string) => string>((group) => `More: ${group}`)
 
 /**
+ * How a Classic ribbon that does not fit its width gives way, set by the editor frame, in steps as
+ * Office's ribbon does: `size` `small` draws large buttons small, `icon` draws buttons with an icon
+ * as the icon alone (the label stays their name and tooltip); `collapsed` names the groups (their
+ * `id`, else their `label`) drawn as one button that opens the group whole in a panel. A panel
+ * that shows a group whole draws it at full size again.
+ */
+export type RibbonFit = { size: 'full' | 'small' | 'icon'; collapsed: ReadonlySet<string> }
+export const FULL_RIBBON_FIT: RibbonFit = Object.freeze({ size: 'full', collapsed: new Set<string>() })
+export const RibbonFitContext = createContext<RibbonFit>(FULL_RIBBON_FIT)
+
+/** The key a ribbon group answers to in `RibbonFit.collapsed` and in its `data-ribbon-group` mark: its `id`, else its `label`. */
+export function ribbonGroupKey(group: { id?: string; label: string }) {
+  return group.id ?? group.label
+}
+
+/** A group's content shown whole in a drop-down panel (a Single line group's rest, a collapsed Classic group). */
+function GroupPanel({ id, label, disabled, children }: { id?: string; label: string; disabled: boolean; children: ReactNode }) {
+  const ui = useElements()
+  return (
+    <RibbonPresentationContext.Provider value="full">
+      <RibbonFitContext.Provider value={FULL_RIBBON_FIT}>
+        <div className="kui-ribbon-group">
+          <div className="kui-ribbon-group-body">
+            <fieldset className="kui-element" disabled={disabled} role="presentation">
+              {children}
+              {id ? ui.renderExtras(id, 'ribbon') : null}
+            </fieldset>
+          </div>
+          <div className="kui-ribbon-group-label">{label}</div>
+        </div>
+      </RibbonFitContext.Provider>
+    </RibbonPresentationContext.Provider>
+  )
+}
+
+/**
  * What of a group's content reaches Single line's row: elements marked `primary` (ribbon buttons,
  * ribbon menus, `RibbonItem`s, and a kit's own component given `primary`, which then draws its
  * own primary items), found through fragments, plain elements (`div`s), `RibbonStack`, and
@@ -241,7 +277,6 @@ function primaryContent(children: ReactNode): ReactNode[] {
  * their place so the row does not move. Only `primary` content reaches the row (`primaryContent`).
  */
 function LineGroup({ id, label, icon: Icon, disabled, children }: { id?: string; label: string; icon?: IconComponent; disabled: boolean; children: ReactNode }) {
-  const ui = useElements()
   const moreLabel = useContext(LineMoreLabelContext)
   const inline = useRef<HTMLDivElement>(null)
   const anchor = useRef<HTMLSpanElement>(null)
@@ -287,17 +322,37 @@ function LineGroup({ id, label, icon: Icon, disabled, children }: { id?: string;
           </button>
         )}
         <DropPanel open={open} anchor={anchor} onClose={() => setOpen(false)} label={label} className="kui-line-popover" testId={`kui-line-popover-${key}`}>
-          <RibbonPresentationContext.Provider value="full">
-            <div className="kui-ribbon-group">
-              <div className="kui-ribbon-group-body">
-                <fieldset className="kui-element" disabled={disabled} role="presentation">
-                  {children}
-                  {id ? ui.renderExtras(id, 'ribbon') : null}
-                </fieldset>
-              </div>
-              <div className="kui-ribbon-group-label">{label}</div>
-            </div>
-          </RibbonPresentationContext.Provider>
+          <GroupPanel id={id} label={label} disabled={disabled}>
+            {children}
+          </GroupPanel>
+        </DropPanel>
+      </span>
+    </div>
+  )
+}
+
+/**
+ * A Classic group the ribbon has no room for (`RibbonFit.collapsed`): one button with its icon and
+ * label that opens the group whole in a panel, as Office collapses a group.
+ */
+function CollapsedGroup({ id, label, icon: Icon, disabled, children }: { id?: string; label: string; icon?: IconComponent; disabled: boolean; children: ReactNode }) {
+  const anchor = useRef<HTMLSpanElement>(null)
+  const [open, setOpen] = useState(false)
+  const key = ribbonGroupKey({ id, label })
+  return (
+    <div className="kui-ribbon-group kui-ribbon-group-collapsed" role="group" aria-label={label} data-kit-ui-id={id} data-ribbon-group={key}>
+      <span ref={anchor} style={{ display: 'inline-flex' }}>
+        <button type="button" className="kui-ribbon-button" data-size="large" title={label} aria-haspopup="dialog" aria-expanded={open} onClick={() => setOpen((value) => !value)} data-testid={`kui-ribbon-collapsed-${key}`}>
+          <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+            {Icon ? <Icon size={28} strokeWidth={ICON_STROKE} aria-hidden="true" /> : null}
+            <ChevronDown size={12} strokeWidth={ICON_STROKE} aria-hidden="true" />
+          </span>
+          <span>{label}</span>
+        </button>
+        <DropPanel open={open} anchor={anchor} onClose={() => setOpen(false)} label={label} className="kui-line-popover" testId={`kui-ribbon-collapsed-panel-${key}`}>
+          <GroupPanel id={id} label={label} disabled={disabled}>
+            {children}
+          </GroupPanel>
         </DropPanel>
       </span>
     </div>
@@ -308,11 +363,13 @@ function LineGroup({ id, label, icon: Icon, disabled, children }: { id?: string;
  * A ribbon group. With an `id` (`group:<tab>/<group>`, or an engine menu path `menu:<Menu>/<Group>`
  * for groups built from commands) it follows the UI configuration and ends with the host's
  * buttons for it. In Single line it shows its primary items and a popover with the rest; `icon`
- * marks the one button a group without primary items becomes there.
+ * marks the one button a group without primary items becomes there, and the button a Classic
+ * group collapses to when the ribbon has no room for it (`RibbonFit`).
  */
 export function RibbonGroup({ id, label, icon, children }: { id?: string; label: string; icon?: IconComponent; children: ReactNode }) {
   const ui = useElements()
   const presentation = useContext(RibbonPresentationContext)
+  const fit = useContext(RibbonFitContext)
   if (id) ui.drawn(id)
   const state = id ? ui.state(id) : null
   if (state?.hidden) return null
@@ -322,8 +379,14 @@ export function RibbonGroup({ id, label, icon, children }: { id?: string; label:
         {children}
       </LineGroup>
     )
+  if (fit.collapsed.has(ribbonGroupKey({ id, label })))
+    return (
+      <CollapsedGroup id={id} label={label} icon={icon} disabled={state?.disabled ?? false}>
+        {children}
+      </CollapsedGroup>
+    )
   return (
-    <div className="kui-ribbon-group" role="group" aria-label={label} data-kit-ui-id={id}>
+    <div className="kui-ribbon-group" role="group" aria-label={label} data-kit-ui-id={id} data-ribbon-group={ribbonGroupKey({ id, label })}>
       <div className="kui-ribbon-group-body">
         <fieldset className="kui-element" disabled={state?.disabled ?? false} role="presentation">
           {children}
@@ -372,8 +435,16 @@ export type RibbonButtonProps = ButtonProps & {
   lineLabel?: boolean
 }
 
-/** The size an item draws at: as given, except in Single line's row, where an item with an icon is the icon alone (unless `lineLabel`) and a large one is small. */
-export function lineSize(presentation: RibbonPresentation, size: 'large' | 'small' | 'icon', hasIcon: boolean, lineLabel?: boolean): 'large' | 'small' | 'icon' {
+/**
+ * The size an item draws at: as given, except in Single line's row, where an item with an icon is
+ * the icon alone (unless `lineLabel`) and a large one is small, and in a Classic ribbon giving way
+ * (`fit`), where a large one is small, then an item with an icon is the icon alone.
+ */
+export function lineSize(presentation: RibbonPresentation, size: 'large' | 'small' | 'icon', hasIcon: boolean, lineLabel?: boolean, fit: RibbonFit['size'] = 'full'): 'large' | 'small' | 'icon' {
+  if (presentation === 'full') {
+    if (fit === 'icon' && hasIcon) return 'icon'
+    return fit !== 'full' && size === 'large' ? 'small' : size
+  }
   if (presentation !== 'primary') return size
   if (hasIcon && !lineLabel) return 'icon'
   return size === 'large' ? 'small' : size
@@ -381,8 +452,9 @@ export function lineSize(presentation: RibbonPresentation, size: 'large' | 'smal
 
 export function RibbonButton({ icon: Icon, label, size = 'small', pressed, swatch, primary, lineLabel, ...props }: RibbonButtonProps) {
   const presentation = useContext(RibbonPresentationContext)
+  const fit = useContext(RibbonFitContext)
   if (presentation === 'primary' && !primary) return null
-  const shown = lineSize(presentation, size, Icon != null, lineLabel)
+  const shown = lineSize(presentation, size, Icon != null, lineLabel, fit.size)
   const iconSize = shown === 'large' ? 28 : 16
   return (
     <button type="button" className="kui-ribbon-button" data-size={shown} data-primary={primary || undefined} aria-pressed={pressed} aria-label={label} title={label} {...props}>

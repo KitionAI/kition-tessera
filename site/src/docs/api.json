@@ -3103,7 +3103,7 @@
   "domProps": true
  },
  "RibbonGroup": {
-  "description": "A ribbon group. With an `id` (`group:<tab>/<group>`, or an engine menu path `menu:<Menu>/<Group>`\nfor groups built from commands) it follows the UI configuration and ends with the host's\nbuttons for it. In Single line it shows its primary items and a popover with the rest; `icon`\nmarks the one button a group without primary items becomes there.",
+  "description": "A ribbon group. With an `id` (`group:<tab>/<group>`, or an engine menu path `menu:<Menu>/<Group>`\nfor groups built from commands) it follows the UI configuration and ends with the host's\nbuttons for it. In Single line it shows its primary items and a popover with the rest; `icon`\nmarks the one button a group without primary items becomes there, and the button a Classic\ngroup collapses to when the ribbon has no room for it (`RibbonFit`).",
   "props": [
    {
     "name": "id",

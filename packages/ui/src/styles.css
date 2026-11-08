@@ -1019,6 +1019,16 @@ select.kui-ribbon-field:disabled {
   border-right: 0;
 }
 
+/* A Classic group collapsed to one button (RibbonFit.collapsed): the button fills the group's height. */
+.kui-ribbon-group-collapsed {
+  justify-content: center;
+}
+
+.kui-ribbon-group-collapsed[aria-expanded='true'],
+.kui-ribbon-group-collapsed .kui-ribbon-button[aria-expanded='true'] {
+  background: var(--kui-hover);
+}
+
 /* DockArea: a column of panel groups, each a tab strip and the active tab's content. */
 
 .kui-dock {
