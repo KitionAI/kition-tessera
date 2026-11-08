@@ -86,6 +86,13 @@
     "doc": "At the bottom: settings, the account."
    },
    {
+    "name": "compact",
+    "type": "boolean",
+    "required": false,
+    "default": null,
+    "doc": "Icons only: each app's name becomes its tooltip, and stays its accessible name."
+   },
+   {
     "name": "renderLink",
     "type": "(href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode",
     "required": false,

@@ -44,7 +44,7 @@
 ## Navigation
 
 - [Tabs](https://tessera.kition.ai/docs/tabs/): Sections of one page under a row of tabs; arrow keys move between them.
-- [AppRail](https://tessera.kition.ai/docs/app-rail/): A suite’s app switcher on the left edge: each app’s icon over its name, the open one marked, badges, the product mark above and the account below.
+- [AppRail](https://tessera.kition.ai/docs/app-rail/): A suite’s app switcher on the left edge: each app’s icon over its name, the open one marked, badges, the product mark above and the account below; compact shows icons only, each name as its tooltip.
 - [NavMenu](https://tessera.kition.ai/docs/nav-menu/): An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.
 - [Pagination](https://tessera.kition.ai/docs/pagination/): The pages of a long list on the server: the range shown, page buttons, and a page size.
 

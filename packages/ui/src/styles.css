@@ -3647,6 +3647,17 @@ div.kui-divider::after {
   line-height: 16px;
 }
 
+.kui-app-rail[data-compact] {
+  width: 56px;
+}
+
+.kui-app-rail[data-compact] .kui-app-rail-item {
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  padding: 0;
+}
+
 .kui-app-rail-label {
   max-width: 100%;
   overflow: hidden;

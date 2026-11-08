@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { AppRail, Avatar, IconButton, NavMenu } from '@kition/tessera-ui'
+import { AppRail, Avatar, IconButton, NavMenu, Switch } from '@kition/tessera-ui'
 import { BookOpenIcon, ClockIcon, FolderIcon, InboxIcon, LayoutDashboardIcon, SettingsIcon, SparklesIcon, StarIcon, UsersIcon } from '@kition/tessera-icons/react'
 
 export default function Demo() {
   const [app, setApp] = useState('docs')
+  const [compact, setCompact] = useState(false)
   const go = (set: (key: string) => void) => (href: string, props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { children: React.ReactNode }) => (
     <a href={href} {...props} onClick={(event) => { event.preventDefault(); set(href.slice(1)) }} />
   )
@@ -11,6 +12,7 @@ export default function Demo() {
     <div style={{ display: 'flex', height: 460, border: '1px solid var(--kit-border)', borderRadius: 'var(--kit-radius-card)', overflow: 'hidden' }}>
       <AppRail
         label="Apps"
+        compact={compact}
         selectedKey={app}
         renderLink={go(setApp)}
         header={<div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--kit-primary)' }} />}
@@ -40,7 +42,10 @@ export default function Demo() {
           ]}
         />
       </div>
-      <div style={{ flex: 1, padding: 16, color: 'var(--kit-text-muted)' }}>The {app} app</div>
+      <div style={{ flex: 1, padding: 16, color: 'var(--kit-text-muted)' }}>
+        <label style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}><Switch checked={compact} onCheckedChange={setCompact} /> Icons only</label>
+        <p>The {app} app</p>
+      </div>
     </div>
   )
 }

@@ -150,6 +150,8 @@ export type AppRailProps = {
   header?: ReactNode
   /** At the bottom: settings, the account. */
   footer?: ReactNode
+  /** Icons only: each app's name becomes its tooltip, and stays its accessible name. */
+  compact?: boolean
   /** Draws a link; a router passes its own (`<Link to={href} … />`). A plain `<a>` by default. */
   renderLink?: (href: string, props: AnchorHTMLAttributes<HTMLAnchorElement> & { children: ReactNode }) => ReactNode
   label: string
@@ -161,9 +163,9 @@ export type AppRailProps = {
  * open one marked, a badge on an icon, the product mark above and the account below. Each app has
  * its own sidebar (NavMenu) beside the rail.
  */
-export function AppRail({ items, selectedKey, header, footer, renderLink, label, className }: AppRailProps) {
+export function AppRail({ items, selectedKey, header, footer, compact, renderLink, label, className }: AppRailProps) {
   return (
-    <nav className={join('kui-app-rail', className)} aria-label={label}>
+    <nav className={join('kui-app-rail', className)} aria-label={label} data-compact={compact || undefined}>
       {header ? <div className="kui-app-rail-header">{header}</div> : null}
       <ul>
         {items.map((item) => {
@@ -171,13 +173,14 @@ export function AppRail({ items, selectedKey, header, footer, renderLink, label,
           const props = {
             className: 'kui-app-rail-item',
             'aria-current': item.key === selectedKey ? ('page' as const) : undefined,
+            title: compact && typeof item.label === 'string' ? item.label : undefined,
             children: (
               <>
                 <span className="kui-app-rail-icon">
                   <Icon size={20} strokeWidth={ICON_STROKE} aria-hidden="true" />
                   {item.badge !== undefined ? <span className="kui-app-rail-badge">{item.badge}</span> : null}
                 </span>
-                <span className="kui-app-rail-label">{item.label}</span>
+                <span className={compact ? 'kui-app-rail-label kui-visually-hidden' : 'kui-app-rail-label'}>{item.label}</span>
               </>
             ),
           }

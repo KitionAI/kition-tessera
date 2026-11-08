@@ -95,6 +95,15 @@ describe('AppRail', () => {
     expect(out.querySelector('.kui-app-rail-header img')?.getAttribute('alt')).toBe('Kition')
     expect(out.querySelector('.kui-app-rail-footer button')?.textContent).toBe('Settings')
   })
+
+  it('shows icons only when compact, each name kept as the tooltip and the accessible name', () => {
+    const out = render(<AppRail label="Apps" compact selectedKey="docs" items={[{ key: 'docs', label: 'Docs', icon: FolderIcon, href: '/docs' }]} />)
+    expect(out.querySelector('nav')?.dataset.compact).toBe('true')
+    const item = out.querySelector('.kui-app-rail-item') as HTMLAnchorElement
+    expect(item.title).toBe('Docs')
+    expect(item.textContent).toBe('Docs')
+    expect(item.querySelector('.kui-app-rail-label')?.classList.contains('kui-visually-hidden')).toBe(true)
+  })
 })
 
 describe('Segmented', () => {
