@@ -314,7 +314,7 @@ function IconDetail({ name, stroke, accent, onClose, onPick }: { name: string; s
     react: `import { ${component} } from '@kition/tessera-icons/react'\n\n<${component} size={16} />`,
     svg: toSvg(icon, { size: 24, strokeWidth: stroke }),
     canvas: `import { ${pascal(name)}, drawIcon } from '@kition/tessera-icons'\n\ndrawIcon(ctx, ${pascal(name)}, x, y, { size: 16 })`,
-    rust: `use tessera_icons::${name.replace(/-/g, '_').toUpperCase()};\n\nfor path in ${name.replace(/-/g, '_').toUpperCase()}.paths { /* stroke it */ }`,
+    rust: `use kition_tessera_icons::${name.replace(/-/g, '_').toUpperCase()};\n\nfor path in ${name.replace(/-/g, '_').toUpperCase()}.paths { /* stroke it */ }`,
   }
   const info = ICON_SEARCH[name]
   const related = useMemo(() => ICON_NAMES.filter((other) => other !== name && other.split('-')[0] === name.split('-')[0]).slice(0, 8), [name])
@@ -422,7 +422,7 @@ function Picked({ names, onClear }: { names: string[]; onClear: () => void }) {
       <Button variant="secondary" size="sm" onClick={() => copy(names.join('\n'), 'Names copied')}>
         Copy names
       </Button>
-      <Button variant="secondary" size="sm" onClick={() => download('tessera-icons.svg', new Blob([sprite()], { type: 'image/svg+xml' }))}>
+      <Button variant="secondary" size="sm" onClick={() => download('kition-tessera-icons.svg', new Blob([sprite()], { type: 'image/svg+xml' }))}>
         <DownloadIcon size={15} /> SVG sprite
       </Button>
       <Button variant="ghost" size="sm" onClick={onClear}>

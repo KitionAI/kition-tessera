@@ -35,7 +35,7 @@ export const DOCS: DocEntry[] = [
         heading: 'Three packages',
         body: [
           '`@kition/tessera-tokens`: the Kit Harness Protocol theme tokens (`--kit-*`), component tokens, and skins (Paper, Graphite) as CSS variables, TypeScript, and Rust.',
-          '`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `tessera-icons` for engines.',
+          '`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `kition-tessera-icons` for engines.',
           '`@kition/tessera-ui`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.',
         ],
         code: "import '@kition/tessera-ui/styles.css'\nimport { Button, ColorPicker } from '@kition/tessera-ui'\nimport { LayersIcon } from '@kition/tessera-icons/react'",

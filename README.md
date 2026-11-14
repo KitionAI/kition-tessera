@@ -92,8 +92,8 @@ one suite and any host can reskin them all at once.
 | [`@kition/tessera-tokens`](packages/tokens) | Design tokens as CSS variables and TypeScript; the Paper and Graphite skins as themes |
 | [`@kition/tessera-icons`](packages/icons) | Tessera Icons: path data, React components, canvas drawing, SVG markup; kit app icons |
 | [`@kition/tessera-ui`](packages/ui) | Components: base controls, forms, data display, ribbon, dock and floating panels, color, curves, timeline controls |
-| [`tessera-tokens`](crates/tessera-tokens) (Rust) | The same tokens for engines that draw on the canvas |
-| [`tessera-icons`](crates/tessera-icons) (Rust) | The same icons for engines |
+| [`kition-tessera-tokens`](crates/kition-tessera-tokens) (Rust) | The same tokens for engines that draw on the canvas |
+| [`kition-tessera-icons`](crates/kition-tessera-icons) (Rust) | The same icons for engines |
 
 All five share one version, now 0.1.0.
 

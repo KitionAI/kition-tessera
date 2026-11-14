@@ -3,7 +3,7 @@
 The design tokens of [Kition Tessera](https://tessera.kition.ai), the design system for
 professional editors: the Kit Harness Protocol theme tokens (`--kit-*`), Tessera's component
 tokens, and the Paper and Graphite skins, as CSS variables and TypeScript. The Rust crate
-`tessera-tokens` holds the same values.
+`kition-tessera-tokens` holds the same values.
 
 ```ts
 import '@kition/tessera-tokens/tokens.css' // the Paper values on :root

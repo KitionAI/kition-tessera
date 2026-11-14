@@ -10,8 +10,8 @@ body:
         - '@kition/tessera-ui (components)'
         - '@kition/tessera-icons'
         - '@kition/tessera-tokens'
-        - tessera-icons (Rust)
-        - tessera-tokens (Rust)
+        - kition-tessera-icons (Rust)
+        - kition-tessera-tokens (Rust)
     validations:
       required: true
   - type: input

@@ -10,7 +10,7 @@ Getting started. Kition Tessera is the design system for professional editors: d
 
 `@kition/tessera-tokens`: the Kit Harness Protocol theme tokens (`--kit-*`), component tokens, and skins (Paper, Graphite) as CSS variables, TypeScript, and Rust.
 
-`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `tessera-icons` for engines.
+`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `kition-tessera-icons` for engines.
 
 `@kition/tessera-ui`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.
 
@@ -3840,7 +3840,7 @@ disabled. A `fieldset` disables every control inside it without each control kno
 
 Every value a Tessera component draws with is a CSS variable. The 15 theme tokens are the Kit Harness Protocol's (Kit UI protocol, section 4): a host sends them in `ui/initialize` and `ui/theme`, and every kit that follows the protocol takes the skin. The component tokens are Tessera's own layout values. A skin (Paper, Graphite) is one value per theme token.
 
-Package: `@kition/tessera-tokens` (CSS variables, TypeScript) and the Rust crate `tessera-tokens` · [On the site](https://tessera.kition.ai/tokens/) · [Theming guide](guides/theming.md)
+Package: `@kition/tessera-tokens` (CSS variables, TypeScript) and the Rust crate `kition-tessera-tokens` · [On the site](https://tessera.kition.ai/tokens/) · [Theming guide](guides/theming.md)
 
 ```ts
 import '@kition/tessera-tokens/tokens.css' // the Paper values on :root

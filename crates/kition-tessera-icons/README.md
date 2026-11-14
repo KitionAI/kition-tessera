@@ -1,4 +1,4 @@
-# tessera-icons
+# kition-tessera-icons
 
 Tessera Icons, the icon set of [Kition Tessera](https://tessera.kition.ai), for engines: every
 icon as SVG path data on a 24 × 24 grid, generated from the same source as the npm package

@@ -2,7 +2,7 @@
 
 Every value a Tessera component draws with is a CSS variable. The 15 theme tokens are the Kit Harness Protocol's (Kit UI protocol, section 4): a host sends them in `ui/initialize` and `ui/theme`, and every kit that follows the protocol takes the skin. The component tokens are Tessera's own layout values. A skin (Paper, Graphite) is one value per theme token.
 
-Package: `@kition/tessera-tokens` (CSS variables, TypeScript) and the Rust crate `tessera-tokens` · [On the site](https://tessera.kition.ai/tokens/) · [Theming guide](guides/theming.md)
+Package: `@kition/tessera-tokens` (CSS variables, TypeScript) and the Rust crate `kition-tessera-tokens` · [On the site](https://tessera.kition.ai/tokens/) · [Theming guide](guides/theming.md)
 
 ```ts
 import '@kition/tessera-tokens/tokens.css' // the Paper values on :root

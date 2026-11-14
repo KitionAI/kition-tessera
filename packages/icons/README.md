@@ -2,7 +2,7 @@
 
 Tessera Icons, the icon set of [Kition Tessera](https://tessera.kition.ai): every icon is a list
 of SVG path strings on a 24 × 24 grid, so React, a canvas `Path2D`, and Rust draw the same
-shape. The Rust crate `tessera-icons` holds the same icons.
+shape. The Rust crate `kition-tessera-icons` holds the same icons.
 
 ```tsx
 import { LayersIcon } from '@kition/tessera-icons/react'

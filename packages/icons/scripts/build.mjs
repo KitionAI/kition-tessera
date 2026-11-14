@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Builds Tessera Icons from `icons.json`: every icon as path strings in TypeScript
- * (`src/generated/`) and in the `tessera-icons` crate (`src/generated.rs`), React components, and
+ * (`src/generated/`) and in the `kition-tessera-icons` crate (`src/generated.rs`), React components, and
  * the list of kit icons in `kit/`. `--check` writes nothing and fails when a file is out of date.
  */
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
@@ -176,7 +176,7 @@ const outputs = [
   [join(pkg, 'src', 'generated', 'icons.ts'), iconsTs],
   [join(pkg, 'src', 'generated', 'registry.ts'), registryTs],
   [join(pkg, 'src', 'generated', 'react.ts'), reactTs],
-  [join(root, 'crates', 'tessera-icons', 'src', 'generated.rs'), rust],
+  [join(root, 'crates', 'kition-tessera-icons', 'src', 'generated.rs'), rust],
 ]
 
 const check = process.argv.includes('--check')

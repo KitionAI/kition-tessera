@@ -17,7 +17,7 @@ API is public and changes deliberately.
 ## Tokens
 
 - `packages/tokens/tokens/*.tokens.json` is the only source of token values. Never edit the
-  generated files (`packages/tokens/src/generated/`, `crates/tessera-tokens/src/generated.rs`);
+  generated files (`packages/tokens/src/generated/`, `crates/kition-tessera-tokens/src/generated.rs`);
   run `pnpm build:tokens`.
 - Tokens marked `khp` are the Kit Harness Protocol theme tokens (Kit UI protocol, section 4).
   Their names belong to the protocol: add, rename, or remove one only through a KHP proposal, in
@@ -31,7 +31,7 @@ API is public and changes deliberately.
 ## Icons
 
 - `packages/icons/icons.json` lists the set. Never edit the generated files
-  (`packages/icons/src/generated/`, `crates/tessera-icons/src/generated.rs`); run
+  (`packages/icons/src/generated/`, `crates/kition-tessera-icons/src/generated.rs`); run
   `pnpm build:icons`.
 - `packages/icons/keywords.json` gives every icon its category and the words people call it by
   (English; Chinese in `zh`): a new icon needs an entry, or the build fails. The site's search

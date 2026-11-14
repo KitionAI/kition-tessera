@@ -642,7 +642,7 @@ const PACKAGES: { name: string; icon: IconComponent; title: string; text: string
     title: 'Tokens',
     text: 'The Kit Harness Protocol theme tokens, component tokens, and the Paper and Graphite skins, from one JSON source.',
     code: "import '@kition/tessera-tokens/tokens.css'\nimport { skinTheme }\n  from '@kition/tessera-tokens'\n\nconst theme = skinTheme('graphite')",
-    also: 'CSS variables · TypeScript · Rust crate tessera-tokens',
+    also: 'CSS variables · TypeScript · Rust crate kition-tessera-tokens',
     href: '/tokens/',
   },
   {
@@ -651,7 +651,7 @@ const PACKAGES: { name: string; icon: IconComponent; title: string; text: string
     title: 'Icons',
     text: 'Every icon as SVG path data on a 24 grid, so React, a canvas, and a Rust engine draw the same shape.',
     code: "import { LayersIcon }\n  from '@kition/tessera-icons/react'\n\n<LayersIcon size={16} />\ndrawIcon(ctx, Layers, 8, 8, { size: 16 })",
-    also: 'React · Canvas · SVG · Rust crate tessera-icons',
+    also: 'React · Canvas · SVG · Rust crate kition-tessera-icons',
     href: '/icons/',
   },
   {

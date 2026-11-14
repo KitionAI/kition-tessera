@@ -2,7 +2,7 @@
 
 598 icons and 16 kit app icons. Each icon is SVG path data on a 24 × 24 grid, stroked at 1.5 with round caps and joins, so React, a canvas, and a Rust engine draw the same shape.
 
-Package: `@kition/tessera-icons` and the Rust crate `tessera-icons` · [Search them on the site](https://tessera.kition.ai/icons/) · [Icons guide](guides/icons-guide.md)
+Package: `@kition/tessera-icons` and the Rust crate `kition-tessera-icons` · [Search them on the site](https://tessera.kition.ai/icons/) · [Icons guide](guides/icons-guide.md)
 
 ```tsx
 import { LayersIcon } from '@kition/tessera-icons/react'

@@ -3,9 +3,9 @@
 version = 4
 
 [[package]]
-name = "tessera-icons"
+name = "kition-tessera-icons"
 version = "0.1.0"
 
 [[package]]
-name = "tessera-tokens"
+name = "kition-tessera-tokens"
 version = "0.1.0"
