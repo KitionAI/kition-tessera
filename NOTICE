@@ -1,0 +1,23 @@
+Kition Tessera
+Copyright 2026 Kition AI
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Tessera Icons includes icons drawn from Lucide (https://lucide.dev), under the ISC License, some
+of them derived from Feather under the MIT License. See packages/icons/NOTICE and
+packages/icons/LICENSE-lucide.
+
+The documentation site bundles React and React DOM (Meta Platforms, Inc. and affiliates),
+Radix UI primitives (WorkOS), cmdk (Paco Coursey), and their runtime dependencies under their
+respective MIT licenses, plus Microsoft's tslib under 0BSD. The site build includes each
+bundled dependency's name, version,
+license, and complete copyright and permission notices in THIRD_PARTY_LICENSES.txt at the
+site root. npm packages import these dependencies rather than bundling their code.
+
+No font files are distributed: the styles use fonts installed on the reader's system.
+The images in assets/readme/ are screenshots of Tessera's own documentation site. The UI
+components are Kition's code; Radix UI and cmdk are imported dependencies, not copied sources.
+
+"Kition", "Tessera", and the kit app icons in packages/icons/kit/ are trademarks of Kition AI.
+The license above does not grant permission to use them, except to describe the origin of this
+software.

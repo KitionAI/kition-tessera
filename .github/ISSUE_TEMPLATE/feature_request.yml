@@ -1,0 +1,27 @@
+name: Request
+description: A missing icon, a new component, or a change to an existing one.
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - Icon
+        - Component
+        - Token or skin
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: What are you building, and what is missing?
+      description: The editor or tool this is for, and what you do today instead.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: For an icon, the action it stands for and a name (`<object>-<variant>`). For a component, how it would be used.

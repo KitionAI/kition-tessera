@@ -1,0 +1,76 @@
+# Confirm
+
+`useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
+
+Category: Menus and overlays · Package: `@kition/tessera-ui` · [Live examples](https://tessera.kition.ai/docs/confirm/)
+
+```ts
+import { ConfirmProvider } from '@kition/tessera-ui'
+```
+
+## When to use
+
+- Before deleting or discarding.
+
+## When not to
+
+- Questions with more than two answers: use Modal.
+
+## Example: Delete
+
+A danger confirm puts focus on Cancel.
+
+```tsx
+import { useState } from 'react'
+import { Button, ConfirmProvider, useConfirm } from '@kition/tessera-ui'
+
+function DeleteButton() {
+  const confirm = useConfirm()
+  const [result, setResult] = useState('')
+  return (
+    <div className="demo-row">
+      <Button
+        variant="danger"
+        size="md"
+        onClick={async () => {
+          const ok = await confirm({ title: 'Delete this table?', message: 'Its 240 records go to the trash for 30 days.', confirmLabel: 'Delete', variant: 'danger' })
+          setResult(ok ? 'Deleted' : 'Kept')
+        }}
+      >
+        Delete table
+      </Button>
+      <span>{result}</span>
+    </div>
+  )
+}
+
+export default function Demo() {
+  return (
+    <ConfirmProvider>
+      <DeleteButton />
+    </ConfirmProvider>
+  )
+}
+```
+
+## ConfirmProvider props
+
+Lets `useConfirm` ask from anywhere inside it; asks queue and show one at a time.
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` |  |  |
+
+## See also
+
+- [MenuButton](menu-button.md): A button that opens a menu of MenuItems, with shortcuts and check marks.
+- [ContextMenu](context-menu.md): A menu at a point, for right-clicks.
+- [Dialog](dialog.md): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
+- [PreviewDialog](preview-dialog.md): A dialog whose values preview live in the document: the kit supplies begin, update and end.
+- [Toast](toast.md): A short notice at the top. Render Toaster once; call toast() or toast.success(), .error(), .loading(), .promise() anywhere, with an id to replace a notice and an action button.
+- [Modal](modal.md): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
+- [Tooltip](tooltip.md): A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
+- [Popover](popover.md): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
+- [Sheet](sheet.md): A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes; from the left, it holds an app’s navigation on a phone.
+- [Command](command.md): A searchable list of commands or choices: type to filter, arrows and Enter to pick.
+- [DropPanel](drop-panel.md): A popover anchored to an element, closing on a press outside or Escape.

@@ -1,0 +1,237 @@
+/**
+ * The component docs: one entry per page, grouped for the sidebar. Each names the demos it shows
+ * (files in ./demos, whose own source is shown under them) and the components whose API tables it
+ * lists (read from api.json, generated from the package's types). Guides are prose pages.
+ */
+
+export type DocEntry = {
+  id: string
+  title: string
+  category: string
+  /** One sentence: what it is. */
+  summary: string
+  when?: string[]
+  whenNot?: string[]
+  demos?: { id: string; title: string; note?: string }[]
+  /** Components whose props tables the page lists. */
+  api?: string[]
+  /** What the keyboard does when the component has the focus: the keys, then what they do. */
+  keyboard?: [keys: string, action: string][]
+  /** Prose sections for guides: a heading and paragraphs (inline `code` allowed). */
+  sections?: { heading: string; body: string[]; code?: string }[]
+}
+
+export const CATEGORIES = ['Getting started', 'General', 'Forms', 'Data display', 'Navigation', 'Menus and overlays', 'Editor chrome', 'Workspace', 'Color', 'Media and time', 'Integration'] as const
+
+export const DOCS: DocEntry[] = [
+  // Getting started
+  {
+    id: 'overview',
+    title: 'Overview',
+    category: 'Getting started',
+    summary: 'Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.',
+    sections: [
+      {
+        heading: 'Three packages',
+        body: [
+          '`@kition/tessera-tokens`: the Kit Harness Protocol theme tokens (`--kit-*`), component tokens, and skins (Paper, Graphite) as CSS variables, TypeScript, and Rust.',
+          '`@kition/tessera-icons`: every icon as SVG path data on a 24 grid, as React components (`LayersIcon`), canvas drawing (`drawIcon`), SVG markup (`toSvg`), and the Rust crate `tessera-icons` for engines.',
+          '`@kition/tessera-ui`: the components on these pages. They draw only through the theme tokens, so a host restyles all of them by sending one theme.',
+        ],
+        code: "import '@kition/tessera-ui/styles.css'\nimport { Button, ColorPicker } from '@kition/tessera-ui'\nimport { LayersIcon } from '@kition/tessera-icons/react'",
+      },
+      {
+        heading: 'Principles',
+        body: [
+          'Built for professional software: ribbons, docks, colour wheels, curves, timelines and meters sit beside buttons and fields.',
+          'Styled only by tokens: no component hard-codes a colour, radius or shadow; skins and hosts change them all.',
+          'One icon family: a 24 grid, a 1.5 stroke, round caps; tool icons carry accents in the skin colour.',
+          'Accessible by default: labels, keyboard use, focus rings, and every skin held to WCAG AA contrast.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'installation',
+    title: 'Installation',
+    category: 'Getting started',
+    summary: 'Add the packages, import one stylesheet, and draw a first component; then apply a skin and give the components your strings.',
+    sections: [
+      {
+        heading: 'Install',
+        body: [
+          'Components need React 19 or later. `@kition/tessera-ui` brings the tokens and the icons with it; add `@kition/tessera-icons` to import icons yourself, and `@kition/tessera-tokens` to read skins in code.',
+          'The npm distributions contain compiled ES modules, TypeScript declarations, stylesheets, and public assets. Use them in a React app with a bundler such as Vite. A linked checkout uses TypeScript source for local development; pnpm pack selects built output for npm.',
+        ],
+        code: 'pnpm add @kition/tessera-ui @kition/tessera-icons @kition/tessera-tokens',
+      },
+      {
+        heading: 'First component',
+        body: ['Import the stylesheet once, at the root of the app; it carries the Paper skin’s token values, so components draw without any other setup. Class names start with `kui-`.'],
+        code: "import '@kition/tessera-ui/styles.css'\nimport { Button, IconButton } from '@kition/tessera-ui'\nimport { LayersIcon } from '@kition/tessera-icons/react'\n\nexport function Toolbar() {\n  return (\n    <>\n      <IconButton icon={LayersIcon} label=\"Layers\" />\n      <Button variant=\"primary\">Save</Button>\n    </>\n  )\n}",
+      },
+      {
+        heading: 'Apply a skin',
+        body: [
+          'A skin is a colour scheme and one value per theme token. Set the tokens on the document root (or on any element, to skin only what is inside it) and mark the colour scheme. A kit does not do this itself: its host sends the theme (see Theming and skins).',
+        ],
+        code: "import { SKINS } from '@kition/tessera-tokens'\n\nconst theme = SKINS.graphite\nconst root = document.documentElement\nfor (const [name, value] of Object.entries(theme.tokens)) root.style.setProperty(name, value)\nroot.dataset.colorScheme = theme.colorScheme",
+      },
+      {
+        heading: 'Strings',
+        body: ['Without a provider, components speak English. Wrap the app in `StringsProvider` for another language (`zh-CN` is included) or your own wording; see Strings and elements.'],
+        code: "import { StringsProvider, TESSERA_CATALOGS, createStrings } from '@kition/tessera-ui'\n\n<StringsProvider strings={createStrings(TESSERA_CATALOGS, 'zh-CN')}>\n  <App />\n</StringsProvider>",
+      },
+      {
+        heading: 'Rules for code that uses Tessera',
+        body: [
+          'Take colours, radii, fonts and shadows from the tokens (`var(--kit-primary)`), never as literals, so every skin applies.',
+          'Use the Tessera component when there is one (Button, IconButton, Modal, Popover, Select, NumberField) instead of styling a raw element.',
+          'Give every icon-only control a label; take icons from Tessera Icons so strokes match.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'ai',
+    title: 'Building with an AI assistant',
+    category: 'Getting started',
+    summary: 'Give a coding assistant Tessera’s docs as Markdown, and it writes an editor’s interface with the right components, props and tokens.',
+    sections: [
+      {
+        heading: 'What to give it',
+        body: [
+          'Every guide and component page is also a Markdown file with the same content: what the component is, when to use it and when not to, each example as a complete file, and its props with their types and values.',
+          'An assistant that reads the web: point it at `https://tessera.kition.ai/llms.txt` (an index, one line per page, each linking to its Markdown) or at `https://tessera.kition.ai/llms-full.txt` (the whole reference in one file).',
+          'An assistant that works in your repository: check out kition-tessera next to your project and let it read `docs/README.md`, then `docs/components/<name>.md` for the component it needs, `docs/icons.md` to find an icon by what it means, and `docs/tokens.md` for the tokens.',
+          'On this site, every page has a Copy for AI button: the page as Markdown, or a prompt that points at it.',
+        ],
+      },
+      {
+        heading: 'A prompt that works',
+        body: ['Name the components you expect, point at the docs, and state the three rules. Assistants follow rules that are written down.'],
+        code: "Build the layers panel of a photo editor with Kition Tessera.\n\nRead first: https://tessera.kition.ai/llms-full.txt\nUse Panel, PanelFooter, EyeButton, Thumbnail, IconButton and NumberField from @kition/tessera-ui,\nand icons from @kition/tessera-icons/react.\n\nRules:\n- Use a Tessera component where there is one; do not style a raw <button> or <input>.\n- Take every colour, radius, font and shadow from the --kit-* tokens, never as a literal.\n- Give every icon-only control a label.",
+      },
+      {
+        heading: 'Check what it wrote',
+        body: [
+          'Colours: search the result for `#` and `rgb(`. A literal colour in interface code means the skin will not apply there; it should be `var(--kit-surface)`, `var(--kit-text-muted)`, `var(--kit-primary)` and the like.',
+          'Components: a raw `<button className=…>` with its own styles is a Button, an IconButton or a RibbonButton that was missed.',
+          'Icons: imports come from `@kition/tessera-icons/react`, named as on the Icons page (`layer-add` is `LayerAddIcon`). An icon the assistant made up will not compile; search the Icons page by meaning for the real one.',
+          'Skins: open the result in the Paper and the Graphite skin. Anything that stays light in Graphite is a hard-coded value.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'theming',
+    title: 'Theming and skins',
+    category: 'Getting started',
+    summary: 'A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.',
+    sections: [
+      {
+        heading: 'The theme',
+        body: [
+          'Hosts send `theme` in `ui/initialize` and `ui/theme`: a colour scheme and the 15 `--kit-*` theme tokens, applied to the document root; components read them through CSS variables. An app that is not a kit sets the same variables in its own stylesheet.',
+          '`@kition/tessera-tokens` gives every skin’s theme ready to send (`SKINS.paper`, `SKINS.graphite`), and its tests hold each skin to WCAG AA.',
+        ],
+        code: "import { skinTheme } from '@kition/tessera-tokens'\n\nkit.notify('ui/theme', { theme: skinTheme('graphite') })",
+      },
+    ],
+  },
+  {
+    id: 'icons-guide',
+    title: 'Icons',
+    category: 'Getting started',
+    summary: 'Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.',
+    sections: [
+      {
+        heading: 'Use',
+        body: ['Browse and copy every icon on the Icons page. Tool icons (`family: "tool"`) carry accent areas filled with `--kit-icon-accent`; pass `accent={false}` for plain line.'],
+        code: "import { LayersIcon } from '@kition/tessera-icons/react'\nimport { Layers, drawIcon, toSvg } from '@kition/tessera-icons'\n\n<LayersIcon size={16} />\ndrawIcon(ctx, Layers, 8, 8, { size: 16, color: '#5645d4' })",
+      },
+      {
+        heading: 'Style',
+        body: ['24 grid with a 20 live area, 1.5 round strokes, radius 2 corners, half-unit coordinates, 2-unit gaps; one metaphor per action. The full rules are in docs/icon-style.md.'],
+      },
+    ],
+  },
+
+  // General
+  { id: 'button', title: 'Button', category: 'General', summary: 'Starts an action. One primary button per view; the rest secondary or ghost.', when: ['The main action of a dialog or panel (primary).', 'Other actions beside it (secondary, ghost).', 'Destructive actions after a choice (danger).'], whenNot: ['Navigation to another page: use a link.', 'Toolbar commands: use IconButton or a ribbon button.'], demos: [{ id: 'button-variants', title: 'Variants', note: 'Secondary is outlined; subtle is a quiet filled button; a disabled filled button turns muted, not faint.' }, { id: 'button-sizes', title: 'Sizes', note: 'Without a size the button keeps the 30px of editor chrome.' }, { id: 'button-states', title: 'Loading, icons, icon only', note: 'Icons inside a button draw at 16px; an icon-only button is square and needs an aria-label.' }, { id: 'button-link', title: 'Links drawn as buttons' }], api: ['Button', 'ButtonLink'] },
+  { id: 'spinner', title: 'Spinner', category: 'General', summary: 'A spinning circle for work in progress.', when: ['Inside a button while its action runs (Button `loading`).', 'Next to a status that is still updating.'], whenNot: ['Long work with known progress: show the progress.'], demos: [{ id: 'spinner', title: 'Sizes and a label' }], api: ['Spinner'] },
+  { id: 'icon-button', title: 'IconButton', category: 'General', summary: 'An icon-only button with an accessible label; `pressed` makes it a toggle.', when: ['Toolbars, tool rails, panel headers.'], whenNot: ['An action whose icon is not obvious: use a Button with a label.'], demos: [{ id: 'icon-button', title: 'Toggles in a bar' }], api: ['IconButton'] },
+  { id: 'badge', title: 'Badge', category: 'General', summary: 'A small count or status beside a label.', when: ['The number of records in a view.', 'A Beta or New mark.'], whenNot: ['An action: use a Button.'], demos: [{ id: 'badge', title: 'Count and status' }], api: ['Badge'] },
+  { id: 'card', title: 'Card', category: 'General', summary: 'A product card: 12px radius, a hairline, a light shadow.', when: ['Grouping settings or a summary on a page.'], demos: [{ id: 'card', title: 'Header and content' }], api: ['Card', 'CardHeader', 'CardContent'] },
+  { id: 'disclosure', title: 'Disclosure', category: 'General', summary: 'A section that opens and closes under its title.', when: ['Advanced settings most people do not need.'], demos: [{ id: 'disclosure', title: 'Closed and open' }], api: ['Disclosure'] },
+
+  // Forms
+  { id: 'text-input', title: 'TextInput', category: 'Forms', summary: 'A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).', demos: [{ id: 'text-input', title: 'Sizes and invalid' }], api: ['TextInput'] },
+  { id: 'password-input', title: 'PasswordInput', category: 'Forms', summary: 'A password field with a show and hide button outside the tab order.', demos: [{ id: 'password-input', title: 'Show and hide' }], api: ['PasswordInput'] },
+  { id: 'textarea', title: 'Textarea', category: 'Forms', summary: 'Multi-line text; with autoSize it grows with its text (useAutoSize does the same for a text area of your own).', demos: [{ id: 'textarea', title: 'Fixed and growing' }], api: ['Textarea'] },
+  { id: 'select', title: 'Select', category: 'Forms', summary: 'A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.', whenNot: ['Two or three options always visible: use Segmented or Choice.'], demos: [{ id: 'select', title: 'Sizes' }], api: ['Select'] },
+  { id: 'switch', title: 'Switch', category: 'Forms', summary: 'An on/off switch for a setting that applies at once.', when: ['A setting that takes effect without a Save.'], whenNot: ['A choice saved with a form: use Checkbox.'], demos: [{ id: 'switch', title: 'On, off, disabled' }], api: ['Switch'] },
+  { id: 'field', title: 'Field', category: 'Forms', summary: 'A label, a control, and its hint or error, wired for screen readers.', when: ['Every form control with a visible label.'], demos: [{ id: 'field', title: 'Validation' }], api: ['Field'] },
+  { id: 'number-field', title: 'NumberField', category: 'Forms', summary: 'A number with a label you drag to scrub, arrows to step, and units.', when: ['Opacity, size, angle, any bounded number in a panel.'], keyboard: [['Up, Down', 'Step the value by `step`; with Shift, by ten steps.'], ['Enter', 'Commit what is typed. As hot text: open the field to type into.'], ['Escape', 'Put back the value before typing. With nothing typed the key is left to the page, so a dialog still closes.']], demos: [{ id: 'number-field', title: 'Scrub, type, or arrow' }], api: ['NumberField'] },
+  { id: 'bar-controls', title: 'Bar controls', category: 'Forms', summary: 'Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.', when: ['A tool’s options above the canvas.'], demos: [{ id: 'bar-controls', title: 'An options bar' }], api: ['Segmented', 'Choice', 'Checkbox', 'Hint', 'BarSeparator'] },
+  { id: 'form', title: 'Form', category: 'Forms', summary: 'A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.', when: ['A settings page, a create or edit dialog, any form with validation.'], whenNot: ['One setting that applies at once: use a Switch on its own.'], demos: [{ id: 'form', title: 'Rules, help, reset', note: 'Submit with the email empty to see the errors; they re-check as you type.' }], api: ['Form', 'FormItem'] },
+  { id: 'combobox', title: 'Combobox and MultiSelect', category: 'Forms', summary: 'One choice from a long list, searched as the person types or on the server with onSearch, and several choices toggled in a list.', when: ['Picking a user, a record, a country: more choices than a Select shows well.'], whenNot: ['A handful of fixed choices: use Select.'], demos: [{ id: 'combobox', title: 'Search and pick' }, { id: 'multi-select', title: 'Several choices' }], api: ['Combobox', 'MultiSelect'] },
+  { id: 'form-inputs', title: 'NumberInput, DateTimeInput, Popconfirm', category: 'Forms', summary: 'A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.', demos: [{ id: 'form-inputs', title: 'Price, start time, delete' }], api: ['NumberInput', 'DateTimeInput', 'Popconfirm'] },
+
+  // Data display
+  { id: 'table', title: 'Table', category: 'Data display', summary: 'Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.', when: ['Lists of orders, users, events: anything scanned and compared row by row.'], whenNot: ['A spreadsheet the person edits: that is a kit.'], demos: [{ id: 'table', title: 'Pages, pinned column, tags' }, { id: 'table-selection', title: 'Selection, row actions, SelectionBar', note: 'Row actions show while the pointer is over a row or focus is in it. SelectionBar floats at the bottom of the nearest positioned box; Escape in it clears the selection.' }, { id: 'table-states', title: 'Empty and loading' }], api: ['Table', 'SelectionBar', 'Pagination'] },
+  { id: 'tag', title: 'Tag', category: 'Data display', summary: 'A short status or category label on a soft tint of its tone.', when: ['A record’s status in a table or header.'], whenNot: ['A count beside a label: use Badge.'], demos: [{ id: 'tag', title: 'Tones' }], api: ['Tag'] },
+  { id: 'alert', title: 'Alert', category: 'Data display', summary: 'A message in the page, in its tone, with an optional action or close.', when: ['A state of the account or page the person should know about.'], whenNot: ['A short confirmation after an action: use a toast.'], demos: [{ id: 'alert', title: 'Tones, action, close' }], api: ['Alert'] },
+  { id: 'descriptions', title: 'Descriptions', category: 'Data display', summary: 'Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.', demos: [{ id: 'descriptions', title: 'A user’s detail page' }], api: ['Descriptions', 'Breadcrumb', 'Avatar', 'Divider'] },
+  { id: 'empty-result', title: 'Empty and Result', category: 'Data display', summary: 'Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.', demos: [{ id: 'empty-result', title: 'No feedback, access denied' }], api: ['Empty', 'Result'] },
+  { id: 'skeleton', title: 'Skeleton', category: 'Data display', summary: 'A placeholder in the shape of content that is loading.', demos: [{ id: 'skeleton', title: 'Title and paragraph' }], api: ['Skeleton'] },
+  { id: 'line-chart', title: 'Charts', category: 'Data display', summary: 'LineChart and BarChart draw one or more series over ordered categories; PieChart draws parts of a whole, as a pie or a donut. A legend, a readout under the pointer, the chart palette tokens or a colour of yours; height="fill" takes the height of its box.', demos: [{ id: 'line-chart', title: 'Growth by day' }, { id: 'bar-pie-chart', title: 'Bars and a donut' }], api: ['LineChart', 'BarChart', 'PieChart'] },
+
+  // Navigation
+  { id: 'tabs', title: 'Tabs', category: 'Navigation', summary: 'Sections of one page under a row of tabs; arrow keys move between them.', whenNot: ['Two or three views of the same data: use Segmented.'], keyboard: [['Left, Right', 'Open the previous or the next tab, wrapping at the ends; disabled tabs are skipped.'], ['Home, End', 'Open the first or the last tab.']], demos: [{ id: 'tabs', title: 'With a range control' }], api: ['Tabs'] },
+  { id: 'app-rail', title: 'AppRail', category: 'Navigation', summary: 'A suite’s app switcher on the left edge: each app’s icon over its name, the open one marked, badges, the product mark above and the account below; compact shows icons only, each name as its tooltip.', when: ['A product made of several apps (home, docs, wiki, inbox), each with its own sidebar.'], whenNot: ['The pages of one app: use NavMenu.', 'Kinds of file: filter a list by kind instead.'], demos: [{ id: 'app-rail', title: 'Apps beside an app’s sidebar' }], api: ['AppRail'] },
+  { id: 'nav-menu', title: 'NavMenu', category: 'Navigation', summary: 'An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.', demos: [{ id: 'nav-menu', title: 'Admin sidebar' }], api: ['NavMenu'] },
+  { id: 'pagination', title: 'Pagination', category: 'Navigation', summary: 'The pages of a long list on the server: the range shown, page buttons, and a page size.', when: ['A list the server pages; Table pages its own rows.'], demos: [{ id: 'pagination', title: 'Page 6 of 57' }], api: ['Pagination'] },
+
+  // Menus and overlays
+  { id: 'menu-button', title: 'MenuButton', category: 'Menus and overlays', summary: 'A button that opens a menu of MenuItems, with shortcuts and check marks.', demos: [{ id: 'menu-button', title: 'Edit menu' }], api: ['MenuButton', 'MenuItem', 'MenuSeparator'] },
+  { id: 'context-menu', title: 'ContextMenu', category: 'Menus and overlays', summary: 'A menu at a point, for right-clicks.', demos: [{ id: 'context-menu', title: 'Right-click' }], api: ['ContextMenu'] },
+  { id: 'dialog', title: 'Dialog', category: 'Menus and overlays', summary: 'A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.', when: ['A short task that needs values before it runs.'], whenNot: ['Long forms: use a panel or a page.'], demos: [{ id: 'dialog', title: 'Image size' }], api: ['Dialog'] },
+  { id: 'preview-dialog', title: 'PreviewDialog', category: 'Menus and overlays', summary: 'A dialog whose values preview live in the document: the kit supplies begin, update and end.', when: ['Filters and adjustments (blur, levels) people tune by eye.'], demos: [{ id: 'preview-dialog', title: 'A filter' }], api: ['PreviewDialog'] },
+  { id: 'toast', title: 'Toast', category: 'Menus and overlays', summary: 'A short notice at the top. Render Toaster once; call toast() or toast.success(), .error(), .loading(), .promise() anywhere, with an id to replace a notice and an action button.', demos: [{ id: 'toast', title: 'Levels' }, { id: 'toast-options', title: 'Actions, promises, sticky notices' }], api: ['Toaster'] },
+  { id: 'modal', title: 'Modal', category: 'Menus and overlays', summary: 'A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.', when: ['Confirming details or collecting a few values in an app (rename, share, create).'], whenNot: ['A kit tool’s settings: use Dialog.', 'Editing beside the work: use Sheet.'], demos: [{ id: 'modal', title: 'Rename' }, { id: 'modal-fixed', title: 'A long dialog', note: 'With `fixed` the header and footer stay put and ModalBody scrolls; a ModalCloseButton of your own can be disabled while work runs.' }], api: ['Modal', 'ModalContent', 'ModalHeader', 'ModalTitle', 'ModalDescription', 'ModalBody', 'ModalFooter', 'ModalCloseButton'] },
+  { id: 'tooltip', title: 'Tooltip', category: 'Menus and overlays', summary: 'A short label shown on hover or keyboard focus, for an icon or a status that needs a word.', when: ['Naming an icon-only control.', 'Explaining a status mark (an error in a cell).'], whenNot: ['Anything the person must read to act: put it on the page.'], demos: [{ id: 'tooltip', title: 'Icon and button' }], api: ['Tooltip', 'TooltipProvider', 'TooltipContent'] },
+  { id: 'popover', title: 'Popover', category: 'Menus and overlays', summary: 'Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.', when: ['Filter, sort, and group controls of a table.', 'A picker under a button.'], whenNot: ['A list of commands: use MenuButton.'], demos: [{ id: 'popover', title: 'A filter' }], api: ['Popover', 'PopoverContent'] },
+  { id: 'sheet', title: 'Sheet', category: 'Menus and overlays', summary: 'A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes; from the left, it holds an app’s navigation on a phone.', when: ['Editing a record’s field, a connection, a rule.'], whenNot: ['A quick question: use Modal or Confirm.'], demos: [{ id: 'sheet', title: 'Edit a field', note: 'With unsaved changes, Escape, the backdrop, and the close button ask first.' }], api: ['Sheet'] },
+  { id: 'confirm', title: 'Confirm', category: 'Menus and overlays', summary: '`useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.', when: ['Before deleting or discarding.'], whenNot: ['Questions with more than two answers: use Modal.'], demos: [{ id: 'confirm', title: 'Delete', note: 'A danger confirm puts focus on Cancel.' }], api: ['ConfirmProvider'] },
+  { id: 'command', title: 'Command', category: 'Menus and overlays', summary: 'A searchable list of commands or choices: type to filter, arrows and Enter to pick.', when: ['A command palette, a searchable picker inside a popover.'], demos: [{ id: 'command', title: 'A command palette' }], api: ['Command', 'CommandInput', 'CommandList', 'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut'] },
+  { id: 'drop-panel', title: 'DropPanel', category: 'Menus and overlays', summary: 'A popover anchored to an element, closing on a press outside or Escape.', demos: [{ id: 'drop-panel', title: 'A setting under a button' }], api: ['DropPanel'] },
+
+  // Editor chrome
+  { id: 'scrollbar', title: 'Scrollbar', category: 'Editor chrome', summary: 'A persistent scrollbar for a virtual document viewport, with a proportional thumb, dragging, track clicks and keyboard navigation.', when: ['A canvas pans through a bounded document instead of scrolling DOM content.'], whenNot: ['An ordinary DOM list: use native overflow scrolling.'], demos: [{ id: 'scrollbar', title: 'Page sections' }], api: ['Scrollbar'] },
+  { id: 'ribbon', title: 'Ribbon', category: 'Editor chrome', summary: 'Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line, and a ribbon too wide for its window gives way in steps (RibbonFit): small buttons, icons alone, then groups collapsed to one button each.', when: ['A kit’s Home, Insert, Format tabs.'], demos: [{ id: 'ribbon', title: 'Home tab', note: 'Give each group an icon: it is the button the group collapses to when the ribbon has no room.' }], api: ['RibbonGroup', 'RibbonButton', 'RibbonStack', 'RibbonRow', 'RibbonItem', 'ColorGrid'] },
+  { id: 'overflow-strip', title: 'OverflowStrip', category: 'Editor chrome', summary: 'A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.', when: ['A ribbon’s groups or a tool’s options bar in a narrow window.'], whenNot: ['Vertical lists: let the panel scroll.'], demos: [{ id: 'overflow-strip', title: 'Options bar', note: 'The row is wider than its box; use the arrows at the faded edges.' }], api: ['OverflowStrip'] },
+  { id: 'status-bar', title: 'StatusBar', category: 'Editor chrome', summary: 'The bottom bar: document facts on the left, zoom on the right.', demos: [{ id: 'status-bar', title: 'Zoom' }], api: ['StatusBar', 'StatusSpacer', 'ZoomControl'] },
+  { id: 'table-size-picker', title: 'TableSizePicker', category: 'Editor chrome', summary: 'Pick a table size by hovering a grid.', demos: [{ id: 'table-size-picker', title: 'Insert a table' }], api: ['TableSizePicker'] },
+  { id: 'panel-parts', title: 'Panel parts', category: 'Editor chrome', summary: 'Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.', when: ['Layers, tracks, pages panels.'], demos: [{ id: 'panel-parts', title: 'A layer row' }], api: ['EyeButton', 'RenameField', 'PanelFooter', 'Thumbnail', 'Panel'] },
+
+  // Workspace
+  { id: 'workspace-layout', title: 'WorkspaceLayout', category: 'Workspace', summary: 'Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.', demos: [{ id: 'workspace-layout', title: 'Editing workspace', note: 'Drag the gutters; drag tabs between groups.' }], api: ['WorkspaceLayout'] },
+  { id: 'dock-area', title: 'DockArea', category: 'Workspace', summary: 'A column of collapsible, resizable panel groups, remembered per kit.', demos: [{ id: 'dock-area', title: 'Right dock' }], api: ['DockArea'] },
+  { id: 'floating-panels', title: 'FloatingPanels', category: 'Workspace', summary: 'Movable, resizable windows over the workspace, remembered per kit.', demos: [{ id: 'floating-panels', title: 'A floating bin' }], api: ['FloatingPanels'] },
+
+  // Color
+  { id: 'color-picker', title: 'ColorPicker', category: 'Color', summary: 'Saturation and brightness square, hue strip, hex and RGB fields.', keyboard: [['Arrows (on the square)', 'Change saturation (Left, Right) and brightness (Up, Down); with Shift, in larger steps.'], ['Up, Down (on the hue strip)', 'Raise or lower the hue; with Shift, in larger steps.'], ['Enter, Escape (in the hex field)', 'Commit the typed colour, or put the old one back.']], demos: [{ id: 'color-picker', title: 'Pick a colour' }], api: ['ColorPicker'] },
+  { id: 'color-wheel', title: 'ColorWheel', category: 'Color', summary: 'A grading wheel with a lightness slider, as colour correction panels use.', keyboard: [['Arrows', 'Move the puck by 0.01 of the radius; with Shift, by 0.1.'], ['Home', 'Put the puck back at the centre.']], demos: [{ id: 'color-wheel', title: 'Shadows wheel' }], api: ['ColorWheel'] },
+  { id: 'gradient-slider', title: 'GradientSlider', category: 'Color', summary: 'A slider drawn over its own gradient: temperature, tint, hue.', keyboard: [['Arrows', 'Change the value by a hundredth of the soft range (Right and Up raise it); with Shift, by ten of those.'], ['Home, End', 'Go to the low or the high end of the soft range.']], demos: [{ id: 'gradient-slider', title: 'White balance' }], api: ['GradientSlider'] },
+  { id: 'curve-editor', title: 'CurveEditor', category: 'Color', summary: 'Tone curves: drag points, double-click to add, with a histogram under them.', keyboard: [['Arrows (on a point)', 'Move the point by 0.01 of the range; with Shift, by 0.1.'], ['Delete, Backspace', 'Remove the point.']], demos: [{ id: 'curve-editor', title: 'An RGB curve' }], api: ['CurveEditor'] },
+  { id: 'histogram', title: 'Histogram', category: 'Color', summary: 'A smoothed histogram of an image’s tones.', demos: [{ id: 'histogram', title: 'Luminance' }], api: ['Histogram'] },
+
+  // Media and time
+  { id: 'timecode-transport', title: 'Timecode and transport', category: 'Media and time', summary: 'A timecode field you can type or scrub, and the transport buttons of a player.', keyboard: [['Enter, F2', 'Start typing a time into the timecode field.'], ['Enter (while typing)', 'Commit the typed time.'], ['Escape (while typing)', 'Stop typing and keep the time.']], demos: [{ id: 'timecode-transport', title: 'A player' }], api: ['TimecodeField', 'TransportBar'] },
+  { id: 'level-meter', title: 'LevelMeter', category: 'Media and time', summary: 'Audio levels with peak hold, drawn on a canvas.', demos: [{ id: 'level-meter', title: 'Stereo' }], api: ['LevelMeter'] },
+  { id: 'keyframe-lane', title: 'KeyframeLane', category: 'Media and time', summary: 'Keyframes on a time lane: select, drag, and their interpolation shapes.', keyboard: [['Left, Right', 'Move the selected keyframes by one frame.'], ['Escape', 'While dragging: put the keyframes back where they were.']], demos: [{ id: 'keyframe-lane', title: 'Three keyframes' }], api: ['KeyframeLane'] },
+
+  // Integration
+  { id: 'providers', title: 'Strings and elements', category: 'Integration', summary: 'What components ask of the app around them: strings (StringsProvider) and element states (ElementsProvider). Without them, components draw in English with every element shown.', demos: [{ id: 'providers', title: 'Strings and element states of your own', note: 'zh-CN strings; one group disabled, one hidden by the host.' }], api: ['StringsProvider', 'ElementsProvider', 'Element'] },
+]

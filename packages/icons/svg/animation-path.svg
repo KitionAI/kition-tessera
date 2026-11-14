@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Motion path: a dotted path to the object (slide)</title>
+  <path d="M15 3.5h3.5a2 2 0 0 1 2 2v3.5a2 2 0 0 1 -2 2h-3.5a2 2 0 0 1 -2 -2v-3.5a2 2 0 0 1 2 -2z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M15 3.5h3.5a2 2 0 0 1 2 2v3.5a2 2 0 0 1 -2 2h-3.5a2 2 0 0 1 -2 -2v-3.5a2 2 0 0 1 2 -2z"/>
+  <path d="M4.5 19.5h.01"/>
+  <path d="M6 16.5h.01"/>
+  <path d="M8 14h.01"/>
+  <path d="M10.5 12.5h.01"/>
+  <path d="M3.25 19.5a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0 -2.5 0z" fill="currentColor"/>
+</svg>

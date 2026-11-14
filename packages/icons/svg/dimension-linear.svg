@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Linear dimension (cad)</title>
+  <path d="M5 16h14v4H5z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M5 4v9"/>
+  <path d="M19 4v9"/>
+  <path d="M5 8.5h14"/>
+  <path d="m7.5 6.5-2.5 2 2.5 2"/>
+  <path d="m16.5 6.5 2.5 2-2.5 2"/>
+  <path d="M5 18h14"/>
+</svg>

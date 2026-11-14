@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://tessera.kition.ai
+    about: Guides, every component with live examples, icons, and tokens.
+  - name: Security vulnerability
+    url: https://github.com/KitionAI/kition-tessera/security/advisories/new
+    about: Report security issues privately. Do not include credentials in public issues.

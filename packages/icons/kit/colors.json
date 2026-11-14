@@ -1,0 +1,99 @@
+{
+  "$description": "Kit brand colors. hue: the app icon's color. light and dark: the kit's brand (its primary color and kit.json ui.brand) in each scheme; light carries white text at 4.5:1. Brand purple belongs to Kition; only Note shares it.",
+  "board": {
+    "name": "Board",
+    "hue": "#f2b200",
+    "light": "#966e00",
+    "dark": "#ffd04d"
+  },
+  "cad": {
+    "name": "CAD",
+    "hue": "#4f6d8a",
+    "light": "#4f6d8a",
+    "dark": "#8eabc8"
+  },
+  "cube": {
+    "name": "Cube",
+    "hue": "#c47a32",
+    "light": "#9a5a22",
+    "dark": "#e3a46b"
+  },
+  "design": {
+    "name": "Design",
+    "hue": "#d63e95",
+    "light": "#d32f8d",
+    "dark": "#f57bbd"
+  },
+  "doc": {
+    "name": "Doc",
+    "hue": "#2b5cd9",
+    "light": "#2b5cd9",
+    "dark": "#6b9bff"
+  },
+  "effect": {
+    "name": "Effect",
+    "hue": "#b03fd6",
+    "light": "#b03fd6",
+    "dark": "#d27cf0"
+  },
+  "fig": {
+    "name": "Fig",
+    "hue": "#00a676",
+    "light": "#00875f",
+    "dark": "#02da96"
+  },
+  "film": {
+    "name": "Film",
+    "hue": "#2d2f3a",
+    "light": "#2d2f3a",
+    "dark": "#a3a7b8"
+  },
+  "html": {
+    "name": "HTML",
+    "hue": "#c65b32",
+    "light": "#b64b22",
+    "dark": "#ff986b"
+  },
+  "note": {
+    "name": "Note",
+    "hue": "#5645d4",
+    "light": "#5645d4",
+    "dark": "#8b7cf0"
+  },
+  "pdf": {
+    "name": "PDF",
+    "hue": "#dc3b2e",
+    "light": "#db3527",
+    "dark": "#ff7a6b"
+  },
+  "photo": {
+    "name": "Photo",
+    "hue": "#0aa3cf",
+    "light": "#087fa1",
+    "dark": "#4ccbf0"
+  },
+  "sheet": {
+    "name": "Sheet",
+    "hue": "#1f9d4c",
+    "light": "#1a8641",
+    "dark": "#4fd17b"
+  },
+  "slide": {
+    "name": "Slide",
+    "hue": "#f0701a",
+    "light": "#c0550d",
+    "dark": "#ff9a55"
+  },
+  "table": {
+    "name": "Table",
+    "hue": "#0e9a8a",
+    "light": "#0c8375",
+    "dark": "#3fd1bf"
+  },
+  "vector": {
+    "name": "Vector",
+    "hue": "#6fa313",
+    "light": "#58810f",
+    "dark": "#a6d64a"
+  }
+}

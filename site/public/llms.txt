@@ -1,0 +1,103 @@
+# Kition Tessera
+
+> The design system for professional editors and Kition kits: design tokens (`@kition/tessera-tokens`), Tessera Icons (`@kition/tessera-icons`), and components (`@kition/tessera-ui`).
+
+Each link is a Markdown file. The whole reference in one file: https://tessera.kition.ai/llms-full.txt
+
+## Getting started
+
+- [Overview](https://tessera.kition.ai/markdown/guides/overview.md): Kition Tessera is the design system for professional editors: design tokens, Tessera Icons, and the components kits are built from.
+- [Installation](https://tessera.kition.ai/markdown/guides/installation.md): Add the packages, import one stylesheet, and draw a first component; then apply a skin and give the components your strings.
+- [Building with an AI assistant](https://tessera.kition.ai/markdown/guides/ai.md): Give a coding assistant Tessera’s docs as Markdown, and it writes an editor’s interface with the right components, props and tokens.
+- [Theming and skins](https://tessera.kition.ai/markdown/guides/theming.md): A host sends one theme over the Kit Harness Protocol; every kit, and every Tessera component in it, follows.
+- [Icons](https://tessera.kition.ai/markdown/guides/icons-guide.md): Tessera Icons: one family for interface and tool icons, in React, canvas, SVG, and Rust.
+- [Tokens and skins](https://tessera.kition.ai/markdown/tokens.md): Every theme and component token, with its value in each skin.
+- [Every icon](https://tessera.kition.ai/markdown/icons.md): The name, React component, and family of each Tessera icon.
+
+## General
+
+- [Button](https://tessera.kition.ai/markdown/components/button.md): Starts an action. One primary button per view; the rest secondary or ghost.
+- [Spinner](https://tessera.kition.ai/markdown/components/spinner.md): A spinning circle for work in progress.
+- [IconButton](https://tessera.kition.ai/markdown/components/icon-button.md): An icon-only button with an accessible label; `pressed` makes it a toggle.
+- [Badge](https://tessera.kition.ai/markdown/components/badge.md): A small count or status beside a label.
+- [Card](https://tessera.kition.ai/markdown/components/card.md): A product card: 12px radius, a hairline, a light shadow.
+- [Disclosure](https://tessera.kition.ai/markdown/components/disclosure.md): A section that opens and closes under its title.
+
+## Forms
+
+- [TextInput](https://tessera.kition.ai/markdown/components/text-input.md): A single-line text field in three sizes: sm (toolbars), md (panels), lg (forms).
+- [PasswordInput](https://tessera.kition.ai/markdown/components/password-input.md): A password field with a show and hide button outside the tab order.
+- [Textarea](https://tessera.kition.ai/markdown/components/textarea.md): Multi-line text; with autoSize it grows with its text (useAutoSize does the same for a text area of your own).
+- [Select](https://tessera.kition.ai/markdown/components/select.md): A drop-down: a native select drawn as Tessera’s control, for the platform’s popup and accessibility.
+- [Switch](https://tessera.kition.ai/markdown/components/switch.md): An on/off switch for a setting that applies at once.
+- [Field](https://tessera.kition.ai/markdown/components/field.md): A label, a control, and its hint or error, wired for screen readers.
+- [NumberField](https://tessera.kition.ai/markdown/components/number-field.md): A number with a label you drag to scrub, arrows to step, and units.
+- [Bar controls](https://tessera.kition.ai/markdown/components/bar-controls.md): Compact controls for options bars: Segmented, Choice, Checkbox, Hint, BarSeparator.
+- [Form](https://tessera.kition.ai/markdown/components/form.md): A form that keeps its values and checks them against rules before onFinish; useForm reaches it from outside, useWatch reads one field.
+- [Combobox and MultiSelect](https://tessera.kition.ai/markdown/components/combobox.md): One choice from a long list, searched as the person types or on the server with onSearch, and several choices toggled in a list.
+- [NumberInput, DateTimeInput, Popconfirm](https://tessera.kition.ai/markdown/components/form-inputs.md): A number field that is empty as null, a date or date-and-time field, and a confirmation beside the button it guards.
+
+## Data display
+
+- [Table](https://tessera.kition.ai/markdown/components/table.md): Records in rows and columns: columns say what each shows, dataSource holds the records; pages, pinned columns, loading and empty states.
+- [Tag](https://tessera.kition.ai/markdown/components/tag.md): A short status or category label on a soft tint of its tone.
+- [Alert](https://tessera.kition.ai/markdown/components/alert.md): A message in the page, in its tone, with an optional action or close.
+- [Descriptions](https://tessera.kition.ai/markdown/components/descriptions.md): Labelled values of one record, in columns; with Breadcrumb, Avatar, and Divider for a detail page.
+- [Empty and Result](https://tessera.kition.ai/markdown/components/empty-result.md): Nothing to show yet, and the outcome of a whole page or flow, each with what to do next.
+- [Skeleton](https://tessera.kition.ai/markdown/components/skeleton.md): A placeholder in the shape of content that is loading.
+- [Charts](https://tessera.kition.ai/markdown/components/line-chart.md): LineChart and BarChart draw one or more series over ordered categories; PieChart draws parts of a whole, as a pie or a donut. A legend, a readout under the pointer, the chart palette tokens or a colour of yours; height="fill" takes the height of its box.
+
+## Navigation
+
+- [Tabs](https://tessera.kition.ai/markdown/components/tabs.md): Sections of one page under a row of tabs; arrow keys move between them.
+- [AppRail](https://tessera.kition.ai/markdown/components/app-rail.md): A suite’s app switcher on the left edge: each app’s icon over its name, the open one marked, badges, the product mark above and the account below; compact shows icons only, each name as its tooltip.
+- [NavMenu](https://tessera.kition.ai/markdown/components/nav-menu.md): An app’s sidebar: its pages as links under headings, the current one marked; collapses to icons.
+- [Pagination](https://tessera.kition.ai/markdown/components/pagination.md): The pages of a long list on the server: the range shown, page buttons, and a page size.
+
+## Menus and overlays
+
+- [MenuButton](https://tessera.kition.ai/markdown/components/menu-button.md): A button that opens a menu of MenuItems, with shortcuts and check marks.
+- [ContextMenu](https://tessera.kition.ai/markdown/components/context-menu.md): A menu at a point, for right-clicks.
+- [Dialog](https://tessera.kition.ai/markdown/components/dialog.md): A modal (or modeless) dialog with a title, content, and actions; it traps focus and closes on Escape.
+- [PreviewDialog](https://tessera.kition.ai/markdown/components/preview-dialog.md): A dialog whose values preview live in the document: the kit supplies begin, update and end.
+- [Toast](https://tessera.kition.ai/markdown/components/toast.md): A short notice at the top. Render Toaster once; call toast() or toast.success(), .error(), .loading(), .promise() anywhere, with an id to replace a notice and an action button.
+- [Modal](https://tessera.kition.ai/markdown/components/modal.md): A composable modal dialog for host apps: header, content, footer; it traps focus and closes on Escape or an outside press.
+- [Tooltip](https://tessera.kition.ai/markdown/components/tooltip.md): A short label shown on hover or keyboard focus, for an icon or a status that needs a word.
+- [Popover](https://tessera.kition.ai/markdown/components/popover.md): Floating content anchored to a trigger, positioned to stay on screen: filters, pickers, small forms.
+- [Sheet](https://tessera.kition.ai/markdown/components/sheet.md): A panel that slides in from the right to edit one thing beside the work, guarding unsaved changes; from the left, it holds an app’s navigation on a phone.
+- [Confirm](https://tessera.kition.ai/markdown/components/confirm.md): `useConfirm()` asks a yes-or-no question and resolves a promise; asks queue one at a time.
+- [Command](https://tessera.kition.ai/markdown/components/command.md): A searchable list of commands or choices: type to filter, arrows and Enter to pick.
+- [DropPanel](https://tessera.kition.ai/markdown/components/drop-panel.md): A popover anchored to an element, closing on a press outside or Escape.
+
+## Editor chrome
+
+- [Scrollbar](https://tessera.kition.ai/markdown/components/scrollbar.md): A persistent scrollbar for a virtual document viewport, with a proportional thumb, dragging, track clicks and keyboard navigation.
+- [Ribbon](https://tessera.kition.ai/markdown/components/ribbon.md): Office-style command groups: large and small buttons, stacks, rows, and swatches; it collapses to Single line, and a ribbon too wide for its window gives way in steps (RibbonFit): small buttons, icons alone, then groups collapsed to one button each.
+- [OverflowStrip](https://tessera.kition.ai/markdown/components/overflow-strip.md): A row that scrolls sideways when it does not fit: the cut edge fades, and a button there scrolls.
+- [StatusBar](https://tessera.kition.ai/markdown/components/status-bar.md): The bottom bar: document facts on the left, zoom on the right.
+- [TableSizePicker](https://tessera.kition.ai/markdown/components/table-size-picker.md): Pick a table size by hovering a grid.
+- [Panel parts](https://tessera.kition.ai/markdown/components/panel-parts.md): Pieces of list panels: visibility eyes, in-place rename, footers, thumbnails.
+
+## Workspace
+
+- [WorkspaceLayout](https://tessera.kition.ai/markdown/components/workspace-layout.md): Split, tabbed, resizable panels in a tree, as video and photo editors lay out their workspaces.
+- [DockArea](https://tessera.kition.ai/markdown/components/dock-area.md): A column of collapsible, resizable panel groups, remembered per kit.
+- [FloatingPanels](https://tessera.kition.ai/markdown/components/floating-panels.md): Movable, resizable windows over the workspace, remembered per kit.
+
+## Color
+
+- [ColorPicker](https://tessera.kition.ai/markdown/components/color-picker.md): Saturation and brightness square, hue strip, hex and RGB fields.
+- [ColorWheel](https://tessera.kition.ai/markdown/components/color-wheel.md): A grading wheel with a lightness slider, as colour correction panels use.
+- [GradientSlider](https://tessera.kition.ai/markdown/components/gradient-slider.md): A slider drawn over its own gradient: temperature, tint, hue.
+- [CurveEditor](https://tessera.kition.ai/markdown/components/curve-editor.md): Tone curves: drag points, double-click to add, with a histogram under them.
+- [Histogram](https://tessera.kition.ai/markdown/components/histogram.md): A smoothed histogram of an image’s tones.
+
+## Media and time
+
+- [Timecode and transport](https://tessera.kition.ai/markdown/components/timecode-transport.md): A timecode field you can type or scrub, and the transport buttons of a player.
+- [LevelMeter](https://tessera.kition.ai/markdown/components/level-meter.md): Audio levels with peak hold, drawn on a canvas.
+- [KeyframeLane](https://tessera.kition.ai/markdown/components/keyframe-lane.md): Keyframes on a time lane: select, drag, and their interpolation shapes.
+
+## Integration
+
+- [Strings and elements](https://tessera.kition.ai/markdown/components/providers.md): What components ask of the app around them: strings (StringsProvider) and element states (ElementsProvider). Without them, components draw in English with every element shown.

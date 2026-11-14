@@ -1,0 +1,73 @@
+{
+  "name": "@kition/tessera-ui",
+  "version": "0.1.0",
+  "description": "Kition Tessera's components for professional editors: base controls, ribbon, dock and floating panels, color controls, curves, histogram, level meter, timecode, transport, keyframes, and workspace layout. Styled only through theme tokens.",
+  "license": "Apache-2.0",
+  "homepage": "https://tessera.kition.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KitionAI/kition-tessera.git",
+    "directory": "packages/ui"
+  },
+  "bugs": "https://github.com/KitionAI/kition-tessera/issues",
+  "keywords": [
+    "react",
+    "components",
+    "design-system",
+    "ribbon",
+    "color-picker",
+    "timeline",
+    "editor",
+    "kition",
+    "tessera"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./workspaceTree": "./src/workspaceTree.ts",
+    "./locales/*": "./locales/*"
+  },
+  "files": [
+    "dist",
+    "locales",
+    "LICENSE",
+    "README.md"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@kition/tessera-icons": "workspace:^",
+    "@kition/tessera-tokens": "workspace:^",
+    "cmdk": "1.1.1",
+    "radix-ui": "1.4.3"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "//": "./workspaceTree is the frame tree alone, without React, for plain-Node tests (a kit's node --test): Node strips its types because a linked checkout is outside node_modules.",
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/types/src/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./styles.css": "./dist/styles.css",
+      "./workspaceTree": {
+        "types": "./dist/types/src/workspaceTree.d.ts",
+        "default": "./dist/workspaceTree.js"
+      },
+      "./locales/*": "./locales/*"
+    }
+  },
+  "//files": "Checkout exports use TypeScript source; pnpm pack applies publishConfig.exports so npm consumers load compiled JavaScript and declarations from dist.",
+  "main": "./dist/index.js",
+  "types": "./dist/types/src/index.d.ts",
+  "scripts": {
+    "build": "node ../../scripts/build-packages.mjs ui",
+    "prepack": "pnpm run build"
+  }
+}

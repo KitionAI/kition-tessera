@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Path array: copies along a path (cad)</title>
+  <path d="M3.75 15h2a0.75 0.75 0 0 1 0.75 0.75v2a0.75 0.75 0 0 1 -0.75 0.75h-2a0.75 0.75 0 0 1 -0.75 -0.75v-2a0.75 0.75 0 0 1 0.75 -0.75z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M3 19c4 0 6-14 18-14"/>
+  <path d="M3.75 15h2a0.75 0.75 0 0 1 0.75 0.75v2a0.75 0.75 0 0 1 -0.75 0.75h-2a0.75 0.75 0 0 1 -0.75 -0.75v-2a0.75 0.75 0 0 1 0.75 -0.75z"/>
+  <path d="M10.25 8.5h2a0.75 0.75 0 0 1 0.75 0.75v2a0.75 0.75 0 0 1 -0.75 0.75h-2a0.75 0.75 0 0 1 -0.75 -0.75v-2a0.75 0.75 0 0 1 0.75 -0.75z"/>
+  <path d="M17.25 4h2a0.75 0.75 0 0 1 0.75 0.75v2a0.75 0.75 0 0 1 -0.75 0.75h-2a0.75 0.75 0 0 1 -0.75 -0.75v-2a0.75 0.75 0 0 1 0.75 -0.75z"/>
+</svg>

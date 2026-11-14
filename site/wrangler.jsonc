@@ -1,0 +1,19 @@
+{
+  // tessera.kition.ai: the prerendered site (site/dist) as Cloudflare Workers Static Assets.
+  // No Worker script: Cloudflare serves the files.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kition-tessera",
+  "compatibility_date": "2026-10-30",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "tessera.kition.ai", "custom_domain": true }
+  ],
+  "assets": {
+    // Every page is prerendered to <path>/index.html and linked with a trailing slash.
+    "directory": "./dist",
+    "html_handling": "force-trailing-slash",
+    // Unknown paths get dist/404.html (the overview marked noindex) with status 404.
+    "not_found_handling": "404-page"
+  }
+}

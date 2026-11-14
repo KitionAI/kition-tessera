@@ -1,0 +1,17 @@
+[package]
+name = "tessera-icons"
+description = "Tessera Icons for kit engines: every icon as SVG path data on a 24 x 24 grid, generated from @kition/tessera-icons."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+repository.workspace = true
+homepage.workspace = true
+readme = "README.md"
+keywords = ["icons", "svg", "design-system"]
+categories = ["graphics", "gui"]
+
+include = ["src", "README.md", "NOTICE", "LICENSE-lucide"]
+
+[lints]
+workspace = true

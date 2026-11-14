@@ -1,0 +1,43 @@
+name: Bug report
+description: A component, icon, or token that does not behave as documented.
+labels: [bug]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - '@kition/tessera-ui (components)'
+        - '@kition/tessera-icons'
+        - '@kition/tessera-tokens'
+        - tessera-icons (Rust)
+        - tessera-tokens (Rust)
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: 0.1.0, or a commit hash
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and operating system
+      placeholder: Chrome 142 on macOS 15
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: The smallest code that shows the problem, and what you did.
+      render: tsx
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+      description: What you expected, and what happened instead. Add a screenshot for visual problems, and name the skin.
+    validations:
+      required: true

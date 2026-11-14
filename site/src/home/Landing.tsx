@@ -1,0 +1,817 @@
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import {
+  ColorPicker,
+  ColorWheel,
+  CurveEditor,
+  Histogram,
+  IconButton,
+  NumberField,
+  RGB_IDENTITY,
+  RibbonButton,
+  RibbonGroup,
+  RibbonStack,
+  Segmented,
+  TimecodeField,
+  TransportBar,
+  type CurvePoint,
+  type RGB,
+} from '@kition/tessera-ui'
+import {
+  BoldIcon,
+  BrushIcon,
+  ChartColumnIcon,
+  ClipboardPasteIcon,
+  CopyIcon,
+  CropIcon,
+  EraserIcon,
+  ArrowUpRightIcon,
+  BlocksIcon,
+  CheckIcon,
+  ItalicIcon,
+  LassoIcon,
+  LayersIcon,
+  MoveIcon,
+  PenToolIcon,
+  PlayIcon,
+  ScissorsIcon,
+  ShapesIcon,
+  SkipBackIcon,
+  SkipForwardIcon,
+  SwatchBookIcon,
+  TextAlignCenterIcon,
+  TextAlignStartIcon,
+  TypeIcon,
+  createIcon,
+  type IconComponent,
+} from '@kition/tessera-icons/react'
+import { ICONS, ICON_NAMES, KIT_ICONS } from '@kition/tessera-icons/registry'
+import { KHP_TOKENS, SKINS, SKIN_IDS, type SkinId } from '@kition/tessera-tokens'
+import llmsIndex from '../../public/llms.txt?raw'
+import { version } from '@tessera/packages/ui/package.json'
+import { REPO_URL } from '../routes'
+import { MosaicHero } from './MosaicHero'
+
+const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'design', 'effect', 'cad', 'cube', 'fig']
+const KIT_NAMES: Record<string, string> = {
+  note: 'Note',
+  table: 'Table',
+  board: 'Board',
+  photo: 'Photo',
+  film: 'Film',
+  doc: 'Doc',
+  sheet: 'Sheet',
+  slide: 'Slide',
+  pdf: 'PDF',
+  vector: 'Vector',
+  design: 'Design',
+  effect: 'Effect',
+  cad: 'CAD',
+  html: 'HTML',
+  cube: 'Cube',
+  fig: 'Fig',
+}
+
+const kitFiles = import.meta.glob('@tessera/packages/icons/kit/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
+const kitUrl = (kit: string) => Object.entries(kitFiles).find(([path]) => path.endsWith(`/${kit}.svg`))?.[1]
+
+const skinStyle = (id: SkinId) => ({ ...SKINS[id].tokens, colorScheme: SKINS[id].colorScheme }) as CSSProperties
+
+const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const components = new Map<string, IconComponent>()
+const iconOf = (name: string) => {
+  let component = components.get(name)
+  if (!component) components.set(name, (component = createIcon(ICONS[name])))
+  return component
+}
+
+export function Landing({ skin }: { skin: SkinId }) {
+  useReveal()
+  return (
+    <div className="lx">
+      <MosaicIntro />
+      <Hero skin={skin} />
+      <SkinCompare />
+      <IconMarquee />
+      <Bento />
+      <Packages />
+      <Models />
+      <Kits />
+      <Closing />
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------ hero */
+
+function Hero({ skin }: { skin: SkinId }) {
+  const stage = useRef<HTMLDivElement>(null)
+  // Pointer parallax: the floating cards lean toward the pointer, each by its own depth.
+  useEffect(() => {
+    const element = stage.current
+    if (!element || reducedMotion()) return
+    let frame = 0
+    const onMove = (event: PointerEvent) => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const rect = element.getBoundingClientRect()
+        const x = (event.clientX - rect.left) / rect.width - 0.5
+        const y = (event.clientY - rect.top) / rect.height - 0.5
+        element.style.setProperty('--px', x.toFixed(3))
+        element.style.setProperty('--py', y.toFixed(3))
+      })
+    }
+    window.addEventListener('pointermove', onMove)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('pointermove', onMove)
+    }
+  }, [])
+  return (
+    <section className="lx-hero">
+      <div className="lx-aurora" aria-hidden="true">
+        <span className="lx-blob lx-blob-a" />
+        <span className="lx-blob lx-blob-b" />
+        <span className="lx-blob lx-blob-c" />
+      </div>
+      <div className="lx-section-head lx-center lx-stage-head" data-reveal>
+        <p className="lx-eyebrow">In a kit</p>
+        <h2>
+          Real components, <span className="lx-gradient">not screenshots.</span>
+        </h2>
+        <p>This photo editor is built only from Tessera: ribbon, tool rail, histogram, number field, colour picker. Move the pointer; the cards lean with it.</p>
+      </div>
+      <div className="lx-stage" ref={stage} style={skinStyle(skin)}>
+        <div className="lx-stage-main">
+          <EditorWindow />
+        </div>
+        <FloatCard className="lx-float-wheel" depth={26} label="ColorWheel">
+          <WheelDemo />
+        </FloatCard>
+        <FloatCard className="lx-float-curve" depth={18} label="CurveEditor">
+          <CurveDemo />
+        </FloatCard>
+        <FloatCard className="lx-float-transport" depth={30} label="TransportBar">
+          <TransportDemo />
+        </FloatCard>
+        <FloatCard className="lx-float-icons" depth={14} label="Tessera Icons">
+          <div className="lx-icon-chips">
+            {['pen-tool', 'lasso', 'animation-fly-in', 'transition-push', 'dimension-aligned', 'fillet', 'array-polar', 'clip-insert'].map((name) => {
+              const Icon = iconOf(name)
+              return (
+                <span key={name} className="lx-chip" title={name}>
+                  <Icon size={20} />
+                </span>
+              )
+            })}
+          </div>
+        </FloatCard>
+      </div>
+    </section>
+  )
+}
+
+function CopyCommand({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
+  return (
+    <button
+      type="button"
+      className="lx-command"
+      onClick={() => {
+        void navigator.clipboard?.writeText(text)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1400)
+      }}
+    >
+      <span className="lx-command-prompt">$</span> {text}
+      <span className="lx-command-hint">{copied ? 'Copied' : 'Copy'}</span>
+    </button>
+  )
+}
+
+function FloatCard({ className, depth, label, children }: { className: string; depth: number; label: string; children: ReactNode }) {
+  return (
+    <div className={`lx-float ${className}`} style={{ '--depth': depth } as CSSProperties}>
+      <div className="lx-float-inner">
+        <span className="lx-float-label">{label}</span>
+        {children}
+      </div>
+    </div>
+  )
+}
+
+const TOOLS: [string, IconComponent][] = [
+  ['Move', MoveIcon],
+  ['Lasso', LassoIcon],
+  ['Crop', CropIcon],
+  ['Brush', BrushIcon],
+  ['Eraser', EraserIcon],
+  ['Pen', PenToolIcon],
+  ['Type', TypeIcon],
+]
+
+function EditorWindow() {
+  const [tool, setTool] = useState(3)
+  const [exposure, setExposure] = useState(12)
+  const [rgb, setRgb] = useState<RGB>([86, 69, 212])
+  const bins = useMemo(() => Array.from({ length: 128 }, (_, i) => Math.exp(-((i - 50) ** 2) / 500) * 900 + Math.exp(-((i - 100) ** 2) / 120) * 400 + 30), [])
+  return (
+    <div className="lx-window">
+      <div className="lx-window-bar">
+        <span className="lx-lights" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+        <img src={kitUrl('photo')} alt="" width={16} height={16} />
+        <span>Harbor at dusk.psd</span>
+      </div>
+      <div className="lx-window-ribbon">
+        <RibbonGroup label="Clipboard">
+          <RibbonButton icon={ClipboardPasteIcon} label="Paste" size="large" />
+          <RibbonStack>
+            <RibbonButton icon={ScissorsIcon} label="Cut" />
+            <RibbonButton icon={CopyIcon} label="Copy" />
+          </RibbonStack>
+        </RibbonGroup>
+        <RibbonGroup label="Layer">
+          <RibbonButton icon={LayersIcon} label="Layers" size="large" />
+          <RibbonButton icon={ChartColumnIcon} label="Levels" size="large" />
+        </RibbonGroup>
+      </div>
+      <div className="lx-window-body">
+        <div className="lx-rail">
+          {TOOLS.map(([label, Icon], i) => (
+            <IconButton key={label} icon={Icon} label={label} pressed={tool === i} onClick={() => setTool(i)} />
+          ))}
+        </div>
+        <div className="lx-canvas" />
+        <div className="lx-panel">
+          <div className="lx-panel-title">Adjust</div>
+          <Histogram bins={bins} height={44} />
+          <NumberField label="Exposure" value={exposure} min={-100} max={100} onChange={(value) => setExposure(value)} />
+          <ColorPicker value={rgb} onChange={(value) => setRgb(value)} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function WheelDemo() {
+  const [value, setValue] = useState<[number, number]>([0.25, -0.15])
+  const [lightness, setLightness] = useState(0)
+  return <ColorWheel label="Midtones" value={value} lightness={lightness} onChange={(next) => setValue(next)} onLightness={(next) => setLightness(next)} />
+}
+
+function CurveDemo({ size = 180 }: { size?: number }) {
+  const [points, setPoints] = useState<CurvePoint[]>([...RGB_IDENTITY.slice(0, 1), [0.28, 0.18], [0.72, 0.86], ...RGB_IDENTITY.slice(1)])
+  return (
+    <div style={{ width: size }}>
+      <CurveEditor kind="rgb" points={points} onChange={(next) => setPoints(next)} />
+    </div>
+  )
+}
+
+function TransportDemo() {
+  const [time, setTime] = useState(83.4)
+  const [playing, setPlaying] = useState(false)
+  useEffect(() => {
+    if (!playing) return
+    const timer = setInterval(() => setTime((value) => value + 0.04), 40)
+    return () => clearInterval(timer)
+  }, [playing])
+  return (
+    <div className="lx-transport">
+      <TimecodeField label="Playhead" value={time} fps={25} onChange={(seconds) => setTime(seconds)} accent />
+      <TransportBar
+        buttons={[
+          { id: 'back', label: 'Back', icon: SkipBackIcon, onPress: () => setTime(0) },
+          { id: 'play', label: playing ? 'Pause' : 'Play', icon: PlayIcon, large: true, pressed: playing, onPress: () => setPlaying(!playing) },
+          { id: 'fwd', label: 'Forward', icon: SkipForwardIcon, onPress: () => setTime(time + 5) },
+        ]}
+      />
+    </div>
+  )
+}
+
+/* -------------------------------------------------------------- intro */
+
+function MosaicIntro() {
+  return (
+    <section className="lx-intro">
+      <div className="lx-intro-glow" aria-hidden="true" />
+      <div className="lx-intro-inner">
+        <div className="lx-intro-copy">
+          <a className="lx-pill lx-pill-dark" href={REPO_URL}>
+            <span className="lx-pill-dot" /> Open source · Apache-2.0 · v{version}
+          </a>
+          <h1 className="lx-title lx-title-dark">
+            Every <span className="lx-gradient-bright">kit.</span>
+            <br />
+            One design
+            <br />
+            language.
+          </h1>
+          <p className="lx-lede lx-lede-dark">
+            A tessera is one tile of a mosaic. <a href="https://kition.ai/">Kition</a> Tessera is the tiles every kit is built from: icons, tokens and editor components for professional software, so a
+            photo editor, a spreadsheet and a timeline read as one suite, and any host can reskin them all at once.
+          </p>
+          <div className="lx-actions lx-actions-left">
+            <a className="lx-cta lx-cta-light" href="/docs/installation/">
+              Get started
+            </a>
+            <a className="lx-cta lx-cta-outline" href="/components/">
+              Browse components
+            </a>
+            <a className="lx-cta lx-cta-outline" href={REPO_URL}>
+              GitHub
+              <ArrowUpRightIcon size={15} />
+            </a>
+            <CopyCommand text="pnpm add @kition/tessera-ui" />
+          </div>
+          <dl className="lx-counters">
+            <Counter value={ICON_NAMES.length} label="icons" />
+            <Counter value={KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit)).length} label="kits" />
+            <Counter value={KHP_TOKENS.length} label="theme tokens" />
+            <Counter value={40} label="components" suffix="+" />
+          </dl>
+        </div>
+        <div className="lx-intro-art">
+          <MosaicHero />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** A number that counts up from zero the first time it scrolls into view. */
+function Counter({ value, label, suffix = '' }: { value: number; label: string; suffix?: string }) {
+  const ref = useRef<HTMLElement>(null)
+  const [shown, setShown] = useState(reducedMotion() ? value : 0)
+  useEffect(() => {
+    const element = ref.current
+    if (!element || reducedMotion()) return
+    let frame = 0
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry?.isIntersecting) return
+      observer.disconnect()
+      const begin = performance.now()
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - begin) / 1400)
+        setShown(Math.round(value * (1 - Math.pow(1 - t, 3))))
+        if (t < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    })
+    observer.observe(element)
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+    }
+  }, [value])
+  return (
+    <div>
+      <dt ref={ref}>
+        {shown}
+        {suffix}
+      </dt>
+      <dd>{label}</dd>
+    </div>
+  )
+}
+
+/** Sections fade up as they scroll into view (`data-reveal`). */
+function useReveal() {
+  useEffect(() => {
+    const elements = [...document.querySelectorAll<HTMLElement>('[data-reveal]')]
+    if (reducedMotion()) {
+      for (const element of elements) element.classList.add('is-visible')
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.12 },
+    )
+    for (const element of elements) observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+}
+
+/* -------------------------------------------------------- skin compare */
+
+function SkinCompare() {
+  const box = useRef<HTMLDivElement>(null)
+  const [split, setSplit] = useState(52)
+  const dragging = useRef(false)
+  const move = (clientX: number) => {
+    const rect = box.current?.getBoundingClientRect()
+    if (!rect) return
+    setSplit(Math.min(96, Math.max(4, ((clientX - rect.left) / rect.width) * 100)))
+  }
+  return (
+    <section className="lx-section">
+      <div className="lx-section-head lx-center" data-reveal>
+        <p className="lx-eyebrow">Skins</p>
+        <h2>
+          One editor. <span className="lx-gradient">Any skin.</span>
+        </h2>
+        <p>Drag the line. The same kit, Paper on one side and Graphite on the other: the host sends one theme over the Kit Harness Protocol and every control follows.</p>
+      </div>
+      <div
+        className="lx-compare"
+        ref={box}
+        data-reveal
+        onPointerDown={(event) => {
+          dragging.current = true
+          ;(event.target as HTMLElement).setPointerCapture?.(event.pointerId)
+          move(event.clientX)
+        }}
+        onPointerMove={(event) => dragging.current && move(event.clientX)}
+        onPointerUp={() => (dragging.current = false)}
+      >
+        <div className="lx-compare-layer" style={skinStyle('paper')}>
+          <EditorWindow />
+        </div>
+        <div className="lx-compare-layer lx-compare-top" style={{ ...skinStyle('graphite'), clipPath: `inset(0 0 0 ${split}%)` }}>
+          <EditorWindow />
+        </div>
+        <div className="lx-compare-handle" style={{ left: `${split}%` }} role="slider" aria-label="Skin divider" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(split)} tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === 'ArrowLeft') setSplit((value) => Math.max(4, value - 4))
+            if (event.key === 'ArrowRight') setSplit((value) => Math.min(96, value + 4))
+          }}
+        >
+          <span>Paper</span>
+          <i />
+          <span>Graphite</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------- marquee */
+
+function IconMarquee() {
+  const rows = useMemo(() => {
+    const names = [...ICON_NAMES]
+    const third = Math.ceil(names.length / 3)
+    return [names.slice(0, third), names.slice(third, third * 2), names.slice(third * 2)]
+  }, [])
+  return (
+    <section className="lx-marquee-section">
+      <div className="lx-section-head lx-center" data-reveal>
+        <p className="lx-eyebrow">Tessera Icons</p>
+        <h2>
+          {ICON_NAMES.length} icons. <span className="lx-gradient">One stroke.</span>
+        </h2>
+        <p>A 24 grid, a 1.5 line, round caps, and accents that follow the skin: from Undo to a polar array, every kit draws the same family.</p>
+      </div>
+      <div className="lx-marquee">
+        {rows.map((row, i) => (
+          <div key={i} className={`lx-marquee-row ${i % 2 ? 'lx-reverse' : ''}`} style={{ '--speed': `${110 + i * 25}s` } as CSSProperties}>
+            {[...row, ...row].map((name, j) => {
+              const Icon = iconOf(name)
+              return (
+                <a key={`${name}-${j}`} className="lx-marquee-tile" href={`/icons/${name}/`} title={name} tabIndex={j < row.length ? 0 : -1}>
+                  <Icon size={22} />
+                </a>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/* --------------------------------------------------------------- bento */
+
+function Bento() {
+  const [skin, setSkin] = useState<SkinId>('graphite')
+  return (
+    <section className="lx-section">
+      <div className="lx-section-head" data-reveal>
+        <p className="lx-eyebrow">Components</p>
+        <h2>Built for the work professional editors do.</h2>
+        <p>General design systems stop at forms and tables. Tessera goes on: ribbons, docks, wheels, curves, timelines, meters, all styled only by theme tokens.</p>
+      </div>
+      <div className="lx-bento" data-reveal>
+        <div className="lx-cell lx-cell-skin" style={skinStyle(skin)} data-scheme={SKINS[skin].colorScheme}>
+          <div className="lx-cell-head">
+            <strong>One theme, every kit</strong>
+            <div className="lx-skin-switch" role="group" aria-label="Skin">
+              {SKIN_IDS.map((id) => (
+                <button key={id} type="button" aria-pressed={skin === id} onClick={() => setSkin(id)}>
+                  {id === 'paper' ? 'Paper' : id === 'graphite' ? 'Graphite' : id}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="lx-mini-ribbon">
+            <RibbonGroup label="Font">
+              <RibbonStack>
+                <RibbonButton icon={BoldIcon} label="Bold" size="icon" pressed />
+                <RibbonButton icon={ItalicIcon} label="Italic" size="icon" />
+              </RibbonStack>
+            </RibbonGroup>
+            <RibbonGroup label="Paragraph">
+              <Segmented
+                label="Align"
+                value="start"
+                onChange={() => undefined}
+                segments={[
+                  { value: 'start', icon: TextAlignStartIcon, label: 'Left' },
+                  { value: 'center', icon: TextAlignCenterIcon, label: 'Center' },
+                ]}
+              />
+            </RibbonGroup>
+            <RibbonGroup label="Insert">
+              <RibbonButton icon={iconOf('animation-fly-in')} label="Fly In" size="large" />
+              <RibbonButton icon={iconOf('transition-cover')} label="Cover" size="large" />
+            </RibbonGroup>
+          </div>
+          <div className="lx-skin-body">
+            <table className="lx-skin-sheet">
+              <thead>
+                <tr>
+                  <th />
+                  <th>A</th>
+                  <th>B</th>
+                  <th>C</th>
+                  <th>D</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Design', '42,000', '38,500', '−8%'],
+                  ['Engineering', '180,000', '171,200', '−5%'],
+                  ['Marketing', '65,000', '70,100', '+8%'],
+                  ['Total', '287,000', '279,800', '−3%'],
+                ].map((row, i) => (
+                  <tr key={row[0]}>
+                    <th>{i + 1}</th>
+                    {row.map((cell, j) => (
+                      <td key={j} data-selected={i === 1 && j === 2 ? true : undefined}>
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="lx-skin-bars" aria-hidden="true">
+              {[62, 88, 54, 96, 71].map((height, i) => (
+                <span key={i} style={{ height: `${height}%` }} />
+              ))}
+            </div>
+          </div>
+          <p className="lx-cell-note">A host sends one theme over the Kit Harness Protocol; every kit takes it, readable at WCAG AA.</p>
+        </div>
+        <div className="lx-cell lx-cell-wheel">
+          <span className="lx-cell-tag">ColorWheel</span>
+          <WheelDemo />
+          <p className="lx-cell-caption">Drag the puck to tint, the slider to lift. Grading controls are part of the system, not an add-on.</p>
+        </div>
+        <div className="lx-cell lx-cell-tokens">
+          <span className="lx-cell-tag">{KHP_TOKENS.length} theme tokens</span>
+          <div className="lx-swatches">
+            {SKIN_IDS.map((id) => (
+              <div key={id} className="lx-swatch-col">
+                <small>{id === 'paper' ? 'Paper' : id === 'graphite' ? 'Graphite' : id}</small>
+                {['--kit-primary', '--kit-surface', '--kit-surface-muted', '--kit-canvas', '--kit-border', '--kit-text-muted', '--kit-text', '--kit-danger'].map((token) => (
+                  <span key={token} style={{ background: SKINS[id].tokens[token as keyof (typeof SKINS)['paper']['tokens']] }} title={`${id} ${token}`} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="lx-cell lx-cell-code">
+          <span className="lx-cell-tag">ui/theme</span>
+          <pre>
+            <code>
+              {`"theme": {
+  "colorScheme": "dark",
+  "tokens": {
+    "--kit-primary": "#8b7ff0",
+    "--kit-surface": "#1b1e23"
+  }
+}`}
+            </code>
+          </pre>
+        </div>
+        <div className="lx-cell lx-cell-cad">
+          <span className="lx-cell-tag">Tool icons, with accents</span>
+          <div className="lx-tool-grid">
+            {['polyline', 'arc', 'spline', 'ellipse', 'dimension-linear', 'dimension-angular', 'dimension-radius', 'offset', 'fillet', 'chamfer', 'array-rectangular', 'array-polar', 'constraint-tangent', 'hatch', 'animation-spin', 'transition-reveal'].map((name) => {
+              const Icon = iconOf(name)
+              return (
+                <span key={name} title={name}>
+                  <Icon size={26} />
+                </span>
+              )
+            })}
+          </div>
+        </div>
+        <div className="lx-cell lx-cell-curve">
+          <span className="lx-cell-tag">CurveEditor</span>
+          <CurveDemo size={130} />
+        </div>
+        <div className="lx-cell lx-cell-transport">
+          <span className="lx-cell-tag">Timecode and transport</span>
+          <TransportDemo />
+          <p className="lx-cell-caption">Press play, or drag the timecode to scrub.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------ packages */
+
+const PACKAGES: { name: string; icon: IconComponent; title: string; text: string; code: string; also: string; href: string }[] = [
+  {
+    name: '@kition/tessera-tokens',
+    icon: SwatchBookIcon,
+    title: 'Tokens',
+    text: 'The Kit Harness Protocol theme tokens, component tokens, and the Paper and Graphite skins, from one JSON source.',
+    code: "import '@kition/tessera-tokens/tokens.css'\nimport { skinTheme }\n  from '@kition/tessera-tokens'\n\nconst theme = skinTheme('graphite')",
+    also: 'CSS variables · TypeScript · Rust crate tessera-tokens',
+    href: '/tokens/',
+  },
+  {
+    name: '@kition/tessera-icons',
+    icon: ShapesIcon,
+    title: 'Icons',
+    text: 'Every icon as SVG path data on a 24 grid, so React, a canvas, and a Rust engine draw the same shape.',
+    code: "import { LayersIcon }\n  from '@kition/tessera-icons/react'\n\n<LayersIcon size={16} />\ndrawIcon(ctx, Layers, 8, 8, { size: 16 })",
+    also: 'React · Canvas · SVG · Rust crate tessera-icons',
+    href: '/icons/',
+  },
+  {
+    name: '@kition/tessera-ui',
+    icon: BlocksIcon,
+    title: 'Components',
+    text: 'Base controls through ribbons, docks, colour, curves and timelines. Every one draws only through the theme tokens.',
+    code: "import '@kition/tessera-ui/styles.css'\nimport { Button, ColorPicker }\n  from '@kition/tessera-ui'\n\n<Button variant=\"primary\">Save</Button>",
+    also: 'React 19 · Radix primitives · en-US and zh-CN strings',
+    href: '/components/',
+  },
+]
+
+function Packages() {
+  return (
+    <section className="lx-section">
+      <div className="lx-section-head lx-center" data-reveal>
+        <p className="lx-eyebrow">Three packages</p>
+        <h2>
+          Take one layer, <span className="lx-gradient">or all three.</span>
+        </h2>
+        <p>Tokens stand alone. Icons need nothing but a canvas or React. Components build on both, and a host that follows the theme contract can reskin any of it.</p>
+      </div>
+      <div className="lx-packages" data-reveal>
+        {PACKAGES.map(({ name, icon: Icon, title, text, code, also, href }) => (
+          <a key={name} className="lx-package" href={href}>
+            <span className="lx-package-icon">
+              <Icon size={20} />
+            </span>
+            <h3>{title}</h3>
+            <code className="lx-package-name">{name}</code>
+            <p>{text}</p>
+            <pre>
+              <code>{code}</code>
+            </pre>
+            <span className="lx-package-also">{also}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/* -------------------------------------------------------------- models */
+
+/** The first lines of the site's own llms.txt, as it is served. */
+const LLMS_LINES = llmsIndex
+  .split('\n')
+  .filter((line) => line.trim())
+  .slice(0, 13)
+
+function Models() {
+  return (
+    <section className="lx-section lx-models">
+      <div className="lx-models-copy" data-reveal>
+        <p className="lx-eyebrow">Docs</p>
+        <h2>Written for people and for language models.</h2>
+        <p>An assistant that writes a kit editor should get it right the first time. So the docs a person reads and the docs a model reads come from the same source.</p>
+        <ul className="lx-checks">
+          {[
+            'Props tables generated from the components’ TypeScript types, checked on every commit.',
+            'Every example on the site is a file that runs; its source is shown under it.',
+            'Every guide and component is also a Markdown file, in the repository’s docs/ and on this site under /markdown/.',
+            'llms.txt indexes those files; llms-full.txt is the whole reference in one.',
+          ].map((item) => (
+            <li key={item}>
+              <CheckIcon size={16} />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="lx-actions lx-actions-left">
+          <a className="lx-cta" href="/docs/overview/">
+            Read the docs
+          </a>
+          <a className="lx-ghost" href="/markdown/README.md" target="_self">
+            Markdown docs
+          </a>
+          <a className="lx-ghost" href="/llms-full.txt" target="_self">
+            llms-full.txt
+          </a>
+        </div>
+      </div>
+      <div className="lx-file" data-reveal>
+        <div className="lx-file-bar">
+          <span className="lx-lights" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span>tessera.kition.ai/llms.txt</span>
+        </div>
+        <pre>
+          <code>
+            {LLMS_LINES.map((line, i) => (
+              <span key={i} className={line.startsWith('#') ? 'lx-file-heading' : line.startsWith('>') ? 'lx-file-quote' : undefined}>
+                {line}
+                {'\n'}
+              </span>
+            ))}
+          </code>
+        </pre>
+      </div>
+    </section>
+  )
+}
+
+/* ---------------------------------------------------------------- kits */
+
+const KIT_COUNT_WORDS: Record<number, string> = { 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen' }
+
+function Kits() {
+  const kits = KIT_ORDER.filter((kit) => KIT_ICONS.includes(kit))
+  return (
+    <section className="lx-section">
+      <div className="lx-section-head lx-center" data-reveal>
+        <p className="lx-eyebrow">Kition kits</p>
+        <h2>{KIT_COUNT_WORDS[kits.length] ?? kits.length} kits. One family.</h2>
+        <p>
+          The kits of <a href="https://kition.ai/">Kition</a>, the AI-native suite for professional work. Every one of their editors is built from Tessera.
+        </p>
+      </div>
+      <div className="lx-kits" data-reveal>
+        {kits.map((kit) => (
+          <figure key={kit} className="lx-kit">
+            <img src={kitUrl(kit)} alt="" width={56} height={56} />
+            <figcaption>{KIT_NAMES[kit] ?? kit}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div className="lx-actions" data-reveal>
+        <a className="lx-cta" href="https://kition.ai/">
+          Visit kition.ai
+          <ArrowUpRightIcon size={15} />
+        </a>
+      </div>
+    </section>
+  )
+}
+
+/* ------------------------------------------------------------- closing */
+
+function Closing() {
+  return (
+    <section className="lx-closing">
+      <div className="lx-closing-inner">
+        <p className="lx-closing-badge">Apache-2.0 · free for any kit, host, or product</p>
+        <h2>Build your editor on Tessera.</h2>
+        <p>Tokens, icons and components in three packages, for React, the canvas, and Rust engines.</p>
+        <div className="lx-actions lx-center-row">
+          <a className="lx-cta lx-cta-light" href="/docs/overview/">
+            Get started
+          </a>
+          <a className="lx-cta lx-cta-outline" href={REPO_URL}>
+            Star on GitHub
+            <ArrowUpRightIcon size={15} />
+          </a>
+          <CopyCommand text="pnpm add @kition/tessera-ui @kition/tessera-icons" />
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Polar tracking: angles from a point (cad)</title>
+  <path d="M4 20h16"/>
+  <path d="M4 20 17 7.5"/>
+  <path d="M4 20 11 4"/>
+  <path d="M12 20a8 8 0 0 0 -1.5-4.6"/>
+  <path d="M2.75 20a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0 -2.5 0z" fill="currentColor"/>
+</svg>
