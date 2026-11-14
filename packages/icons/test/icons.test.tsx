@@ -113,7 +113,7 @@ describe('icons', () => {
   })
 
   it('lists the kit icons with both sizes', () => {
-    for (const kit of ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'design', 'effect', 'cad', 'html', 'cube', 'fig']) {
+    for (const kit of ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'vector', 'layout', 'motion', 'cad', 'html', 'scene', 'design']) {
       expect(KIT_ICONS).toContain(kit)
     }
   })
@@ -131,7 +131,7 @@ describe('icons', () => {
       expect(color.name, kit).not.toBe('')
       expect(1.05 / (luminance(color.light) + 0.05), kit).toBeGreaterThanOrEqual(4.5)
     }
-    expect(KIT_COLORS.fig).toEqual({ name: 'Fig', hue: '#00a676', light: '#00875f', dark: '#02da96' })
+    expect(KIT_COLORS.design).toEqual({ name: 'Design', hue: '#00a676', light: '#00875f', dark: '#02da96' })
   })
 })
 

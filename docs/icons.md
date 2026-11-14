@@ -633,7 +633,7 @@ Professional tools. They carry accent areas filled with `--kit-icon-accent`; pas
 
 Full-colour tiles, one per Kition kit, each with a small cut for 16 px (`<kit>-small.svg`). They are Kition trademarks.
 
-`board`, `cad`, `cube`, `design`, `doc`, `effect`, `fig`, `film`, `html`, `note`, `pdf`, `photo`, `sheet`, `slide`, `table`, `vector`
+`board`, `cad`, `design`, `doc`, `film`, `html`, `layout`, `motion`, `note`, `pdf`, `photo`, `scene`, `sheet`, `slide`, `table`, `vector`
 
 ```ts
 import photo from '@kition/tessera-icons/kit/photo.svg'

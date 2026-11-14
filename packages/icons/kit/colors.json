@@ -12,35 +12,17 @@
     "light": "#4f6d8a",
     "dark": "#8eabc8"
   },
-  "cube": {
-    "name": "Cube",
-    "hue": "#c47a32",
-    "light": "#9a5a22",
-    "dark": "#e3a46b"
-  },
   "design": {
     "name": "Design",
-    "hue": "#d63e95",
-    "light": "#d32f8d",
-    "dark": "#f57bbd"
+    "hue": "#00a676",
+    "light": "#00875f",
+    "dark": "#02da96"
   },
   "doc": {
     "name": "Doc",
     "hue": "#2b5cd9",
     "light": "#2b5cd9",
     "dark": "#6b9bff"
-  },
-  "effect": {
-    "name": "Effect",
-    "hue": "#b03fd6",
-    "light": "#b03fd6",
-    "dark": "#d27cf0"
-  },
-  "fig": {
-    "name": "Fig",
-    "hue": "#00a676",
-    "light": "#00875f",
-    "dark": "#02da96"
   },
   "film": {
     "name": "Film",
@@ -53,6 +35,18 @@
     "hue": "#c65b32",
     "light": "#b64b22",
     "dark": "#ff986b"
+  },
+  "layout": {
+    "name": "Layout",
+    "hue": "#d63e95",
+    "light": "#d32f8d",
+    "dark": "#f57bbd"
+  },
+  "motion": {
+    "name": "Motion",
+    "hue": "#b03fd6",
+    "light": "#b03fd6",
+    "dark": "#d27cf0"
   },
   "note": {
     "name": "Note",
@@ -71,6 +65,12 @@
     "hue": "#0aa3cf",
     "light": "#087fa1",
     "dark": "#4ccbf0"
+  },
+  "scene": {
+    "name": "Scene",
+    "hue": "#c47a32",
+    "light": "#9a5a22",
+    "dark": "#e3a46b"
   },
   "sheet": {
     "name": "Sheet",

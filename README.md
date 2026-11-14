@@ -38,11 +38,11 @@ one suite and any host can reskin them all at once.
 <img src="packages/icons/kit/pdf.svg" width="40" height="40" alt="PDF" />
 <img src="packages/icons/kit/html.svg" width="40" height="40" alt="HTML" />
 <img src="packages/icons/kit/vector.svg" width="40" height="40" alt="Vector" />
-<img src="packages/icons/kit/design.svg" width="40" height="40" alt="Design" />
-<img src="packages/icons/kit/effect.svg" width="40" height="40" alt="Effect" />
+<img src="packages/icons/kit/layout.svg" width="40" height="40" alt="Layout" />
+<img src="packages/icons/kit/motion.svg" width="40" height="40" alt="Motion" />
 <img src="packages/icons/kit/cad.svg" width="40" height="40" alt="CAD" />
-<img src="packages/icons/kit/cube.svg" width="40" height="40" alt="Cube" />
-<img src="packages/icons/kit/fig.svg" width="40" height="40" alt="Fig" />
+<img src="packages/icons/kit/scene.svg" width="40" height="40" alt="Scene" />
+<img src="packages/icons/kit/design.svg" width="40" height="40" alt="Design" />
 </p>
 
 ## See it

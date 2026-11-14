@@ -51,7 +51,7 @@ import { version } from '@tessera/packages/ui/package.json'
 import { REPO_URL } from '../routes'
 import { MosaicHero } from './MosaicHero'
 
-const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'design', 'effect', 'cad', 'cube', 'fig']
+const KIT_ORDER = ['note', 'table', 'board', 'photo', 'film', 'doc', 'sheet', 'slide', 'pdf', 'html', 'vector', 'layout', 'motion', 'cad', 'scene', 'design']
 const KIT_NAMES: Record<string, string> = {
   note: 'Note',
   table: 'Table',
@@ -63,12 +63,12 @@ const KIT_NAMES: Record<string, string> = {
   slide: 'Slide',
   pdf: 'PDF',
   vector: 'Vector',
-  design: 'Design',
-  effect: 'Effect',
+  layout: 'Layout',
+  motion: 'Motion',
   cad: 'CAD',
   html: 'HTML',
-  cube: 'Cube',
-  fig: 'Fig',
+  scene: 'Scene',
+  design: 'Design',
 }
 
 const kitFiles = import.meta.glob('@tessera/packages/icons/kit/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>
