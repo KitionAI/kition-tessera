@@ -118,7 +118,7 @@ function IconDetail({ icon, stroke, onClose }: { icon: IconData; stroke: number;
   const snippets = [
     { id: 'react', label: 'React', text: `import { ${component} } from '@kition/tessera-icons/react'\n\n<${component} size={16} />` },
     { id: 'canvas', label: 'Canvas', text: `import { ${pascal(icon.name)}, drawIcon } from '@kition/tessera-icons'\n\ndrawIcon(ctx, ${pascal(icon.name)}, x, y, { size: 16 })` },
-    { id: 'rust', label: 'Rust', text: `tessera_icons::${icon.name.replace(/-/g, '_').toUpperCase()}.paths` },
+    { id: 'rust', label: 'Rust', text: `kition_tessera_icons::${icon.name.replace(/-/g, '_').toUpperCase()}.paths` },
     { id: 'svg', label: 'SVG', text: toSvg(icon, { size: 24, strokeWidth: stroke }) },
   ]
   const copy = (id: string, text: string) => {

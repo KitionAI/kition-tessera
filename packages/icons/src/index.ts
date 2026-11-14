@@ -1,7 +1,7 @@
 /**
  * @kition/tessera-icons: Tessera Icons as data. Each icon is SVG path strings on a 24 × 24 grid,
  * so the same list draws in React (`@kition/tessera-icons/react`), on a canvas (`drawIcon`, which
- * works in workers with OffscreenCanvas), as SVG markup (`toSvg`), and in Rust (`tessera-icons`).
+ * works in workers with OffscreenCanvas), as SVG markup (`toSvg`), and in Rust (`kition-tessera-icons`).
  */
 import { ACCENT_OPACITY, DEFAULT_STROKE, drawsAccents, ICON_GRID, type IconData, type IconStyle } from './types.ts'
 

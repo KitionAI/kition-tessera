@@ -11,4 +11,4 @@ if (!icons.Layers || typeof react.LayersIcon !== 'object' || react.LayersIcon.di
   console.error('@kition/tessera-icons did not load in Node as expected')
   process.exit(1)
 }
-console.log('tessera-icons: loads in plain Node')
+console.log('kition-tessera-icons: loads in plain Node')

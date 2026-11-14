@@ -16,9 +16,9 @@ follows that contract can be reskinned by any host; Tessera is the quickest way 
 | Package | What | Status |
 | --- | --- | --- |
 | [`@kition/tessera-tokens`](packages/tokens) | Design tokens as CSS variables and TypeScript; skins (Paper, Graphite) as KHP themes | 0.1 |
-| [`tessera-tokens`](crates/tessera-tokens) (Rust) | The same tokens for kit engines that draw on the canvas | 0.1 |
+| [`kition-tessera-tokens`](crates/kition-tessera-tokens) (Rust) | The same tokens for kit engines that draw on the canvas | 0.1 |
 | [`@kition/tessera-icons`](packages/icons) | Tessera Icons: every icon as SVG path data, React components, canvas drawing; kit app icons | 0.1 |
-| [`tessera-icons`](crates/tessera-icons) (Rust) | The same icons for kit engines | 0.1 |
+| [`kition-tessera-icons`](crates/kition-tessera-icons) (Rust) | The same icons for kit engines | 0.1 |
 | [`@kition/tessera-ui`](packages/ui) | Components: base controls, ribbon, dock and floating panels, color controls, curves, histogram, level meter, timecode, transport, keyframes, workspace layout | 0.1 |
 
 ## Tokens

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Writes the generated token files: the package's CSS and TypeScript and the `tessera-tokens`
+ * Writes the generated token files: the package's CSS and TypeScript and the `kition-tessera-tokens`
  * crate's Rust. `--check` writes nothing and fails when a generated file is out of date.
  */
 import { readFileSync, writeFileSync } from 'node:fs'
@@ -15,7 +15,7 @@ const { base, skins } = load(join(pkg, 'tokens'))
 const outputs = [
   [join(pkg, 'src', 'generated', 'tokens.css'), toCss(base)],
   [join(pkg, 'src', 'generated', 'tokens.ts'), toTs(base, skins)],
-  [join(root, 'crates', 'tessera-tokens', 'src', 'generated.rs'), toRust(base, skins)],
+  [join(root, 'crates', 'kition-tessera-tokens', 'src', 'generated.rs'), toRust(base, skins)],
 ]
 
 const check = process.argv.includes('--check')
