@@ -1,0 +1,86 @@
+name: Release
+
+# Publishes @kition/tessera-tokens, @kition/tessera-icons and @kition/tessera-ui to npm with
+# trusted publishing: npm takes this workflow's identity (OIDC) in place of a token, so there is
+# no secret to store, and each package gets a provenance attestation.
+#
+# Set up once on npmjs.com, for each of the three packages (Settings → Trusted publishing →
+# GitHub Actions): organization KitionAI, repository kition-tessera, workflow release.yml,
+# no environment, allowed action "npm publish". A package has to exist on npm before it can be
+# given a trusted publisher, so its very first version is published by a maintainer.
+#
+# To release: set the version in packages/*/package.json, push a tag v<version>.
+# "Run workflow" without a tag is a dry run: it builds, packs and checks, and publishes nothing.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish to npm (leave off for a dry run)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write # npm trusted publishing (OIDC)
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest # trusted publishing needs a GitHub-hosted runner
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+      # Trusted publishing needs npm 11.5.1 or later.
+      - run: npm install -g npm@latest && npm --version
+      - run: pnpm install --frozen-lockfile
+      - name: The tag is the packages' version
+        if: github.ref_type == 'tag'
+        run: |
+          for package in tokens icons ui; do
+            version=$(node -p "require('./packages/$package/package.json').version")
+            if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+              echo "::error::packages/$package is $version, the tag is $GITHUB_REF_NAME"
+              exit 1
+            fi
+          done
+      # Types, tests, and the packed packages used as an outside app would (Node, TypeScript, a bundle).
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm check:pack
+      # pnpm packs (publishConfig.exports, workspace versions); npm publishes the tarballs.
+      - name: Pack
+        run: |
+          mkdir -p "$RUNNER_TEMP/packed"
+          for package in tokens icons ui; do
+            (cd "packages/$package" && pnpm pack --pack-destination "$RUNNER_TEMP/packed")
+          done
+          ls -l "$RUNNER_TEMP/packed"
+      - name: Publish
+        env:
+          PUBLISH: ${{ github.ref_type == 'tag' || inputs.publish }}
+        run: |
+          # In dependency order; a version already on npm is skipped, so a failed run can be run again.
+          for package in tokens icons ui; do
+            name=$(node -p "require('./packages/$package/package.json').name")
+            version=$(node -p "require('./packages/$package/package.json').version")
+            tarball=$(ls "$RUNNER_TEMP"/packed/kition-tessera-$package-*.tgz)
+            if npm view "$name@$version" version >/dev/null 2>&1; then
+              echo "$name@$version is already on npm"
+            elif [ "$PUBLISH" = "true" ]; then
+              npm publish "$tarball" --access public
+            else
+              npm publish "$tarball" --access public --dry-run
+            fi
+          done

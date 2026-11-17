@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Fly Out: the object leaving on a diagonal, speed lines behind it (slide)</title>
+  <path d="M13 11h5.5a2 2 0 0 1 2 2v5.5a2 2 0 0 1 -2 2h-5.5a2 2 0 0 1 -2 -2v-5.5a2 2 0 0 1 2 -2z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M13 11h5.5a2 2 0 0 1 2 2v5.5a2 2 0 0 1 -2 2h-5.5a2 2 0 0 1 -2 -2v-5.5a2 2 0 0 1 2 -2z"/>
+  <path d="M3.5 3.5l4.5 4.5"/>
+  <path d="M3.5 8.5l2.5 2.5"/>
+  <path d="M8.5 3.5l2.5 2.5"/>
+</svg>

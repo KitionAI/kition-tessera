@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://tessera.kition.ai
+    about: Guides, every component with live examples, icons, and tokens.
+  - name: Discussions
+    url: https://github.com/KitionAI/kition/discussions
+    about: Questions and ideas, shared by every Kition repository.
+  - name: Discord
+    url: https://discord.gg/bFSjRDjVY
+    about: Chat with the Kition community.
+  - name: Security vulnerability
+    url: https://github.com/KitionAI/kition-tessera/security/advisories/new
+    about: Report security issues privately. Do not include credentials in public issues.

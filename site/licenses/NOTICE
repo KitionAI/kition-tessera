@@ -1,0 +1,13 @@
+License copies for dependencies whose npm archives omit their license text:
+
+Radix UI primitives: MIT, Copyright (c) 2022 WorkOS.
+Source: https://github.com/radix-ui/primitives/blob/main/LICENSE
+LICENSE-radix matches the license shipped in radix-ui 1.4.3.
+
+react-remove-scroll-bar 2.3.8: MIT, Anton Korzunov.
+Source: https://github.com/theKashey/react-remove-scroll-bar/blob/master/LICENSE
+The package declares MIT; its npm archive and release commit omit the license text.
+This copy preserves the complete notice supplied by the upstream project.
+
+The site build uses these copies only for the versions named in
+site/scripts/third-party-licenses.mjs. Other dependencies supply their own license files.

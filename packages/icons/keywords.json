@@ -1,0 +1,7781 @@
+{
+ "$description": "What people call each Tessera icon, for search: English words (those of Lucide's tags for icons drawn from Lucide, under Lucide's ISC License), Chinese words where written (zh), and the category it is listed under. Every icon in icons.json has an entry; pnpm build:icons puts them in the registry.",
+ "categories": {
+  "arrows": "Arrows",
+  "text": "Text",
+  "layout": "Layout",
+  "design": "Design",
+  "shapes": "Shapes",
+  "files": "Files",
+  "media": "Media and time",
+  "data": "Data and charts",
+  "tools": "Tools",
+  "code": "Code",
+  "people": "People and messages",
+  "devices": "Devices",
+  "cad": "CAD",
+  "motion": "Animation and transitions",
+  "general": "General"
+ },
+ "icons": {
+  "a-arrow-down": {
+   "category": "design",
+   "keywords": [
+    "letter",
+    "font size",
+    "text",
+    "formatting",
+    "smaller"
+   ]
+  },
+  "a-arrow-up": {
+   "category": "design",
+   "keywords": [
+    "letter",
+    "font size",
+    "text",
+    "formatting",
+    "larger",
+    "bigger"
+   ]
+  },
+  "a-large-small": {
+   "category": "design",
+   "keywords": [
+    "letter",
+    "font size",
+    "text",
+    "formatting"
+   ]
+  },
+  "accessibility": {
+   "category": "general",
+   "keywords": [
+    "disability",
+    "disabled",
+    "dda",
+    "wheelchair"
+   ],
+   "zh": [
+    "无障碍",
+    "辅助功能"
+   ]
+  },
+  "activity": {
+   "category": "media",
+   "keywords": [
+    "pulse",
+    "action",
+    "motion",
+    "movement",
+    "exercise",
+    "fitness",
+    "healthcare",
+    "heart rate monitor",
+    "vital signs",
+    "vitals",
+    "emergency room",
+    "er",
+    "intensive care",
+    "hospital",
+    "defibrillator",
+    "earthquake",
+    "seismic",
+    "magnitude",
+    "richter scale",
+    "aftershock",
+    "tremor",
+    "shockwave",
+    "audio",
+    "waveform",
+    "synthesizer",
+    "synthesiser",
+    "music"
+   ]
+  },
+  "alarm-clock": {
+   "category": "devices",
+   "keywords": [
+    "morning"
+   ]
+  },
+  "align-center-horizontal": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "flex",
+    "justify"
+   ],
+   "zh": [
+    "水平居中"
+   ]
+  },
+  "align-center-vertical": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "flex",
+    "justify"
+   ],
+   "zh": [
+    "垂直居中"
+   ]
+  },
+  "align-end-horizontal": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "bottom",
+    "flex",
+    "justify"
+   ]
+  },
+  "align-end-vertical": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "right",
+    "flex",
+    "justify"
+   ]
+  },
+  "align-horizontal-justify-center": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "flex"
+   ]
+  },
+  "align-start-horizontal": {
+   "category": "layout",
+   "keywords": [
+    "top",
+    "items",
+    "flex",
+    "justify"
+   ]
+  },
+  "align-start-vertical": {
+   "category": "layout",
+   "keywords": [
+    "left",
+    "items",
+    "flex",
+    "justify"
+   ]
+  },
+  "align-vertical-justify-center": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "flex",
+    "distribute",
+    "between"
+   ]
+  },
+  "align-vertical-justify-end": {
+   "category": "layout",
+   "keywords": [
+    "bottom",
+    "items",
+    "flex",
+    "distribute",
+    "between"
+   ]
+  },
+  "align-vertical-justify-start": {
+   "category": "layout",
+   "keywords": [
+    "top",
+    "items",
+    "flex",
+    "distribute",
+    "between"
+   ]
+  },
+  "animation-appear": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-fade": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-fade-out": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-float-in": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-fly-in": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-fly-out": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-grow-shrink": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-path": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-pulse": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-spin": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-split": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-wipe": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "animation-zoom": {
+   "category": "motion",
+   "keywords": [
+    "effect",
+    "motion",
+    "entrance"
+   ],
+   "zh": [
+    "动画",
+    "效果"
+   ]
+  },
+  "aperture": {
+   "category": "media",
+   "keywords": [
+    "camera",
+    "photo",
+    "pictures",
+    "shutter",
+    "exposure"
+   ]
+  },
+  "app-window": {
+   "category": "files",
+   "keywords": [
+    "application",
+    "menu bar",
+    "pane",
+    "executable"
+   ],
+   "zh": [
+    "窗口",
+    "应用"
+   ]
+  },
+  "app-window-mac": {
+   "category": "files",
+   "keywords": [
+    "application",
+    "menu bar",
+    "pane",
+    "preferences",
+    "macos",
+    "osx",
+    "executable"
+   ]
+  },
+  "arc": {
+   "category": "cad",
+   "keywords": [
+    "curve",
+    "segment",
+    "circle"
+   ],
+   "zh": [
+    "圆弧",
+    "弧线"
+   ]
+  },
+  "array-path": {
+   "category": "cad",
+   "keywords": [
+    "pattern",
+    "repeat",
+    "duplicate"
+   ],
+   "zh": [
+    "阵列",
+    "重复"
+   ]
+  },
+  "array-polar": {
+   "category": "cad",
+   "keywords": [
+    "pattern",
+    "repeat",
+    "duplicate"
+   ],
+   "zh": [
+    "阵列",
+    "重复"
+   ]
+  },
+  "array-rectangular": {
+   "category": "cad",
+   "keywords": [
+    "pattern",
+    "repeat",
+    "duplicate"
+   ],
+   "zh": [
+    "阵列",
+    "重复"
+   ]
+  },
+  "arrow-down": {
+   "category": "arrows",
+   "keywords": [
+    "backwards",
+    "reverse",
+    "direction",
+    "south"
+   ],
+   "zh": [
+    "向下",
+    "下移"
+   ]
+  },
+  "arrow-down-a-z": {
+   "category": "arrows",
+   "keywords": [
+    "filter",
+    "sort",
+    "ascending",
+    "descending",
+    "increasing",
+    "decreasing",
+    "rising",
+    "falling",
+    "alphabetical"
+   ]
+  },
+  "arrow-down-to-line": {
+   "category": "files",
+   "keywords": [
+    "behind",
+    "direction",
+    "south",
+    "download",
+    "save",
+    "git",
+    "version control",
+    "pull",
+    "collapse",
+    "fold",
+    "vertical"
+   ]
+  },
+  "arrow-down-wide-narrow": {
+   "category": "arrows",
+   "keywords": [
+    "filter",
+    "sort",
+    "ascending",
+    "descending",
+    "increasing",
+    "decreasing",
+    "rising",
+    "falling"
+   ]
+  },
+  "arrow-left": {
+   "category": "arrows",
+   "keywords": [
+    "previous",
+    "back",
+    "direction",
+    "west",
+    "<-"
+   ],
+   "zh": [
+    "向左",
+    "返回"
+   ]
+  },
+  "arrow-left-from-line": {
+   "category": "arrows",
+   "keywords": [
+    "previous",
+    "back",
+    "direction",
+    "west",
+    "expand",
+    "fold",
+    "horizontal",
+    "<-|"
+   ]
+  },
+  "arrow-left-right": {
+   "category": "arrows",
+   "keywords": [
+    "bidirectional",
+    "two-way",
+    "2-way",
+    "swap",
+    "switch",
+    "transaction",
+    "reorder",
+    "move",
+    "<-",
+    "->"
+   ]
+  },
+  "arrow-left-to-line": {
+   "category": "arrows",
+   "keywords": [
+    "previous",
+    "back",
+    "direction",
+    "west",
+    "collapse",
+    "fold",
+    "horizontal",
+    "|<-"
+   ]
+  },
+  "arrow-right": {
+   "category": "arrows",
+   "keywords": [
+    "forward",
+    "next",
+    "direction",
+    "east",
+    "->"
+   ],
+   "zh": [
+    "向右",
+    "前进"
+   ]
+  },
+  "arrow-right-from-line": {
+   "category": "arrows",
+   "keywords": [
+    "next",
+    "forward",
+    "direction",
+    "east",
+    "export",
+    "expand",
+    "fold",
+    "horizontal",
+    "|->"
+   ]
+  },
+  "arrow-right-left": {
+   "category": "arrows",
+   "keywords": [
+    "bidirectional",
+    "two-way",
+    "2-way",
+    "swap",
+    "switch",
+    "transaction",
+    "reorder",
+    "move",
+    "<-",
+    "->"
+   ]
+  },
+  "arrow-right-to-line": {
+   "category": "arrows",
+   "keywords": [
+    "next",
+    "forward",
+    "direction",
+    "east",
+    "tab",
+    "keyboard",
+    "mac",
+    "indent",
+    "collapse",
+    "fold",
+    "horizontal",
+    "->|"
+   ]
+  },
+  "arrow-up": {
+   "category": "arrows",
+   "keywords": [
+    "forward",
+    "direction",
+    "north"
+   ],
+   "zh": [
+    "向上",
+    "上移"
+   ]
+  },
+  "arrow-up-down": {
+   "category": "arrows",
+   "keywords": [
+    "bidirectional",
+    "two-way",
+    "2-way",
+    "swap",
+    "switch",
+    "network",
+    "mobile data",
+    "internet",
+    "sort",
+    "reorder",
+    "move"
+   ],
+   "zh": [
+    "排序"
+   ]
+  },
+  "arrow-up-right": {
+   "category": "arrows",
+   "keywords": [
+    "direction",
+    "north-east",
+    "diagonal"
+   ]
+  },
+  "at-sign": {
+   "category": "text",
+   "keywords": [
+    "mention",
+    "email",
+    "message",
+    "@"
+   ],
+   "zh": [
+    "提及",
+    "邮箱"
+   ]
+  },
+  "audio-lines": {
+   "category": "media",
+   "keywords": [
+    "graphic equaliser",
+    "sound",
+    "noise",
+    "listen",
+    "hearing",
+    "hertz",
+    "frequency",
+    "wavelength",
+    "vibrate",
+    "sine",
+    "synthesizer",
+    "synthesiser",
+    "levels",
+    "track",
+    "music",
+    "playback",
+    "radio",
+    "broadcast",
+    "airwaves",
+    "voice",
+    "vocals",
+    "singer",
+    "song"
+   ]
+  },
+  "audio-waveform": {
+   "category": "media",
+   "keywords": [
+    "sound",
+    "noise",
+    "listen",
+    "hearing",
+    "hertz",
+    "frequency",
+    "wavelength",
+    "vibrate",
+    "sine",
+    "synthesizer",
+    "synthesiser",
+    "levels",
+    "track",
+    "music",
+    "playback",
+    "radio",
+    "broadcast",
+    "airwaves",
+    "voice",
+    "vocals",
+    "singer",
+    "song"
+   ]
+  },
+  "ban": {
+   "category": "people",
+   "keywords": [
+    "cancel",
+    "no",
+    "stop",
+    "forbidden",
+    "prohibited",
+    "error",
+    "incorrect",
+    "mistake",
+    "wrong",
+    "failure",
+    "circle",
+    "slash",
+    "null",
+    "void"
+   ]
+  },
+  "bandage": {
+   "category": "general",
+   "keywords": [
+    "plaster",
+    "band-aid",
+    "first aid",
+    "medical",
+    "health",
+    "wound",
+    "injury",
+    "care",
+    "treatment",
+    "healing",
+    "protection",
+    "emergency",
+    "aid",
+    "safety",
+    "patch"
+   ]
+  },
+  "baseline": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "format",
+    "color"
+   ]
+  },
+  "bell": {
+   "category": "people",
+   "keywords": [
+    "alarm",
+    "notification",
+    "sound",
+    "reminder"
+   ],
+   "zh": [
+    "通知",
+    "提醒"
+   ]
+  },
+  "between-horizontal-end": {
+   "category": "design",
+   "keywords": [
+    "insert",
+    "add",
+    "left",
+    "slot",
+    "squeeze",
+    "space",
+    "vertical",
+    "grid",
+    "table",
+    "rows",
+    "cells",
+    "excel",
+    "spreadsheet",
+    "accountancy",
+    "data",
+    "enter",
+    "entry",
+    "entries",
+    "blocks",
+    "rectangles",
+    "chevron"
+   ]
+  },
+  "between-horizontal-start": {
+   "category": "design",
+   "keywords": [
+    "insert",
+    "add",
+    "right",
+    "slot",
+    "squeeze",
+    "space",
+    "vertical",
+    "grid",
+    "table",
+    "rows",
+    "cells",
+    "excel",
+    "spreadsheet",
+    "accountancy",
+    "data",
+    "enter",
+    "entry",
+    "entries",
+    "blocks",
+    "rectangles",
+    "chevron"
+   ]
+  },
+  "between-vertical-end": {
+   "category": "design",
+   "keywords": [
+    "insert",
+    "add",
+    "top",
+    "slot",
+    "squeeze",
+    "space",
+    "grid",
+    "table",
+    "columns",
+    "cells",
+    "data",
+    "enter",
+    "entry",
+    "entries",
+    "blocks",
+    "rectangles",
+    "chevron"
+   ]
+  },
+  "between-vertical-start": {
+   "category": "design",
+   "keywords": [
+    "insert",
+    "add",
+    "bottom",
+    "slot",
+    "squeeze",
+    "space",
+    "grid",
+    "table",
+    "columns",
+    "cells",
+    "data",
+    "enter",
+    "entry",
+    "entries",
+    "blocks",
+    "rectangles",
+    "chevron"
+   ]
+  },
+  "blend": {
+   "category": "media",
+   "keywords": [
+    "mode",
+    "overlay",
+    "multiply",
+    "screen",
+    "opacity",
+    "transparency",
+    "alpha",
+    "filters",
+    "lenses",
+    "mixed",
+    "shades",
+    "tints",
+    "hues",
+    "saturation",
+    "brightness",
+    "overlap",
+    "colors",
+    "colours",
+    "marriage",
+    "rings",
+    "couple",
+    "connection"
+   ],
+   "zh": [
+    "混合",
+    "混合模式"
+   ]
+  },
+  "blocks": {
+   "category": "shapes",
+   "keywords": [
+    "addon",
+    "plugin",
+    "integration",
+    "extension",
+    "package",
+    "build",
+    "stack",
+    "toys",
+    "kids",
+    "children",
+    "learning",
+    "squares",
+    "corner"
+   ],
+   "zh": [
+    "组件",
+    "模块"
+   ]
+  },
+  "bold": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "strong",
+    "format"
+   ],
+   "zh": [
+    "加粗",
+    "粗体"
+   ]
+  },
+  "book-bookmark": {
+   "category": "text",
+   "keywords": [
+    "dictionary",
+    "reading",
+    "booklet",
+    "magazine",
+    "leaflet",
+    "pamphlet",
+    "tome",
+    "library",
+    "writing",
+    "written",
+    "writer",
+    "author",
+    "story",
+    "script",
+    "fiction",
+    "novel",
+    "information",
+    "knowledge",
+    "education",
+    "high school",
+    "university",
+    "college",
+    "academy",
+    "student",
+    "study",
+    "learning",
+    "homework",
+    "research",
+    "documentation",
+    "saved",
+    "later",
+    "future",
+    "reference",
+    "index",
+    "code",
+    "coding",
+    "version control",
+    "git",
+    "repository"
+   ]
+  },
+  "book-open": {
+   "category": "text",
+   "keywords": [
+    "reading",
+    "pages",
+    "booklet",
+    "magazine",
+    "leaflet",
+    "pamphlet",
+    "library",
+    "writing",
+    "written",
+    "writer",
+    "author",
+    "story",
+    "script",
+    "screenplay",
+    "fiction",
+    "novel",
+    "information",
+    "knowledge",
+    "education",
+    "high school",
+    "university",
+    "college",
+    "academy",
+    "student",
+    "study",
+    "learning",
+    "homework",
+    "research",
+    "documentation",
+    "revealed",
+    "blank",
+    "plain"
+   ]
+  },
+  "book-open-text": {
+   "category": "text",
+   "keywords": [
+    "reading",
+    "pages",
+    "booklet",
+    "magazine",
+    "leaflet",
+    "pamphlet",
+    "library",
+    "writing",
+    "written",
+    "writer",
+    "author",
+    "story",
+    "script",
+    "fiction",
+    "novel",
+    "information",
+    "knowledge",
+    "education",
+    "high school",
+    "university",
+    "college",
+    "academy",
+    "student",
+    "study",
+    "learning",
+    "homework",
+    "research",
+    "documentation",
+    "revealed"
+   ]
+  },
+  "bookmark": {
+   "category": "people",
+   "keywords": [
+    "save",
+    "favorite",
+    "mark",
+    "label",
+    "attachment",
+    "file",
+    "stick",
+    "pin",
+    "read",
+    "clip",
+    "marker",
+    "tag"
+   ],
+   "zh": [
+    "书签",
+    "收藏"
+   ]
+  },
+  "bot": {
+   "category": "code",
+   "keywords": [
+    "robot",
+    "ai",
+    "chat",
+    "assistant"
+   ],
+   "zh": [
+    "机器人",
+    "AI",
+    "助手"
+   ]
+  },
+  "box": {
+   "category": "shapes",
+   "keywords": [
+    "cube",
+    "package",
+    "container",
+    "storage",
+    "geometry",
+    "3d",
+    "isometric"
+   ],
+   "zh": [
+    "立方体",
+    "三维",
+    "盒子"
+   ]
+  },
+  "boxes": {
+   "category": "shapes",
+   "keywords": [
+    "cubes",
+    "packages",
+    "parts",
+    "group",
+    "units",
+    "collection",
+    "cluster",
+    "geometry"
+   ]
+  },
+  "braces": {
+   "category": "files",
+   "keywords": [
+    "json",
+    "code",
+    "token",
+    "curly brackets",
+    "data",
+    "{",
+    "}"
+   ],
+   "zh": [
+    "代码",
+    "大括号"
+   ]
+  },
+  "break-line": {
+   "category": "cad",
+   "keywords": [
+    "split",
+    "gap"
+   ]
+  },
+  "briefcase": {
+   "category": "general",
+   "keywords": [
+    "work",
+    "bag",
+    "baggage",
+    "folder"
+   ]
+  },
+  "briefcase-business": {
+   "category": "general",
+   "keywords": [
+    "work",
+    "bag",
+    "baggage",
+    "folder",
+    "portfolio"
+   ]
+  },
+  "bring-to-front": {
+   "category": "design",
+   "keywords": [
+    "send",
+    "move",
+    "over",
+    "forward",
+    "overlap",
+    "layer",
+    "order"
+   ],
+   "zh": [
+    "置于顶层",
+    "上移一层"
+   ]
+  },
+  "brush": {
+   "category": "design",
+   "keywords": [
+    "clean",
+    "sweep",
+    "refactor",
+    "remove",
+    "draw",
+    "paint",
+    "color",
+    "artist"
+   ],
+   "zh": [
+    "画笔",
+    "笔刷"
+   ]
+  },
+  "brush-cleaning": {
+   "category": "design",
+   "keywords": [
+    "utensil",
+    "housekeeping",
+    "tool",
+    "sweeping",
+    "scrubbing",
+    "hygiene",
+    "maintenance",
+    "household",
+    "cleaner",
+    "chores",
+    "equipment",
+    "sanitation",
+    "bristles",
+    "handle",
+    "home care",
+    "sanitize",
+    "purify",
+    "wash",
+    "disinfect",
+    "sterilize",
+    "scrub",
+    "polish",
+    "decontaminate",
+    "wipe",
+    "spotless",
+    "remove",
+    "empty",
+    "erase",
+    "purge",
+    "eliminate"
+   ]
+  },
+  "cable": {
+   "category": "media",
+   "keywords": [
+    "cord",
+    "wire",
+    "connector",
+    "connection",
+    "link",
+    "signal",
+    "console",
+    "computer",
+    "equipment",
+    "electricity",
+    "energy",
+    "electronics",
+    "recharging",
+    "charger",
+    "power",
+    "supply",
+    "disconnected",
+    "unplugged",
+    "plugs",
+    "interface",
+    "input",
+    "output",
+    "audio video",
+    "av",
+    "rca",
+    "scart",
+    "tv",
+    "television",
+    "optical"
+   ]
+  },
+  "calendar": {
+   "category": "media",
+   "keywords": [
+    "date",
+    "month",
+    "year",
+    "event",
+    "birthday",
+    "birthdate"
+   ],
+   "zh": [
+    "日历",
+    "日期"
+   ]
+  },
+  "calendar-clock": {
+   "category": "media",
+   "keywords": [
+    "date",
+    "day",
+    "month",
+    "year",
+    "event",
+    "hour"
+   ]
+  },
+  "calendar-days": {
+   "category": "media",
+   "keywords": [
+    "date",
+    "month",
+    "year",
+    "event"
+   ]
+  },
+  "calendar-range": {
+   "category": "media",
+   "keywords": [
+    "date",
+    "day",
+    "month",
+    "year",
+    "event",
+    "period"
+   ]
+  },
+  "camera": {
+   "category": "media",
+   "keywords": [
+    "photography",
+    "lens",
+    "focus",
+    "capture",
+    "shot",
+    "visual",
+    "image",
+    "device",
+    "equipment",
+    "photo",
+    "webcam",
+    "video"
+   ],
+   "zh": [
+    "相机",
+    "拍照"
+   ]
+  },
+  "captions": {
+   "category": "media",
+   "keywords": [
+    "closed captions",
+    "subtitles",
+    "subhead",
+    "transcription",
+    "transcribe",
+    "dialogue",
+    "accessibility"
+   ]
+  },
+  "case-lower": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "letters",
+    "characters",
+    "font",
+    "typography"
+   ]
+  },
+  "case-sensitive": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "letters",
+    "characters",
+    "font",
+    "typography"
+   ]
+  },
+  "case-upper": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "letters",
+    "characters",
+    "font",
+    "typography"
+   ]
+  },
+  "center-line": {
+   "category": "cad",
+   "keywords": [
+    "axis",
+    "centre"
+   ]
+  },
+  "center-mark": {
+   "category": "cad",
+   "keywords": [
+    "centre",
+    "cross"
+   ]
+  },
+  "chamfer": {
+   "category": "cad",
+   "keywords": [
+    "bevel",
+    "corner",
+    "cut"
+   ],
+   "zh": [
+    "倒角"
+   ]
+  },
+  "chart-area": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph"
+   ]
+  },
+  "chart-column": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph"
+   ],
+   "zh": [
+    "柱状图",
+    "图表"
+   ]
+  },
+  "chart-column-stacked": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph",
+    "multivariate",
+    "categorical",
+    "comparison"
+   ]
+  },
+  "chart-gantt": {
+   "category": "data",
+   "keywords": [
+    "diagram",
+    "graph",
+    "timeline",
+    "planning"
+   ]
+  },
+  "chart-line": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph"
+   ],
+   "zh": [
+    "折线图",
+    "图表"
+   ]
+  },
+  "chart-no-axes-column": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph"
+   ]
+  },
+  "chart-no-axes-combined": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph",
+    "trending up"
+   ]
+  },
+  "chart-pie": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "presentation"
+   ],
+   "zh": [
+    "饼图",
+    "图表"
+   ]
+  },
+  "chart-scatter": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph"
+   ]
+  },
+  "chart-spline": {
+   "category": "data",
+   "keywords": [
+    "statistics",
+    "analytics",
+    "diagram",
+    "graph",
+    "curve",
+    "continuous",
+    "smooth",
+    "polynomial",
+    "quadratic",
+    "function",
+    "interpolation"
+   ]
+  },
+  "check": {
+   "category": "general",
+   "keywords": [
+    "done",
+    "todo",
+    "tick",
+    "complete",
+    "task",
+    "confirm",
+    "ok",
+    "accept",
+    "apply"
+   ],
+   "zh": [
+    "确认",
+    "完成",
+    "勾选"
+   ]
+  },
+  "chevron-down": {
+   "category": "arrows",
+   "keywords": [
+    "backwards",
+    "reverse",
+    "slow",
+    "dropdown"
+   ],
+   "zh": [
+    "展开",
+    "下拉"
+   ]
+  },
+  "chevron-first": {
+   "category": "media",
+   "keywords": [
+    "previous",
+    "music"
+   ]
+  },
+  "chevron-last": {
+   "category": "media",
+   "keywords": [
+    "skip",
+    "next",
+    "music"
+   ]
+  },
+  "chevron-left": {
+   "category": "arrows",
+   "keywords": [
+    "back",
+    "previous",
+    "less than",
+    "fewer",
+    "menu",
+    "<"
+   ],
+   "zh": [
+    "上一页",
+    "向左"
+   ]
+  },
+  "chevron-right": {
+   "category": "arrows",
+   "keywords": [
+    "forward",
+    "next",
+    "more than",
+    "greater",
+    "menu",
+    "code",
+    "coding",
+    "command line",
+    "terminal",
+    "prompt",
+    "shell",
+    ">"
+   ],
+   "zh": [
+    "下一页",
+    "向右"
+   ]
+  },
+  "chevron-up": {
+   "category": "arrows",
+   "keywords": [
+    "caret",
+    "keyboard",
+    "mac",
+    "control",
+    "ctrl",
+    "superscript",
+    "exponential",
+    "power",
+    "ahead",
+    "fast",
+    "^",
+    "dropdown"
+   ],
+   "zh": [
+    "收起"
+   ]
+  },
+  "chevrons-down-up": {
+   "category": "arrows",
+   "keywords": [
+    "collapse",
+    "fold",
+    "vertical"
+   ]
+  },
+  "chevrons-left": {
+   "category": "arrows",
+   "keywords": [
+    "turn",
+    "corner"
+   ]
+  },
+  "chevrons-right": {
+   "category": "arrows",
+   "keywords": [
+    "turn",
+    "corner"
+   ]
+  },
+  "chevrons-right-left": {
+   "category": "arrows",
+   "keywords": [
+    "collapse",
+    "fold",
+    "horizontal"
+   ]
+  },
+  "chevrons-up-down": {
+   "category": "arrows",
+   "keywords": [
+    "expand",
+    "unfold",
+    "vertical"
+   ]
+  },
+  "circle": {
+   "category": "shapes",
+   "keywords": [
+    "off",
+    "zero",
+    "record",
+    "shape"
+   ],
+   "zh": [
+    "圆",
+    "圆形"
+   ]
+  },
+  "circle-alert": {
+   "category": "general",
+   "keywords": [
+    "warning",
+    "danger",
+    "exclamation mark"
+   ],
+   "zh": [
+    "警告",
+    "错误"
+   ]
+  },
+  "circle-center-radius": {
+   "category": "cad",
+   "keywords": [
+    "centre"
+   ]
+  },
+  "circle-check": {
+   "category": "general",
+   "keywords": [
+    "done",
+    "todo",
+    "tick",
+    "complete",
+    "task"
+   ]
+  },
+  "circle-dashed": {
+   "category": "shapes",
+   "keywords": [
+    "pending",
+    "dot",
+    "progress",
+    "issue",
+    "draft",
+    "code",
+    "coding",
+    "version control"
+   ]
+  },
+  "circle-dot": {
+   "category": "shapes",
+   "keywords": [
+    "pending",
+    "progress",
+    "issue",
+    "code",
+    "coding",
+    "version control",
+    "choices",
+    "multiple choice",
+    "choose",
+    "album",
+    "music",
+    "songs",
+    "format",
+    "cd",
+    "dvd",
+    "vinyl",
+    "sleeve",
+    "cover",
+    "platinum",
+    "compilation",
+    "ep",
+    "recording",
+    "playback",
+    "spin",
+    "rotate",
+    "rpm",
+    "dj"
+   ]
+  },
+  "circle-question-mark": {
+   "category": "text",
+   "keywords": [
+    "question mark"
+   ],
+   "zh": [
+    "帮助",
+    "问号"
+   ]
+  },
+  "circle-user-round": {
+   "category": "people",
+   "keywords": [
+    "person",
+    "account",
+    "contact"
+   ]
+  },
+  "circle-x": {
+   "category": "code",
+   "keywords": [
+    "cancel",
+    "close",
+    "delete",
+    "remove",
+    "times",
+    "clear",
+    "error",
+    "incorrect",
+    "wrong",
+    "mistake",
+    "failure",
+    "linter",
+    "multiply",
+    "multiplication"
+   ]
+  },
+  "clapperboard": {
+   "category": "media",
+   "keywords": [
+    "movie",
+    "film",
+    "video",
+    "camera",
+    "cinema",
+    "cut",
+    "action",
+    "television",
+    "tv",
+    "show",
+    "entertainment"
+   ]
+  },
+  "clip-extract": {
+   "category": "media",
+   "keywords": [
+    "timeline",
+    "edit",
+    "video"
+   ],
+   "zh": [
+    "剪辑",
+    "片段",
+    "时间线"
+   ]
+  },
+  "clip-insert": {
+   "category": "media",
+   "keywords": [
+    "timeline",
+    "edit",
+    "video"
+   ],
+   "zh": [
+    "剪辑",
+    "片段",
+    "时间线"
+   ]
+  },
+  "clip-lift": {
+   "category": "media",
+   "keywords": [
+    "timeline",
+    "edit",
+    "video"
+   ],
+   "zh": [
+    "剪辑",
+    "片段",
+    "时间线"
+   ]
+  },
+  "clip-overwrite": {
+   "category": "media",
+   "keywords": [
+    "timeline",
+    "edit",
+    "video"
+   ],
+   "zh": [
+    "剪辑",
+    "片段",
+    "时间线"
+   ]
+  },
+  "clipboard": {
+   "category": "text",
+   "keywords": [
+    "copy",
+    "paste"
+   ],
+   "zh": [
+    "剪贴板"
+   ]
+  },
+  "clipboard-check": {
+   "category": "text",
+   "keywords": [
+    "copied",
+    "pasted",
+    "done",
+    "todo",
+    "tick",
+    "complete",
+    "task"
+   ]
+  },
+  "clipboard-list": {
+   "category": "text",
+   "keywords": [
+    "copy",
+    "paste",
+    "tasks"
+   ]
+  },
+  "clipboard-paste": {
+   "category": "arrows",
+   "keywords": [
+    "copy",
+    "insert"
+   ],
+   "zh": [
+    "粘贴"
+   ]
+  },
+  "clock": {
+   "category": "media",
+   "keywords": [
+    "time",
+    "watch",
+    "alarm"
+   ],
+   "zh": [
+    "时间",
+    "时钟"
+   ]
+  },
+  "clock-3": {
+   "category": "media",
+   "keywords": [
+    "time",
+    "watch",
+    "alarm"
+   ]
+  },
+  "cloud": {
+   "category": "general",
+   "keywords": [
+    "weather"
+   ]
+  },
+  "cloud-download": {
+   "category": "files",
+   "keywords": [
+    "import"
+   ]
+  },
+  "cloud-off": {
+   "category": "devices",
+   "keywords": [
+    "disconnect"
+   ]
+  },
+  "cloud-upload": {
+   "category": "files",
+   "keywords": [
+    "file"
+   ]
+  },
+  "cloudy": {
+   "category": "general",
+   "keywords": [
+    "weather",
+    "clouds"
+   ]
+  },
+  "code": {
+   "category": "text",
+   "keywords": [
+    "source",
+    "programming",
+    "html",
+    "xml"
+   ],
+   "zh": [
+    "代码"
+   ]
+  },
+  "code-xml": {
+   "category": "text",
+   "keywords": [
+    "source",
+    "programming",
+    "html"
+   ]
+  },
+  "columns-2": {
+   "category": "design",
+   "keywords": [
+    "lines",
+    "list",
+    "queue",
+    "preview",
+    "panel",
+    "parallel",
+    "series",
+    "split",
+    "vertical",
+    "horizontal",
+    "half",
+    "center",
+    "middle",
+    "even",
+    "sidebar",
+    "drawer",
+    "gutter",
+    "fold",
+    "reflow",
+    "typography",
+    "pagination",
+    "pages"
+   ],
+   "zh": [
+    "分栏",
+    "两栏"
+   ]
+  },
+  "columns-3": {
+   "category": "design",
+   "keywords": [
+    "lines",
+    "list",
+    "queue",
+    "preview",
+    "parallel",
+    "series",
+    "split",
+    "vertical",
+    "horizontal",
+    "thirds",
+    "triple",
+    "center",
+    "middle",
+    "alignment",
+    "even",
+    "sidebars",
+    "drawers",
+    "gutters",
+    "fold",
+    "reflow",
+    "typography",
+    "pagination",
+    "pages"
+   ]
+  },
+  "combine": {
+   "category": "files",
+   "keywords": [
+    "cubes",
+    "packages",
+    "parts",
+    "units",
+    "collection",
+    "cluster",
+    "gather",
+    "merge"
+   ]
+  },
+  "command": {
+   "category": "code",
+   "keywords": [
+    "keyboard",
+    "key",
+    "mac",
+    "cmd",
+    "button"
+   ]
+  },
+  "command-generic": {
+   "category": "general",
+   "keywords": [
+    "action",
+    "run"
+   ],
+   "zh": [
+    "命令",
+    "操作"
+   ]
+  },
+  "compass": {
+   "category": "arrows",
+   "keywords": [
+    "direction",
+    "north",
+    "east",
+    "south",
+    "west",
+    "browser"
+   ]
+  },
+  "component": {
+   "category": "design",
+   "keywords": [
+    "design",
+    "element",
+    "group",
+    "module",
+    "part",
+    "symbol"
+   ],
+   "zh": [
+    "组件"
+   ]
+  },
+  "constraint-coincident": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-collinear": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-concentric": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-equal": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-fix": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-horizontal": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-parallel": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-perpendicular": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-symmetric": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-tangent": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "constraint-vertical": {
+   "category": "cad",
+   "keywords": [
+    "geometric",
+    "sketch",
+    "relation"
+   ],
+   "zh": [
+    "约束",
+    "几何约束"
+   ]
+  },
+  "construction-line": {
+   "category": "cad",
+   "keywords": [
+    "xline",
+    "guide",
+    "infinite line"
+   ],
+   "zh": [
+    "构造线",
+    "辅助线"
+   ]
+  },
+  "contact": {
+   "category": "people",
+   "keywords": [
+    "user",
+    "person",
+    "family",
+    "friend",
+    "acquaintance",
+    "listing",
+    "networking"
+   ]
+  },
+  "contrast": {
+   "category": "media",
+   "keywords": [
+    "display",
+    "accessibility"
+   ],
+   "zh": [
+    "对比度"
+   ]
+  },
+  "cookie": {
+   "category": "people",
+   "keywords": [
+    "biscuit",
+    "snack",
+    "dessert",
+    "food",
+    "sweet",
+    "bakery",
+    "consent",
+    "privacy",
+    "legal",
+    "tracking",
+    "browser",
+    "website"
+   ]
+  },
+  "copy": {
+   "category": "text",
+   "keywords": [
+    "clone",
+    "duplicate",
+    "multiple"
+   ],
+   "zh": [
+    "复制",
+    "拷贝"
+   ]
+  },
+  "copy-check": {
+   "category": "text",
+   "keywords": [
+    "clone",
+    "duplicate",
+    "done",
+    "multiple"
+   ]
+  },
+  "copy-plus": {
+   "category": "text",
+   "keywords": [
+    "clone",
+    "duplicate",
+    "add",
+    "multiple",
+    "expand",
+    "+"
+   ],
+   "zh": [
+    "创建副本",
+    "复制"
+   ]
+  },
+  "corner-down-right": {
+   "category": "arrows",
+   "keywords": [
+    "arrow",
+    "indent",
+    "tab"
+   ]
+  },
+  "corner-up-right": {
+   "category": "arrows",
+   "keywords": [
+    "arrow"
+   ]
+  },
+  "cpu": {
+   "category": "devices",
+   "keywords": [
+    "processor",
+    "cores",
+    "technology",
+    "computer",
+    "chip",
+    "circuit",
+    "memory",
+    "ram",
+    "specs",
+    "gigahertz",
+    "ghz"
+   ]
+  },
+  "credit-card": {
+   "category": "people",
+   "keywords": [
+    "bank",
+    "purchase",
+    "payment",
+    "cc"
+   ]
+  },
+  "crop": {
+   "category": "media",
+   "keywords": [
+    "photo",
+    "image"
+   ],
+   "zh": [
+    "裁剪"
+   ]
+  },
+  "crosshair": {
+   "category": "media",
+   "keywords": [
+    "aim",
+    "target"
+   ]
+  },
+  "dash-dashed": {
+   "category": "design",
+   "keywords": [
+    "line style",
+    "stroke",
+    "border"
+   ],
+   "zh": [
+    "线型",
+    "虚线",
+    "描边"
+   ]
+  },
+  "dash-dotted": {
+   "category": "design",
+   "keywords": [
+    "line style",
+    "stroke",
+    "border"
+   ],
+   "zh": [
+    "线型",
+    "虚线",
+    "描边"
+   ]
+  },
+  "dash-solid": {
+   "category": "design",
+   "keywords": [
+    "line style",
+    "stroke",
+    "border"
+   ],
+   "zh": [
+    "线型",
+    "虚线",
+    "描边"
+   ]
+  },
+  "database": {
+   "category": "code",
+   "keywords": [
+    "storage",
+    "memory",
+    "container",
+    "tin",
+    "pot",
+    "bytes",
+    "servers"
+   ]
+  },
+  "decimals-arrow-left": {
+   "category": "design",
+   "keywords": [
+    "numerical",
+    "decimal",
+    "decrease",
+    "less",
+    "fewer",
+    "precision",
+    "rounding",
+    "digits",
+    "fraction",
+    "float",
+    "number"
+   ]
+  },
+  "decimals-arrow-right": {
+   "category": "design",
+   "keywords": [
+    "numerical",
+    "decimal",
+    "increase",
+    "more",
+    "precision",
+    "rounding",
+    "digits",
+    "fraction",
+    "float",
+    "number"
+   ]
+  },
+  "delete": {
+   "category": "arrows",
+   "keywords": [
+    "backspace",
+    "remove"
+   ]
+  },
+  "diameter": {
+   "category": "shapes",
+   "keywords": [
+    "shape",
+    "circle",
+    "geometry",
+    "trigonometry",
+    "width",
+    "height",
+    "size",
+    "calculate",
+    "measure"
+   ]
+  },
+  "diamond": {
+   "category": "shapes",
+   "keywords": [
+    "square",
+    "rectangle",
+    "oblique",
+    "rhombus",
+    "shape",
+    "suit",
+    "playing",
+    "cards"
+   ]
+  },
+  "dimension-aligned": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-angular": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-arc-length": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-baseline": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-continue": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-diameter": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-linear": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-ordinate": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "dimension-radius": {
+   "category": "cad",
+   "keywords": [
+    "measure",
+    "annotate",
+    "size"
+   ],
+   "zh": [
+    "标注",
+    "尺寸",
+    "测量"
+   ]
+  },
+  "disc": {
+   "category": "media",
+   "keywords": [
+    "album",
+    "music",
+    "songs",
+    "format",
+    "cd",
+    "dvd",
+    "vinyl",
+    "sleeve",
+    "cover",
+    "platinum",
+    "compilation",
+    "ep",
+    "recording",
+    "playback",
+    "spin",
+    "rotate",
+    "rpm",
+    "dj"
+   ]
+  },
+  "dollar-sign": {
+   "category": "data",
+   "keywords": [
+    "currency",
+    "money",
+    "payment"
+   ]
+  },
+  "donut": {
+   "category": "cad",
+   "keywords": [
+    "ring",
+    "annulus"
+   ]
+  },
+  "download": {
+   "category": "files",
+   "keywords": [
+    "import",
+    "export",
+    "save"
+   ],
+   "zh": [
+    "下载",
+    "导出"
+   ]
+  },
+  "droplet": {
+   "category": "general",
+   "keywords": [
+    "water",
+    "weather",
+    "liquid",
+    "fluid",
+    "wet",
+    "moisture",
+    "damp",
+    "bead",
+    "globule"
+   ],
+   "zh": [
+    "模糊",
+    "水滴",
+    "不透明度"
+   ]
+  },
+  "droplets": {
+   "category": "general",
+   "keywords": [
+    "water",
+    "weather",
+    "liquid",
+    "fluid",
+    "wet",
+    "moisture",
+    "damp",
+    "bead",
+    "globule"
+   ]
+  },
+  "earth": {
+   "category": "arrows",
+   "keywords": [
+    "world",
+    "browser",
+    "language",
+    "translate",
+    "globe"
+   ]
+  },
+  "ellipse": {
+   "category": "cad",
+   "keywords": [
+    "oval",
+    "circle"
+   ],
+   "zh": [
+    "椭圆"
+   ]
+  },
+  "ellipsis": {
+   "category": "layout",
+   "keywords": [
+    "et cetera",
+    "etc",
+    "loader",
+    "loading",
+    "progress",
+    "pending",
+    "throbber",
+    "menu",
+    "options",
+    "operator",
+    "code",
+    "coding",
+    "spread",
+    "rest",
+    "more",
+    "further",
+    "extra",
+    "overflow",
+    "dots",
+    "…",
+    "..."
+   ],
+   "zh": [
+    "更多"
+   ]
+  },
+  "ellipsis-vertical": {
+   "category": "layout",
+   "keywords": [
+    "menu",
+    "options",
+    "spread",
+    "more",
+    "further",
+    "extra",
+    "overflow",
+    "dots",
+    "…",
+    "..."
+   ]
+  },
+  "eraser": {
+   "category": "text",
+   "keywords": [
+    "pencil",
+    "drawing",
+    "undo",
+    "delete",
+    "clear",
+    "trash",
+    "remove"
+   ],
+   "zh": [
+    "橡皮擦",
+    "擦除"
+   ]
+  },
+  "expand": {
+   "category": "arrows",
+   "keywords": [
+    "scale",
+    "fullscreen",
+    "maximize",
+    "minimize",
+    "contract"
+   ]
+  },
+  "explode": {
+   "category": "cad",
+   "keywords": [
+    "break apart",
+    "ungroup",
+    "separate"
+   ],
+   "zh": [
+    "分解",
+    "炸开"
+   ]
+  },
+  "extend": {
+   "category": "cad",
+   "keywords": [
+    "lengthen",
+    "reach",
+    "boundary"
+   ],
+   "zh": [
+    "延伸"
+   ]
+  },
+  "external-link": {
+   "category": "arrows",
+   "keywords": [
+    "outbound",
+    "open",
+    "share"
+   ],
+   "zh": [
+    "外部链接",
+    "打开"
+   ]
+  },
+  "eye": {
+   "category": "media",
+   "keywords": [
+    "view",
+    "watch",
+    "see",
+    "show",
+    "expose",
+    "reveal",
+    "display",
+    "visible",
+    "visibility",
+    "vision",
+    "preview",
+    "read"
+   ],
+   "zh": [
+    "显示",
+    "可见",
+    "查看"
+   ]
+  },
+  "eye-off": {
+   "category": "media",
+   "keywords": [
+    "view",
+    "watch",
+    "see",
+    "hide",
+    "conceal",
+    "mask",
+    "hidden",
+    "visibility",
+    "vision"
+   ],
+   "zh": [
+    "隐藏",
+    "不可见"
+   ]
+  },
+  "face-slightly-smiling": {
+   "category": "people",
+   "keywords": [
+    "smile",
+    "happy",
+    "happiness",
+    "good",
+    "positive",
+    "friendly",
+    "patronizing",
+    "passive aggressive",
+    "ironic",
+    "emoji",
+    "emotion"
+   ]
+  },
+  "fast-forward": {
+   "category": "media",
+   "keywords": [
+    "music"
+   ]
+  },
+  "feather": {
+   "category": "text",
+   "keywords": [
+    "quill",
+    "plume",
+    "writing",
+    "author",
+    "literature",
+    "poetry",
+    "manuscript",
+    "bird",
+    "plumage",
+    "lightweight",
+    "soft"
+   ]
+  },
+  "file": {
+   "category": "files",
+   "keywords": [
+    "document",
+    "page",
+    "new"
+   ],
+   "zh": [
+    "文件",
+    "文档"
+   ]
+  },
+  "file-archive": {
+   "category": "files",
+   "keywords": [
+    "zip",
+    "package"
+   ]
+  },
+  "file-check-corner": {
+   "category": "files",
+   "keywords": [
+    "done",
+    "document",
+    "todo",
+    "tick",
+    "complete",
+    "task"
+   ]
+  },
+  "file-clock": {
+   "category": "files",
+   "keywords": [
+    "history",
+    "log"
+   ]
+  },
+  "file-code": {
+   "category": "files",
+   "keywords": [
+    "script",
+    "document",
+    "gist",
+    "html",
+    "xml",
+    "property list",
+    "plist"
+   ]
+  },
+  "file-code-corner": {
+   "category": "files",
+   "keywords": [
+    "script",
+    "document",
+    "html",
+    "xml",
+    "property list",
+    "plist"
+   ]
+  },
+  "file-diff": {
+   "category": "files",
+   "keywords": [
+    "patch"
+   ]
+  },
+  "file-digit": {
+   "category": "files",
+   "keywords": [
+    "number",
+    "document"
+   ]
+  },
+  "file-exclamation-point": {
+   "category": "files",
+   "keywords": [
+    "hidden",
+    "warning",
+    "alert",
+    "danger",
+    "protected",
+    "exclamation mark"
+   ]
+  },
+  "file-image": {
+   "category": "files",
+   "keywords": [
+    "graphics",
+    "photo",
+    "picture"
+   ]
+  },
+  "file-input": {
+   "category": "files",
+   "keywords": [
+    "document"
+   ]
+  },
+  "file-output": {
+   "category": "files",
+   "keywords": [
+    "document"
+   ]
+  },
+  "file-pen-line": {
+   "category": "files",
+   "keywords": [
+    "edit"
+   ]
+  },
+  "file-plus": {
+   "category": "files",
+   "keywords": [
+    "add",
+    "create",
+    "new",
+    "document"
+   ],
+   "zh": [
+    "新建文件"
+   ]
+  },
+  "file-plus-corner": {
+   "category": "files",
+   "keywords": [
+    "add",
+    "create",
+    "new",
+    "document"
+   ]
+  },
+  "file-spreadsheet": {
+   "category": "files",
+   "keywords": [
+    "sheet",
+    "table"
+   ]
+  },
+  "file-symlink": {
+   "category": "files",
+   "keywords": [
+    "symbolic",
+    "link"
+   ]
+  },
+  "file-text": {
+   "category": "files",
+   "keywords": [
+    "data",
+    "txt",
+    "pdf",
+    "document"
+   ],
+   "zh": [
+    "文档",
+    "文本文件"
+   ]
+  },
+  "file-type-corner": {
+   "category": "files",
+   "keywords": [
+    "font",
+    "text",
+    "typography"
+   ]
+  },
+  "file-up": {
+   "category": "files",
+   "keywords": [
+    "upload",
+    "import",
+    "export"
+   ]
+  },
+  "file-video-camera": {
+   "category": "files",
+   "keywords": [
+    "movie",
+    "film"
+   ]
+  },
+  "files": {
+   "category": "files",
+   "keywords": [
+    "multiple",
+    "copy",
+    "documents"
+   ]
+  },
+  "fillet": {
+   "category": "cad",
+   "keywords": [
+    "round corner",
+    "radius",
+    "blend"
+   ],
+   "zh": [
+    "圆角",
+    "倒圆角"
+   ]
+  },
+  "film": {
+   "category": "media",
+   "keywords": [
+    "movie",
+    "video",
+    "reel",
+    "camera",
+    "cinema",
+    "entertainment"
+   ],
+   "zh": [
+    "影片",
+    "电影"
+   ]
+  },
+  "flag": {
+   "category": "people",
+   "keywords": [
+    "report",
+    "marker",
+    "notification",
+    "warning",
+    "milestone",
+    "goal",
+    "notice",
+    "signal",
+    "attention",
+    "banner"
+   ]
+  },
+  "flame": {
+   "category": "people",
+   "keywords": [
+    "heat",
+    "burn",
+    "light",
+    "glow",
+    "ignite",
+    "passion",
+    "ember",
+    "fire",
+    "lit",
+    "burning",
+    "spark",
+    "embers",
+    "smoke",
+    "firefighter",
+    "fireman",
+    "department",
+    "brigade",
+    "station",
+    "emergency"
+   ]
+  },
+  "flask-conical": {
+   "category": "data",
+   "keywords": [
+    "beaker",
+    "erlenmeyer",
+    "lab",
+    "chemistry",
+    "experiment",
+    "test"
+   ]
+  },
+  "flip-horizontal": {
+   "category": "general",
+   "keywords": [
+    "mirror",
+    "reflect"
+   ],
+   "zh": [
+    "水平翻转",
+    "镜像"
+   ]
+  },
+  "flower": {
+   "category": "general",
+   "keywords": [
+    "sustainability",
+    "nature",
+    "plant",
+    "spring"
+   ]
+  },
+  "focus": {
+   "category": "media",
+   "keywords": [
+    "camera",
+    "lens",
+    "photo",
+    "dashed"
+   ]
+  },
+  "fold-horizontal": {
+   "category": "arrows",
+   "keywords": [
+    "arrow",
+    "collapse",
+    "vertical",
+    "dashed"
+   ]
+  },
+  "folder": {
+   "category": "files",
+   "keywords": [
+    "directory",
+    "open",
+    "browse"
+   ],
+   "zh": [
+    "文件夹",
+    "目录"
+   ]
+  },
+  "folder-check": {
+   "category": "files",
+   "keywords": [
+    "done",
+    "directory",
+    "todo",
+    "tick",
+    "complete",
+    "task"
+   ]
+  },
+  "folder-input": {
+   "category": "files",
+   "keywords": [
+    "directory",
+    "import",
+    "export"
+   ]
+  },
+  "folder-lock": {
+   "category": "files",
+   "keywords": [
+    "directory",
+    "private",
+    "security",
+    "protected"
+   ]
+  },
+  "folder-open": {
+   "category": "files",
+   "keywords": [
+    "directory",
+    "browse"
+   ],
+   "zh": [
+    "打开文件夹"
+   ]
+  },
+  "folder-plus": {
+   "category": "files",
+   "keywords": [
+    "directory",
+    "add",
+    "create",
+    "new"
+   ],
+   "zh": [
+    "新建文件夹"
+   ]
+  },
+  "folder-up": {
+   "category": "files",
+   "keywords": [
+    "directory",
+    "upload",
+    "import",
+    "export"
+   ]
+  },
+  "frame": {
+   "category": "media",
+   "keywords": [
+    "logo",
+    "design",
+    "tool"
+   ]
+  },
+  "fullscreen": {
+   "category": "media",
+   "keywords": [
+    "expand",
+    "zoom",
+    "preview",
+    "focus",
+    "camera",
+    "lens",
+    "image"
+   ]
+  },
+  "funnel": {
+   "category": "layout",
+   "keywords": [
+    "filter",
+    "hopper"
+   ]
+  },
+  "gallery-horizontal-end": {
+   "category": "files",
+   "keywords": [
+    "carousel",
+    "pictures",
+    "images",
+    "scroll",
+    "swipe",
+    "album",
+    "portfolio",
+    "history",
+    "versions",
+    "backup",
+    "time machine"
+   ]
+  },
+  "gauge": {
+   "category": "data",
+   "keywords": [
+    "dashboard",
+    "dial",
+    "meter",
+    "speed",
+    "pressure",
+    "measure",
+    "level"
+   ],
+   "zh": [
+    "仪表",
+    "速度"
+   ]
+  },
+  "gem": {
+   "category": "code",
+   "keywords": [
+    "diamond",
+    "crystal",
+    "ruby",
+    "jewellery",
+    "price",
+    "special",
+    "present",
+    "gift",
+    "ring",
+    "wedding",
+    "proposal",
+    "marriage",
+    "rubygems"
+   ]
+  },
+  "gift": {
+   "category": "people",
+   "keywords": [
+    "present",
+    "box",
+    "birthday",
+    "party"
+   ]
+  },
+  "git-branch": {
+   "category": "code",
+   "keywords": [
+    "code",
+    "version control",
+    "vcs",
+    "repository"
+   ]
+  },
+  "git-branch-plus": {
+   "category": "code",
+   "keywords": [
+    "code",
+    "version control",
+    "vcs",
+    "repository",
+    "add",
+    "create",
+    "+"
+   ]
+  },
+  "git-compare": {
+   "category": "code",
+   "keywords": [
+    "code",
+    "version control",
+    "diff"
+   ]
+  },
+  "glasses": {
+   "category": "general",
+   "keywords": [
+    "spectacles"
+   ]
+  },
+  "globe": {
+   "category": "arrows",
+   "keywords": [
+    "world",
+    "browser",
+    "language",
+    "translate"
+   ],
+   "zh": [
+    "网页",
+    "全球",
+    "语言"
+   ]
+  },
+  "go-to-in": {
+   "category": "media",
+   "keywords": [
+    "go to",
+    "jump",
+    "in point",
+    "out point",
+    "timeline"
+   ],
+   "zh": [
+    "跳到",
+    "入点",
+    "出点"
+   ]
+  },
+  "go-to-out": {
+   "category": "media",
+   "keywords": [
+    "go to",
+    "jump",
+    "in point",
+    "out point",
+    "timeline"
+   ],
+   "zh": [
+    "跳到",
+    "入点",
+    "出点"
+   ]
+  },
+  "graduation-cap": {
+   "category": "general",
+   "keywords": [
+    "school",
+    "university",
+    "learn",
+    "study",
+    "mortarboard",
+    "education",
+    "ceremony",
+    "academic",
+    "hat",
+    "diploma",
+    "bachelor's",
+    "master's",
+    "doctorate"
+   ]
+  },
+  "grid-2x2": {
+   "category": "design",
+   "keywords": [
+    "table",
+    "rows",
+    "columns",
+    "blocks",
+    "plot",
+    "land",
+    "geometry",
+    "measure",
+    "size",
+    "width",
+    "height",
+    "distance",
+    "surface area",
+    "square meter",
+    "acre",
+    "window",
+    "skylight"
+   ]
+  },
+  "grid-3x2": {
+   "category": "design",
+   "keywords": [
+    "table",
+    "rows",
+    "columns",
+    "blocks",
+    "plot",
+    "land",
+    "geometry",
+    "measure",
+    "size",
+    "width",
+    "height",
+    "distance",
+    "surface area",
+    "square meter",
+    "acre",
+    "window"
+   ]
+  },
+  "grid-3x3": {
+   "category": "design",
+   "keywords": [
+    "table",
+    "rows",
+    "columns"
+   ],
+   "zh": [
+    "网格"
+   ]
+  },
+  "grip-horizontal": {
+   "category": "layout",
+   "keywords": [
+    "grab",
+    "dots",
+    "handle",
+    "move",
+    "drag"
+   ]
+  },
+  "grip-vertical": {
+   "category": "layout",
+   "keywords": [
+    "grab",
+    "dots",
+    "handle",
+    "move",
+    "drag"
+   ]
+  },
+  "group": {
+   "category": "files",
+   "keywords": [
+    "cubes",
+    "packages",
+    "parts",
+    "units",
+    "collection",
+    "cluster",
+    "gather",
+    "dashed",
+    "combine",
+    "collect",
+    "together"
+   ],
+   "zh": [
+    "组合",
+    "编组"
+   ]
+  },
+  "hand": {
+   "category": "tools",
+   "keywords": [
+    "wave",
+    "move",
+    "mouse",
+    "grab"
+   ],
+   "zh": [
+    "抓手",
+    "平移"
+   ]
+  },
+  "hard-drive": {
+   "category": "code",
+   "keywords": [
+    "computer",
+    "server",
+    "memory",
+    "data",
+    "ssd",
+    "disk",
+    "hard disk",
+    "storage",
+    "hardware",
+    "backup",
+    "media"
+   ]
+  },
+  "hash": {
+   "category": "text",
+   "keywords": [
+    "hashtag",
+    "number",
+    "pound"
+   ],
+   "zh": [
+    "井号",
+    "编号"
+   ]
+  },
+  "hatch": {
+   "category": "cad",
+   "keywords": [
+    "fill pattern",
+    "shading",
+    "section"
+   ],
+   "zh": [
+    "填充图案",
+    "剖面线"
+   ]
+  },
+  "heading": {
+   "category": "text",
+   "keywords": [
+    "h1",
+    "html",
+    "markup",
+    "markdown"
+   ],
+   "zh": [
+    "标题"
+   ]
+  },
+  "heart": {
+   "category": "media",
+   "keywords": [
+    "like",
+    "love",
+    "emotion",
+    "suit",
+    "playing",
+    "cards"
+   ]
+  },
+  "helix": {
+   "category": "cad",
+   "keywords": [
+    "spiral",
+    "coil"
+   ]
+  },
+  "hexagon": {
+   "category": "shapes",
+   "keywords": [
+    "shape",
+    "node.js",
+    "logo"
+   ]
+  },
+  "highlighter": {
+   "category": "design",
+   "keywords": [
+    "mark",
+    "text"
+   ],
+   "zh": [
+    "高亮",
+    "荧光笔"
+   ]
+  },
+  "hourglass": {
+   "category": "media",
+   "keywords": [
+    "timer",
+    "time",
+    "sandglass"
+   ]
+  },
+  "image": {
+   "category": "files",
+   "keywords": [
+    "picture",
+    "photo"
+   ],
+   "zh": [
+    "图片",
+    "图像"
+   ]
+  },
+  "image-down": {
+   "category": "files",
+   "keywords": [
+    "picture",
+    "photo",
+    "download",
+    "save",
+    "export"
+   ]
+  },
+  "image-plus": {
+   "category": "files",
+   "keywords": [
+    "add",
+    "create",
+    "picture"
+   ],
+   "zh": [
+    "插入图片"
+   ]
+  },
+  "image-up": {
+   "category": "files",
+   "keywords": [
+    "picture",
+    "photo",
+    "upload",
+    "import"
+   ]
+  },
+  "images": {
+   "category": "files",
+   "keywords": [
+    "picture",
+    "photo",
+    "multiple",
+    "copy",
+    "gallery",
+    "album",
+    "collection",
+    "slideshow",
+    "showcase"
+   ]
+  },
+  "inbox": {
+   "category": "people",
+   "keywords": [
+    "email"
+   ]
+  },
+  "info": {
+   "category": "general",
+   "keywords": [
+    "about",
+    "advice",
+    "clue",
+    "details",
+    "help",
+    "hint",
+    "indicator",
+    "information",
+    "knowledge",
+    "notice",
+    "status",
+    "support",
+    "tooltip"
+   ],
+   "zh": [
+    "信息",
+    "提示"
+   ]
+  },
+  "italic": {
+   "category": "text",
+   "keywords": [
+    "oblique",
+    "text",
+    "format"
+   ],
+   "zh": [
+    "斜体"
+   ]
+  },
+  "key-round": {
+   "category": "people",
+   "keywords": [
+    "password",
+    "login",
+    "authentication",
+    "secure",
+    "unlock"
+   ]
+  },
+  "keyboard": {
+   "category": "text",
+   "keywords": [
+    "layout",
+    "spell",
+    "settings",
+    "mouse"
+   ],
+   "zh": [
+    "键盘",
+    "快捷键"
+   ]
+  },
+  "keyframe": {
+   "category": "media",
+   "keywords": [
+    "animation",
+    "timeline",
+    "key"
+   ],
+   "zh": [
+    "关键帧"
+   ]
+  },
+  "keyframe-next": {
+   "category": "media",
+   "keywords": [
+    "animation",
+    "timeline",
+    "key"
+   ],
+   "zh": [
+    "关键帧"
+   ]
+  },
+  "keyframe-on": {
+   "category": "media",
+   "keywords": [
+    "animation",
+    "timeline",
+    "key"
+   ],
+   "zh": [
+    "关键帧"
+   ]
+  },
+  "keyframe-previous": {
+   "category": "media",
+   "keywords": [
+    "animation",
+    "timeline",
+    "key"
+   ],
+   "zh": [
+    "关键帧"
+   ]
+  },
+  "lamp": {
+   "category": "general",
+   "keywords": [
+    "lighting",
+    "household",
+    "home",
+    "furniture"
+   ]
+  },
+  "languages": {
+   "category": "text",
+   "keywords": [
+    "translate",
+    "locale",
+    "i18n"
+   ],
+   "zh": [
+    "语言",
+    "翻译"
+   ]
+  },
+  "laptop": {
+   "category": "devices",
+   "keywords": [
+    "computer",
+    "screen",
+    "remote"
+   ]
+  },
+  "lasso": {
+   "category": "design",
+   "keywords": [
+    "select",
+    "cursor"
+   ],
+   "zh": [
+    "套索",
+    "选区"
+   ]
+  },
+  "lasso-select": {
+   "category": "design",
+   "keywords": [
+    "cursor"
+   ]
+  },
+  "layers": {
+   "category": "design",
+   "keywords": [
+    "stack",
+    "pile",
+    "pages",
+    "sheets",
+    "paperwork",
+    "copies",
+    "copy"
+   ],
+   "zh": [
+    "图层",
+    "层"
+   ]
+  },
+  "layers-2": {
+   "category": "design",
+   "keywords": [
+    "stack",
+    "pile",
+    "pages",
+    "sheets",
+    "paperwork",
+    "copies",
+    "copy",
+    "duplicate",
+    "double",
+    "shortcuts"
+   ]
+  },
+  "layers-plus": {
+   "category": "design",
+   "keywords": [
+    "stack",
+    "add",
+    "new",
+    "increase",
+    "create",
+    "positive",
+    "copy",
+    "upgrade"
+   ]
+  },
+  "layout-dashboard": {
+   "category": "design",
+   "keywords": [
+    "masonry",
+    "brick"
+   ]
+  },
+  "layout-grid": {
+   "category": "design",
+   "keywords": [
+    "app",
+    "home",
+    "start"
+   ],
+   "zh": [
+    "网格布局",
+    "宫格"
+   ]
+  },
+  "layout-panel-left": {
+   "category": "design",
+   "keywords": [
+    "app",
+    "home",
+    "start",
+    "grid"
+   ]
+  },
+  "layout-template": {
+   "category": "layout",
+   "keywords": [
+    "window",
+    "webpage",
+    "block",
+    "section",
+    "wireframe"
+   ]
+  },
+  "leader": {
+   "category": "cad",
+   "keywords": [
+    "callout",
+    "annotation",
+    "note"
+   ]
+  },
+  "lengthen": {
+   "category": "cad",
+   "keywords": [
+    "extend",
+    "length"
+   ]
+  },
+  "library": {
+   "category": "media",
+   "keywords": [
+    "books",
+    "reading",
+    "written",
+    "authors",
+    "stories",
+    "fiction",
+    "novels",
+    "information",
+    "knowledge",
+    "education",
+    "high school",
+    "university",
+    "college",
+    "academy",
+    "learning",
+    "study",
+    "research",
+    "collection",
+    "vinyl",
+    "records",
+    "albums",
+    "music",
+    "package"
+   ]
+  },
+  "life-buoy": {
+   "category": "general",
+   "keywords": [
+    "preserver",
+    "life belt",
+    "lifesaver",
+    "help",
+    "rescue",
+    "ship",
+    "ring",
+    "raft",
+    "inflatable",
+    "wheel",
+    "donut"
+   ]
+  },
+  "ligature": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "font",
+    "typography",
+    "alternates",
+    "alternatives"
+   ]
+  },
+  "lightbulb": {
+   "category": "media",
+   "keywords": [
+    "idea",
+    "bright",
+    "lights"
+   ]
+  },
+  "line-segment": {
+   "category": "cad",
+   "keywords": [
+    "draw"
+   ],
+   "zh": [
+    "直线",
+    "线段"
+   ]
+  },
+  "linetype": {
+   "category": "general",
+   "keywords": [
+    "line style",
+    "dash",
+    "pattern"
+   ]
+  },
+  "lineweight": {
+   "category": "general",
+   "keywords": [
+    "stroke width",
+    "thickness"
+   ]
+  },
+  "link": {
+   "category": "text",
+   "keywords": [
+    "chain",
+    "url",
+    "hyperlink",
+    "web address"
+   ],
+   "zh": [
+    "链接",
+    "超链接"
+   ]
+  },
+  "link-2": {
+   "category": "text",
+   "keywords": [
+    "chain",
+    "url"
+   ]
+  },
+  "list": {
+   "category": "text",
+   "keywords": [
+    "options",
+    "bullets",
+    "items",
+    "unordered"
+   ],
+   "zh": [
+    "列表"
+   ]
+  },
+  "list-checks": {
+   "category": "text",
+   "keywords": [
+    "todo",
+    "done",
+    "check",
+    "tick",
+    "complete",
+    "tasks",
+    "items",
+    "pending"
+   ]
+  },
+  "list-filter": {
+   "category": "text",
+   "keywords": [
+    "options",
+    "sort",
+    "narrow"
+   ],
+   "zh": [
+    "筛选",
+    "过滤"
+   ]
+  },
+  "list-indent-decrease": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "tab"
+   ],
+   "zh": [
+    "减少缩进"
+   ]
+  },
+  "list-indent-increase": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "tab"
+   ],
+   "zh": [
+    "增加缩进"
+   ]
+  },
+  "list-ordered": {
+   "category": "text",
+   "keywords": [
+    "number",
+    "order",
+    "queue"
+   ],
+   "zh": [
+    "编号列表",
+    "有序列表"
+   ]
+  },
+  "list-plus": {
+   "category": "media",
+   "keywords": [
+    "playlist",
+    "add",
+    "song",
+    "track",
+    "new"
+   ]
+  },
+  "list-restart": {
+   "category": "media",
+   "keywords": [
+    "reset",
+    "refresh",
+    "reload",
+    "playlist",
+    "replay"
+   ]
+  },
+  "list-todo": {
+   "category": "text",
+   "keywords": [
+    "done",
+    "check",
+    "tick",
+    "complete",
+    "tasks",
+    "items",
+    "pending"
+   ]
+  },
+  "list-tree": {
+   "category": "files",
+   "keywords": [
+    "browser"
+   ]
+  },
+  "list-video": {
+   "category": "media",
+   "keywords": [
+    "playlist",
+    "playback"
+   ]
+  },
+  "loader-circle": {
+   "category": "media",
+   "keywords": [
+    "loading",
+    "wait",
+    "busy",
+    "progress",
+    "spinner",
+    "spinning",
+    "throbber"
+   ]
+  },
+  "lock": {
+   "category": "general",
+   "keywords": [
+    "security",
+    "password",
+    "secure",
+    "admin"
+   ],
+   "zh": [
+    "锁定",
+    "加锁"
+   ]
+  },
+  "lock-keyhole": {
+   "category": "general",
+   "keywords": [
+    "security",
+    "password",
+    "secure",
+    "admin"
+   ]
+  },
+  "lock-open": {
+   "category": "general",
+   "keywords": [
+    "security",
+    "unlock",
+    "editable"
+   ],
+   "zh": [
+    "解锁"
+   ]
+  },
+  "log-out": {
+   "category": "arrows",
+   "keywords": [
+    "sign out",
+    "arrow",
+    "exit",
+    "auth"
+   ]
+  },
+  "lollipop": {
+   "category": "general",
+   "keywords": [
+    "lolly",
+    "candy",
+    "sugar",
+    "food",
+    "sweet",
+    "dessert",
+    "spiral"
+   ]
+  },
+  "magnet": {
+   "category": "design",
+   "keywords": [
+    "horseshoe",
+    "lock",
+    "science",
+    "snap"
+   ],
+   "zh": [
+    "吸附",
+    "磁吸"
+   ]
+  },
+  "mail": {
+   "category": "text",
+   "keywords": [
+    "email",
+    "message",
+    "letter",
+    "unread"
+   ],
+   "zh": [
+    "邮件"
+   ]
+  },
+  "mail-warning": {
+   "category": "people",
+   "keywords": [
+    "email",
+    "message",
+    "letter",
+    "delivery error",
+    "exclamation mark"
+   ]
+  },
+  "map-pin": {
+   "category": "arrows",
+   "keywords": [
+    "location",
+    "waypoint",
+    "marker",
+    "drop"
+   ]
+  },
+  "mark-in": {
+   "category": "media",
+   "keywords": [
+    "in point",
+    "out point",
+    "timeline",
+    "range"
+   ],
+   "zh": [
+    "入点",
+    "出点",
+    "标记"
+   ]
+  },
+  "mark-out": {
+   "category": "media",
+   "keywords": [
+    "in point",
+    "out point",
+    "timeline",
+    "range"
+   ],
+   "zh": [
+    "入点",
+    "出点",
+    "标记"
+   ]
+  },
+  "maximize": {
+   "category": "design",
+   "keywords": [
+    "fullscreen",
+    "expand",
+    "dashed"
+   ],
+   "zh": [
+    "最大化",
+    "全屏"
+   ]
+  },
+  "maximize-2": {
+   "category": "design",
+   "keywords": [
+    "fullscreen",
+    "arrows",
+    "expand"
+   ]
+  },
+  "megaphone": {
+   "category": "media",
+   "keywords": [
+    "advertisement",
+    "announcement",
+    "attention",
+    "alert",
+    "loudspeaker",
+    "notification"
+   ]
+  },
+  "menu": {
+   "category": "layout",
+   "keywords": [
+    "bars",
+    "navigation",
+    "hamburger",
+    "options"
+   ],
+   "zh": [
+    "菜单"
+   ]
+  },
+  "merge": {
+   "category": "arrows",
+   "keywords": [
+    "combine",
+    "join",
+    "unite"
+   ]
+  },
+  "message-square": {
+   "category": "people",
+   "keywords": [
+    "comment",
+    "chat",
+    "conversation",
+    "dialog",
+    "feedback",
+    "speech bubble"
+   ],
+   "zh": [
+    "评论",
+    "消息",
+    "批注"
+   ]
+  },
+  "message-square-dashed": {
+   "category": "people",
+   "keywords": [
+    "comment",
+    "chat",
+    "conversation",
+    "dialog",
+    "feedback",
+    "speech bubble",
+    "draft"
+   ]
+  },
+  "message-square-plus": {
+   "category": "people",
+   "keywords": [
+    "comment",
+    "chat",
+    "conversation",
+    "dialog",
+    "feedback",
+    "speech bubble",
+    "add"
+   ]
+  },
+  "message-square-text": {
+   "category": "people",
+   "keywords": [
+    "comment",
+    "chat",
+    "conversation",
+    "dialog",
+    "feedback",
+    "speech bubble"
+   ]
+  },
+  "minimize-2": {
+   "category": "design",
+   "keywords": [
+    "exit fullscreen",
+    "arrows",
+    "close",
+    "shrink"
+   ],
+   "zh": [
+    "最小化"
+   ]
+  },
+  "minus": {
+   "category": "text",
+   "keywords": [
+    "subtract",
+    "remove",
+    "decrease",
+    "decrement",
+    "reduce",
+    "negative",
+    "calculate",
+    "line",
+    "divider",
+    "separator",
+    "horizontal rule",
+    "hr",
+    "html",
+    "markup",
+    "markdown",
+    "---",
+    "toolbar",
+    "operator",
+    "code",
+    "coding",
+    "minimum",
+    "downgrade"
+   ],
+   "zh": [
+    "减",
+    "移除"
+   ]
+  },
+  "monitor": {
+   "category": "devices",
+   "keywords": [
+    "tv",
+    "computer",
+    "desktop",
+    "screen",
+    "display",
+    "external display",
+    "screen sharing",
+    "virtual machine",
+    "vm"
+   ],
+   "zh": [
+    "显示器",
+    "屏幕"
+   ]
+  },
+  "monitor-cog": {
+   "category": "devices",
+   "keywords": [
+    "tv",
+    "computer",
+    "screen",
+    "display",
+    "desktop",
+    "external display",
+    "virtual machine",
+    "vm",
+    "executable",
+    "settings",
+    "edit",
+    "gear",
+    "configuration",
+    "preferences",
+    "system",
+    "control panel",
+    "network",
+    "computing"
+   ]
+  },
+  "monitor-play": {
+   "category": "media",
+   "keywords": [
+    "tv",
+    "computer",
+    "screen",
+    "display",
+    "desktop",
+    "external display",
+    "screen sharing",
+    "video",
+    "movie",
+    "film",
+    "running",
+    "start",
+    "boot",
+    "virtual machine",
+    "vm"
+   ],
+   "zh": [
+    "放映",
+    "播放"
+   ]
+  },
+  "monitor-smartphone": {
+   "category": "devices",
+   "keywords": [
+    "phone",
+    "cellphone",
+    "device",
+    "mobile",
+    "desktop",
+    "screen",
+    "display",
+    "external display",
+    "screen sharing",
+    "responsive",
+    "screens",
+    "sync",
+    "cast"
+   ],
+   "zh": [
+    "响应式",
+    "设备",
+    "手机"
+   ]
+  },
+  "moon": {
+   "category": "general",
+   "keywords": [
+    "dark",
+    "night"
+   ],
+   "zh": [
+    "深色",
+    "夜间"
+   ]
+  },
+  "mountain": {
+   "category": "general",
+   "keywords": [
+    "climb",
+    "hike",
+    "rock"
+   ]
+  },
+  "mountain-snow": {
+   "category": "general",
+   "keywords": [
+    "alpine",
+    "climb"
+   ]
+  },
+  "mouse-pointer": {
+   "category": "arrows",
+   "keywords": [
+    "click",
+    "select"
+   ]
+  },
+  "mouse-pointer-2": {
+   "category": "arrows",
+   "keywords": [
+    "click",
+    "select"
+   ],
+   "zh": [
+    "选择",
+    "指针",
+    "光标"
+   ]
+  },
+  "mouse-pointer-click": {
+   "category": "arrows",
+   "keywords": [
+    "select"
+   ]
+  },
+  "move": {
+   "category": "arrows",
+   "keywords": [
+    "arrows",
+    "drag",
+    "position",
+    "pan"
+   ],
+   "zh": [
+    "移动"
+   ]
+  },
+  "move-3d": {
+   "category": "design",
+   "keywords": [
+    "arrows",
+    "axis",
+    "gizmo",
+    "coordinates",
+    "transform",
+    "translate"
+   ]
+  },
+  "move-horizontal": {
+   "category": "arrows",
+   "keywords": [
+    "double",
+    "arrow"
+   ]
+  },
+  "move-right": {
+   "category": "arrows",
+   "keywords": [
+    "arrow",
+    "direction",
+    "trend flat",
+    "east"
+   ]
+  },
+  "move-up-right": {
+   "category": "arrows",
+   "keywords": [
+    "arrow",
+    "direction"
+   ]
+  },
+  "move-vertical": {
+   "category": "arrows",
+   "keywords": [
+    "double",
+    "arrow"
+   ]
+  },
+  "multiline": {
+   "category": "cad",
+   "keywords": [
+    "parallel lines",
+    "wall"
+   ]
+  },
+  "music": {
+   "category": "files",
+   "keywords": [
+    "note",
+    "quaver",
+    "eighth note"
+   ],
+   "zh": [
+    "音乐",
+    "音频"
+   ]
+  },
+  "navigation": {
+   "category": "arrows",
+   "keywords": [
+    "location",
+    "travel"
+   ]
+  },
+  "network": {
+   "category": "code",
+   "keywords": [
+    "tree"
+   ]
+  },
+  "notebook-pen": {
+   "category": "text",
+   "keywords": [
+    "pencil",
+    "notepad",
+    "notes",
+    "noted",
+    "stationery",
+    "sketchbook",
+    "organizer",
+    "organiser",
+    "planner",
+    "diary",
+    "journal",
+    "writing",
+    "write",
+    "written",
+    "reading",
+    "high school",
+    "university",
+    "college",
+    "academy",
+    "student",
+    "study",
+    "research",
+    "homework",
+    "eraser",
+    "rubber"
+   ]
+  },
+  "notebook-text": {
+   "category": "text",
+   "keywords": [
+    "notepad",
+    "notes",
+    "pages",
+    "paper",
+    "stationery",
+    "sketchbook",
+    "organizer",
+    "organiser",
+    "planner",
+    "diary",
+    "journal",
+    "writing",
+    "write",
+    "written",
+    "reading",
+    "high school",
+    "university",
+    "college",
+    "academy",
+    "student",
+    "study",
+    "research",
+    "homework",
+    "lines",
+    "opened"
+   ]
+  },
+  "offset": {
+   "category": "cad",
+   "keywords": [
+    "parallel",
+    "copy",
+    "distance"
+   ],
+   "zh": [
+    "偏移"
+   ]
+  },
+  "omega": {
+   "category": "text",
+   "keywords": [
+    "greek",
+    "symbol",
+    "mathematics",
+    "education",
+    "physics",
+    "engineering",
+    "ohms",
+    "electrical resistance",
+    "angular frequency",
+    "dynamical systems",
+    "astronomy",
+    "constellations",
+    "philosophy"
+   ]
+  },
+  "orbit": {
+   "category": "data",
+   "keywords": [
+    "planet",
+    "space",
+    "physics",
+    "satellites",
+    "moons"
+   ]
+  },
+  "ortho-mode": {
+   "category": "cad",
+   "keywords": [
+    "orthogonal",
+    "right angle",
+    "snap"
+   ]
+  },
+  "package": {
+   "category": "files",
+   "keywords": [
+    "box",
+    "container",
+    "storage",
+    "sealed",
+    "delivery",
+    "undelivered",
+    "unopened",
+    "packed",
+    "archive",
+    "zip",
+    "module"
+   ],
+   "zh": [
+    "包",
+    "打包"
+   ]
+  },
+  "paint-bucket": {
+   "category": "design",
+   "keywords": [
+    "fill",
+    "color",
+    "colour",
+    "flood"
+   ],
+   "zh": [
+    "油漆桶",
+    "填充"
+   ]
+  },
+  "paintbrush": {
+   "category": "media",
+   "keywords": [
+    "brush",
+    "design",
+    "color",
+    "colour",
+    "decoration",
+    "diy"
+   ],
+   "zh": [
+    "画笔",
+    "笔刷"
+   ]
+  },
+  "palette": {
+   "category": "media",
+   "keywords": [
+    "colors",
+    "colours",
+    "theme",
+    "scheme",
+    "paint",
+    "watercolor",
+    "watercolour",
+    "artist"
+   ],
+   "zh": [
+    "调色板",
+    "颜色"
+   ]
+  },
+  "panel-bottom": {
+   "category": "layout",
+   "keywords": [
+    "drawer",
+    "dock"
+   ]
+  },
+  "panel-left": {
+   "category": "layout",
+   "keywords": [
+    "primary",
+    "drawer"
+   ],
+   "zh": [
+    "左侧面板",
+    "侧栏"
+   ]
+  },
+  "panel-left-close": {
+   "category": "arrows",
+   "keywords": [
+    "primary",
+    "drawer",
+    "hide",
+    "chevron",
+    "<"
+   ]
+  },
+  "panel-left-open": {
+   "category": "arrows",
+   "keywords": [
+    "primary",
+    "drawer",
+    "show",
+    "reveal",
+    "chevron",
+    "right",
+    ">"
+   ]
+  },
+  "panel-right": {
+   "category": "layout",
+   "keywords": [
+    "sidebar",
+    "secondary",
+    "drawer"
+   ],
+   "zh": [
+    "右侧面板"
+   ]
+  },
+  "panel-top": {
+   "category": "design",
+   "keywords": [
+    "drawer",
+    "browser",
+    "webpage"
+   ]
+  },
+  "panels-top-left": {
+   "category": "design",
+   "keywords": [
+    "menu bar",
+    "sidebar",
+    "primary",
+    "drawers",
+    "window",
+    "webpage",
+    "projects",
+    "overview"
+   ]
+  },
+  "paperclip": {
+   "category": "files",
+   "keywords": [
+    "attachment",
+    "file"
+   ],
+   "zh": [
+    "附件"
+   ]
+  },
+  "parallelogram": {
+   "category": "cad",
+   "keywords": [
+    "shape",
+    "skew"
+   ]
+  },
+  "pause": {
+   "category": "media",
+   "keywords": [
+    "music",
+    "stop"
+   ],
+   "zh": [
+    "暂停"
+   ]
+  },
+  "pen": {
+   "category": "design",
+   "keywords": [
+    "pencil",
+    "change",
+    "create",
+    "draw",
+    "writer",
+    "writing",
+    "biro",
+    "ink",
+    "marker",
+    "felt tip",
+    "stationery",
+    "artist"
+   ]
+  },
+  "pen-line": {
+   "category": "design",
+   "keywords": [
+    "pencil",
+    "change",
+    "create",
+    "draw",
+    "writer",
+    "writing",
+    "biro",
+    "ink",
+    "marker",
+    "felt tip",
+    "stationery",
+    "artist"
+   ]
+  },
+  "pen-tool": {
+   "category": "design",
+   "keywords": [
+    "vector",
+    "drawing",
+    "path"
+   ],
+   "zh": [
+    "钢笔",
+    "路径"
+   ]
+  },
+  "pencil": {
+   "category": "design",
+   "keywords": [
+    "rubber",
+    "edit",
+    "create",
+    "draw",
+    "sketch",
+    "draft",
+    "writer",
+    "writing",
+    "stationery",
+    "artist",
+    "modify",
+    "rename"
+   ],
+   "zh": [
+    "编辑",
+    "铅笔",
+    "修改"
+   ]
+  },
+  "pencil-line": {
+   "category": "design",
+   "keywords": [
+    "change",
+    "create",
+    "draw",
+    "sketch",
+    "draft",
+    "writer",
+    "writing",
+    "biro",
+    "ink",
+    "marker",
+    "felt tip",
+    "stationery",
+    "artist"
+   ]
+  },
+  "pentagon": {
+   "category": "shapes",
+   "keywords": [
+    "shape"
+   ]
+  },
+  "percent": {
+   "category": "code",
+   "keywords": [
+    "percentage",
+    "modulo",
+    "modulus",
+    "remainder",
+    "%",
+    "sale",
+    "discount",
+    "offer",
+    "marketing"
+   ]
+  },
+  "pilcrow": {
+   "category": "text",
+   "keywords": [
+    "paragraph",
+    "mark",
+    "paraph",
+    "blind",
+    "typography",
+    "type",
+    "text",
+    "prose",
+    "symbol"
+   ]
+  },
+  "pill": {
+   "category": "general",
+   "keywords": [
+    "medicine",
+    "medication",
+    "drug",
+    "prescription",
+    "tablet",
+    "pharmacy"
+   ]
+  },
+  "pin": {
+   "category": "arrows",
+   "keywords": [
+    "save",
+    "map",
+    "lock",
+    "fix"
+   ],
+   "zh": [
+    "固定",
+    "置顶"
+   ]
+  },
+  "pin-off": {
+   "category": "arrows",
+   "keywords": [
+    "unpin",
+    "map",
+    "unlock",
+    "unfix",
+    "unsave",
+    "remove"
+   ]
+  },
+  "pipette": {
+   "category": "design",
+   "keywords": [
+    "eye dropper",
+    "color picker",
+    "lab",
+    "chemistry"
+   ],
+   "zh": [
+    "吸管",
+    "取色"
+   ]
+  },
+  "play": {
+   "category": "media",
+   "keywords": [
+    "music",
+    "audio",
+    "video",
+    "start",
+    "run",
+    "preview",
+    "playback"
+   ],
+   "zh": [
+    "播放",
+    "开始"
+   ]
+  },
+  "plus": {
+   "category": "text",
+   "keywords": [
+    "add",
+    "new",
+    "increase",
+    "increment",
+    "positive",
+    "calculate",
+    "toolbar",
+    "crosshair",
+    "aim",
+    "target",
+    "scope",
+    "sight",
+    "reticule",
+    "maximum",
+    "upgrade",
+    "extra",
+    "+",
+    "create"
+   ],
+   "zh": [
+    "添加",
+    "新建",
+    "加"
+   ]
+  },
+  "pointer": {
+   "category": "tools",
+   "keywords": [
+    "mouse",
+    "cursor",
+    "select",
+    "click"
+   ]
+  },
+  "polar-tracking": {
+   "category": "cad",
+   "keywords": [
+    "angle",
+    "snap"
+   ]
+  },
+  "polyline": {
+   "category": "cad",
+   "keywords": [
+    "line",
+    "path",
+    "segments"
+   ],
+   "zh": [
+    "多段线",
+    "折线"
+   ]
+  },
+  "power": {
+   "category": "devices",
+   "keywords": [
+    "on",
+    "off",
+    "device",
+    "switch",
+    "toggle",
+    "binary",
+    "boolean",
+    "reboot",
+    "restart",
+    "button",
+    "keyboard",
+    "troubleshoot"
+   ]
+  },
+  "presentation": {
+   "category": "media",
+   "keywords": [
+    "screen",
+    "whiteboard",
+    "marker pens",
+    "markers",
+    "blackboard",
+    "chalk",
+    "easel",
+    "school",
+    "learning",
+    "lesson",
+    "office",
+    "meeting",
+    "project",
+    "planning"
+   ],
+   "zh": [
+    "演示",
+    "幻灯片",
+    "放映"
+   ]
+  },
+  "printer": {
+   "category": "devices",
+   "keywords": [
+    "fax",
+    "office",
+    "device"
+   ],
+   "zh": [
+    "打印"
+   ]
+  },
+  "puzzle": {
+   "category": "code",
+   "keywords": [
+    "component",
+    "module",
+    "part",
+    "piece"
+   ]
+  },
+  "qr-code": {
+   "category": "code",
+   "keywords": [
+    "barcode",
+    "scan",
+    "link",
+    "url",
+    "information",
+    "digital"
+   ]
+  },
+  "quote": {
+   "category": "text",
+   "keywords": [
+    "quotation",
+    "blockquote",
+    "citation"
+   ],
+   "zh": [
+    "引用"
+   ]
+  },
+  "radar": {
+   "category": "arrows",
+   "keywords": [
+    "scan",
+    "sonar",
+    "detect",
+    "find",
+    "locate"
+   ]
+  },
+  "radius": {
+   "category": "shapes",
+   "keywords": [
+    "shape",
+    "circle",
+    "geometry",
+    "trigonometry",
+    "radii",
+    "calculate",
+    "measure",
+    "size"
+   ]
+  },
+  "rainbow": {
+   "category": "general",
+   "keywords": [
+    "colors",
+    "colours",
+    "spectrum",
+    "light",
+    "prism",
+    "arc",
+    "clear",
+    "sunshine"
+   ]
+  },
+  "ratio": {
+   "category": "media",
+   "keywords": [
+    "screens",
+    "sizes",
+    "rotate",
+    "rotation",
+    "adjust",
+    "aspect ratio",
+    "proportions",
+    "16:9",
+    "widescreen",
+    "4:3",
+    "resolution",
+    "responsive",
+    "mobile",
+    "desktop",
+    "dimensions",
+    "monitor",
+    "orientation",
+    "portrait",
+    "landscape"
+   ]
+  },
+  "ray": {
+   "category": "cad",
+   "keywords": [
+    "half line",
+    "construction"
+   ]
+  },
+  "receipt": {
+   "category": "data",
+   "keywords": [
+    "bill",
+    "voucher",
+    "slip",
+    "check",
+    "counterfoil",
+    "currency",
+    "dollar",
+    "usd",
+    "$"
+   ]
+  },
+  "rectangle-horizontal": {
+   "category": "shapes",
+   "keywords": [
+    "aspect ratio",
+    "16:9",
+    "shape"
+   ]
+  },
+  "rectangle-vertical": {
+   "category": "shapes",
+   "keywords": [
+    "aspect ratio",
+    "9:16",
+    "shape"
+   ]
+  },
+  "redo-2": {
+   "category": "arrows",
+   "keywords": [
+    "undo",
+    "rerun",
+    "history",
+    "forward",
+    "again"
+   ],
+   "zh": [
+    "重做",
+    "恢复"
+   ]
+  },
+  "refresh-ccw": {
+   "category": "arrows",
+   "keywords": [
+    "arrows",
+    "rotate",
+    "reload",
+    "rerun",
+    "synchronise",
+    "synchronize",
+    "circular",
+    "cycle"
+   ]
+  },
+  "refresh-cw": {
+   "category": "arrows",
+   "keywords": [
+    "rotate",
+    "reload",
+    "rerun",
+    "synchronise",
+    "synchronize",
+    "arrows",
+    "circular",
+    "cycle"
+   ],
+   "zh": [
+    "刷新",
+    "重新加载"
+   ]
+  },
+  "region": {
+   "category": "cad",
+   "keywords": [
+    "area",
+    "face",
+    "boundary"
+   ]
+  },
+  "remove-formatting": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "font",
+    "typography",
+    "format",
+    "x",
+    "delete",
+    "times",
+    "clear"
+   ]
+  },
+  "repeat": {
+   "category": "media",
+   "keywords": [
+    "loop",
+    "arrows"
+   ]
+  },
+  "replace": {
+   "category": "text",
+   "keywords": [
+    "search",
+    "substitute",
+    "swap",
+    "change"
+   ]
+  },
+  "revision-cloud": {
+   "category": "cad",
+   "keywords": [
+    "markup",
+    "review"
+   ]
+  },
+  "rocket": {
+   "category": "code",
+   "keywords": [
+    "release",
+    "boost",
+    "launch",
+    "space",
+    "version"
+   ]
+  },
+  "rotate-3d": {
+   "category": "design",
+   "keywords": [
+    "gizmo",
+    "transform",
+    "orientation",
+    "orbit",
+    "axis"
+   ]
+  },
+  "rotate-ccw": {
+   "category": "media",
+   "keywords": [
+    "arrow",
+    "left",
+    "counter-clockwise",
+    "restart",
+    "reload",
+    "rerun",
+    "refresh",
+    "backup",
+    "undo",
+    "replay",
+    "redo",
+    "retry",
+    "rewind",
+    "reverse"
+   ],
+   "zh": [
+    "逆时针旋转",
+    "旋转"
+   ]
+  },
+  "rotate-ccw-clock": {
+   "category": "arrows",
+   "keywords": [
+    "history",
+    "time",
+    "redo",
+    "undo",
+    "rewind",
+    "timeline",
+    "version",
+    "time machine",
+    "backup"
+   ]
+  },
+  "rotate-cw": {
+   "category": "media",
+   "keywords": [
+    "arrow",
+    "right",
+    "clockwise",
+    "refresh",
+    "reload",
+    "rerun",
+    "redo"
+   ],
+   "zh": [
+    "顺时针旋转",
+    "旋转"
+   ]
+  },
+  "rows-2": {
+   "category": "design",
+   "keywords": [
+    "lines",
+    "list",
+    "queue",
+    "preview",
+    "panel",
+    "paragraphs",
+    "parallel",
+    "series",
+    "split",
+    "vertical",
+    "horizontal",
+    "half",
+    "center",
+    "middle",
+    "even",
+    "drawer"
+   ],
+   "zh": [
+    "分行"
+   ]
+  },
+  "rows-3": {
+   "category": "design",
+   "keywords": [
+    "lines",
+    "list",
+    "queue",
+    "preview",
+    "paragraphs",
+    "parallel",
+    "series",
+    "split",
+    "vertical",
+    "horizontal",
+    "half",
+    "center",
+    "middle",
+    "even",
+    "drawers"
+   ]
+  },
+  "ruler": {
+   "category": "design",
+   "keywords": [
+    "measurements",
+    "centimeters",
+    "cm",
+    "millimeters",
+    "mm",
+    "metre",
+    "foot",
+    "feet",
+    "inches",
+    "units",
+    "size",
+    "length",
+    "width",
+    "height",
+    "dimensions",
+    "depth",
+    "breadth",
+    "extent",
+    "stationery"
+   ],
+   "zh": [
+    "标尺",
+    "尺子"
+   ]
+  },
+  "ruler-dimension-line": {
+   "category": "design",
+   "keywords": [
+    "measurements",
+    "centimeters",
+    "cm",
+    "millimeters",
+    "mm",
+    "metre",
+    "foot",
+    "feet",
+    "inches",
+    "units",
+    "size",
+    "length",
+    "width",
+    "height",
+    "dimensions",
+    "depth",
+    "breadth",
+    "extent",
+    "stationery"
+   ]
+  },
+  "save": {
+   "category": "files",
+   "keywords": [
+    "floppy disk",
+    "store",
+    "disk",
+    "write"
+   ],
+   "zh": [
+    "保存"
+   ]
+  },
+  "scale": {
+   "category": "arrows",
+   "keywords": [
+    "balance",
+    "legal",
+    "license",
+    "right",
+    "rule",
+    "law",
+    "justice",
+    "weight",
+    "measure",
+    "compare",
+    "judge",
+    "fair",
+    "ethics",
+    "decision"
+   ]
+  },
+  "scaling": {
+   "category": "cad",
+   "keywords": [
+    "scale",
+    "resize",
+    "design"
+   ],
+   "zh": [
+    "缩放",
+    "比例"
+   ]
+  },
+  "scan": {
+   "category": "people",
+   "keywords": [
+    "qr-code",
+    "barcode",
+    "checkout",
+    "augmented reality",
+    "ar",
+    "target",
+    "surveillance",
+    "camera",
+    "lens",
+    "focus",
+    "frame",
+    "select",
+    "box",
+    "boundary",
+    "bounds",
+    "area",
+    "square",
+    "dashed"
+   ]
+  },
+  "scan-eye": {
+   "category": "media",
+   "keywords": [
+    "preview",
+    "zoom",
+    "expand",
+    "fullscreen",
+    "gallery",
+    "image",
+    "camera",
+    "watch",
+    "surveillance",
+    "retina",
+    "focus",
+    "lens",
+    "biometric",
+    "identification",
+    "authentication",
+    "access",
+    "login"
+   ]
+  },
+  "scan-face": {
+   "category": "people",
+   "keywords": [
+    "biometric",
+    "identification",
+    "authentication",
+    "2fa",
+    "access",
+    "login",
+    "dashed"
+   ]
+  },
+  "scan-search": {
+   "category": "media",
+   "keywords": [
+    "preview",
+    "zoom",
+    "expand",
+    "fullscreen",
+    "gallery",
+    "image",
+    "focus",
+    "lens"
+   ]
+  },
+  "scan-text": {
+   "category": "text",
+   "keywords": [
+    "recognition",
+    "read",
+    "translate",
+    "copy",
+    "lines"
+   ]
+  },
+  "scissors": {
+   "category": "design",
+   "keywords": [
+    "cut",
+    "snip",
+    "chop",
+    "stationery",
+    "crafts"
+   ],
+   "zh": [
+    "剪切",
+    "裁剪"
+   ]
+  },
+  "scroll-text": {
+   "category": "text",
+   "keywords": [
+    "paper",
+    "log",
+    "scripture",
+    "document",
+    "notes",
+    "parchment",
+    "list",
+    "long",
+    "script",
+    "story",
+    "code",
+    "coding"
+   ]
+  },
+  "search": {
+   "category": "text",
+   "keywords": [
+    "find",
+    "scan",
+    "magnifier",
+    "magnifying glass",
+    "lens",
+    "locate",
+    "explore",
+    "discover",
+    "enlarge",
+    "zoom"
+   ],
+   "zh": [
+    "搜索",
+    "查找"
+   ]
+  },
+  "search-check": {
+   "category": "text",
+   "keywords": [
+    "find",
+    "scan",
+    "magnifier",
+    "magnifying glass",
+    "found",
+    "correct",
+    "complete",
+    "tick",
+    "lens",
+    "locate",
+    "explore",
+    "discover",
+    "enlarge",
+    "zoom"
+   ]
+  },
+  "send": {
+   "category": "people",
+   "keywords": [
+    "email",
+    "message",
+    "mail",
+    "paper airplane",
+    "paper aeroplane",
+    "submit"
+   ],
+   "zh": [
+    "发送"
+   ]
+  },
+  "send-to-back": {
+   "category": "design",
+   "keywords": [
+    "bring",
+    "move",
+    "under",
+    "backwards",
+    "overlap",
+    "layer",
+    "order"
+   ],
+   "zh": [
+    "置于底层",
+    "下移一层"
+   ]
+  },
+  "separator-horizontal": {
+   "category": "arrows",
+   "keywords": [
+    "move",
+    "split"
+   ]
+  },
+  "settings": {
+   "category": "people",
+   "keywords": [
+    "cog",
+    "edit",
+    "gear",
+    "preferences"
+   ],
+   "zh": [
+    "设置",
+    "选项"
+   ]
+  },
+  "settings-2": {
+   "category": "people",
+   "keywords": [
+    "cog",
+    "edit",
+    "gear",
+    "preferences",
+    "slider"
+   ]
+  },
+  "shapes": {
+   "category": "shapes",
+   "keywords": [
+    "triangle",
+    "equilateral",
+    "square",
+    "circle",
+    "classification",
+    "different",
+    "collection",
+    "toy",
+    "blocks",
+    "learning"
+   ],
+   "zh": [
+    "形状"
+   ]
+  },
+  "share-2": {
+   "category": "people",
+   "keywords": [
+    "network",
+    "connections"
+   ],
+   "zh": [
+    "分享",
+    "共享"
+   ]
+  },
+  "shell": {
+   "category": "code",
+   "keywords": [
+    "beach",
+    "sand",
+    "holiday",
+    "sea life",
+    "fossil",
+    "ammonite",
+    "biology",
+    "ocean",
+    "terminal",
+    "command line",
+    "session",
+    "bash",
+    "zsh",
+    "roll",
+    "wrap",
+    "chewing gum",
+    "bubble gum",
+    "sweet",
+    "sugar",
+    "hosepipe",
+    "carpet",
+    "string",
+    "spiral",
+    "spinner",
+    "hypnotise",
+    "hypnosis"
+   ]
+  },
+  "shield-alert": {
+   "category": "code",
+   "keywords": [
+    "unshielded",
+    "cybersecurity",
+    "insecure",
+    "unsecured",
+    "safety",
+    "unsafe",
+    "protection",
+    "unprotected",
+    "guardian",
+    "unguarded",
+    "unarmored",
+    "unarmoured",
+    "defenseless",
+    "defenceless",
+    "undefended",
+    "defender",
+    "blocked",
+    "stopped",
+    "intercepted",
+    "interception",
+    "saved",
+    "thwarted",
+    "threat",
+    "prevention",
+    "unprevented",
+    "antivirus",
+    "vigilance",
+    "vigilant",
+    "detection",
+    "detected",
+    "scanned",
+    "found",
+    "exploit",
+    "vulnerability",
+    "vulnerable",
+    "weakness",
+    "infection",
+    "infected",
+    "compromised",
+    "data leak",
+    "audited",
+    "admin",
+    "verification",
+    "unverified",
+    "uncertified",
+    "warning",
+    "emergency",
+    "attention",
+    "urgent",
+    "alarm",
+    "crest",
+    "bravery",
+    "strength",
+    "tough",
+    "attacked",
+    "damaged",
+    "injured",
+    "hit",
+    "expired",
+    "disabled",
+    "inactive",
+    "error",
+    "exclamation mark",
+    "!"
+   ]
+  },
+  "shield-ban": {
+   "category": "code",
+   "keywords": [
+    "unshielded",
+    "cybersecurity",
+    "insecure",
+    "unsecured",
+    "safety",
+    "unsafe",
+    "protection",
+    "unprotected",
+    "guardian",
+    "unguarded",
+    "unarmored",
+    "unarmoured",
+    "defenseless",
+    "defenceless",
+    "undefended",
+    "defender",
+    "blocked",
+    "stopped",
+    "intercepted",
+    "interception",
+    "saved",
+    "thwarted",
+    "threat",
+    "prevention",
+    "unprevented",
+    "antivirus",
+    "vigilance",
+    "vigilant",
+    "detection",
+    "detected",
+    "scanned",
+    "found",
+    "exploit",
+    "vulnerability",
+    "vulnerable",
+    "weakness",
+    "infection",
+    "infected",
+    "compromised",
+    "data leak",
+    "audited",
+    "admin",
+    "verification",
+    "unverified",
+    "uncertified",
+    "cancel",
+    "error",
+    "crest",
+    "bravery",
+    "attacked",
+    "damaged",
+    "injured",
+    "hit",
+    "expired",
+    "eliminated",
+    "disabled",
+    "inactive",
+    "/"
+   ]
+  },
+  "shield-check": {
+   "category": "code",
+   "keywords": [
+    "cybersecurity",
+    "secured",
+    "safety",
+    "protection",
+    "protected",
+    "guardian",
+    "guarded",
+    "armored",
+    "armoured",
+    "defense",
+    "defence",
+    "defended",
+    "blocked",
+    "threat",
+    "prevention",
+    "prevented",
+    "antivirus",
+    "vigilance",
+    "vigilant",
+    "active",
+    "activated",
+    "enabled",
+    "detection",
+    "scanned",
+    "found",
+    "strength",
+    "strong",
+    "tough",
+    "invincible",
+    "invincibility",
+    "invulnerable",
+    "undamaged",
+    "audited",
+    "admin",
+    "verification",
+    "verified",
+    "certification",
+    "certified",
+    "tested",
+    "passed",
+    "qualified",
+    "cleared",
+    "cleaned",
+    "disinfected",
+    "uninfected",
+    "task",
+    "completed",
+    "todo",
+    "done",
+    "ticked",
+    "checked",
+    "crest",
+    "bravery"
+   ]
+  },
+  "shrink": {
+   "category": "arrows",
+   "keywords": [
+    "scale",
+    "fullscreen"
+   ]
+  },
+  "sigma": {
+   "category": "text",
+   "keywords": [
+    "sum",
+    "calculate",
+    "formula",
+    "math",
+    "enumeration",
+    "enumerate"
+   ],
+   "zh": [
+    "求和",
+    "公式"
+   ]
+  },
+  "signature": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "format",
+    "input",
+    "contract",
+    "autograph",
+    "handwriting",
+    "sign",
+    "cursive",
+    "ink",
+    "scribble",
+    "authorize",
+    "personal",
+    "agreement",
+    "legal",
+    "document",
+    "identity",
+    "authentic",
+    "approval",
+    "verification",
+    "unique"
+   ]
+  },
+  "skip-back": {
+   "category": "media",
+   "keywords": [
+    "arrow",
+    "previous",
+    "music"
+   ],
+   "zh": [
+    "上一个",
+    "回到开头"
+   ]
+  },
+  "skip-forward": {
+   "category": "media",
+   "keywords": [
+    "arrow",
+    "next",
+    "music"
+   ],
+   "zh": [
+    "下一个",
+    "跳到结尾"
+   ]
+  },
+  "slash": {
+   "category": "code",
+   "keywords": [
+    "divide",
+    "division",
+    "or",
+    "/"
+   ]
+  },
+  "slice": {
+   "category": "design",
+   "keywords": [
+    "cutter",
+    "scalpel",
+    "knife"
+   ]
+  },
+  "sliders-horizontal": {
+   "category": "people",
+   "keywords": [
+    "settings",
+    "filters",
+    "controls"
+   ],
+   "zh": [
+    "调整",
+    "参数",
+    "滑块"
+   ]
+  },
+  "sliders-vertical": {
+   "category": "people",
+   "keywords": [
+    "settings",
+    "controls"
+   ]
+  },
+  "snowflake": {
+   "category": "general",
+   "keywords": [
+    "cold",
+    "weather",
+    "freeze",
+    "snow",
+    "winter"
+   ]
+  },
+  "sparkle": {
+   "category": "shapes",
+   "keywords": [
+    "star",
+    "effect",
+    "filter",
+    "night",
+    "magic",
+    "shiny",
+    "glitter",
+    "twinkle",
+    "celebration"
+   ]
+  },
+  "sparkles": {
+   "category": "media",
+   "keywords": [
+    "stars",
+    "effect",
+    "filter",
+    "night",
+    "magic"
+   ],
+   "zh": [
+    "AI",
+    "智能",
+    "魔法"
+   ]
+  },
+  "spell-check": {
+   "category": "text",
+   "keywords": [
+    "spelling",
+    "error",
+    "mistake",
+    "oversight",
+    "typo",
+    "correction",
+    "code",
+    "linter",
+    "a"
+   ],
+   "zh": [
+    "拼写检查"
+   ]
+  },
+  "spline": {
+   "category": "cad",
+   "keywords": [
+    "path",
+    "pen",
+    "tool",
+    "shape",
+    "curve",
+    "draw",
+    "bezier",
+    "smooth"
+   ],
+   "zh": [
+    "样条曲线",
+    "曲线"
+   ]
+  },
+  "spline-pointer": {
+   "category": "design",
+   "keywords": [
+    "path",
+    "tool",
+    "curve",
+    "node",
+    "click",
+    "target",
+    "vector"
+   ]
+  },
+  "split": {
+   "category": "arrows",
+   "keywords": [
+    "break",
+    "disband",
+    "divide",
+    "separate",
+    "branch",
+    "disunite"
+   ]
+  },
+  "square": {
+   "category": "media",
+   "keywords": [
+    "stop",
+    "playback",
+    "music",
+    "audio",
+    "video",
+    "rectangle",
+    "aspect ratio",
+    "1:1",
+    "shape"
+   ],
+   "zh": [
+    "矩形",
+    "方形"
+   ]
+  },
+  "square-check": {
+   "category": "general",
+   "keywords": [
+    "done",
+    "todo",
+    "tick",
+    "complete",
+    "task"
+   ]
+  },
+  "square-check-big": {
+   "category": "general",
+   "keywords": [
+    "done",
+    "todo",
+    "tick",
+    "complete",
+    "task"
+   ]
+  },
+  "square-dashed": {
+   "category": "design",
+   "keywords": [
+    "selection",
+    "rectangular",
+    "marquee",
+    "tool",
+    "box"
+   ]
+  },
+  "square-dashed-mouse-pointer": {
+   "category": "arrows",
+   "keywords": [
+    "inspector",
+    "element",
+    "click",
+    "box",
+    "browser",
+    "selector",
+    "target",
+    "dom",
+    "node"
+   ]
+  },
+  "square-dot": {
+   "category": "code",
+   "keywords": [
+    "git",
+    "diff",
+    "modified",
+    "."
+   ]
+  },
+  "square-function": {
+   "category": "code",
+   "keywords": [
+    "programming",
+    "code",
+    "automation",
+    "math"
+   ]
+  },
+  "square-kanban": {
+   "category": "data",
+   "keywords": [
+    "projects",
+    "manage",
+    "overview",
+    "board",
+    "tickets",
+    "issues",
+    "roadmap",
+    "plan",
+    "intentions",
+    "productivity",
+    "work",
+    "agile",
+    "code",
+    "coding",
+    "toolbar",
+    "button"
+   ]
+  },
+  "square-minus": {
+   "category": "text",
+   "keywords": [
+    "subtract",
+    "remove",
+    "decrease",
+    "reduce",
+    "calculator",
+    "button",
+    "keyboard",
+    "line",
+    "divider",
+    "separator",
+    "horizontal rule",
+    "hr",
+    "html",
+    "markup",
+    "markdown",
+    "---",
+    "toolbar",
+    "operator",
+    "code",
+    "coding",
+    "minimum",
+    "downgrade"
+   ]
+  },
+  "square-mouse-pointer": {
+   "category": "arrows",
+   "keywords": [
+    "inspector",
+    "element",
+    "click",
+    "box",
+    "browser",
+    "selector",
+    "target",
+    "dom",
+    "node"
+   ]
+  },
+  "square-plus": {
+   "category": "text",
+   "keywords": [
+    "add",
+    "new",
+    "increase",
+    "increment",
+    "positive",
+    "calculate",
+    "calculator",
+    "button",
+    "keyboard",
+    "toolbar",
+    "maximum",
+    "upgrade",
+    "extra",
+    "operator",
+    "join",
+    "concatenate",
+    "code",
+    "coding",
+    "+"
+   ]
+  },
+  "square-split-horizontal": {
+   "category": "layout",
+   "keywords": [
+    "divide"
+   ]
+  },
+  "square-split-vertical": {
+   "category": "layout",
+   "keywords": [
+    "divide"
+   ]
+  },
+  "square-square": {
+   "category": "layout",
+   "keywords": [
+    "float",
+    "center",
+    "rectangle"
+   ]
+  },
+  "square-stack": {
+   "category": "files",
+   "keywords": [
+    "versions",
+    "clone",
+    "copy",
+    "duplicate",
+    "multiple",
+    "revisions",
+    "version control",
+    "backup",
+    "history"
+   ]
+  },
+  "square-terminal": {
+   "category": "code",
+   "keywords": [
+    "code",
+    "command line",
+    "prompt",
+    "shell"
+   ]
+  },
+  "square-x": {
+   "category": "data",
+   "keywords": [
+    "cancel",
+    "close",
+    "delete",
+    "remove",
+    "times",
+    "clear",
+    "math",
+    "multiply",
+    "multiplication"
+   ]
+  },
+  "squares-exclude": {
+   "category": "design",
+   "keywords": [
+    "square",
+    "pathfinder",
+    "path",
+    "invert",
+    "xor",
+    "shape",
+    "vector"
+   ]
+  },
+  "squares-intersect": {
+   "category": "design",
+   "keywords": [
+    "square",
+    "pathfinder",
+    "path",
+    "shape",
+    "include",
+    "vector"
+   ]
+  },
+  "squares-subtract": {
+   "category": "design",
+   "keywords": [
+    "square",
+    "pathfinder",
+    "path",
+    "minus",
+    "subtraction",
+    "shape",
+    "front",
+    "vector"
+   ]
+  },
+  "squares-unite": {
+   "category": "design",
+   "keywords": [
+    "square",
+    "pathfinder",
+    "path",
+    "union",
+    "shape",
+    "merge",
+    "vector"
+   ]
+  },
+  "squircle": {
+   "category": "shapes",
+   "keywords": [
+    "shape"
+   ]
+  },
+  "stamp": {
+   "category": "design",
+   "keywords": [
+    "mark",
+    "print",
+    "clone",
+    "loyalty",
+    "library"
+   ]
+  },
+  "star": {
+   "category": "media",
+   "keywords": [
+    "bookmark",
+    "favorite",
+    "like",
+    "review",
+    "rating"
+   ],
+   "zh": [
+    "星形",
+    "收藏"
+   ]
+  },
+  "step-back": {
+   "category": "media",
+   "keywords": [
+    "arrow",
+    "previous",
+    "music",
+    "left",
+    "reverse"
+   ]
+  },
+  "step-forward": {
+   "category": "media",
+   "keywords": [
+    "arrow",
+    "next",
+    "music",
+    "right",
+    "continue"
+   ]
+  },
+  "sticker": {
+   "category": "people",
+   "keywords": [
+    "reaction",
+    "emotion",
+    "smile",
+    "happy",
+    "feedback"
+   ]
+  },
+  "sticky-note": {
+   "category": "text",
+   "keywords": [
+    "post-it",
+    "comment",
+    "annotation",
+    "reaction",
+    "memo",
+    "reminder",
+    "todo",
+    "task",
+    "idea",
+    "brainstorm",
+    "document",
+    "page",
+    "paper",
+    "sheet",
+    "stationary",
+    "office"
+   ]
+  },
+  "stretch": {
+   "category": "cad",
+   "keywords": [
+    "resize",
+    "deform",
+    "pull"
+   ],
+   "zh": [
+    "拉伸"
+   ]
+  },
+  "stretch-horizontal": {
+   "category": "layout",
+   "keywords": [
+    "items",
+    "flex",
+    "justify",
+    "distribute"
+   ]
+  },
+  "strikethrough": {
+   "category": "text",
+   "keywords": [
+    "cross out",
+    "delete",
+    "remove",
+    "format"
+   ],
+   "zh": [
+    "删除线"
+   ]
+  },
+  "subscript": {
+   "category": "text",
+   "keywords": [
+    "text"
+   ]
+  },
+  "sun": {
+   "category": "general",
+   "keywords": [
+    "brightness",
+    "weather",
+    "light",
+    "summer"
+   ],
+   "zh": [
+    "浅色",
+    "亮度",
+    "太阳"
+   ]
+  },
+  "sun-dim": {
+   "category": "general",
+   "keywords": [
+    "brightness",
+    "low",
+    "brightness low"
+   ]
+  },
+  "sun-medium": {
+   "category": "general",
+   "keywords": [
+    "brightness"
+   ]
+  },
+  "sun-moon": {
+   "category": "general",
+   "keywords": [
+    "dark",
+    "light",
+    "brightness",
+    "theme",
+    "auto theme",
+    "system theme",
+    "appearance"
+   ]
+  },
+  "sun-snow": {
+   "category": "general",
+   "keywords": [
+    "weather",
+    "air conditioning",
+    "temperature",
+    "hot",
+    "cold",
+    "seasons"
+   ]
+  },
+  "sunrise": {
+   "category": "arrows",
+   "keywords": [
+    "weather",
+    "time",
+    "morning",
+    "day"
+   ]
+  },
+  "superscript": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "exponent"
+   ]
+  },
+  "swatch-book": {
+   "category": "media",
+   "keywords": [
+    "colors",
+    "colours",
+    "swatches",
+    "pantone",
+    "shades",
+    "tint",
+    "hue",
+    "saturation",
+    "brightness",
+    "theme",
+    "scheme",
+    "palette",
+    "samples",
+    "textile",
+    "carpet"
+   ]
+  },
+  "table": {
+   "category": "files",
+   "keywords": [
+    "spreadsheet",
+    "grid"
+   ],
+   "zh": [
+    "表格"
+   ]
+  },
+  "table-2": {
+   "category": "files",
+   "keywords": [
+    "spreadsheet",
+    "grid"
+   ]
+  },
+  "table-cells-merge": {
+   "category": "files",
+   "keywords": [
+    "spreadsheet",
+    "grid",
+    "row"
+   ]
+  },
+  "table-cells-split": {
+   "category": "files",
+   "keywords": [
+    "spreadsheet",
+    "grid",
+    "row"
+   ]
+  },
+  "table-properties": {
+   "category": "files",
+   "keywords": [
+    "property list",
+    "plist",
+    "spreadsheet",
+    "grid",
+    "dictionary",
+    "object",
+    "hash"
+   ]
+  },
+  "tag": {
+   "category": "people",
+   "keywords": [
+    "label",
+    "badge",
+    "ticket",
+    "mark"
+   ],
+   "zh": [
+    "标签"
+   ]
+  },
+  "tags": {
+   "category": "people",
+   "keywords": [
+    "labels",
+    "badges",
+    "tickets",
+    "marks",
+    "copy",
+    "multiple"
+   ]
+  },
+  "target": {
+   "category": "general",
+   "keywords": [
+    "logo",
+    "bullseye",
+    "deadline",
+    "projects",
+    "overview",
+    "work",
+    "productivity"
+   ]
+  },
+  "terminal": {
+   "category": "code",
+   "keywords": [
+    "code",
+    "command line",
+    "prompt",
+    "shell"
+   ],
+   "zh": [
+    "终端",
+    "命令行"
+   ]
+  },
+  "text-align-center": {
+   "category": "text",
+   "keywords": [
+    "alignment",
+    "paragraph"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落",
+    "居中对齐",
+    "居中"
+   ]
+  },
+  "text-align-end": {
+   "category": "text",
+   "keywords": [
+    "alignment",
+    "right",
+    "paragraph"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落",
+    "右对齐"
+   ]
+  },
+  "text-align-justify": {
+   "category": "text",
+   "keywords": [
+    "alignment",
+    "justified",
+    "menu",
+    "list",
+    "paragraph"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落",
+    "两端对齐"
+   ]
+  },
+  "text-align-start": {
+   "category": "text",
+   "keywords": [
+    "alignment",
+    "left",
+    "list",
+    "paragraph"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落",
+    "左对齐"
+   ]
+  },
+  "text-cursor": {
+   "category": "text",
+   "keywords": [
+    "select",
+    "caret",
+    "type",
+    "typing",
+    "write",
+    "writing",
+    "edit",
+    "insert",
+    "input",
+    "textarea",
+    "paragraph",
+    "align"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落"
+   ]
+  },
+  "text-cursor-input": {
+   "category": "text",
+   "keywords": [
+    "select",
+    "paragraph",
+    "align"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落"
+   ]
+  },
+  "text-justify-center": {
+   "category": "text",
+   "keywords": [
+    "paragraph",
+    "align"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落"
+   ]
+  },
+  "text-justify-end": {
+   "category": "text",
+   "keywords": [
+    "paragraph",
+    "align"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落"
+   ]
+  },
+  "text-justify-start": {
+   "category": "text",
+   "keywords": [
+    "paragraph",
+    "align"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落"
+   ]
+  },
+  "text-wrap": {
+   "category": "text",
+   "keywords": [
+    "words",
+    "lines",
+    "break",
+    "paragraph",
+    "align"
+   ],
+   "zh": [
+    "文字",
+    "对齐",
+    "段落"
+   ]
+  },
+  "thermometer": {
+   "category": "general",
+   "keywords": [
+    "temperature",
+    "celsius",
+    "fahrenheit",
+    "weather"
+   ]
+  },
+  "thumbs-up": {
+   "category": "people",
+   "keywords": [
+    "like",
+    "good",
+    "emotion"
+   ]
+  },
+  "ticket": {
+   "category": "people",
+   "keywords": [
+    "entry",
+    "pass",
+    "voucher",
+    "event",
+    "concert",
+    "show",
+    "perforated",
+    "dashed"
+   ]
+  },
+  "timer": {
+   "category": "media",
+   "keywords": [
+    "time",
+    "stopwatch"
+   ]
+  },
+  "toggle-left": {
+   "category": "layout",
+   "keywords": [
+    "on",
+    "off",
+    "switch",
+    "boolean"
+   ]
+  },
+  "tornado": {
+   "category": "general",
+   "keywords": [
+    "weather",
+    "wind",
+    "storm",
+    "hurricane"
+   ]
+  },
+  "transition-cover": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-curtains": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-cut": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-drape": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-fade": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-fall-over": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-flash": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-morph": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-none": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-prestige": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-push": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-random-bars": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-reveal": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-shape": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-split": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-uncover": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-wind": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "transition-wipe": {
+   "category": "motion",
+   "keywords": [
+    "slide",
+    "effect"
+   ],
+   "zh": [
+    "切换",
+    "转场",
+    "过渡"
+   ]
+  },
+  "trash": {
+   "category": "files",
+   "keywords": [
+    "empty",
+    "deletion",
+    "cleanup",
+    "junk",
+    "clear",
+    "garbage",
+    "delete",
+    "remove",
+    "bin",
+    "waste",
+    "recycle",
+    "discard",
+    "binoculars",
+    "rubbish"
+   ],
+   "zh": [
+    "删除",
+    "垃圾桶",
+    "移除"
+   ]
+  },
+  "trending-up": {
+   "category": "data",
+   "keywords": [
+    "statistics"
+   ]
+  },
+  "triangle": {
+   "category": "shapes",
+   "keywords": [
+    "equilateral",
+    "delta",
+    "shape",
+    "pyramid",
+    "hierarchy"
+   ],
+   "zh": [
+    "三角形"
+   ]
+  },
+  "triangle-alert": {
+   "category": "shapes",
+   "keywords": [
+    "warning",
+    "danger",
+    "exclamation mark",
+    "linter"
+   ],
+   "zh": [
+    "警告",
+    "注意"
+   ]
+  },
+  "triangles-centerline-dashed-horizontal": {
+   "category": "media",
+   "keywords": [
+    "reflect",
+    "mirror",
+    "alignment"
+   ]
+  },
+  "type": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "font",
+    "typography"
+   ],
+   "zh": [
+    "文字",
+    "文本",
+    "字体"
+   ]
+  },
+  "type-outline": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "font",
+    "typography",
+    "silhouette",
+    "profile",
+    "contour",
+    "stroke",
+    "line"
+   ]
+  },
+  "underline": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "format"
+   ],
+   "zh": [
+    "下划线"
+   ]
+  },
+  "undo-2": {
+   "category": "arrows",
+   "keywords": [
+    "redo",
+    "rerun",
+    "history",
+    "back",
+    "return",
+    "reverse",
+    "revert",
+    "direction",
+    "u-turn"
+   ],
+   "zh": [
+    "撤销",
+    "后退"
+   ]
+  },
+  "unfold-horizontal": {
+   "category": "arrows",
+   "keywords": [
+    "arrow",
+    "collapse",
+    "fold",
+    "vertical",
+    "dashed"
+   ]
+  },
+  "unfold-vertical": {
+   "category": "arrows",
+   "keywords": [
+    "arrow",
+    "expand",
+    "dashed"
+   ]
+  },
+  "ungroup": {
+   "category": "files",
+   "keywords": [
+    "cubes",
+    "packages",
+    "parts",
+    "units",
+    "collection",
+    "cluster",
+    "separate",
+    "split",
+    "break apart"
+   ],
+   "zh": [
+    "取消组合",
+    "解组"
+   ]
+  },
+  "unlink": {
+   "category": "text",
+   "keywords": [
+    "url",
+    "unchain"
+   ]
+  },
+  "upload": {
+   "category": "files",
+   "keywords": [
+    "file"
+   ],
+   "zh": [
+    "上传",
+    "导入"
+   ]
+  },
+  "user": {
+   "category": "people",
+   "keywords": [
+    "person",
+    "account",
+    "contact"
+   ],
+   "zh": [
+    "用户",
+    "成员"
+   ]
+  },
+  "user-minus": {
+   "category": "people",
+   "keywords": [
+    "delete",
+    "remove",
+    "unfollow",
+    "unsubscribe"
+   ]
+  },
+  "user-plus": {
+   "category": "people",
+   "keywords": [
+    "new",
+    "add",
+    "create",
+    "follow",
+    "subscribe"
+   ]
+  },
+  "user-round": {
+   "category": "people",
+   "keywords": [
+    "person",
+    "account",
+    "contact"
+   ]
+  },
+  "users": {
+   "category": "people",
+   "keywords": [
+    "group",
+    "people"
+   ],
+   "zh": [
+    "团队",
+    "成员"
+   ]
+  },
+  "variable": {
+   "category": "code",
+   "keywords": [
+    "code",
+    "coding",
+    "programming",
+    "symbol",
+    "calculate",
+    "algebra",
+    "x",
+    "parentheses",
+    "parenthesis",
+    "brackets",
+    "parameter",
+    "(",
+    ")"
+   ]
+  },
+  "vector-polygon": {
+   "category": "shapes",
+   "keywords": [
+    "map",
+    "geometry",
+    "coordinates",
+    "shape",
+    "location",
+    "boundary",
+    "area",
+    "region",
+    "gis",
+    "geospatial",
+    "vertices",
+    "points",
+    "outline",
+    "drawing",
+    "design",
+    "math"
+   ]
+  },
+  "vector-square": {
+   "category": "shapes",
+   "keywords": [
+    "shape",
+    "geometry",
+    "art",
+    "width",
+    "height",
+    "size",
+    "calculate",
+    "measure",
+    "select",
+    "graphics",
+    "box"
+   ]
+  },
+  "video": {
+   "category": "media",
+   "keywords": [
+    "camera",
+    "movie",
+    "film",
+    "recording",
+    "motion picture",
+    "camcorder",
+    "reel"
+   ],
+   "zh": [
+    "视频",
+    "摄像"
+   ]
+  },
+  "volume-2": {
+   "category": "media",
+   "keywords": [
+    "music",
+    "sound",
+    "speaker"
+   ],
+   "zh": [
+    "音量",
+    "声音"
+   ]
+  },
+  "wallet-cards": {
+   "category": "people",
+   "keywords": [
+    "banking",
+    "cash",
+    "debit",
+    "transport",
+    "money",
+    "finance",
+    "pocket",
+    "credit",
+    "purchase",
+    "payment",
+    "shopping",
+    "retail",
+    "consumer",
+    "cc"
+   ]
+  },
+  "wand-sparkles": {
+   "category": "media",
+   "keywords": [
+    "magic",
+    "wizard",
+    "magician"
+   ],
+   "zh": [
+    "魔棒",
+    "AI",
+    "自动"
+   ]
+  },
+  "waves-horizontal": {
+   "category": "media",
+   "keywords": [
+    "water",
+    "sea",
+    "sound",
+    "hertz",
+    "wavelength",
+    "vibrate",
+    "ocean",
+    "swimming",
+    "frequency"
+   ]
+  },
+  "waypoints": {
+   "category": "arrows",
+   "keywords": [
+    "indirection",
+    "vpn",
+    "virtual private network",
+    "proxy",
+    "connections",
+    "bounce",
+    "reroute",
+    "path",
+    "journey",
+    "planner",
+    "stops",
+    "stations",
+    "shared",
+    "spread",
+    "viral"
+   ]
+  },
+  "webhook": {
+   "category": "code",
+   "keywords": [
+    "push api",
+    "interface",
+    "callback"
+   ]
+  },
+  "whole-word": {
+   "category": "text",
+   "keywords": [
+    "text",
+    "selection",
+    "letters",
+    "characters",
+    "font",
+    "typography"
+   ]
+  },
+  "wind": {
+   "category": "general",
+   "keywords": [
+    "weather",
+    "air",
+    "blow"
+   ]
+  },
+  "workflow": {
+   "category": "code",
+   "keywords": [
+    "action",
+    "continuous integration",
+    "ci",
+    "automation",
+    "devops",
+    "network",
+    "node",
+    "connection"
+   ]
+  },
+  "wrench": {
+   "category": "tools",
+   "keywords": [
+    "account",
+    "settings",
+    "spanner",
+    "diy",
+    "toolbox",
+    "build",
+    "construction"
+   ]
+  },
+  "x": {
+   "category": "data",
+   "keywords": [
+    "cancel",
+    "close",
+    "cross",
+    "delete",
+    "ex",
+    "remove",
+    "times",
+    "clear",
+    "math",
+    "multiply",
+    "multiplication",
+    "dismiss"
+   ],
+   "zh": [
+    "关闭",
+    "取消"
+   ]
+  },
+  "zap": {
+   "category": "media",
+   "keywords": [
+    "flash",
+    "camera",
+    "lightning",
+    "electricity",
+    "energy",
+    "power",
+    "quick"
+   ]
+  },
+  "zap-off": {
+   "category": "media",
+   "keywords": [
+    "flash",
+    "camera",
+    "lightning",
+    "electricity",
+    "energy",
+    "power"
+   ]
+  },
+  "zoom-in": {
+   "category": "media",
+   "keywords": [
+    "magnifying glass",
+    "plus"
+   ],
+   "zh": [
+    "放大"
+   ]
+  },
+  "zoom-out": {
+   "category": "media",
+   "keywords": [
+    "magnifying glass",
+    "plus"
+   ],
+   "zh": [
+    "缩小"
+   ]
+  }
+ }
+}

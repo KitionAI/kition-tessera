@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Push: the new slide pushing the old one out (slide)</title>
+  <path d="M12 6h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-7z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z"/>
+  <path d="M12 6v12"/>
+  <path d="M18 12h-3.5"/>
+  <path d="m16 10.5-1.5 1.5 1.5 1.5"/>
+</svg>

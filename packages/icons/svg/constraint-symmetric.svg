@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Symmetric: two points mirrored across an axis (cad)</title>
+  <path d="M12 3v2"/>
+  <path d="M12 8v2"/>
+  <path d="M12 14v2"/>
+  <path d="M12 19v2"/>
+  <path d="M8 12H5"/>
+  <path d="M16 12h3"/>
+  <path d="M3.25 12a1.75 1.75 0 1 0 3.5 0a1.75 1.75 0 1 0 -3.5 0z" fill="currentColor"/>
+  <path d="M17.25 12a1.75 1.75 0 1 0 3.5 0a1.75 1.75 0 1 0 -3.5 0z" fill="currentColor"/>
+</svg>

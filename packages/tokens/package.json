@@ -1,0 +1,56 @@
+{
+  "name": "@kition/tessera-tokens",
+  "version": "0.1.0",
+  "description": "Kition Tessera design tokens: the Kit Harness Protocol theme tokens, component layout tokens, and skins, as CSS variables and TypeScript.",
+  "license": "Apache-2.0",
+  "homepage": "https://tessera.kition.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KitionAI/kition-tessera.git",
+    "directory": "packages/tokens"
+  },
+  "bugs": "https://github.com/KitionAI/kition-tessera/issues",
+  "keywords": [
+    "design-tokens",
+    "css-variables",
+    "theme",
+    "skin",
+    "design-system",
+    "kition",
+    "tessera"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/generated/tokens.css",
+    "./tokens/*": "./tokens/*"
+  },
+  "files": [
+    "dist",
+    "tokens",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs && node ../../scripts/build-packages.mjs tokens",
+    "check": "node scripts/build.mjs --check",
+    "prepack": "pnpm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/types/src/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./tokens.css": "./dist/tokens.css",
+      "./tokens/*": "./tokens/*"
+    }
+  },
+  "//files": "Checkout exports use TypeScript source; pnpm pack applies publishConfig.exports so npm consumers load compiled JavaScript and declarations from dist.",
+  "main": "./dist/index.js",
+  "types": "./dist/types/src/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ]
+}

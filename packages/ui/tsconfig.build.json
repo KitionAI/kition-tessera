@@ -1,0 +1,26 @@
+{
+  "//": "Declarations for the published package (pnpm build:packages): dist/types/src/*.d.ts beside the compiled JavaScript.",
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": ".",
+    "outDir": "dist/types",
+    "types": [
+      "node"
+    ],
+    "paths": {}
+  },
+  "include": [
+    "src",
+    "locales"
+  ],
+  "exclude": [
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/test",
+    "src/testElements.tsx"
+  ]
+}

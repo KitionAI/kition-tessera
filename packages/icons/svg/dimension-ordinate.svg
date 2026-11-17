@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Ordinate dimension: distances from a datum (cad)</title>
+  <path d="M4 4v16h16"/>
+  <path d="M10 10v6"/>
+  <path d="M16 6v10"/>
+  <path d="M8.75 10a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0 -2.5 0z" fill="currentColor"/>
+  <path d="M14.75 6a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0 -2.5 0z" fill="currentColor"/>
+</svg>

@@ -1,0 +1,186 @@
+// @vitest-environment jsdom
+import { act } from 'react'
+import { createRoot, type Root } from 'react-dom/client'
+import { afterEach, describe, expect, it } from 'vitest'
+import { Segmented } from './BarControls'
+import { BarChart, LineChart, PieChart, niceTicks, slicePath } from './charts'
+import { AppRail, NavMenu, Tabs } from './navigation'
+import { FolderIcon, InboxIcon, LayersIcon } from '@kition/tessera-icons/react'
+
+;(globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true
+
+let root: Root | null = null
+let host: HTMLElement | null = null
+
+function render(node: React.ReactNode) {
+  host = document.createElement('div')
+  document.body.append(host)
+  root = createRoot(host)
+  act(() => root!.render(node))
+  return host
+}
+
+afterEach(() => {
+  act(() => root?.unmount())
+  host?.remove()
+  root = null
+  host = null
+})
+
+describe('Tabs', () => {
+  it('shows the open tab’s panel and moves with the arrow keys, past disabled tabs', () => {
+    const seen: string[] = []
+    const out = render(
+      <Tabs
+        onChange={(key) => seen.push(key)}
+        items={[
+          { key: 'usage', label: 'Usage', children: 'Usage panel' },
+          { key: 'billing', label: 'Billing', children: 'Billing panel', disabled: true },
+          { key: 'keys', label: 'API keys', children: 'Keys panel' },
+        ]}
+      />,
+    )
+    expect(out.querySelector('[role="tabpanel"]')?.textContent).toBe('Usage panel')
+    act(() => out.querySelector('[role="tablist"]')!.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true })))
+    expect(seen).toEqual(['keys'])
+    expect(out.querySelector('[aria-selected="true"]')?.textContent).toBe('API keys')
+    expect(out.querySelector('[role="tabpanel"]')?.textContent).toBe('Keys panel')
+    expect(document.activeElement?.textContent).toBe('API keys')
+  })
+})
+
+describe('NavMenu', () => {
+  it('lists pages under headings, marks the current one, and draws links through the router', () => {
+    const out = render(
+      <NavMenu
+        label="Admin"
+        selectedKey="users"
+        renderLink={(href, props) => <a data-router="yes" href={href} {...props} />}
+        items={[
+          { key: 'overview', label: 'Overview', icon: LayersIcon, href: '/' },
+          { key: 'people', label: 'People', items: [{ key: 'users', label: 'Users', href: '/users', badge: 12 }] },
+        ]}
+      />,
+    )
+    expect(out.querySelector('nav')?.getAttribute('aria-label')).toBe('Admin')
+    expect(out.querySelector('.kui-nav-heading')?.textContent).toBe('People')
+    const current = out.querySelector('[aria-current="page"]') as HTMLAnchorElement
+    expect(current.getAttribute('href')).toBe('/users')
+    expect(current.dataset.router).toBe('yes')
+    expect(current.textContent).toBe('Users12')
+  })
+})
+
+describe('AppRail', () => {
+  it('lists the apps with icon and name, marks the open one, badges an icon, and holds a header and footer', () => {
+    const out = render(
+      <AppRail
+        label="Apps"
+        selectedKey="docs"
+        header={<img alt="Kition" />}
+        footer={<button type="button">Settings</button>}
+        renderLink={(href, props) => <a data-router="yes" href={href} {...props} />}
+        items={[
+          { key: 'docs', label: 'Docs', icon: FolderIcon, href: '/docs' },
+          { key: 'inbox', label: 'Inbox', icon: InboxIcon, href: '/inbox', badge: 3 },
+        ]}
+      />,
+    )
+    expect(out.querySelector('nav')?.getAttribute('aria-label')).toBe('Apps')
+    const items = [...out.querySelectorAll('.kui-app-rail-item')] as HTMLAnchorElement[]
+    expect(items.map((item) => item.textContent)).toEqual(['Docs', '3Inbox'])
+    expect(items.every((item) => item.dataset.router === 'yes' && item.querySelector('svg'))).toBe(true)
+    expect(out.querySelector('[aria-current="page"]')?.getAttribute('href')).toBe('/docs')
+    expect(out.querySelector('.kui-app-rail-badge')?.textContent).toBe('3')
+    expect(out.querySelector('.kui-app-rail-header img')?.getAttribute('alt')).toBe('Kition')
+    expect(out.querySelector('.kui-app-rail-footer button')?.textContent).toBe('Settings')
+  })
+
+  it('shows icons only when compact, each name kept as the tooltip and the accessible name', () => {
+    const out = render(<AppRail label="Apps" compact selectedKey="docs" items={[{ key: 'docs', label: 'Docs', icon: FolderIcon, href: '/docs' }]} />)
+    expect(out.querySelector('nav')?.dataset.compact).toBe('true')
+    const item = out.querySelector('.kui-app-rail-item') as HTMLAnchorElement
+    expect(item.title).toBe('Docs')
+    expect(item.textContent).toBe('Docs')
+    expect(item.querySelector('.kui-app-rail-label')?.classList.contains('kui-visually-hidden')).toBe(true)
+  })
+})
+
+describe('Segmented', () => {
+  it('draws word segments without icons, one pressed', () => {
+    const seen: string[] = []
+    const out = render(
+      <Segmented
+        label="Range"
+        value="7d"
+        onChange={(value) => seen.push(value)}
+        segments={[
+          { value: '24h', label: '24h' },
+          { value: '7d', label: '7d' },
+        ]}
+      />,
+    )
+    expect(out.querySelector('[aria-pressed="true"]')?.textContent).toBe('7d')
+    act(() => (out.querySelector('.kui-segment-text') as HTMLButtonElement).click())
+    expect(seen).toEqual(['24h'])
+  })
+})
+
+describe('LineChart', () => {
+  it('rounds its axis to nice steps', () => {
+    expect(niceTicks(0, 87)).toEqual([0, 20, 40, 60, 80, 100])
+    expect(niceTicks(0, 1)).toEqual([0, 0.2, 0.4, 0.6, 0.8, 1])
+    expect(niceTicks(0, 0)).toEqual([0, 0.2, 0.4, 0.6, 0.8, 1])
+  })
+
+  it('draws a line per series with a legend', () => {
+    const data = [
+      { date: '10-01', metric: 'Visitors', value: 10 },
+      { date: '10-02', metric: 'Visitors', value: 14 },
+      { date: '10-01', metric: 'Signups', value: 2 },
+      { date: '10-02', metric: 'Signups', value: 3 },
+    ]
+    const out = render(<LineChart label="Growth" data={data} xField="date" yField="value" seriesField="metric" />)
+    expect(out.querySelector('svg')?.getAttribute('aria-label')).toBe('Growth')
+    expect(out.querySelectorAll('polyline')).toHaveLength(2)
+    expect([...out.querySelectorAll('.kui-chart-legend-item')].map((item) => item.textContent)).toEqual(['Visitors', 'Signups'])
+  })
+})
+
+describe('BarChart and PieChart', () => {
+  const stages = [
+    { stage: 'To do', count: 4 },
+    { stage: 'Doing', count: 7 },
+    { stage: 'Done', count: 2 },
+  ]
+
+  it('draws a bar per category in one colour, and a line with dots', () => {
+    const out = render(
+      <>
+        <BarChart label="By stage" data={stages} xField="stage" yField="count" color="#5645d4" />
+        <LineChart label="Trend" data={stages} xField="stage" yField="count" dots />
+      </>,
+    )
+    const bars = out.querySelectorAll<SVGPathElement>('.kui-chart-bar')
+    expect(bars).toHaveLength(3)
+    expect(bars[0].style.fill).toBe('#5645d4')
+    expect(out.querySelectorAll('.kui-chart-dot')).toHaveLength(3)
+  })
+
+  it('steps the axis by whole numbers for counts', () => {
+    const out = render(<BarChart label="Few" data={[{ stage: 'A', count: 1 }]} xField="stage" yField="count" integers />)
+    expect([...out.querySelectorAll('.kui-chart-grid text')].map((tick) => tick.textContent)).toEqual(['0', '1'])
+  })
+
+  it('draws a slice per part with a legend, leaving out empty parts', () => {
+    const out = render(<PieChart label="Share" data={[...stages, { stage: 'Dropped', count: 0 }]} labelField="stage" valueField="count" innerRadius={0.6} />)
+    expect(out.querySelectorAll('.kui-chart-slice')).toHaveLength(3)
+    expect([...out.querySelectorAll('.kui-chart-legend-item')].map((item) => item.textContent)).toEqual(['To do', 'Doing', 'Done'])
+  })
+
+  it('draws a whole circle as two arcs, with its hole', () => {
+    const d = slicePath(50, 50, 40, 20, 0, 1)
+    expect(d.match(/A/g)).toHaveLength(4)
+    expect(slicePath(50, 50, 40, 0, 0, 0.25)).toBe('M50,50L50,10A40,40 0 0 1 90,50Z')
+  })
+})

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <title>Morph: a shape becoming another (slide)</title>
+  <path d="M7 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M15 9.5h3a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z" data-accent="true" fill="currentColor" fill-opacity="0.25" stroke="none"/>
+  <path d="M5 6h14a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2z"/>
+  <path d="M7 12a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0z"/>
+  <path d="M15 9.5h3a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1z"/>
+</svg>
