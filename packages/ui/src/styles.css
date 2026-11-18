@@ -1846,7 +1846,7 @@ select.kui-ribbon-field:disabled {
   padding: 0 4px;
 }
 
-/* Colour controls (upstream Film's Lumetri `slider`, `color_wheel`, and `curve_editor`). The
+/* Colour controls (upstream Film's Color panel `slider`, `color_wheel`, and `curve_editor`). The
  * gradients and the hue ring are the content's colours; everything else is a theme token. */
 .kui-gradient-slider {
   display: flex;

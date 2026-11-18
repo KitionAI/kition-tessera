@@ -1,6 +1,6 @@
 /** @jsxRuntime automatic */
 /**
- * A colour wheel with a lightness slider at its left: the generic form of upstream Film's Lumetri
+ * A colour wheel with a lightness slider at its left: the generic form of upstream Film's Color panel
  * `color_wheel` (`panels/lumetri.rs`). The hue ring shows the direction, and the puck's offset
  * from the centre is the value, `[x, y]` with y up and a length of at most 1 (the puck's travel
  * ends inside the ring). A click sets the offset, a drag follows the pointer, a double-click
@@ -25,8 +25,8 @@ export type ColorWheelProps = {
   /**
    * The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18`
    * px wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws
-   * it inside the wheel's square. To fit upstream's row of three wheels (Film's Lumetri Color
-   * Wheels, Task 29), pass `size = min((available - 24) / 3, 120) - 18`.
+   * it inside the wheel's square. To fit upstream's row of three wheels (the Color
+   * Wheels of Film's Color panel, Task 29), pass `size = min((available - 24) / 3, 120) - 18`.
    */
   size?: number
   disabled?: boolean

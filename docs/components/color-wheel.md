@@ -37,7 +37,7 @@ export default function Demo() {
 | `onChange` (required) | `(value: [number, number], phase: DragPhase) => void` |  |  |
 | `onLightness` (required) | `(value: number, phase: DragPhase) => void` |  |  |
 | `label` (required) | `string` |  | Shown above the wheel, and its accessible name. |
-| `size` | `number` | `120` | The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18` px wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws it inside the wheel's square. To fit upstream's row of three wheels (Film's Lumetri Color Wheels, Task 29), pass `size = min((available - 24) / 3, 120) - 18`. |
+| `size` | `number` | `120` | The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18` px wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws it inside the wheel's square. To fit upstream's row of three wheels (the Color Wheels of Film's Color panel, Task 29), pass `size = min((available - 24) / 3, 120) - 18`. |
 | `disabled` | `boolean` |  |  |
 | `uiId` | `string` |  | The wheel's Kit UI id. |
 | `lightnessUiId` | `string` |  | The lightness slider's Kit UI id. |

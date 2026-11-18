@@ -598,7 +598,7 @@
     "type": "number",
     "required": false,
     "default": "120",
-    "doc": "The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18`\npx wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws\nit inside the wheel's square. To fit upstream's row of three wheels (Film's Lumetri Color\nWheels, Task 29), pass `size = min((available - 24) / 3, 120) - 18`."
+    "doc": "The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18`\npx wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws\nit inside the wheel's square. To fit upstream's row of three wheels (the Color\nWheels of Film's Color panel, Task 29), pass `size = min((available - 24) / 3, 120) - 18`."
    },
    {
     "name": "disabled",
@@ -1790,7 +1790,7 @@
     "type": "boolean",
     "required": false,
     "default": "false",
-    "doc": "Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as its Camera Raw histogram does."
+    "doc": "Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as the histogram of its raw development dialog does."
    },
    {
     "name": "scale",

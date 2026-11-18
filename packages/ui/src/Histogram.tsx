@@ -28,7 +28,7 @@ export type HistogramProps = {
   /** A CSS color for the bars; the element's own (inherited) color by default. */
   color?: string
   height?: number
-  /** Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as its Camera Raw histogram does. */
+  /** Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as the histogram of its raw development dialog does. */
   smooth?: boolean
   /**
    * What the bars are scaled to: `interior`, the interior bins' maximum (the default, see

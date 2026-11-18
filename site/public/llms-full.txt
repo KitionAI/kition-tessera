@@ -3461,7 +3461,7 @@ export default function Demo() {
 | `onChange` (required) | `(value: [number, number], phase: DragPhase) => void` |  |  |
 | `onLightness` (required) | `(value: number, phase: DragPhase) => void` |  |  |
 | `label` (required) | `string` |  | Shown above the wheel, and its accessible name. |
-| `size` | `number` | `120` | The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18` px wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws it inside the wheel's square. To fit upstream's row of three wheels (Film's Lumetri Color Wheels, Task 29), pass `size = min((available - 24) / 3, 120) - 18`. |
+| `size` | `number` | `120` | The wheel's side in CSS pixels (120 by default, upstream's largest). The control is `size + 18` px wide: the lightness strip (16 px and a 2 px gap) sits outside the wheel, where upstream draws it inside the wheel's square. To fit upstream's row of three wheels (the Color Wheels of Film's Color panel, Task 29), pass `size = min((available - 24) / 3, 120) - 18`. |
 | `disabled` | `boolean` |  |  |
 | `uiId` | `string` |  | The wheel's Kit UI id. |
 | `lightnessUiId` | `string` |  | The lightness slider's Kit UI id. |
@@ -3594,7 +3594,7 @@ export default function Demo() {
 | `bins` (required) | `ArrayLike<number>` |  | Bin counts (256 for an 8-bit channel), left (shadows) to right (highlights). |
 | `color` | `string` |  | A CSS color for the bars; the element's own (inherited) color by default. |
 | `height` | `number` | `100` |  |
-| `smooth` | `boolean` | `false` | Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as its Camera Raw histogram does. |
+| `smooth` | `boolean` | `false` | Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as the histogram of its raw development dialog does. |
 | `scale` | `'interior' \| 'rank'` | `'interior'` | What the bars are scaled to: `interior`, the interior bins' maximum (the default, see `scaleFor`), or `rank`, upstream's Histogram panel and tone editors (`tone.rs` `draw_histogram`): the 251st-smallest of 256 bins, so a handful of spikes (pure white, pure black) are clipped instead of flattening the rest. Either with 10% headroom. |
 | `testId` | `string` | `'histogram'` |  |
 

@@ -1,7 +1,7 @@
 /** @jsxRuntime automatic */
 /**
  * A slider on a thin (or gradient) track with a ring knob and scrubbable hot text at the right:
- * the generic form of upstream Film's Lumetri `slider` (`panels/lumetri.rs`). A click on the
+ * the generic form of upstream Film's Color panel `slider` (`panels/lumetri.rs`). A click on the
  * track sets an absolute value in the soft range, a drag follows the pointer, a double-click
  * restores `default`, and the hot text scrubs or takes a typed value over the full range. Values
  * are rounded to `decimals`. Reports as `useDragGesture` describes: a drag is `begin`, `merge`s
@@ -32,7 +32,7 @@ export type GradientSliderProps = {
   testId?: string
 }
 
-/** Upstream's Lumetri gradients (`Gradient::Temp`, `Tint`, `Hue`) as CSS stops. */
+/** Upstream's Color panel gradients (`Gradient::Temp`, `Tint`, `Hue`) as CSS stops. */
 export const SLIDER_GRADIENTS = {
   temperature: ['rgb(70, 120, 230)', 'rgb(240, 150, 50)'],
   tint: ['rgb(60, 190, 80)', 'rgb(220, 70, 200)'],

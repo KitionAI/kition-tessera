@@ -31,7 +31,7 @@ export default function Demo() {
 | `bins` (required) | `ArrayLike<number>` |  | Bin counts (256 for an 8-bit channel), left (shadows) to right (highlights). |
 | `color` | `string` |  | A CSS color for the bars; the element's own (inherited) color by default. |
 | `height` | `number` | `100` |  |
-| `smooth` | `boolean` | `false` | Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as its Camera Raw histogram does. |
+| `smooth` | `boolean` | `false` | Draws the bins through upstream's five-bin display kernel (`smoothHistogram`), as the histogram of its raw development dialog does. |
 | `scale` | `'interior' \| 'rank'` | `'interior'` | What the bars are scaled to: `interior`, the interior bins' maximum (the default, see `scaleFor`), or `rank`, upstream's Histogram panel and tone editors (`tone.rs` `draw_histogram`): the 251st-smallest of 256 bins, so a handful of spikes (pure white, pure black) are clipped instead of flattening the rest. Either with 10% headroom. |
 | `testId` | `string` | `'histogram'` |  |
 
