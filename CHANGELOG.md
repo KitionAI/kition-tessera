@@ -5,7 +5,7 @@ Notable changes to Kition Tessera's packages (`@kition/tessera-tokens`, `@kition
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). All packages share one version; before
 1.0 a minor version may change an API, and the change is listed under **Changed**.
 
-## Unreleased
+## [0.1.1]
 
 ### Fixed
 

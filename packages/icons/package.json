@@ -1,6 +1,6 @@
 {
   "name": "@kition/tessera-icons",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tessera Icons: Kition's icon set for kit editors, engines, and hosts. Every icon is a list of SVG path strings, so React, a canvas Path2D, and Rust draw the same shapes.",
   "license": "Apache-2.0",
   "homepage": "https://tessera.kition.ai",

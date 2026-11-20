@@ -40,7 +40,7 @@ pnpm --filter @kition/tessera-site preview # preview the static site at http://1
 To compile one package, run `pnpm --filter @kition/tessera-ui build` (or use the icons or
 tokens package name). `pnpm build:packages` recompiles all three without regenerating sources.
 Checkout links use source exports for development; `pnpm pack` applies `publishConfig.exports`
-to select built files. pnpm rewrites `workspace:^` dependencies to `^0.1.0` in the archives.
+to select built files. pnpm rewrites `workspace:^` dependencies to `^0.1.1` in the archives.
 `pnpm release:dry` runs the local pack check. pnpm 10.16.1 has no `pack --dry-run` option;
 the check creates temporary tarballs, inspects them, and removes them without publishing.
 

@@ -95,7 +95,7 @@ one suite and any host can reskin them all at once.
 | [`kition-tessera-tokens`](crates/kition-tessera-tokens) (Rust) | The same tokens for engines that draw on the canvas |
 | [`kition-tessera-icons`](crates/kition-tessera-icons) (Rust) | The same icons for engines |
 
-All five share one version, now 0.1.0.
+All five share one version, now 0.1.1.
 
 ## Quick start
 
