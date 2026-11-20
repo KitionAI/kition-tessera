@@ -115,14 +115,19 @@ for (const icon of icons) {
 for (const name of Object.keys(search.icons)) if (!manifest.icons[name]) throw new Error(`keywords.json has an entry for ${name}, which is not an icon`)
 
 const lucideMap = icons.flatMap((icon) => icon.lucide.map((alias) => [alias, icon.name])).sort(([a], [b]) => a.localeCompare(b))
+// The generated modules name each icon they use: an `import * as` namespace used as a value makes
+// esbuild wrap every icon in one object (`__export`) in the shared chunk of `dist/`, and an app's
+// bundler can then drop none of them. ICONS lists the icons in their export names' order, the
+// order the namespace object gave them.
+const byExport = icons.map((icon) => pascal(icon.name)).sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))
 const registryTs = [
   `// ${BANNER}`,
   '',
   "import type { IconData, KitColor } from '../types.ts'",
-  "import * as all from './icons.ts'",
+  `import { ${byExport.join(', ')} } from './icons.ts'`,
   '',
   '/** Every icon, by name. Importing this pulls in the whole set; import single icons from the package root instead. */',
-  `export const ICONS: Readonly<Record<string, IconData>> = Object.fromEntries(Object.values(all).map((icon) => [icon.name, icon]))`,
+  `export const ICONS: Readonly<Record<string, IconData>> = Object.fromEntries([${byExport.join(', ')}].map((icon) => [icon.name, icon]))`,
   '',
   `export const ICON_NAMES: readonly string[] = ${js(icons.map((icon) => icon.name))}`,
   '',
@@ -151,10 +156,10 @@ const reactTs = [
   `// ${BANNER}`,
   '',
   "import { createIcon } from '../createIcon.ts'",
-  "import * as data from './icons.ts'",
+  `import { ${byExport.join(', ')} } from './icons.ts'`,
   '',
   // Pure, so bundlers drop the icons a page never uses.
-  ...icons.map((icon) => `export const ${pascal(icon.name)}Icon = /* @__PURE__ */ createIcon(data.${pascal(icon.name)})`),
+  ...icons.map((icon) => `export const ${pascal(icon.name)}Icon = /* @__PURE__ */ createIcon(${pascal(icon.name)})`),
   '',
 ].join('\n')
 

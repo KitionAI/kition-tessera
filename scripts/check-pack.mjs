@@ -131,6 +131,7 @@ export const view = (
   const result = await build({ absWorkingDir: app, entryPoints: ['one.mjs'], bundle: true, format: 'esm', platform: 'browser', write: false, external: ['react', 'react-dom', 'react/jsx-runtime', 'radix-ui', 'cmdk'], logLevel: 'silent' })
   const bundle = result.outputFiles[0].text
   for (const absent of ['kui-curve', 'kui-level-meter', 'kui-workspace']) if (bundle.includes(absent)) problems.push(`a bundle that imports only Button also carries ${absent}: unused components are not dropped`)
+  if (bundle.includes('"a-arrow-down"')) problems.push('a bundle that imports only Button also carries the icon a-arrow-down: unused icons are not dropped')
   console.log(`an app outside the workspace: a bundle with one button is ${Math.round(bundle.length / 1024)} kB`)
 
   // CSS survives bundling and its token import resolves from the packed tokens package.

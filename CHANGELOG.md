@@ -5,6 +5,17 @@ Notable changes to Kition Tessera's packages (`@kition/tessera-tokens`, `@kition
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). All packages share one version; before
 1.0 a minor version may change an API, and the change is listed under **Changed**.
 
+## Unreleased
+
+### Fixed
+
+- `@kition/tessera-icons` from npm: an app's bundler drops the icons it does not import again.
+  In 0.1.0 the compiled package kept every icon in one object, so any import of the package,
+  `/react`, or `@kition/tessera-ui` brought all 598 icons into the bundle (about 135 kB
+  minified); a bundle of a few icons is now a few kB. The `/registry` entry still carries the
+  whole set. Rollup through Vite (`packages/icons/test/bundle.test.ts`) and esbuild
+  (`pnpm check:pack`) test it.
+
 ## [0.1.0]
 
 The first public version, used by Kition and its sixteen kits.
