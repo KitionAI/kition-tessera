@@ -1,0 +1,149 @@
+name: Stage
+
+# A publishing rehearsal for @kition/tessera, which is not on npm yet: builds and pack-checks it,
+# renames a copy to <scope>/tessera at a prerelease version (scripts/stage-package.mjs), publishes
+# that with a token, and waits until npm serves it. The checkout is not changed, and the three
+# packages release.yml publishes are not touched. The real @kition release is not this workflow.
+#
+# Needs the organization secret NPM_TOKEN_STAGE, an npm token that can publish to the scope.
+# A consumer installs the rehearsal under the real name: "@kition/tessera": "npm:<scope>/tessera@<version>".
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: npm scope to publish to (never @kition)
+        type: string
+        default: '@kitionstage'
+      version:
+        description: Version to publish (empty for <package version>-stage.<run number>)
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: stage
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    name: Publish @kition/tessera to a stage scope
+    runs-on: ubuntu-latest
+    # The build and checks, then up to 40 minutes for npm to serve the new version.
+    timeout-minutes: 75
+    env:
+      SCOPE: ${{ inputs.scope }}
+      VERSION_INPUT: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+      # The npm release.yml publishes with.
+      - run: npm install -g npm@latest && npm --version
+      - name: Scope and version
+        run: |
+          if [ "$SCOPE" = "@kition" ]; then
+            echo "::error::This workflow does not publish to @kition: the real release is release.yml. Pick a stage scope such as @kitionstage."
+            exit 1
+          fi
+          version="$VERSION_INPUT"
+          if [ -z "$version" ]; then
+            version="$(node -p "require('./packages/tessera/package.json').version")-stage.$GITHUB_RUN_NUMBER"
+          fi
+          node scripts/stage-package.mjs --check "$SCOPE" "$version"
+          echo "NAME=$SCOPE/tessera" >> "$GITHUB_ENV"
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "Staging $SCOPE/tessera@$version"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build:packages
+      # The packed package as an app uses it (Node, TypeScript, esbuild, Vite); a failure stops the rehearsal.
+      - run: pnpm check:pack
+      - name: Pack and rename a copy
+        run: |
+          mkdir -p "$RUNNER_TEMP/packed"
+          (cd packages/tessera && pnpm pack --pack-destination "$RUNNER_TEMP/packed")
+          packed=$(ls "$RUNNER_TEMP"/packed/*.tgz)
+          if [ "$(echo "$packed" | wc -l)" != "1" ]; then
+            echo "::error::expected one tarball, found: $packed"
+            exit 1
+          fi
+          tarball=$(node scripts/stage-package.mjs "$packed" "$SCOPE" "$VERSION" "$RUNNER_TEMP/stage")
+          ls -l "$tarball"
+          echo "TARBALL=$tarball" >> "$GITHUB_ENV"
+          echo "INTEGRITY=sha512-$(openssl dgst -sha512 -binary "$tarball" | base64 -w0)" >> "$GITHUB_ENV"
+          # The rename happened on a copy: the checkout is as it was.
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::warning::the checkout has changes after the build: $(git status --porcelain | head -n 5 | tr '\n' ' ')"
+          fi
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_STAGE }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "::error::The secret NPM_TOKEN_STAGE is not available to this repository."
+            exit 1
+          fi
+          existing=$(npm view "$NAME@$VERSION" version 2>/dev/null || true)
+          if [ "$existing" = "$VERSION" ]; then
+            echo "::error::$NAME@$VERSION is already on npm. A re-run keeps the run number: start a new run, or pass another version."
+            exit 1
+          fi
+          # A prerelease version needs an explicit tag; latest, so the rehearsal installs without one.
+          npm publish "$TARBALL" --access public --tag latest --ignore-scripts
+      - name: Wait until npm serves it
+        run: |
+          # A new name first shows a placeholder (0.0.0-stage) for several minutes: only the version
+          # published, whose tarball downloads with the integrity of the one published, counts.
+          packument="https://registry.npmjs.org/${NAME/\//%2f}"
+          deadline=$((SECONDS + 40 * 60))
+          while :; do
+            if curl -fsSL -H 'Accept: application/json' -H 'Cache-Control: no-cache' "$packument" -o "$RUNNER_TEMP/packument.json" 2>/dev/null; then
+              listed=$(node -e '
+                const doc = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))
+                const entry = doc.versions?.[process.argv[2]]
+                if (entry?.version === process.argv[2] && entry.dist?.tarball) console.log(entry.dist.tarball + " " + (entry.dist.integrity ?? ""))
+              ' "$RUNNER_TEMP/packument.json" "$VERSION")
+              if [ -n "$listed" ]; then
+                url=${listed%% *}
+                integrity=${listed#* }
+                if [ "$integrity" != "$INTEGRITY" ]; then
+                  echo "::error::npm lists $NAME@$VERSION with integrity $integrity, not the published $INTEGRITY"
+                  exit 1
+                fi
+                if curl -fsSL "$url" -o "$RUNNER_TEMP/downloaded.tgz" \
+                  && [ "sha512-$(openssl dgst -sha512 -binary "$RUNNER_TEMP/downloaded.tgz" | base64 -w0)" = "$INTEGRITY" ]; then
+                  echo "npm serves $NAME@$VERSION ($url)"
+                  break
+                fi
+                echo "$NAME@$VERSION is listed; its tarball does not download yet"
+              else
+                echo "$NAME@$VERSION is not listed yet"
+              fi
+            else
+              echo "$NAME is not on the registry yet"
+            fi
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              echo "::error::npm did not serve $NAME@$VERSION within 40 minutes"
+              exit 1
+            fi
+            sleep 30
+          done
+      - name: How to install it
+        run: |
+          line="\"@kition/tessera\": \"npm:$NAME@$VERSION\""
+          echo "$line"
+          {
+            echo "### $NAME@$VERSION is on npm"
+            echo
+            echo 'In a consumer'"'"'s package.json `dependencies`:'
+            echo
+            echo '```json'
+            echo "$line"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -29,7 +29,7 @@
     "tessera"
   ],
   "type": "module",
-  "//": "No root export: import a subpath. Each mirrors a package it replaces (@kition/tessera-ui/styles.css is @kition/tessera/ui/styles.css); dist/ is assembled from their builds by scripts/build-packages.mjs, so a checkout needs pnpm build:packages before the exports resolve.",
+  "//": "No root export: import a subpath. Each mirrors a package it replaces (@kition/tessera-ui/styles.css is @kition/tessera/ui/styles.css); dist/ is assembled from their builds by scripts/build-packages.mjs, so a checkout needs pnpm build:packages before the exports resolve. React is an optional peer: /ui and /icons/react need it, /tokens, /icons, /icons/registry and /ui/workspaceTree do not.",
   "exports": {
     "./tokens": {
       "types": "./dist/tokens/types/src/index.d.ts",
@@ -77,6 +77,14 @@
   "peerDependencies": {
     "react": ">=19",
     "react-dom": ">=19"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

@@ -10,7 +10,9 @@ theme tokens, so one theme reskins them all.
 pnpm add @kition/tessera
 ```
 
-The components need React 19 and React DOM 19 or later. The package contains compiled ES modules
+The components (`/ui`) and the React icons (`/icons/react`) need React 19 and React DOM 19 or
+later, an optional peer: `/tokens`, `/icons`, `/icons/registry` and `/ui/workspaceTree` do not
+load React, so an app that uses only those needs none. The package contains compiled ES modules
 and TypeScript declarations; use it with a bundler such as Vite. There is no root import: take
 each part from its subpath.
 

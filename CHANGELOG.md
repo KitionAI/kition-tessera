@@ -15,7 +15,9 @@ Notable changes to Kition Tessera's packages (`@kition/tessera-tokens`, `@kition
   depends on none of the three. Its declarations also resolve under TypeScript's
   `moduleResolution: node16`. `scripts/migrate-to-tessera.mjs <folder>` rewrites a project's
   imports, CSS imports and package.json (`--check` only reports). The three packages stay as
-  they are for now.
+  they are for now. React and React DOM (19 or later) are optional peers: `/ui` and
+  `/icons/react` need them, `/tokens`, `/icons`, `/icons/registry` and `/ui/workspaceTree` do
+  not, as with `@kition/tessera-tokens` and `@kition/tessera-icons`.
 
 ## [0.1.1]
 

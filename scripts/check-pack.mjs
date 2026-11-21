@@ -10,7 +10,9 @@
  * `@kition/tessera`, the three packages in one, gets the same in an app of its own where none
  * of the three is installed: its exports mirror theirs subpath for subpath, every file they
  * export is at its new path, Node and TypeScript (`bundler` and `node16`) resolve every subpath,
- * and esbuild and Vite bundle an app that takes one component.
+ * and esbuild and Vite bundle an app that takes one component. Its React peers are optional
+ * (unlike `@kition/tessera-ui`'s), and Node loads its subpaths that do not draw with React in an
+ * app with no React installed.
  */
 import { execFileSync } from 'node:child_process'
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs'
@@ -209,8 +211,12 @@ async function checkMerged(oldButtonBytes, fail) {
   if (manifest.exports['.'] || manifest.main || manifest.types) fail('has a root export: import a subpath')
   for (const field of ['dependencies', 'peerDependencies', 'optionalDependencies', 'devDependencies'])
     for (const dependency of Object.keys(manifest[field] ?? {})) if (dependency.startsWith('@kition/')) fail(`${field} names ${dependency}`)
-  for (const field of ['dependencies', 'peerDependencies', 'peerDependenciesMeta'])
+  for (const field of ['dependencies', 'peerDependencies'])
     if (JSON.stringify(manifest[field] ?? {}) !== JSON.stringify(Object.fromEntries(Object.entries(packedBy.ui.manifest[field] ?? {}).filter(([name]) => !name.startsWith('@kition/'))))) fail(`${field} is not @kition/tessera-ui's (less the Tessera packages)`)
+  // Deliberately unlike @kition/tessera-ui: every peer is optional, since only /ui and
+  // /icons/react need React (the old tessera-icons had React optional, tessera-tokens no peers).
+  const optional = Object.fromEntries(Object.keys(manifest.peerDependencies ?? {}).map((name) => [name, { optional: true }]))
+  if (JSON.stringify(manifest.peerDependenciesMeta ?? {}) !== JSON.stringify(optional)) fail(`peerDependenciesMeta does not mark every peer (${Object.keys(optional).join(', ')}) optional, and only them`)
   if (JSON.stringify(manifest.sideEffects) !== JSON.stringify(['**/*.css'])) fail('sideEffects is not ["**/*.css"]')
   for (const file of merged.files) if (/\.(js|css|ts)$/.test(file) && /@kition\/tessera-(tokens|icons|ui)(?![\w-])/.test(readFileSync(join(merged.dir, file), 'utf8'))) fail(`${file} still names an old package`)
 
@@ -298,6 +304,32 @@ if (failed.length) { console.error('failed: ' + failed.join(', ')); process.exit
     console.log(`${NEW_NAME}: Node loads every subpath (modules and JSON) and draws components`)
   } catch (error) {
     fail(`does not run in Node: ${String(error.stderr ?? error).trim().split('\n').slice(0, 6).join(' | ')}`)
+  }
+
+  // React is an optional peer: in an app with the package and nothing else (no React, no
+  // dependencies), Node loads the subpaths that do not draw with React.
+  const bare = join(out, 'app-tessera-bare')
+  cpSync(merged.dir, join(bare, 'node_modules', '@kition', 'tessera'), { recursive: true })
+  writeFileSync(join(bare, 'package.json'), JSON.stringify({ name: 'app', private: true, type: 'module' }))
+  writeFileSync(
+    join(bare, 'run.mjs'),
+    `let react = 'resolved'
+try { await import('react') } catch (error) { react = error.code }
+if (react !== 'ERR_MODULE_NOT_FOUND') { console.error('React is installed where the app should have none: ' + react); process.exit(1) }
+const { SKINS } = await import('@kition/tessera/tokens')
+const { Layers, toSvg } = await import('@kition/tessera/icons')
+const { ICON_NAMES } = await import('@kition/tessera/icons/registry')
+const { validateTree } = await import('@kition/tessera/ui/workspaceTree')
+const checks = { tokens: Object.keys(SKINS.paper.tokens).length === 15, icons: toSvg(Layers).startsWith('<svg'), registry: ICON_NAMES.length > 500, tree: typeof validateTree === 'function' }
+const failed = Object.entries(checks).filter(([, ok]) => !ok).map(([name]) => name)
+if (failed.length) { console.error('failed: ' + failed.join(', ')); process.exit(1) }
+`,
+  )
+  try {
+    execFileSync('node', ['run.mjs'], { cwd: bare, stdio: 'pipe' })
+    console.log(`${NEW_NAME}: without React installed, Node loads /tokens, /icons, /icons/registry and /ui/workspaceTree`)
+  } catch (error) {
+    fail(`/tokens, /icons, /icons/registry or /ui/workspaceTree needs React or a dependency: ${String(error.stderr ?? error).trim().split('\n').slice(0, 6).join(' | ')}`)
   }
 
   // TypeScript finds the types of every module subpath, under `bundler` and `node16`; the root
