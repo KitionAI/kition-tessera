@@ -11,6 +11,7 @@ checks green.
 | `packages/tokens` | Token sources (`tokens/*.tokens.json`) and the generator for CSS, TypeScript, and Rust |
 | `packages/icons` | The icon list (`icons.json`), Tessera's drawings (`svg/`), kit app icons (`kit/`), and the generator |
 | `packages/ui` | The React components, their stylesheet, and their strings (`locales/`) |
+| `packages/tessera` | `@kition/tessera`, the three packages above in one (`/tokens`, `/icons`, `/ui`), assembled from their builds; not yet published |
 | `crates/` | The Rust crates generated from the two packages above |
 | `docs/` | The Markdown docs (generated; `docs/icon-style.md`, the icon style rules, is written by hand) |
 | `site/` | The site at tessera.kition.ai, and the source of the docs: `site/src/docs/registry.ts` and `site/src/docs/demos/` |
@@ -26,7 +27,7 @@ with rustfmt and clippy. All regular builds and checks work from this checkout a
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm build            # regenerate tokens and icons; compile all three npm packages into dist/
+pnpm build            # regenerate tokens and icons; compile the npm packages into dist/
 pnpm build:docs       # regenerate docs/, llms.txt, llms-full.txt, and the props tables
 pnpm typecheck        # TypeScript
 pnpm test             # JavaScript and React tests
@@ -38,7 +39,12 @@ pnpm --filter @kition/tessera-site preview # preview the static site at http://1
 ```
 
 To compile one package, run `pnpm --filter @kition/tessera-ui build` (or use the icons or
-tokens package name). `pnpm build:packages` recompiles all three without regenerating sources.
+tokens package name). `pnpm build:packages` recompiles all three without regenerating sources,
+then assembles `packages/tessera/dist` from their output: each part's `dist/` and published files
+under `dist/<part>/`, with imports of the other two made relative. Its `exports` point at
+`dist/` in the checkout too. A new export in one of the three needs its mirror in
+`packages/tessera/package.json` and in `EXPORTS` of `scripts/migrate-to-tessera.mjs`;
+`pnpm check:pack` fails until both match.
 Checkout links use source exports for development; `pnpm pack` applies `publishConfig.exports`
 to select built files. pnpm rewrites `workspace:^` dependencies to `^0.1.1` in the archives.
 `pnpm release:dry` runs the local pack check. pnpm 10.16.1 has no `pack --dry-run` option;

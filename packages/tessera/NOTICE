@@ -1,0 +1,13 @@
+Kition Tessera
+Copyright 2026 the Kition authors. Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The icons (dist/icons) include icons drawn from Lucide (https://lucide.dev), under the ISC License,
+some of them derived from Feather under the MIT License. See dist/icons/NOTICE and
+dist/icons/LICENSE-lucide.
+
+The components import React, React DOM, Radix UI and cmdk as dependencies; this package contains
+none of their code. No font files are distributed.
+
+"Kition", "Tessera", and the kit app icons in dist/icons/kit/ are trademarks of Kition AI. The
+license above does not grant permission to use them, except to describe the origin of this
+software.

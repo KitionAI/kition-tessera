@@ -5,6 +5,18 @@ Notable changes to Kition Tessera's packages (`@kition/tessera-tokens`, `@kition
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). All packages share one version; before
 1.0 a minor version may change an API, and the change is listed under **Changed**.
 
+## Unreleased
+
+### Added
+
+- `@kition/tessera`: the three packages in one, not yet on npm. Each is a subpath with the same
+  modules and files: `@kition/tessera-<x>/<rest>` is `@kition/tessera/<x>/<rest>` (`/tokens`,
+  `/icons`, `/ui`, `/ui/styles.css`, `/icons/react`, ...), and there is no root import. It
+  depends on none of the three. Its declarations also resolve under TypeScript's
+  `moduleResolution: node16`. `scripts/migrate-to-tessera.mjs <folder>` rewrites a project's
+  imports, CSS imports and package.json (`--check` only reports). The three packages stay as
+  they are for now.
+
 ## [0.1.1]
 
 ### Fixed

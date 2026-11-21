@@ -1,0 +1,88 @@
+{
+  "name": "@kition/tessera",
+  "version": "0.1.1",
+  "description": "Kition Tessera, the design system for professional editors, in one package: design tokens and skins (@kition/tessera/tokens), Tessera Icons (@kition/tessera/icons), and React components styled only through theme tokens (@kition/tessera/ui).",
+  "license": "Apache-2.0",
+  "homepage": "https://tessera.kition.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KitionAI/kition-tessera.git",
+    "directory": "packages/tessera"
+  },
+  "bugs": "https://github.com/KitionAI/kition-tessera/issues",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "css-variables",
+    "theme",
+    "skin",
+    "icons",
+    "svg",
+    "canvas",
+    "react",
+    "components",
+    "ribbon",
+    "color-picker",
+    "timeline",
+    "editor",
+    "kition",
+    "tessera"
+  ],
+  "type": "module",
+  "//": "No root export: import a subpath. Each mirrors a package it replaces (@kition/tessera-ui/styles.css is @kition/tessera/ui/styles.css); dist/ is assembled from their builds by scripts/build-packages.mjs, so a checkout needs pnpm build:packages before the exports resolve.",
+  "exports": {
+    "./tokens": {
+      "types": "./dist/tokens/types/src/index.d.ts",
+      "default": "./dist/tokens/index.js"
+    },
+    "./tokens/tokens.css": "./dist/tokens/tokens.css",
+    "./tokens/tokens/*": "./dist/tokens/tokens/*",
+    "./icons": {
+      "types": "./dist/icons/types/src/index.d.ts",
+      "default": "./dist/icons/index.js"
+    },
+    "./icons/react": {
+      "types": "./dist/icons/types/src/react.d.ts",
+      "default": "./dist/icons/react.js"
+    },
+    "./icons/registry": {
+      "types": "./dist/icons/types/src/registry.d.ts",
+      "default": "./dist/icons/registry.js"
+    },
+    "./icons/kit/*": "./dist/icons/kit/*",
+    "./ui": {
+      "types": "./dist/ui/types/src/index.d.ts",
+      "default": "./dist/ui/index.js"
+    },
+    "./ui/styles.css": "./dist/ui/styles.css",
+    "./ui/workspaceTree": {
+      "types": "./dist/ui/types/src/workspaceTree.d.ts",
+      "default": "./dist/ui/workspaceTree.js"
+    },
+    "./ui/locales/*": "./dist/ui/locales/*"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "dependencies": {
+    "cmdk": "1.1.1",
+    "radix-ui": "1.4.3"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build-packages.mjs tessera",
+    "prepack": "pnpm run build"
+  }
+}
