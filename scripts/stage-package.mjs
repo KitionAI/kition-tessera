@@ -77,8 +77,12 @@ export function stagePackage({ from, scope, version, out }) {
 
   // npm packs the copy as it is: no lifecycle script runs (a packed package keeps its
   // `prepack`, which builds from a checkout).
-  const [packed] = JSON.parse(execFileSync('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', out], { cwd: dir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }))
-  const tarball = join(out, packed.filename)
+  // npm writes its report as a list (npm 11) or as an object keyed by package name (newer npm).
+  const report = JSON.parse(execFileSync('npm', ['pack', '--ignore-scripts', '--json', '--pack-destination', out], { cwd: dir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }))
+  const packed = Array.isArray(report) ? report[0] : (report?.filename ? report : Object.values(report ?? {})[0])
+  if (typeof packed?.filename !== 'string') throw new Error(`npm pack reported no file name: ${JSON.stringify(report).slice(0, 200)}`)
+  // A scoped package's file name may be reported with its scope folder; the file itself has none.
+  const tarball = join(out, packed.filename.replace(/^@/, '').replace('/', '-'))
   const files = execFileSync('tar', ['-tzf', tarball], { encoding: 'utf8' })
     .split('\n')
     .filter((line) => line && !line.endsWith('/'))
